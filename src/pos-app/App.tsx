@@ -1174,7 +1174,13 @@ export default function App() {
   const [paymentAccounts, setPaymentAccounts] = useState<any[]>([]);
 
   // Business Profile Info (Form Editable)
-  const [shopName, setShopName] = useState<string>('রনি টেলিকম');
+  const [shopName, setShopName] = useState<string>(() => {
+    try {
+      return localStorage.getItem('smarthisab_shop_name') || 'রনি টেলিকম';
+    } catch (e) {
+      return 'রনি টেলিকম';
+    }
+  });
   const [shopAddress, setShopAddress] = useState<string>('কামাল পাশা মোড়, আজাদ নগর, রামগতি, লক্ষ্মীপুর,');
   const [shopPhone, setShopPhone] = useState<string>('01718389900');
 
