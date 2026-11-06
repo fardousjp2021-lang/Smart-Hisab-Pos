@@ -61,9 +61,9 @@ export function SummaryCard({
       iconText: 'text-cyan-600 dark:text-cyan-400',
     },
     slate: {
-      bg: 'bg-gradient-to-br from-slate-100/90 via-slate-50/40 to-white dark:from-slate-800/40 dark:via-slate-800/20 dark:to-slate-900 border-slate-200/80 dark:border-slate-700/60',
-      text: 'text-slate-700 dark:text-slate-300',
-      iconText: 'text-slate-600 dark:text-slate-300',
+      bg: 'bg-gradient-to-br from-slate-100/90 via-slate-50/40 to-white dark:from-slate-800/40 dark:via-slate-800/20 dark:to-slate-900 border-slate-300 dark:border-slate-700/60',
+      text: 'text-black dark:text-white',
+      iconText: 'text-black dark:text-slate-200',
     },
   };
 
@@ -80,15 +80,15 @@ export function SummaryCard({
         <div className="w-9 h-9 rounded-xl bg-white dark:bg-slate-800 shadow-xs border border-slate-200/70 dark:border-slate-700 flex items-center justify-center shrink-0">
           <span className={currentTone.iconText}>{icon}</span>
         </div>
-        <span className={`font-extrabold text-xs sm:text-sm tracking-tight truncate ${currentTone.text}`}>
+        <span className={`font-semibold text-xs sm:text-sm tracking-tight truncate ${currentTone.text}`}>
           {label}
         </span>
       </div>
-      <div className="mt-3 text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight font-mono truncate">
+      <div className="mt-3 text-xl sm:text-2xl font-bold text-black dark:text-white tracking-tight font-mono truncate">
         {value}
       </div>
       {subtitle && (
-        <div className="mt-1 text-xs font-medium text-slate-500 dark:text-slate-400 truncate">
+        <div className="mt-1 text-xs font-bold text-slate-800 dark:text-slate-200 truncate">
           {subtitle}
         </div>
       )}

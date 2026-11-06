@@ -999,7 +999,7 @@ export function Installments({
           <h1 className="text-2xl sm:text-3xl font-black text-slate-800 tracking-tight mt-1">
             💳 {t.title}
           </h1>
-          <p className="text-xs text-slate-500 font-medium mt-0.5">{t.subtitle}</p>
+          <p className="text-xs text-black font-bold mt-0.5">{t.subtitle}</p>
         </div>
         
         <div className="flex flex-wrap gap-2.5 items-center">
@@ -1072,15 +1072,15 @@ export function Installments({
               return (
                 <div key={alert.id} className="bg-white border border-red-100 rounded-xl px-3 py-2 text-[11px] font-semibold text-slate-700 flex items-center gap-2.5 shadow-xs">
                   <div className="flex items-center gap-1.5">
-                    <span className="font-extrabold text-slate-900">{alert.customerName}</span>
-                    <span className="text-slate-400 font-mono">({alert.phone})</span>
+                    <span className="font-extrabold text-black">{alert.customerName}</span>
+                    <span className="text-black font-mono font-bold">({alert.phone})</span>
                   </div>
-                  <span className="text-slate-300">|</span>
-                  <span className="font-semibold text-slate-800">{alert.productName}</span>
-                  <span className="text-slate-300">|</span>
+                  <span className="text-slate-400">|</span>
+                  <span className="font-bold text-black">{alert.productName}</span>
+                  <span className="text-slate-400">|</span>
                   <span className="font-mono text-red-600 font-extrabold">৳{alert.installmentAmount.toLocaleString()}</span>
-                  <span className="text-slate-300">|</span>
-                  <span className="font-mono text-slate-500 font-bold">{alert.nextDueDate}</span>
+                  <span className="text-slate-400">|</span>
+                  <span className="font-mono text-black font-black">{alert.nextDueDate}</span>
                   <button
                     onClick={() => openCollectModal(alert)}
                     className="ml-1 bg-red-50 hover:bg-red-100 text-red-700 px-2.5 py-1 rounded-md text-[10px] font-extrabold transition cursor-pointer border-none"
@@ -1099,10 +1099,10 @@ export function Installments({
         {/* Total Active */}
         <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex items-center justify-between">
           <div className="space-y-1">
-            <span className="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider">{t.kpiTotalActive}</span>
-            <h3 className="text-2xl font-black text-slate-800">{stats.totalActive}</h3>
+            <span className="text-xs text-black font-medium">{t.kpiTotalActive}</span>
+            <h3 className="text-2xl font-bold text-black">{stats.totalActive}</h3>
           </div>
-          <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-black">
+          <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
             <Activity size={22} />
           </div>
         </div>
@@ -1110,10 +1110,10 @@ export function Installments({
         {/* Total Collected */}
         <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex items-center justify-between">
           <div className="space-y-1">
-            <span className="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider">{t.kpiCollected}</span>
-            <h3 className="text-2xl font-black text-emerald-600">৳{stats.totalCollected.toLocaleString()}</h3>
+            <span className="text-xs text-black font-medium">{t.kpiCollected}</span>
+            <h3 className="text-2xl font-bold text-emerald-600">৳{stats.totalCollected.toLocaleString()}</h3>
           </div>
-          <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-black">
+          <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
             ৳
           </div>
         </div>
@@ -1121,10 +1121,10 @@ export function Installments({
         {/* Total Due */}
         <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex items-center justify-between">
           <div className="space-y-1">
-            <span className="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider">{t.kpiTotalDue}</span>
-            <h3 className="text-2xl font-black text-orange-600">৳{stats.totalDue.toLocaleString()}</h3>
+            <span className="text-xs text-black font-medium">{t.kpiTotalDue}</span>
+            <h3 className="text-2xl font-bold text-orange-600">৳{stats.totalDue.toLocaleString()}</h3>
           </div>
-          <div className="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center font-black">
+          <div className="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center font-bold">
             <TrendingUp size={22} />
           </div>
         </div>
@@ -1132,10 +1132,10 @@ export function Installments({
         {/* Defaulter / Overdue */}
         <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex items-center justify-between">
           <div className="space-y-1">
-            <span className="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider">{t.kpiOverdueAccounts}</span>
-            <h3 className="text-2xl font-black text-[#ff4444]">{stats.totalOverdue}</h3>
+            <span className="text-xs text-black font-medium">{t.kpiOverdueAccounts}</span>
+            <h3 className="text-2xl font-bold text-[#ff4444]">{stats.totalOverdue}</h3>
           </div>
-          <div className="w-12 h-12 rounded-xl bg-red-50 text-[#ff4444] flex items-center justify-center font-black">
+          <div className="w-12 h-12 rounded-xl bg-red-50 text-[#ff4444] flex items-center justify-center font-bold">
             <AlertTriangle size={22} />
           </div>
         </div>
@@ -1145,51 +1145,51 @@ export function Installments({
       <div className="bg-white text-slate-900 rounded-2xl p-5 shadow-sm border border-slate-200 space-y-4">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
           <div className="space-y-0.5">
-            <h4 className="text-sm font-extrabold tracking-wide text-slate-800 flex items-center gap-1.5 uppercase">
-              <Activity size={14} className="text-emerald-600" />
+            <h4 className="text-sm font-bold tracking-wide text-black flex items-center gap-1.5 uppercase">
+              <Activity size={15} className="text-emerald-700" />
               {lang === 'bn' ? 'ফিল্টারড হিসাব সারসংক্ষেপ' : 'Filtered Ledger Summary'}
             </h4>
-            <p className="text-[11px] text-slate-500 font-semibold">
+            <p className="text-xs text-black font-medium">
               {lang === 'bn' 
                 ? `বর্তমান ফিল্টার অনুযায়ী মোট হিসাবকৃত সারসংক্ষেপ (মোট রেকর্ড: ${filteredInstallments.length} টি)` 
                 : `Aggregated totals based on current filters and searches (Total Records: ${filteredInstallments.length})`
               }
             </p>
           </div>
-          <div className="text-[10px] font-bold bg-slate-50 text-slate-600 px-3 py-1.5 rounded-lg border border-slate-200 font-mono">
-            {lang === 'bn' ? 'ফিল্টার: ' : 'Filter: '} <span className="text-slate-900 font-extrabold">{statusFilter}</span> 
+          <div className="text-xs font-semibold bg-slate-100 text-black px-3 py-1.5 rounded-lg border border-slate-300 font-mono">
+            {lang === 'bn' ? 'ফিল্টার: ' : 'Filter: '} <span className="text-black font-bold">{statusFilter}</span> 
             {searchTerm && ` | "${searchTerm}"`}
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
           {/* Total Receivable */}
-          <div className="bg-slate-50/70 border border-slate-200 p-4 rounded-xl flex items-center justify-between transition hover:shadow-sm">
+          <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl flex items-center justify-between transition hover:shadow-sm">
             <div className="space-y-1">
-              <span className="text-[10px] text-slate-500 font-extrabold uppercase tracking-wider">
+              <span className="text-xs text-black font-medium">
                 {lang === 'bn' ? 'মোট প্রাপ্য মূল্য (Receivable)' : 'Total Receivable Amount'}
               </span>
-              <h3 className="text-xl font-black text-slate-900 font-mono">৳{filteredStats.totalReceivable.toLocaleString()}</h3>
+              <h3 className="text-xl font-bold text-black font-mono">৳{filteredStats.totalReceivable.toLocaleString()}</h3>
             </div>
           </div>
 
           {/* Total Collected */}
-          <div className="bg-slate-50/70 border border-slate-200 p-4 rounded-xl flex items-center justify-between transition hover:shadow-sm">
+          <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl flex items-center justify-between transition hover:shadow-sm">
             <div className="space-y-1">
-              <span className="text-[10px] text-slate-500 font-extrabold uppercase tracking-wider">
+              <span className="text-xs text-black font-medium">
                 {lang === 'bn' ? 'মোট সংগৃহীত (Collected)' : 'Total Collected'}
               </span>
-              <h3 className="text-xl font-black text-emerald-600 font-mono">৳{filteredStats.totalCollected.toLocaleString()}</h3>
+              <h3 className="text-xl font-bold text-emerald-600 font-mono">৳{filteredStats.totalCollected.toLocaleString()}</h3>
             </div>
           </div>
 
           {/* Total Remaining Balance */}
-          <div className="bg-slate-50/70 border border-slate-200 p-4 rounded-xl flex items-center justify-between transition hover:shadow-sm">
+          <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl flex items-center justify-between transition hover:shadow-sm">
             <div className="space-y-1">
-              <span className="text-[10px] text-slate-500 font-extrabold uppercase tracking-wider">
+              <span className="text-xs text-black font-medium">
                 {lang === 'bn' ? 'মোট অবশিষ্ট বকেয়া (Remaining)' : 'Total Remaining Balance'}
               </span>
-              <h3 className="text-xl font-black text-orange-500 font-mono">৳{filteredStats.totalRemaining.toLocaleString()}</h3>
+              <h3 className="text-xl font-bold text-orange-600 font-mono">৳{filteredStats.totalRemaining.toLocaleString()}</h3>
             </div>
           </div>
         </div>
@@ -1197,13 +1197,13 @@ export function Installments({
 
 
       {/* Main Table Area */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+      <div className="bg-white rounded-2xl border border-slate-300 shadow-xs overflow-hidden">
         
         {/* Controls Bar */}
-        <div className="p-5 border-b border-slate-100 flex flex-col md:flex-row items-center justify-between gap-4 bg-slate-50/50">
+        <div className="p-5 border-b border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4 bg-slate-50/50">
           
           {/* Status Tabs filters */}
-          <div className="flex flex-wrap gap-1 bg-slate-200/65 p-1 rounded-xl">
+          <div className="flex flex-wrap gap-1 bg-slate-200/80 p-1 rounded-xl">
             {['All', 'Active', 'Overdue', 'Completed'].map(status => {
               const label = status === 'All' ? t.filterAll : status === 'Active' ? t.filterActive : status === 'Overdue' ? t.filterOverdue : t.filterCompleted;
               const isActive = statusFilter === status;
@@ -1214,7 +1214,7 @@ export function Installments({
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
                     isActive 
                       ? 'bg-[#008d44] text-white shadow-sm' 
-                      : 'text-slate-600 hover:text-slate-800 hover:bg-slate-300/40'
+                      : 'text-black hover:text-black hover:bg-slate-300/80'
                   }`}
                 >
                   {label}
@@ -1229,14 +1229,14 @@ export function Installments({
               <select
                 value={statusFilter}
                 onChange={e => setStatusFilter(e.target.value)}
-                className="w-full text-xs font-bold pl-3 pr-8 py-2.5 border border-slate-200 bg-white rounded-xl focus:outline-none focus:ring-2 focus:ring-[#008d44]/20 focus:border-[#008d44] appearance-none cursor-pointer"
+                className="w-full text-xs font-bold pl-3 pr-8 py-2.5 border border-slate-300 bg-white rounded-xl focus:outline-none focus:ring-2 focus:ring-[#008d44]/20 focus:border-[#008d44] text-black appearance-none cursor-pointer"
               >
                 <option value="All">{lang === 'bn' ? 'সকল স্ট্যাটাস ফিল্টার' : 'Filter Status: All'}</option>
                 <option value="Active">{lang === 'bn' ? 'চলতি কিস্তি' : 'Active Only'}</option>
                 <option value="Overdue">{lang === 'bn' ? 'মেয়াদোত্তীর্ণ কিস্তি' : 'Overdue Only'}</option>
                 <option value="Completed">{lang === 'bn' ? 'পরিশোধিত কিস্তি' : 'Completed Only'}</option>
               </select>
-              <ChevronDown className="absolute right-3 top-3 text-slate-400 pointer-events-none" size={14} />
+              <ChevronDown className="absolute right-3 top-3 text-slate-700 pointer-events-none" size={14} />
             </div>
 
             {/* Search input */}
@@ -1246,47 +1246,47 @@ export function Installments({
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
                 placeholder={t.searchPlaceholder}
-                className="w-full text-xs font-semibold pl-9 pr-4 py-2.5 border border-slate-200 bg-white rounded-xl focus:outline-none focus:ring-2 focus:ring-[#008d44]/20 focus:border-[#008d44]"
+                className="w-full text-xs font-semibold pl-9 pr-4 py-2.5 border border-slate-300 bg-white rounded-xl focus:outline-none focus:ring-2 focus:ring-[#008d44]/20 focus:border-[#008d44] text-black placeholder:text-slate-400"
               />
-              <Search className="absolute left-3 top-3.5 text-slate-400" size={14} />
+              <Search className="absolute left-3 top-3.5 text-slate-600" size={14} />
             </div>
           </div>
         </div>
 
         {/* Date range filter row */}
-        <div className="px-5 py-3 border-b border-slate-100 bg-white flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-1.5 text-[11px] font-extrabold text-slate-500 uppercase tracking-wider">
+        <div className="px-5 py-3 border-b border-slate-200 bg-white flex flex-wrap items-center gap-3">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-black uppercase tracking-wide">
             <Filter size={12} />
             <span>{lang === 'bn' ? 'পরবর্তী কিস্তির তারিখ:' : 'Next Due Date:'}</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <label className="text-[10px] font-bold text-slate-500">{lang === 'bn' ? 'থেকে' : 'From'}</label>
+            <label className="text-xs font-bold text-black">{lang === 'bn' ? 'থেকে' : 'From'}</label>
             <input
               type="date"
               value={dueFrom}
               onChange={e => setDueFrom(e.target.value)}
-              className="text-xs font-semibold px-2 py-1.5 border border-slate-200 bg-white rounded-lg focus:outline-none focus:ring-1 focus:ring-[#008d44]"
+              className="text-xs font-semibold px-2 py-1.5 border border-slate-300 bg-white rounded-lg focus:outline-none focus:ring-1 focus:ring-[#008d44] text-black"
             />
           </div>
           <div className="flex items-center gap-1.5">
-            <label className="text-[10px] font-bold text-slate-500">{lang === 'bn' ? 'পর্যন্ত' : 'To'}</label>
+            <label className="text-xs font-bold text-black">{lang === 'bn' ? 'পর্যন্ত' : 'To'}</label>
             <input
               type="date"
               value={dueTo}
               onChange={e => setDueTo(e.target.value)}
-              className="text-xs font-semibold px-2 py-1.5 border border-slate-200 bg-white rounded-lg focus:outline-none focus:ring-1 focus:ring-[#008d44]"
+              className="text-xs font-semibold px-2 py-1.5 border border-slate-300 bg-white rounded-lg focus:outline-none focus:ring-1 focus:ring-[#008d44] text-black"
             />
           </div>
           {(dueFrom || dueTo) && (
             <button
               onClick={() => { setDueFrom(''); setDueTo(''); }}
-              className="text-[10px] font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-2.5 py-1.5 rounded-lg border border-red-100 cursor-pointer flex items-center gap-1"
+              className="text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-2.5 py-1.5 rounded-lg border border-red-200 cursor-pointer flex items-center gap-1"
             >
               <XIcon size={11} />
               {lang === 'bn' ? 'তারিখ ক্লিয়ার' : 'Clear dates'}
             </button>
           )}
-          <span className="text-[10px] text-slate-400 font-bold ml-auto">
+          <span className="text-xs text-black font-semibold ml-auto">
             {lang === 'bn' ? `দৃশ্যমান রেকর্ড: ${filteredInstallments.length}` : `Showing ${filteredInstallments.length} record(s)`}
           </span>
         </div>
@@ -1324,38 +1324,38 @@ export function Installments({
                       {/* Customer info */}
                       <td className="px-4 py-4 border-r border-slate-100">
                         <div className="flex items-center gap-2.5">
-                          <div className="w-8 h-8 rounded-full bg-slate-150 flex items-center justify-center font-extrabold text-slate-700 shrink-0 select-none">
+                          <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center font-bold text-black shrink-0 select-none">
                             {item.customerName[0]}
                           </div>
                           <div>
-                            <div className="font-extrabold text-[#333] text-[13px]">{item.customerName}</div>
-                            <div className="text-[10.5px] text-gray-500 font-mono mt-0.5">{item.phone}</div>
+                            <div className="font-bold text-black text-sm">{item.customerName}</div>
+                            <div className="text-xs text-black font-semibold font-mono mt-0.5">{item.phone}</div>
                           </div>
                         </div>
                       </td>
 
                       {/* Product details */}
                       <td className="px-4 py-4 border-r border-slate-100">
-                        <div className="font-extrabold text-slate-800 leading-snug">{item.productName}</div>
-                        <div className="text-[11px] text-[#008d44] font-extrabold font-mono mt-1">৳{item.totalAmount.toLocaleString()}</div>
+                        <div className="font-bold text-black text-sm leading-snug">{item.productName}</div>
+                        <div className="text-xs text-emerald-800 font-bold font-mono mt-1">৳{item.totalAmount.toLocaleString()}</div>
                       </td>
 
                       {/* Down Payment */}
-                      <td className="px-4 py-4 border-r border-slate-100 text-right font-mono font-bold text-slate-600">
+                      <td className="px-4 py-4 border-r border-slate-100 text-right font-mono font-bold text-black text-xs">
                         ৳{item.downPayment.toLocaleString()}
                       </td>
 
                       {/* Collected/Paid Amount */}
                       <td className="px-4 py-4 border-r border-slate-100 text-right font-mono">
-                        <div className="font-extrabold text-emerald-600">৳{item.paidAmount.toLocaleString()}</div>
-                        <div className="text-[9px] text-slate-400 font-bold mt-1 uppercase">{payPercentage}% paid</div>
+                        <div className="font-bold text-emerald-700 text-xs">৳{item.paidAmount.toLocaleString()}</div>
+                        <div className="text-[10px] text-black font-semibold mt-1 uppercase">{payPercentage}% paid</div>
                       </td>
 
                       {/* Remaining balance */}
                       <td className="px-4 py-4 border-r border-slate-100 text-right font-mono">
-                        <div className="font-black text-orange-600">৳{remainingDue.toLocaleString()}</div>
+                        <div className="font-bold text-orange-700 text-xs">৳{remainingDue.toLocaleString()}</div>
                         {/* Progress Bar */}
-                        <div className="w-24 ml-auto h-1.5 bg-slate-100 rounded-full mt-1.5 overflow-hidden border border-slate-200">
+                        <div className="w-24 ml-auto h-1.5 bg-slate-200 rounded-full mt-1.5 overflow-hidden border border-slate-300">
                           <div 
                             className={`h-full rounded-full ${payPercentage === 100 ? 'bg-emerald-500' : 'bg-gradient-to-r from-emerald-500 to-emerald-400'}`}
                             style={{ width: `${payPercentage}%` }}
@@ -1365,14 +1365,14 @@ export function Installments({
 
                       {/* Installment count */}
                       <td className="px-4 py-4 border-r border-slate-100 text-center">
-                        <div className="inline-block bg-slate-100 px-2.5 py-1 rounded-lg">
-                          <span className="font-black text-slate-800 font-mono">{item.paidInstallments}</span>
-                          <span className="text-slate-400 font-bold mx-1">/</span>
-                          <span className="font-bold text-slate-500 font-mono">{item.totalInstallments}</span>
+                        <div className="inline-block bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200">
+                          <span className="font-bold text-black font-mono">{item.paidInstallments}</span>
+                          <span className="text-black font-bold mx-1">/</span>
+                          <span className="font-bold text-black font-mono">{item.totalInstallments}</span>
                         </div>
-                        <div className="text-[10px] text-slate-400 font-bold mt-1 font-mono">৳{item.installmentAmount}/mo</div>
+                        <div className="text-xs text-black font-semibold mt-1 font-mono">৳{item.installmentAmount}/mo</div>
                         {/* Color-coded visual progress bar */}
-                        <div className="w-24 mx-auto h-1.5 bg-slate-100 rounded-full mt-2 overflow-hidden border border-slate-200" title={`${Math.min(100, Math.round((item.paidInstallments / item.totalInstallments) * 100))}% paid`}>
+                        <div className="w-24 mx-auto h-1.5 bg-slate-200 rounded-full mt-2 overflow-hidden border border-slate-300" title={`${Math.min(100, Math.round((item.paidInstallments / item.totalInstallments) * 100))}% paid`}>
                           <div 
                             className={`h-full rounded-full transition-all duration-300 ${
                               item.status === 'Completed' ? 'bg-[#00a65a]' :
@@ -1388,22 +1388,22 @@ export function Installments({
                       <td className="px-4 py-4 border-r border-slate-100 text-center font-mono font-bold">
                         {item.nextDueDate !== '—' && remainingDue > 0 ? (
                           <div className="flex flex-col items-center justify-center gap-0.5">
-                            <div className="flex items-center gap-1 text-slate-700">
-                              <Calendar size={12} className="text-slate-400" />
+                            <div className="flex items-center gap-1 text-black font-bold">
+                              <Calendar size={13} className="text-black" />
                               <span>{item.nextDueDate}</span>
                             </div>
                             {item.status === 'Overdue' ? (
-                              <span className="text-[9px] text-red-500 font-black tracking-tighter uppercase select-none">
+                              <span className="text-[10px] text-red-600 font-bold tracking-tight uppercase select-none">
                                 {lang === 'bn' ? 'বিলম্বিত' : 'Overdue!'}
                               </span>
                             ) : (
-                              <span className="text-[9px] text-[#008d44] font-bold font-sans tracking-tight">
+                              <span className="text-[10px] text-[#008d44] font-bold font-sans tracking-tight">
                                 {lang === 'bn' ? 'চলতি' : 'In term'}
                               </span>
                             )}
                           </div>
                         ) : (
-                          <span className="text-slate-400 font-bold">—</span>
+                          <span className="text-black font-bold">—</span>
                         )}
                       </td>
 
@@ -1540,13 +1540,13 @@ export function Installments({
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                 {/* ============ LEFT COLUMN: Customer & Product ============ */}
                 <div className="space-y-4 lg:border-r lg:border-slate-100 lg:pr-5">
-                  <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 pb-1 border-b border-dashed border-slate-200">
+                  <div className="text-xs font-black uppercase tracking-widest text-black pb-1 border-b border-dashed border-slate-300">
                     {lang === 'bn' ? '১ · গ্রাহক ও পণ্য' : '1 · Customer & Product'}
                   </div>
               {/* Customer Selector Options */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <label className="text-slate-500 font-bold">{t.lblCustomer} *</label>
+                  <label className="text-black font-black text-xs">{t.lblCustomer} *</label>
                   <div className="flex gap-1.5 bg-slate-100 p-0.5 rounded-lg border border-slate-200">
                     <button
                       type="button"
@@ -1630,7 +1630,7 @@ export function Installments({
               {/* Product Selector Options */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <label className="text-slate-500 font-bold">{t.lblProduct} *</label>
+                  <label className="text-black font-black text-xs">{t.lblProduct} *</label>
                   <div className="flex gap-1.5 bg-slate-100 p-0.5 rounded-lg border border-slate-200">
                     <button
                       type="button"
@@ -1704,13 +1704,13 @@ export function Installments({
 
                 {/* ============ RIGHT COLUMN: Pricing, Profit, EMI Terms ============ */}
                 <div className="space-y-4">
-                  <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 pb-1 border-b border-dashed border-slate-200">
+                  <div className="text-xs font-black uppercase tracking-widest text-black pb-1 border-b border-dashed border-slate-300">
                     {lang === 'bn' ? '২ · মূল্য, মুনাফা ও কিস্তির শর্ত' : '2 · Pricing, Profit & EMI Terms'}
                   </div>
               {/* Pricing section: base price + quantity */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="sm:col-span-2">
-                  <label className="block text-slate-500 mb-1.5">
+                  <label className="block text-black font-black text-xs mb-1.5">
                     {lang === 'bn' ? 'প্রতি ইউনিট বেস মূল্য (৳) *' : 'Base Price Per Unit (৳) *'}
                   </label>
                   <input
@@ -1719,12 +1719,12 @@ export function Installments({
                     min={1}
                     value={newTotalAmount || ''}
                     onChange={e => setNewTotalAmount(Number(e.target.value))}
-                    className="w-full p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#008d44] font-mono"
+                    className="w-full p-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#008d44] font-mono text-black font-bold"
                     disabled={productMode === 'inventory'}
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-500 mb-1.5">
+                  <label className="block text-black font-black text-xs mb-1.5">
                     {lang === 'bn' ? 'পরিমাণ (Qty)' : 'Quantity'}
                   </label>
                   <input
@@ -1733,7 +1733,7 @@ export function Installments({
                     step={1}
                     value={newQuantity}
                     onChange={e => setNewQuantity(Math.max(1, Math.floor(Number(e.target.value) || 1)))}
-                    className="w-full p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#008d44] font-mono"
+                    className="w-full p-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#008d44] font-mono text-black font-bold"
                   />
                 </div>
               </div>
@@ -1782,48 +1782,48 @@ export function Installments({
 
               {/* Down Payment */}
               <div>
-                <label className="block text-slate-500 mb-1.5">{t.lblDownPayment}</label>
+                <label className="block text-black font-black text-xs mb-1.5">{t.lblDownPayment}</label>
                 <input
                   type="number"
                   min={0}
                   value={newDownPayment || ''}
                   onChange={e => setNewDownPayment(Number(e.target.value))}
-                  className="w-full p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#008d44] font-mono"
+                  className="w-full p-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#008d44] font-mono text-black font-bold"
                 />
               </div>
 
               {/* Installments Intervals & Start Date */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-slate-500 mb-1.5">{t.lblTotalInstallments} *</label>
+                  <label className="block text-black font-black text-xs mb-1.5">{t.lblTotalInstallments} *</label>
                   <input
                     type="number"
                     required
                     min={1}
                     value={newTotalInstallments}
                     onChange={e => setNewTotalInstallments(Number(e.target.value))}
-                    className="w-full p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#008d44] font-mono"
+                    className="w-full p-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#008d44] font-mono text-black font-bold"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-500 mb-1.5">{t.lblFrequency}</label>
+                  <label className="block text-black font-black text-xs mb-1.5">{t.lblFrequency}</label>
                   <select
                     value={newFrequency}
                     onChange={e => setNewFrequency(e.target.value)}
-                    className="w-full p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#008d44] bg-white text-xs"
+                    className="w-full p-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#008d44] bg-white text-xs font-bold text-black"
                   >
                     <option value="Monthly">{lang === 'bn' ? 'মাসিক কিস্তি' : 'Monthly Interval'}</option>
                     <option value="Weekly">{lang === 'bn' ? 'সাপ্তাহিক কিস্তি' : 'Weekly Interval'}</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-slate-500 mb-1.5">{t.lblStartDate}</label>
+                  <label className="block text-black font-black text-xs mb-1.5">{t.lblStartDate}</label>
                   <input
                     type="date"
                     required
                     value={newStartDate}
                     onChange={e => setNewStartDate(e.target.value)}
-                    className="w-full p-2.5 border border-slate-200 rounded-lg focus:outline-none"
+                    className="w-full p-2.5 border border-slate-300 rounded-lg focus:outline-none text-black font-bold"
                   />
                 </div>
               </div>
@@ -2097,45 +2097,45 @@ export function Installments({
             </div>
 
             {/* Profile Brief Info */}
-            <div className="grid grid-cols-2 gap-3.5 bg-slate-50 p-4 border border-slate-150 rounded-xl text-xs">
+            <div className="grid grid-cols-2 gap-3.5 bg-slate-50 p-4 border border-slate-300 rounded-xl text-xs">
               <div>
-                <span className="text-slate-400 block font-bold">{lang === 'bn' ? 'গ্রাহকের মোবাইল' : 'Customer Phone'}</span>
-                <span className="font-extrabold text-slate-800 font-mono text-[12px]">{selectedInstallment.phone}</span>
+                <span className="text-black block font-black text-xs">{lang === 'bn' ? 'গ্রাহকের মোবাইল' : 'Customer Phone'}</span>
+                <span className="font-black text-black font-mono text-[13px]">{selectedInstallment.phone}</span>
               </div>
               <div>
-                <span className="text-slate-400 block font-bold">{lang === 'bn' ? 'ক্রয়কৃত আইটেম' : 'Purchased Item'}</span>
-                <span className="font-extrabold text-slate-800 text-[12px]">{selectedInstallment.productName}</span>
+                <span className="text-black block font-black text-xs">{lang === 'bn' ? 'ক্রয়কৃত আইটেম' : 'Purchased Item'}</span>
+                <span className="font-black text-black text-[13px]">{selectedInstallment.productName}</span>
               </div>
               <div className="mt-1">
-                <span className="text-slate-400 block font-bold">{lang === 'bn' ? 'মোট বিক্রয়মূল্য' : 'Total Amount'}</span>
-                <span className="font-black text-[#008d44] font-mono text-[13px]">৳{selectedInstallment.totalAmount.toLocaleString()}</span>
+                <span className="text-black block font-black text-xs">{lang === 'bn' ? 'মোট বিক্রয়মূল্য' : 'Total Amount'}</span>
+                <span className="font-black text-emerald-700 font-mono text-[14px]">৳{selectedInstallment.totalAmount.toLocaleString()}</span>
               </div>
               <div className="mt-1">
-                <span className="text-slate-400 block font-bold">{lang === 'bn' ? 'অবशिष्ट বকেয়া' : 'Remaining Due'}</span>
-                <span className="font-black text-orange-600 font-mono text-[13px]">৳{(selectedInstallment.totalAmount - selectedInstallment.paidAmount).toLocaleString()}</span>
+                <span className="text-black block font-black text-xs">{lang === 'bn' ? 'অবशिष्ट বকেয়া' : 'Remaining Due'}</span>
+                <span className="font-black text-orange-700 font-mono text-[14px]">৳{(selectedInstallment.totalAmount - selectedInstallment.paidAmount).toLocaleString()}</span>
               </div>
             </div>
 
             {/* Detailed Payment Ledger Table */}
             <div className="space-y-3">
               <div className="flex justify-between items-center">
-                <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-500">
+                <h4 className="text-xs font-black uppercase tracking-wider text-black">
                   {lang === 'bn' ? 'টাকা আদায়ের বিস্তারিত লেজার' : 'Detailed Payment Ledger'}
                 </h4>
                 <button
                   type="button"
                   onClick={() => copyLedgerHistoryToClipboard(selectedInstallment)}
-                  className="text-emerald-600 hover:text-emerald-700 font-bold text-[10px] flex items-center gap-1 cursor-pointer bg-emerald-50 px-2.5 py-1.5 rounded-lg border border-emerald-150 transition active:scale-95"
+                  className="text-emerald-700 hover:text-emerald-800 font-black text-xs flex items-center gap-1 cursor-pointer bg-emerald-50 px-2.5 py-1.5 rounded-lg border border-emerald-200 transition active:scale-95"
                 >
-                  <Copy size={11} />
+                  <Copy size={12} />
                   <span>{t.copyLedger}</span>
                 </button>
               </div>
               
-              <div className="overflow-x-auto border border-slate-200 rounded-xl max-h-64 scrollbar-thin">
-                <table className="w-full text-left border-collapse text-[11px]">
+              <div className="overflow-x-auto border border-slate-300 rounded-xl max-h-64 scrollbar-thin">
+                <table className="w-full text-left border-collapse text-xs">
                   <thead>
-                    <tr className="bg-[#e4ebf0] text-slate-800 border-b border-slate-300 font-extrabold select-none">
+                    <tr className="bg-[#e4ebf0] text-black border-b border-slate-300 font-black select-none">
                       <th className="p-2.5 font-sans">{lang === 'bn' ? 'রসিদ / সময়' : 'Receipt / Time'}</th>
                       <th className="p-2.5 font-sans">{lang === 'bn' ? 'সংগ্রাহক' : 'Collector'}</th>
                       <th className="p-2.5 font-sans text-right">{lang === 'bn' ? 'জরিমানা' : 'Penalty'}</th>
@@ -2144,7 +2144,7 @@ export function Installments({
                       <th className="p-2.5 font-sans text-center">{lang === 'bn' ? 'প্রিন্ট' : 'Print'}</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 bg-white font-medium text-slate-700">
+                  <tbody className="divide-y divide-slate-200 bg-white font-medium text-black">
                     {selectedInstallment.history.map((hist, idx) => {
                       const fallbackTime = "12:00 PM";
                       const fallbackReceipt = `REC-${14380 + idx * 7}`;
@@ -2153,23 +2153,23 @@ export function Installments({
                       const penalty = hist.penaltyApplied !== undefined ? hist.penaltyApplied : 0;
                       
                       return (
-                        <tr key={idx} className="hover:bg-slate-50/80 transition-colors">
+                        <tr key={idx} className="hover:bg-slate-50 transition-colors">
                           <td className="p-2.5 space-y-0.5">
-                            <span className="font-mono font-extrabold text-slate-800 block">{receipt}</span>
-                            <span className="text-[10px] text-slate-400 block font-mono">{hist.date} {timeStr}</span>
+                            <span className="font-mono font-black text-black block">{receipt}</span>
+                            <span className="text-xs text-black block font-mono font-bold">{hist.date} {timeStr}</span>
                           </td>
                           <td className="p-2.5">
-                            <span className="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded-md font-bold uppercase tracking-wider block w-fit">
+                            <span className="bg-slate-200 text-black text-xs px-2 py-0.5 rounded-md font-black uppercase tracking-wider block w-fit">
                               {hist.collectedBy}
                             </span>
                           </td>
-                          <td className="p-2.5 text-right font-mono font-bold text-slate-500">
+                          <td className="p-2.5 text-right font-mono font-black text-red-700">
                             {penalty > 0 ? `৳${penalty.toLocaleString()}` : '—'}
                           </td>
-                          <td className="p-2.5 text-right font-mono font-black text-emerald-600 text-xs">
+                          <td className="p-2.5 text-right font-mono font-black text-emerald-700 text-xs">
                             ৳{hist.amount.toLocaleString()}
                           </td>
-                          <td className="p-2.5 text-slate-500 max-w-[120px] truncate" title={hist.note}>
+                          <td className="p-2.5 text-black font-bold max-w-[140px] truncate" title={hist.note}>
                             {hist.note}
                           </td>
                           <td className="p-2.5 text-center">
@@ -2269,47 +2269,47 @@ export function Installments({
             <form onSubmit={handleSaveEdit} className="space-y-3 text-xs font-semibold">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-500 mb-1">{lang === 'bn' ? 'মোট মূল্য (৳)' : 'Total Amount (৳)'}</label>
+                  <label className="block text-black font-black text-xs mb-1">{lang === 'bn' ? 'মোট মূল্য (৳)' : 'Total Amount (৳)'}</label>
                   <input type="number" min={0} required value={editForm.totalAmount || ''}
                     onChange={e => setEditForm({ ...editForm, totalAmount: Number(e.target.value) })}
-                    className="w-full p-2.5 border border-slate-200 rounded-lg font-mono" />
+                    className="w-full p-2.5 border border-slate-300 rounded-lg font-mono text-black font-bold" />
                 </div>
                 <div>
-                  <label className="block text-slate-500 mb-1">{lang === 'bn' ? 'ডাউন পেমেন্ট (৳)' : 'Down Payment (৳)'}</label>
+                  <label className="block text-black font-black text-xs mb-1">{lang === 'bn' ? 'ডাউন পেমেন্ট (৳)' : 'Down Payment (৳)'}</label>
                   <input type="number" min={0} value={editForm.downPayment || ''}
                     onChange={e => setEditForm({ ...editForm, downPayment: Number(e.target.value) })}
-                    className="w-full p-2.5 border border-slate-200 rounded-lg font-mono" />
+                    className="w-full p-2.5 border border-slate-300 rounded-lg font-mono text-black font-bold" />
                 </div>
                 <div>
-                  <label className="block text-slate-500 mb-1">{lang === 'bn' ? 'মোট কিস্তি' : 'Total EMIs'}</label>
+                  <label className="block text-black font-black text-xs mb-1">{lang === 'bn' ? 'মোট কিস্তি' : 'Total EMIs'}</label>
                   <input type="number" min={1} required value={editForm.totalInstallments}
                     onChange={e => setEditForm({ ...editForm, totalInstallments: Number(e.target.value) })}
-                    className="w-full p-2.5 border border-slate-200 rounded-lg font-mono" />
+                    className="w-full p-2.5 border border-slate-300 rounded-lg font-mono text-black font-bold" />
                 </div>
                 <div>
-                  <label className="block text-slate-500 mb-1">{lang === 'bn' ? 'ধরণ' : 'Frequency'}</label>
+                  <label className="block text-black font-black text-xs mb-1">{lang === 'bn' ? 'ধরণ' : 'Frequency'}</label>
                   <select value={editForm.frequency}
                     onChange={e => setEditForm({ ...editForm, frequency: e.target.value })}
-                    className="w-full p-2.5 border border-slate-200 rounded-lg bg-white">
+                    className="w-full p-2.5 border border-slate-300 rounded-lg bg-white text-black font-bold">
                     <option value="Monthly">{lang === 'bn' ? 'মাসিক' : 'Monthly'}</option>
                     <option value="Weekly">{lang === 'bn' ? 'সাপ্তাহিক' : 'Weekly'}</option>
                   </select>
                 </div>
                 <div className="col-span-2">
-                  <label className="block text-slate-500 mb-1">{lang === 'bn' ? 'পরবর্তী কিস্তির তারিখ' : 'Next Due Date'}</label>
+                  <label className="block text-black font-black text-xs mb-1">{lang === 'bn' ? 'পরবর্তী কিস্তির তারিখ' : 'Next Due Date'}</label>
                   <input type="date" required value={editForm.nextDueDate}
                     onChange={e => setEditForm({ ...editForm, nextDueDate: e.target.value })}
-                    className="w-full p-2.5 border border-slate-200 rounded-lg" />
+                    className="w-full p-2.5 border border-slate-300 rounded-lg text-black font-bold" />
                 </div>
                 <div className="col-span-2">
-                  <label className="block text-slate-500 mb-1">{lang === 'bn' ? 'নোট' : 'Notes'}</label>
+                  <label className="block text-black font-black text-xs mb-1">{lang === 'bn' ? 'নোট' : 'Notes'}</label>
                   <textarea value={editForm.notes}
                     onChange={e => setEditForm({ ...editForm, notes: e.target.value })}
                     rows={2}
-                    className="w-full p-2.5 border border-slate-200 rounded-lg" />
+                    className="w-full p-2.5 border border-slate-300 rounded-lg text-black font-medium" />
                 </div>
               </div>
-              <div className="text-[10px] text-slate-500 bg-slate-50 p-2 rounded-lg border border-slate-150">
+              <div className="text-xs text-black font-bold bg-slate-100 p-2.5 rounded-lg border border-slate-300">
                 {lang === 'bn' ? 'নোট: মোট মূল্য পরিবর্তন করলে গ্রাহকের বকেয়াও স্বয়ংক্রিয়ভাবে সমন্বয় হবে ও নতুন EMI হিসাব করা হবে।' : 'Note: Changing total will auto-adjust customer dues and recompute EMI.'}
               </div>
               <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
