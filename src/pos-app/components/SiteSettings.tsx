@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import { 
   Settings, Clock, Globe, DollarSign, Database, 
   Save, RefreshCw, Sparkles, Sliders, ShieldCheck, 
@@ -159,10 +159,10 @@ export const SiteSettings: React.FC<Props> = ({
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <h1 className="text-2xl sm:text-3xl font-black tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
                 {lang === 'bn' ? 'সাইট ও সিস্টেম সেটিংস (Site Settings)' : 'Site & System Settings'}
               </h1>
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-emerald-400 text-slate-950 uppercase shadow-sm">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-400 text-slate-950 uppercase shadow-sm">
                 ACTIVE
               </span>
             </div>
@@ -177,7 +177,7 @@ export const SiteSettings: React.FC<Props> = ({
           <button
             onClick={handleSave}
             disabled={saving}
-            className="px-6 py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-sm shadow-lg hover:shadow-amber-400/20 transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
+            className="px-6 py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm shadow-lg hover:shadow-amber-400/20 transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
           >
             {saving ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
             <span>{lang === 'bn' ? 'সেটিংস সেভ করুন' : 'Save Changes'}</span>
@@ -197,7 +197,7 @@ export const SiteSettings: React.FC<Props> = ({
                 <Clock className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-base font-black text-slate-900 tracking-tight">
+                <h2 className="text-base font-bold text-slate-900 tracking-tight">
                   {lang === 'bn' ? 'সাধারণ ও স্থানীয়করণ (General & Localization)' : 'General & Regional Settings'}
                 </h2>
                 <p className="text-xs text-slate-500 font-medium">
@@ -274,7 +274,7 @@ export const SiteSettings: React.FC<Props> = ({
                 <DollarSign className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-base font-black text-slate-900 tracking-tight">
+                <h2 className="text-base font-bold text-slate-900 tracking-tight">
                   {lang === 'bn' ? 'মুদ্রা ও ডেসিমেল ফরম্যাটিং (Currency & Decimals)' : 'Currency & Precision'}
                 </h2>
                 <p className="text-xs text-slate-500 font-medium">
@@ -375,7 +375,7 @@ export const SiteSettings: React.FC<Props> = ({
                 <Database className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-base font-black text-slate-900 tracking-tight">
+                <h2 className="text-base font-bold text-slate-900 tracking-tight">
                   {lang === 'bn' ? 'ব্যাকআপ ও সিস্টেম ক্রিয়াকলাপ' : 'System Operations'}
                 </h2>
                 <p className="text-xs text-slate-500 font-medium">
@@ -404,7 +404,7 @@ export const SiteSettings: React.FC<Props> = ({
               <button
                 type="button"
                 onClick={() => restoreInputRef.current?.click()}
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-black text-xs shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Upload className="w-4 h-4 text-amber-300" />
                 <span>{lang === 'bn' ? '📂 ব্যাকআপ ফাইল থেকে রিস্টোর / ডাটা রিকভারি' : '📂 Restore / Recover Data from JSON File'}</span>
@@ -429,7 +429,7 @@ export const SiteSettings: React.FC<Props> = ({
                 <ShieldCheck className="w-5 h-5 text-indigo-600" />
               </div>
               <div>
-                <h2 className="text-base font-black text-slate-900 tracking-tight">
+                <h2 className="text-base font-bold text-slate-900 tracking-tight">
                   {lang === 'bn' ? '🔑 সুপার এডমিন লগইন ইমেইল ও পাসওয়ার্ড পরিবর্তন' : '🔑 Change Super Admin Credentials'}
                 </h2>
                 <p className="text-xs text-slate-500 font-medium">
@@ -497,7 +497,7 @@ export const SiteSettings: React.FC<Props> = ({
                     showToast('Failed to save credentials: ' + e?.message, 'error');
                   }
                 }}
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-extrabold text-xs shadow-md transition flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2 cursor-pointer active:scale-95"
               >
                 <CheckCircle2 className="w-4 h-4 text-amber-300" />
                 <span>{lang === 'bn' ? 'এডমিন ইমেইল ও পাসওয়ার্ড আপডেট করুন' : 'Save Admin Login Credentials'}</span>
@@ -534,3 +534,4 @@ export const SiteSettings: React.FC<Props> = ({
 };
 
 export default SiteSettings;
+

@@ -968,19 +968,19 @@ export function Installments({
   const getStatusBadge = (status: string) => {
     if (status === 'Completed') {
       return (
-        <span className="text-white bg-[#00a65a] text-[10px] font-extrabold px-2 py-1 rounded-[3px] shadow-sm uppercase">
+        <span className="text-white bg-[#00a65a] text-[10px] font-bold px-2 py-1 rounded-[3px] shadow-sm uppercase">
           {t.badgeCompleted}
         </span>
       );
     } else if (status === 'Overdue') {
       return (
-        <span className="text-white bg-[#ff4444] text-[10px] font-extrabold px-2 py-1 rounded-[3px] shadow-sm uppercase select-none animate-pulse">
+        <span className="text-white bg-[#ff4444] text-[10px] font-bold px-2 py-1 rounded-[3px] shadow-sm uppercase select-none animate-pulse">
           {t.badgeOverdue}
         </span>
       );
     } else {
       return (
-        <span className="text-white bg-[#17a2b8]/90 text-[10px] font-extrabold px-2 py-1 rounded-[3px] shadow-sm uppercase">
+        <span className="text-white bg-[#17a2b8]/90 text-[10px] font-bold px-2 py-1 rounded-[3px] shadow-sm uppercase">
           {t.badgeActive}
         </span>
       );
@@ -993,10 +993,10 @@ export function Installments({
       {/* Header Panel */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-gray-200 pb-5">
         <div>
-          <span className="text-[11px] font-black tracking-wider text-[#008d44] uppercase">
+          <span className="text-[11px] font-bold tracking-wider text-[#008d44] uppercase">
             {lang === 'bn' ? 'রনি টেলিকম কিস্তি বুক রেজিস্টার' : 'Rony Telecom Installment Book Register'}
           </span>
-          <h1 className="text-2xl sm:text-3xl font-black text-slate-800 tracking-tight mt-1">
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 tracking-tight mt-1">
             💳 {t.title}
           </h1>
           <p className="text-xs text-black font-bold mt-0.5">{t.subtitle}</p>
@@ -1050,11 +1050,11 @@ export function Installments({
       {upcomingAlerts.length > 0 && (
         <div className="border border-red-200 bg-red-50/70 rounded-2xl p-4 sm:p-5 flex flex-col items-start gap-3.5 animate-fade-in select-none">
           <div className="flex gap-3 items-start">
-            <div className="w-9 h-9 rounded-xl bg-red-100 text-red-600 flex items-center justify-center font-black shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-red-100 text-red-600 flex items-center justify-center font-bold shrink-0">
               <AlertTriangle size={18} />
             </div>
             <div>
-              <h4 className="font-extrabold text-sm text-red-900">
+              <h4 className="font-bold text-sm text-red-900">
                 ⚠️ {lang === 'bn' ? 'আসন্ন কিস্তি পেমেন্ট অ্যালার্ট (পরবর্তী ৩ দিনের মধ্যে)' : 'Upcoming Installment Alerts (Within Next 3 Days)'}
               </h4>
               <p className="text-xs text-red-700/80 font-bold mt-0.5">
@@ -1072,18 +1072,18 @@ export function Installments({
               return (
                 <div key={alert.id} className="bg-white border border-red-100 rounded-xl px-3 py-2 text-[11px] font-semibold text-slate-700 flex items-center gap-2.5 shadow-xs">
                   <div className="flex items-center gap-1.5">
-                    <span className="font-extrabold text-black">{alert.customerName}</span>
+                    <span className="font-bold text-black">{alert.customerName}</span>
                     <span className="text-black font-mono font-bold">({alert.phone})</span>
                   </div>
                   <span className="text-slate-400">|</span>
                   <span className="font-bold text-black">{alert.productName}</span>
                   <span className="text-slate-400">|</span>
-                  <span className="font-mono text-red-600 font-extrabold">৳{alert.installmentAmount.toLocaleString()}</span>
+                  <span className="font-mono text-red-600 font-bold">৳{alert.installmentAmount.toLocaleString()}</span>
                   <span className="text-slate-400">|</span>
-                  <span className="font-mono text-black font-black">{alert.nextDueDate}</span>
+                  <span className="font-mono text-black font-bold">{alert.nextDueDate}</span>
                   <button
                     onClick={() => openCollectModal(alert)}
-                    className="ml-1 bg-red-50 hover:bg-red-100 text-red-700 px-2.5 py-1 rounded-md text-[10px] font-extrabold transition cursor-pointer border-none"
+                    className="ml-1 bg-red-50 hover:bg-red-100 text-red-700 px-2.5 py-1 rounded-md text-[10px] font-bold transition cursor-pointer border-none"
                   >
                     {lang === 'bn' ? 'আদায় করুন' : 'Collect EMI'}
                   </button>
@@ -1295,7 +1295,7 @@ export function Installments({
         {/* Data Viewport */}
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left border-collapse">
-            <thead className="bg-[#e4ebf0] text-slate-800 border-b border-slate-300 font-extrabold uppercase tracking-wider text-[11px]">
+            <thead className="bg-slate-50 text-slate-700 border-b border-slate-200 font-bold uppercase tracking-wider text-xs">
               <tr>
                 <th className="px-4 py-3 border-r border-slate-200">{t.thCustomer}</th>
                 <th className="px-4 py-3 border-r border-slate-200">{t.thProduct}</th>
@@ -1311,7 +1311,7 @@ export function Installments({
             <tbody className="divide-y divide-slate-150 bg-white font-sans text-slate-700">
               {filteredInstallments.length === 0 ? (
                 <tr>
-                  <td colSpan={9} className="px-6 py-12 text-center text-slate-400 font-extrabold bg-slate-50/50">
+                  <td colSpan={9} className="px-6 py-12 text-center text-slate-400 font-bold bg-slate-50/50">
                     💔 {t.noData}
                   </td>
                 </tr>
@@ -1420,7 +1420,7 @@ export function Installments({
                               e.stopPropagation();
                               setActiveRowActionMenuId(activeRowActionMenuId === item.id ? null : item.id);
                             }}
-                            className="bg-[#008d44] hover:bg-[#00733e] text-white px-2.5 py-1.5 rounded-sm font-bold text-[11.5px] transition duration-150 flex items-center justify-center gap-1 shadow-xs cursor-pointer select-none"
+                            className="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-xl font-bold text-xs transition duration-150 flex items-center justify-center gap-1.5 shadow-sm cursor-pointer select-none"
                           >
                             <span>Action</span>
                             <span className="text-[10px]">▼</span>
@@ -1432,7 +1432,7 @@ export function Installments({
                                 className="fixed inset-0 z-10"
                                 onClick={() => setActiveRowActionMenuId(null)}
                               />
-                              <div className="absolute right-0 mt-1 w-44 bg-white border border-slate-200 rounded shadow-xl py-1 z-20 font-sans text-left text-xs font-bold divide-y divide-slate-150">
+                              <div className="absolute right-0 mt-1 w-44 bg-white border border-slate-200 rounded-xl shadow-xl py-1.5 z-20 font-sans text-left text-xs font-bold divide-y divide-slate-100">
                                 
                                 {/* Collect payment button */}
                                 {item.status !== 'Completed' && remainingDue > 0 && (
@@ -1527,10 +1527,10 @@ export function Installments({
         <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 flex items-start lg:items-center justify-center p-4">
           <div className="bg-white rounded-2xl border border-slate-200 w-full max-w-6xl p-6 shadow-2xl space-y-4 animate-fade-in text-left max-h-[92vh] overflow-y-auto">
             <div className="flex justify-between items-center pb-3 border-b border-slate-100">
-              <h3 className="text-base font-black text-slate-800">💳 {lang === 'bn' ? 'নতুন কিস্তি অ্যাকাউন্ট খুলুন' : 'New Installment EMI Setup'}</h3>
+              <h3 className="text-base font-bold text-slate-800">💳 {lang === 'bn' ? 'নতুন কিস্তি অ্যাকাউন্ট খুলুন' : 'New Installment EMI Setup'}</h3>
               <button 
                 onClick={() => setIsAddModalOpen(false)}
-                className="text-slate-400 hover:text-slate-600 font-black cursor-pointer text-sm"
+                className="text-slate-400 hover:text-slate-600 font-bold cursor-pointer text-sm"
               >
                 ✕
               </button>
@@ -1540,13 +1540,13 @@ export function Installments({
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                 {/* ============ LEFT COLUMN: Customer & Product ============ */}
                 <div className="space-y-4 lg:border-r lg:border-slate-100 lg:pr-5">
-                  <div className="text-xs font-black uppercase tracking-widest text-black pb-1 border-b border-dashed border-slate-300">
+                  <div className="text-xs font-bold uppercase tracking-widest text-black pb-1 border-b border-dashed border-slate-300">
                     {lang === 'bn' ? '১ · গ্রাহক ও পণ্য' : '1 · Customer & Product'}
                   </div>
               {/* Customer Selector Options */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <label className="text-black font-black text-xs">{t.lblCustomer} *</label>
+                  <label className="text-black font-bold text-xs">{t.lblCustomer} *</label>
                   <div className="flex gap-1.5 bg-slate-100 p-0.5 rounded-lg border border-slate-200">
                     <button
                       type="button"
@@ -1630,7 +1630,7 @@ export function Installments({
               {/* Product Selector Options */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <label className="text-black font-black text-xs">{t.lblProduct} *</label>
+                  <label className="text-black font-bold text-xs">{t.lblProduct} *</label>
                   <div className="flex gap-1.5 bg-slate-100 p-0.5 rounded-lg border border-slate-200">
                     <button
                       type="button"
@@ -1704,13 +1704,13 @@ export function Installments({
 
                 {/* ============ RIGHT COLUMN: Pricing, Profit, EMI Terms ============ */}
                 <div className="space-y-4">
-                  <div className="text-xs font-black uppercase tracking-widest text-black pb-1 border-b border-dashed border-slate-300">
+                  <div className="text-xs font-bold uppercase tracking-widest text-black pb-1 border-b border-dashed border-slate-300">
                     {lang === 'bn' ? '২ · মূল্য, মুনাফা ও কিস্তির শর্ত' : '2 · Pricing, Profit & EMI Terms'}
                   </div>
               {/* Pricing section: base price + quantity */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="sm:col-span-2">
-                  <label className="block text-black font-black text-xs mb-1.5">
+                  <label className="block text-black font-bold text-xs mb-1.5">
                     {lang === 'bn' ? 'প্রতি ইউনিট বেস মূল্য (৳) *' : 'Base Price Per Unit (৳) *'}
                   </label>
                   <input
@@ -1724,7 +1724,7 @@ export function Installments({
                   />
                 </div>
                 <div>
-                  <label className="block text-black font-black text-xs mb-1.5">
+                  <label className="block text-black font-bold text-xs mb-1.5">
                     {lang === 'bn' ? 'পরিমাণ (Qty)' : 'Quantity'}
                   </label>
                   <input
@@ -1741,7 +1741,7 @@ export function Installments({
               {/* Extra Profit / Markup on installment sale */}
               <div className="bg-emerald-50/60 border border-emerald-200 rounded-xl p-3 space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <label className="text-emerald-800 font-black text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+                  <label className="text-emerald-800 font-bold text-[11px] uppercase tracking-wider flex items-center gap-1.5">
                     <TrendingUp size={13} />
                     {lang === 'bn' ? 'অতিরিক্ত মুনাফা / মার্কআপ (কিস্তির জন্য)' : 'Extra Profit / Markup (installment)'}
                   </label>
@@ -1770,7 +1770,7 @@ export function Installments({
                   />
                   <div className="p-2.5 bg-white border border-emerald-200 rounded-lg text-[11px] font-mono text-emerald-900 flex items-center justify-between">
                     <span className="text-emerald-600 font-bold">{lang === 'bn' ? 'মুনাফা:' : 'Profit:'}</span>
-                    <span className="font-black">৳{computedProfit.toLocaleString()}</span>
+                    <span className="font-bold">৳{computedProfit.toLocaleString()}</span>
                   </div>
                 </div>
                 <p className="text-[10px] text-emerald-700/80 font-semibold">
@@ -1782,7 +1782,7 @@ export function Installments({
 
               {/* Down Payment */}
               <div>
-                <label className="block text-black font-black text-xs mb-1.5">{t.lblDownPayment}</label>
+                <label className="block text-black font-bold text-xs mb-1.5">{t.lblDownPayment}</label>
                 <input
                   type="number"
                   min={0}
@@ -1795,7 +1795,7 @@ export function Installments({
               {/* Installments Intervals & Start Date */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-black font-black text-xs mb-1.5">{t.lblTotalInstallments} *</label>
+                  <label className="block text-black font-bold text-xs mb-1.5">{t.lblTotalInstallments} *</label>
                   <input
                     type="number"
                     required
@@ -1806,7 +1806,7 @@ export function Installments({
                   />
                 </div>
                 <div>
-                  <label className="block text-black font-black text-xs mb-1.5">{t.lblFrequency}</label>
+                  <label className="block text-black font-bold text-xs mb-1.5">{t.lblFrequency}</label>
                   <select
                     value={newFrequency}
                     onChange={e => setNewFrequency(e.target.value)}
@@ -1817,7 +1817,7 @@ export function Installments({
                   </select>
                 </div>
                 <div>
-                  <label className="block text-black font-black text-xs mb-1.5">{t.lblStartDate}</label>
+                  <label className="block text-black font-bold text-xs mb-1.5">{t.lblStartDate}</label>
                   <input
                     type="date"
                     required
@@ -1843,7 +1843,7 @@ export function Installments({
                   )}
                   <div className="flex justify-between border-t border-slate-700 pt-1.5 text-[12px]">
                     <span className="text-slate-300">{lang === 'bn' ? 'চূড়ান্ত বিক্রয়মূল্য:' : 'Final Sale Price:'}</span>
-                    <span className="text-white font-black">৳{finalTotalWithProfit.toLocaleString()}</span>
+                    <span className="text-white font-bold">৳{finalTotalWithProfit.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-400">{lang === 'bn' ? 'ডাউন পেমেন্ট:' : 'Down Payment:'}</span>
@@ -1851,7 +1851,7 @@ export function Installments({
                   </div>
                   <div className="flex justify-between border-t border-slate-700 pt-1.5 text-[13px]">
                     <span className="text-slate-300">{t.lblInstallmentAmt}:</span>
-                    <span className="text-[#4ade80] font-black">
+                    <span className="text-[#4ade80] font-bold">
                       ৳{Math.max(0, Math.round((finalTotalWithProfit - newDownPayment) / (newTotalInstallments || 1))).toLocaleString()} × {newTotalInstallments}
                     </span>
                   </div>
@@ -1870,7 +1870,7 @@ export function Installments({
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 bg-[#008d44] hover:bg-[#00733e] text-white font-extrabold rounded-xl transition cursor-pointer border-none"
+                  className="px-5 py-2.5 bg-[#008d44] hover:bg-[#00733e] text-white font-bold rounded-xl transition cursor-pointer border-none"
                 >
                   {t.save}
                 </button>
@@ -1891,13 +1891,13 @@ export function Installments({
                   💰
                 </div>
                 <div>
-                  <h3 className="text-base font-black tracking-tight">{t.collect}</h3>
+                  <h3 className="text-base font-bold tracking-tight">{t.collect}</h3>
                   <p className="text-[11px] text-emerald-100 font-medium">ইনভয়েস/হিসাব নং: #{selectedInstallment.id}</p>
                 </div>
               </div>
               <button 
                 onClick={() => setIsCollectModalOpen(false)}
-                className="p-1 rounded-lg hover:bg-white/20 text-white/80 hover:text-white transition cursor-pointer text-sm font-black"
+                className="p-1 rounded-lg hover:bg-white/20 text-white/80 hover:text-white transition cursor-pointer text-sm font-bold"
               >
                 ✕
               </button>
@@ -1909,16 +1909,16 @@ export function Installments({
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <span className="text-slate-400 font-bold">{lang === 'bn' ? 'গ্রাহক:' : 'Customer:'}</span>
-                    <span className="font-black text-slate-800 dark:text-white">{selectedInstallment.customerName}</span>
+                    <span className="font-bold text-slate-800 dark:text-white">{selectedInstallment.customerName}</span>
                     <span className="font-mono text-[11px] text-slate-500">({selectedInstallment.phone})</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-slate-400 font-bold">{lang === 'bn' ? 'পণ্য:' : 'Product:'}</span>
-                    <span className="font-extrabold text-slate-800 dark:text-slate-200">{selectedInstallment.productName}</span>
+                    <span className="font-bold text-slate-800 dark:text-slate-200">{selectedInstallment.productName}</span>
                   </div>
                   <div className="flex items-center gap-2 text-[11px]">
                     <span className="text-slate-400 font-bold">{lang === 'bn' ? 'কিস্তির মেয়াদের ধরন:' : 'Frequency:'}</span>
-                    <span className="font-extrabold text-[#7c3aed] bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded-md border border-purple-200 dark:border-purple-900">
+                    <span className="font-bold text-[#7c3aed] bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded-md border border-purple-200 dark:border-purple-900">
                       {selectedInstallment.frequency === 'Monthly' ? 'মাসিক' : 'সাপ্তাহিক'} (৳{selectedInstallment.installmentAmount.toLocaleString()} × {selectedInstallment.totalInstallments})
                     </span>
                   </div>
@@ -1935,7 +1935,7 @@ export function Installments({
                   </div>
                   <div className="flex justify-between items-center border-t border-slate-200 dark:border-slate-700/60 pt-1.5">
                     <span className="text-slate-500 font-bold">{lang === 'bn' ? 'অবশিষ্ট বকেয়া:' : 'Remaining Due:'}</span>
-                    <span className="font-mono font-black text-rose-600 dark:text-rose-400 text-sm">৳{(selectedInstallment.totalAmount - selectedInstallment.paidAmount).toLocaleString()}</span>
+                    <span className="font-mono font-bold text-rose-600 dark:text-rose-400 text-sm">৳{(selectedInstallment.totalAmount - selectedInstallment.paidAmount).toLocaleString()}</span>
                   </div>
                 </div>
               </div>
@@ -1948,7 +1948,7 @@ export function Installments({
                       {t.lblCollectAmt} (৳) *
                     </label>
                     <div className="relative">
-                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 font-black text-slate-400">৳</span>
+                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 font-bold text-slate-400">৳</span>
                       <input
                         type="number"
                         required
@@ -1966,7 +1966,7 @@ export function Installments({
                       {lang === 'bn' ? 'জরিমানা ফি (ঐচ্ছিক) (৳)' : 'Penalty Fee (Optional) (৳)'}
                     </label>
                     <div className="relative">
-                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 font-black text-slate-400">৳</span>
+                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 font-bold text-slate-400">৳</span>
                       <input
                         type="number"
                         min={0}
@@ -2070,7 +2070,7 @@ export function Installments({
                   </button>
                   <button
                     type="submit"
-                    className="px-6 py-2.5 bg-[#008d44] hover:bg-[#00733e] text-white font-black rounded-xl transition cursor-pointer text-xs border-none shadow-md hover:shadow-lg flex items-center gap-2"
+                    className="px-6 py-2.5 bg-[#008d44] hover:bg-[#00733e] text-white font-bold rounded-xl transition cursor-pointer text-xs border-none shadow-md hover:shadow-lg flex items-center gap-2"
                   >
                     <span>💰</span>
                     <span>{t.collect}</span>
@@ -2087,10 +2087,10 @@ export function Installments({
         <div className="fixed inset-0 z-50 bg-slate-900/60 flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl border border-slate-200 w-full max-w-lg p-6 shadow-2xl space-y-4 animate-fade-in text-left">
             <div className="flex justify-between items-center pb-2 border-b border-slate-100">
-              <h3 className="text-base font-black text-slate-800">📜 {t.details} - {selectedInstallment.customerName}</h3>
+              <h3 className="text-base font-bold text-slate-800">📜 {t.details} - {selectedInstallment.customerName}</h3>
               <button 
                 onClick={() => setSelectedInstallment(null)}
-                className="text-slate-400 hover:text-slate-600 font-black cursor-pointer text-sm"
+                className="text-slate-400 hover:text-slate-600 font-bold cursor-pointer text-sm"
               >
                 ✕
               </button>
@@ -2099,33 +2099,33 @@ export function Installments({
             {/* Profile Brief Info */}
             <div className="grid grid-cols-2 gap-3.5 bg-slate-50 p-4 border border-slate-300 rounded-xl text-xs">
               <div>
-                <span className="text-black block font-black text-xs">{lang === 'bn' ? 'গ্রাহকের মোবাইল' : 'Customer Phone'}</span>
-                <span className="font-black text-black font-mono text-[13px]">{selectedInstallment.phone}</span>
+                <span className="text-black block font-bold text-xs">{lang === 'bn' ? 'গ্রাহকের মোবাইল' : 'Customer Phone'}</span>
+                <span className="font-bold text-black font-mono text-[13px]">{selectedInstallment.phone}</span>
               </div>
               <div>
-                <span className="text-black block font-black text-xs">{lang === 'bn' ? 'ক্রয়কৃত আইটেম' : 'Purchased Item'}</span>
-                <span className="font-black text-black text-[13px]">{selectedInstallment.productName}</span>
+                <span className="text-black block font-bold text-xs">{lang === 'bn' ? 'ক্রয়কৃত আইটেম' : 'Purchased Item'}</span>
+                <span className="font-bold text-black text-[13px]">{selectedInstallment.productName}</span>
               </div>
               <div className="mt-1">
-                <span className="text-black block font-black text-xs">{lang === 'bn' ? 'মোট বিক্রয়মূল্য' : 'Total Amount'}</span>
-                <span className="font-black text-emerald-700 font-mono text-[14px]">৳{selectedInstallment.totalAmount.toLocaleString()}</span>
+                <span className="text-black block font-bold text-xs">{lang === 'bn' ? 'মোট বিক্রয়মূল্য' : 'Total Amount'}</span>
+                <span className="font-bold text-emerald-700 font-mono text-[14px]">৳{selectedInstallment.totalAmount.toLocaleString()}</span>
               </div>
               <div className="mt-1">
-                <span className="text-black block font-black text-xs">{lang === 'bn' ? 'অবशिष्ट বকেয়া' : 'Remaining Due'}</span>
-                <span className="font-black text-orange-700 font-mono text-[14px]">৳{(selectedInstallment.totalAmount - selectedInstallment.paidAmount).toLocaleString()}</span>
+                <span className="text-black block font-bold text-xs">{lang === 'bn' ? 'অবशिष्ट বকেয়া' : 'Remaining Due'}</span>
+                <span className="font-bold text-orange-700 font-mono text-[14px]">৳{(selectedInstallment.totalAmount - selectedInstallment.paidAmount).toLocaleString()}</span>
               </div>
             </div>
 
             {/* Detailed Payment Ledger Table */}
             <div className="space-y-3">
               <div className="flex justify-between items-center">
-                <h4 className="text-xs font-black uppercase tracking-wider text-black">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-black">
                   {lang === 'bn' ? 'টাকা আদায়ের বিস্তারিত লেজার' : 'Detailed Payment Ledger'}
                 </h4>
                 <button
                   type="button"
                   onClick={() => copyLedgerHistoryToClipboard(selectedInstallment)}
-                  className="text-emerald-700 hover:text-emerald-800 font-black text-xs flex items-center gap-1 cursor-pointer bg-emerald-50 px-2.5 py-1.5 rounded-lg border border-emerald-200 transition active:scale-95"
+                  className="text-emerald-700 hover:text-emerald-800 font-bold text-xs flex items-center gap-1 cursor-pointer bg-emerald-50 px-2.5 py-1.5 rounded-lg border border-emerald-200 transition active:scale-95"
                 >
                   <Copy size={12} />
                   <span>{t.copyLedger}</span>
@@ -2135,7 +2135,7 @@ export function Installments({
               <div className="overflow-x-auto border border-slate-300 rounded-xl max-h-64 scrollbar-thin">
                 <table className="w-full text-left border-collapse text-xs">
                   <thead>
-                    <tr className="bg-[#e4ebf0] text-black border-b border-slate-300 font-black select-none">
+                    <tr className="bg-slate-50 text-slate-800 border-b border-slate-200 font-bold select-none">
                       <th className="p-2.5 font-sans">{lang === 'bn' ? 'রসিদ / সময়' : 'Receipt / Time'}</th>
                       <th className="p-2.5 font-sans">{lang === 'bn' ? 'সংগ্রাহক' : 'Collector'}</th>
                       <th className="p-2.5 font-sans text-right">{lang === 'bn' ? 'জরিমানা' : 'Penalty'}</th>
@@ -2155,18 +2155,18 @@ export function Installments({
                       return (
                         <tr key={idx} className="hover:bg-slate-50 transition-colors">
                           <td className="p-2.5 space-y-0.5">
-                            <span className="font-mono font-black text-black block">{receipt}</span>
+                            <span className="font-mono font-bold text-black block">{receipt}</span>
                             <span className="text-xs text-black block font-mono font-bold">{hist.date} {timeStr}</span>
                           </td>
                           <td className="p-2.5">
-                            <span className="bg-slate-200 text-black text-xs px-2 py-0.5 rounded-md font-black uppercase tracking-wider block w-fit">
+                            <span className="bg-slate-200 text-black text-xs px-2 py-0.5 rounded-md font-bold uppercase tracking-wider block w-fit">
                               {hist.collectedBy}
                             </span>
                           </td>
-                          <td className="p-2.5 text-right font-mono font-black text-red-700">
+                          <td className="p-2.5 text-right font-mono font-bold text-red-700">
                             {penalty > 0 ? `৳${penalty.toLocaleString()}` : '—'}
                           </td>
-                          <td className="p-2.5 text-right font-mono font-black text-emerald-700 text-xs">
+                          <td className="p-2.5 text-right font-mono font-bold text-emerald-700 text-xs">
                             ৳{hist.amount.toLocaleString()}
                           </td>
                           <td className="p-2.5 text-black font-bold max-w-[140px] truncate" title={hist.note}>
@@ -2214,7 +2214,7 @@ export function Installments({
               {selectedInstallment.status !== 'Completed' && (selectedInstallment.totalAmount - selectedInstallment.paidAmount) > 0 && (
                 <button
                   onClick={() => openCollectModal(selectedInstallment)}
-                  className="px-5 py-2.5 bg-[#008d44] hover:bg-[#00733e] text-white font-extrabold rounded-xl transition cursor-pointer text-xs mr-2 border-none"
+                  className="px-5 py-2.5 bg-[#008d44] hover:bg-[#00733e] text-white font-bold rounded-xl transition cursor-pointer text-xs mr-2 border-none"
                 >
                   {t.collect}
                 </button>
@@ -2237,17 +2237,17 @@ export function Installments({
           <div className="flex justify-between items-center pb-2 border-b border-slate-800">
             <div className="flex items-center gap-2">
               <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-ping" />
-              <span className="text-[11px] font-black uppercase tracking-wider text-green-400">⚡ SMS Gateway (Simulated)</span>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-green-400">⚡ SMS Gateway (Simulated)</span>
             </div>
             <button
               onClick={() => setActiveSms(null)}
-              className="text-slate-400 hover:text-white font-extrabold cursor-pointer"
+              className="text-slate-400 hover:text-white font-bold cursor-pointer"
             >
               ✕
             </button>
           </div>
           <div className="space-y-1">
-            <div className="text-[10px] text-slate-400 font-bold">To: <span className="font-mono text-white font-extrabold">{activeSms.phone}</span></div>
+            <div className="text-[10px] text-slate-400 font-bold">To: <span className="font-mono text-white font-bold">{activeSms.phone}</span></div>
             <div className="bg-slate-950 p-2.5 rounded-lg border border-slate-800 font-sans text-[11px] leading-relaxed text-slate-100 select-all font-medium">
               {activeSms.message}
             </div>
@@ -2263,31 +2263,31 @@ export function Installments({
         <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl border border-slate-200 w-full max-w-md p-6 shadow-2xl space-y-4 animate-fade-in text-left">
             <div className="flex justify-between items-center pb-3 border-b border-slate-100">
-              <h3 className="text-base font-black text-slate-800">✏️ {lang === 'bn' ? 'কিস্তি হিসাব সম্পাদনা' : 'Edit Installment Account'}</h3>
-              <button onClick={() => { setIsEditModalOpen(false); setEditForm(null); }} className="text-slate-400 hover:text-slate-600 font-black cursor-pointer text-sm">✕</button>
+              <h3 className="text-base font-bold text-slate-800">✏️ {lang === 'bn' ? 'কিস্তি হিসাব সম্পাদনা' : 'Edit Installment Account'}</h3>
+              <button onClick={() => { setIsEditModalOpen(false); setEditForm(null); }} className="text-slate-400 hover:text-slate-600 font-bold cursor-pointer text-sm">✕</button>
             </div>
             <form onSubmit={handleSaveEdit} className="space-y-3 text-xs font-semibold">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-black font-black text-xs mb-1">{lang === 'bn' ? 'মোট মূল্য (৳)' : 'Total Amount (৳)'}</label>
+                  <label className="block text-black font-bold text-xs mb-1">{lang === 'bn' ? 'মোট মূল্য (৳)' : 'Total Amount (৳)'}</label>
                   <input type="number" min={0} required value={editForm.totalAmount || ''}
                     onChange={e => setEditForm({ ...editForm, totalAmount: Number(e.target.value) })}
                     className="w-full p-2.5 border border-slate-300 rounded-lg font-mono text-black font-bold" />
                 </div>
                 <div>
-                  <label className="block text-black font-black text-xs mb-1">{lang === 'bn' ? 'ডাউন পেমেন্ট (৳)' : 'Down Payment (৳)'}</label>
+                  <label className="block text-black font-bold text-xs mb-1">{lang === 'bn' ? 'ডাউন পেমেন্ট (৳)' : 'Down Payment (৳)'}</label>
                   <input type="number" min={0} value={editForm.downPayment || ''}
                     onChange={e => setEditForm({ ...editForm, downPayment: Number(e.target.value) })}
                     className="w-full p-2.5 border border-slate-300 rounded-lg font-mono text-black font-bold" />
                 </div>
                 <div>
-                  <label className="block text-black font-black text-xs mb-1">{lang === 'bn' ? 'মোট কিস্তি' : 'Total EMIs'}</label>
+                  <label className="block text-black font-bold text-xs mb-1">{lang === 'bn' ? 'মোট কিস্তি' : 'Total EMIs'}</label>
                   <input type="number" min={1} required value={editForm.totalInstallments}
                     onChange={e => setEditForm({ ...editForm, totalInstallments: Number(e.target.value) })}
                     className="w-full p-2.5 border border-slate-300 rounded-lg font-mono text-black font-bold" />
                 </div>
                 <div>
-                  <label className="block text-black font-black text-xs mb-1">{lang === 'bn' ? 'ধরণ' : 'Frequency'}</label>
+                  <label className="block text-black font-bold text-xs mb-1">{lang === 'bn' ? 'ধরণ' : 'Frequency'}</label>
                   <select value={editForm.frequency}
                     onChange={e => setEditForm({ ...editForm, frequency: e.target.value })}
                     className="w-full p-2.5 border border-slate-300 rounded-lg bg-white text-black font-bold">
@@ -2296,13 +2296,13 @@ export function Installments({
                   </select>
                 </div>
                 <div className="col-span-2">
-                  <label className="block text-black font-black text-xs mb-1">{lang === 'bn' ? 'পরবর্তী কিস্তির তারিখ' : 'Next Due Date'}</label>
+                  <label className="block text-black font-bold text-xs mb-1">{lang === 'bn' ? 'পরবর্তী কিস্তির তারিখ' : 'Next Due Date'}</label>
                   <input type="date" required value={editForm.nextDueDate}
                     onChange={e => setEditForm({ ...editForm, nextDueDate: e.target.value })}
                     className="w-full p-2.5 border border-slate-300 rounded-lg text-black font-bold" />
                 </div>
                 <div className="col-span-2">
-                  <label className="block text-black font-black text-xs mb-1">{lang === 'bn' ? 'নোট' : 'Notes'}</label>
+                  <label className="block text-black font-bold text-xs mb-1">{lang === 'bn' ? 'নোট' : 'Notes'}</label>
                   <textarea value={editForm.notes}
                     onChange={e => setEditForm({ ...editForm, notes: e.target.value })}
                     rows={2}
@@ -2317,7 +2317,7 @@ export function Installments({
                   className="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl cursor-pointer">
                   {t.cancel}
                 </button>
-                <button type="submit" className="px-5 py-2.5 bg-[#008d44] hover:bg-[#00733e] text-white font-extrabold rounded-xl cursor-pointer border-none">
+                <button type="submit" className="px-5 py-2.5 bg-[#008d44] hover:bg-[#00733e] text-white font-bold rounded-xl cursor-pointer border-none">
                   {lang === 'bn' ? 'সংরক্ষণ' : 'Save Changes'}
                 </button>
               </div>
@@ -2333,7 +2333,7 @@ export function Installments({
           <div className="bg-white rounded-2xl border border-slate-200 w-full max-w-4xl max-h-[92vh] flex flex-col shadow-2xl animate-fade-in">
             <div className="flex justify-between items-center p-4 border-b border-slate-100">
               <div>
-                <h3 className="text-base font-black text-slate-800 flex items-center gap-2">
+                <h3 className="text-base font-bold text-slate-800 flex items-center gap-2">
                   <Printer size={16} />
                   {lang === 'bn' ? 'প্রিন্ট প্রিভিউ' : 'Print Preview'} — <span className="text-slate-500 font-bold">{printPreview.title}</span>
                 </h3>
@@ -2343,7 +2343,7 @@ export function Installments({
               </div>
               <button
                 onClick={() => setPrintPreview(null)}
-                className="text-slate-400 hover:text-slate-700 font-black cursor-pointer p-1"
+                className="text-slate-400 hover:text-slate-700 font-bold cursor-pointer p-1"
               >
                 <XIcon size={18} />
               </button>
@@ -2364,7 +2364,7 @@ export function Installments({
               </button>
               <button
                 onClick={confirmPrint}
-                className="px-5 py-2.5 bg-[#008d44] hover:bg-[#00733e] text-white font-extrabold rounded-xl text-xs cursor-pointer border-none flex items-center gap-1.5"
+                className="px-5 py-2.5 bg-[#008d44] hover:bg-[#00733e] text-white font-bold rounded-xl text-xs cursor-pointer border-none flex items-center gap-1.5"
               >
                 <Printer size={13} />
                 {lang === 'bn' ? 'প্রিন্ট / সেভ পিডিএফ' : 'Print / Save PDF'}
@@ -2379,15 +2379,15 @@ export function Installments({
         <div className="fixed inset-0 z-50 bg-slate-900/60 flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl border border-slate-200 w-full max-w-lg p-6 shadow-2xl space-y-4 animate-fade-in text-left">
             <div className="flex justify-between items-center pb-3 border-b border-slate-100">
-              <h3 className="text-base font-black text-slate-800 flex items-center gap-2">
+              <h3 className="text-base font-bold text-slate-800 flex items-center gap-2">
                 <MessageSquare size={16} />
                 {lang === 'bn' ? 'রিমাইন্ডার SMS টেমপ্লেট' : 'Reminder SMS Template'}
               </h3>
-              <button onClick={() => setIsSmsSettingsOpen(false)} className="text-slate-400 hover:text-slate-600 font-black cursor-pointer text-sm">✕</button>
+              <button onClick={() => setIsSmsSettingsOpen(false)} className="text-slate-400 hover:text-slate-600 font-bold cursor-pointer text-sm">✕</button>
             </div>
 
             <div className="bg-blue-50 border border-blue-100 rounded-xl p-3 text-[11px] text-blue-900 font-semibold leading-relaxed">
-              <div className="font-black mb-1">{lang === 'bn' ? 'উপলব্ধ প্লেসহোল্ডার:' : 'Available placeholders:'}</div>
+              <div className="font-bold mb-1">{lang === 'bn' ? 'উপলব্ধ প্লেসহোল্ডার:' : 'Available placeholders:'}</div>
               <div className="font-mono text-[10.5px] text-blue-800">
                 {'{customerName} {phone} {product} {emi} {dueDate} {remaining} {total} {paid} {id}'}
               </div>
@@ -2395,7 +2395,7 @@ export function Installments({
 
             <div className="space-y-3">
               <div>
-                <label className="block text-[11px] font-extrabold text-slate-600 mb-1.5 uppercase tracking-wider">
+                <label className="block text-[11px] font-bold text-slate-600 mb-1.5 uppercase tracking-wider">
                   {lang === 'bn' ? 'বাংলা টেমপ্লেট' : 'Bangla Template'}
                 </label>
                 <textarea
@@ -2406,7 +2406,7 @@ export function Installments({
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-extrabold text-slate-600 mb-1.5 uppercase tracking-wider">
+                <label className="block text-[11px] font-bold text-slate-600 mb-1.5 uppercase tracking-wider">
                   {lang === 'bn' ? 'ইংরেজি টেমপ্লেট' : 'English Template'}
                 </label>
                 <textarea
@@ -2419,7 +2419,7 @@ export function Installments({
 
               {/* Preview */}
               <div className="bg-slate-50 border border-slate-150 rounded-xl p-3">
-                <div className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider mb-1.5">
+                <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
                   {lang === 'bn' ? 'উদাহরণ প্রিভিউ' : 'Sample Preview'}
                 </div>
                 <div className="text-[11.5px] text-slate-800 font-medium leading-relaxed whitespace-pre-wrap">
@@ -2447,7 +2447,7 @@ export function Installments({
               </button>
               <button
                 onClick={() => { setIsSmsSettingsOpen(false); showToast(lang === 'bn' ? 'SMS টেমপ্লেট সংরক্ষিত' : 'SMS template saved', 'success'); }}
-                className="px-5 py-2.5 bg-[#008d44] hover:bg-[#00733e] text-white font-extrabold rounded-xl text-xs cursor-pointer border-none"
+                className="px-5 py-2.5 bg-[#008d44] hover:bg-[#00733e] text-white font-bold rounded-xl text-xs cursor-pointer border-none"
               >
                 {lang === 'bn' ? 'সংরক্ষণ' : 'Save Template'}
               </button>

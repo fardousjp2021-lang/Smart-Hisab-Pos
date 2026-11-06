@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Sparkles, Bot, Send, CheckCircle2, TrendingUp, AlertTriangle, Lightbulb, RefreshCw, X } from 'lucide-react';
 
 interface AiBusinessAssistantProps {
@@ -89,8 +89,8 @@ export const AiBusinessAssistant: React.FC<AiBusinessAssistantProps> = ({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="font-extrabold text-sm sm:text-base leading-none">SmartHisab AI বিজনেস অ্যাসিস্ট্যান্ট</h3>
-              <span className="bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full text-[9.5px] font-black uppercase tracking-wider">Gemini AI</span>
+              <h3 className="font-bold text-sm sm:text-base leading-none">SmartHisab AI বিজনেস অ্যাসিস্ট্যান্ট</h3>
+              <span className="bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full text-[9.5px] font-bold uppercase tracking-wider">Gemini AI</span>
             </div>
             <p className="text-[11px] text-purple-100/90 font-medium mt-1">স্বয়ংক্রিয় সেলস, প্রফিট ও ইনভেন্টরি অ্যানালাইটিক্স হাব</p>
           </div>
@@ -169,3 +169,4 @@ export const AiBusinessAssistant: React.FC<AiBusinessAssistantProps> = ({
     </div>
   );
 };
+

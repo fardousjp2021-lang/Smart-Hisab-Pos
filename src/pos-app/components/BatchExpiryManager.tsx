@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useState, useMemo, useEffect } from 'react';
 import {
   Package, Plus, Trash2, Edit2, Check, X, AlertCircle, Search,
@@ -73,7 +73,7 @@ function Modal({ open, onClose, title, subtitle, maxWidth = 'max-w-4xl', icon: H
               </div>
             ) : null}
             <div>
-              <h2 className="text-lg sm:text-xl font-black text-slate-800 dark:text-white tracking-tight">{title}</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white tracking-tight">{title}</h2>
               {subtitle && <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">{subtitle}</p>}
             </div>
           </div>
@@ -206,7 +206,7 @@ export const BatchExpiryManager = ({
         <div className="bg-slate-50/80 dark:bg-slate-800/40 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 space-y-4">
           <div className="flex items-center gap-2 pb-2.5 border-b border-slate-200/60 dark:border-slate-700/60">
             <span className="w-2 h-4 rounded-full bg-orange-500" />
-            <h3 className="text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
               {isBn ? 'পণ্যের বিবরণ ও স্টক' : 'Product & Stock Details'}
             </h3>
           </div>
@@ -287,7 +287,7 @@ export const BatchExpiryManager = ({
         <div className="bg-slate-50/80 dark:bg-slate-800/40 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 space-y-4">
           <div className="flex items-center gap-2 pb-2.5 border-b border-slate-200/60 dark:border-slate-700/60">
             <span className="w-2 h-4 rounded-full bg-blue-500" />
-            <h3 className="text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
               {isBn ? 'তারিখ ও মেয়াদের সময়সীমা' : 'Timeline & Expiry Schedule'}
             </h3>
           </div>
@@ -367,7 +367,7 @@ export const BatchExpiryManager = ({
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-3 border-b border-gray-200 mb-4 select-none">
           <div className="flex items-baseline gap-2">
-            <h1 className="font-extrabold text-slate-800 text-lg sm:text-xl font-sans tracking-tight flex items-center gap-2">
+            <h1 className="font-bold text-slate-800 text-lg sm:text-xl font-sans tracking-tight flex items-center gap-2">
               <Package size={22} className="text-orange-500" />
               {isBn ? 'ব্যাচ ও মেয়াদ ব্যবস্থাপনা' : 'Batch & Expiry Manager'}
             </h1>
@@ -377,7 +377,7 @@ export const BatchExpiryManager = ({
           </div>
           <button 
             onClick={() => { resetForm(); setAddOpen(true); }}
-            className="bg-[#00a65a] hover:bg-[#008d4c] text-white text-xs font-extrabold px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition duration-150 active:scale-95 cursor-pointer h-10 shadow-sm hover:shadow"
+            className="bg-[#00a65a] hover:bg-[#008d4c] text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition duration-150 active:scale-95 cursor-pointer h-10 shadow-sm hover:shadow"
           >
             <Plus size={16} />
             <span>{isBn ? 'নতুন ব্যাচ' : 'Add Batch'}</span>
@@ -393,12 +393,12 @@ export const BatchExpiryManager = ({
             { label: isBn ? 'মেয়াদ শেষ' : 'Expired', value: stats.expired, color: 'from-rose-400 to-red-600', text: 'text-rose-600', bg: 'bg-rose-50' },
           ].map((s, i) => (
             <div key={i} className={`${s.bg} rounded-2xl p-4 border border-slate-200/60 dark:border-slate-800 shadow-xs flex items-center gap-3`}>
-              <div className={`w-10 h-10 rounded-xl bg-white/80 flex items-center justify-center font-black text-lg ${s.text}`}>
+              <div className={`w-10 h-10 rounded-xl bg-white/80 flex items-center justify-center font-bold text-lg ${s.text}`}>
                 📦
               </div>
               <div>
                 <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{s.label}</p>
-                <p className={`text-lg font-black ${s.text}`}>{s.value} {isBn ? 'টি' : 'batches'}</p>
+                <p className={`text-lg font-bold ${s.text}`}>{s.value} {isBn ? 'টি' : 'batches'}</p>
               </div>
             </div>
           ))}
@@ -439,7 +439,7 @@ export const BatchExpiryManager = ({
         <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xs border border-slate-200 dark:border-slate-800 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-left">
-              <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 font-extrabold uppercase tracking-wider text-[10.5px] border-b border-slate-200 dark:border-slate-700">
+              <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wider text-[10.5px] border-b border-slate-200 dark:border-slate-700">
                 <tr>
                   <th className="px-6 py-4 font-bold">পণ্য / ব্যাচ</th>
                   <th className="px-6 py-4 font-bold hidden sm:table-cell">সরবরাহকারী</th>
@@ -470,7 +470,7 @@ export const BatchExpiryManager = ({
                             <Package size={15} className={cfg.text} />
                           </div>
                           <div>
-                            <p className="font-extrabold text-slate-800 dark:text-white text-xs">{b.productName}</p>
+                            <p className="font-bold text-slate-800 dark:text-white text-xs">{b.productName}</p>
                             <p className="text-slate-400 text-xs flex items-center gap-1 mt-0.5"><Hash size={9} />{b.batchNumber}</p>
                             {b.quantity && <p className="text-slate-400 text-[10px]">Qty: {b.quantity}</p>}
                           </div>
@@ -544,7 +544,7 @@ export const BatchExpiryManager = ({
           <button 
             type="button"
             onClick={saveBatch} 
-            className="px-8 py-2.5 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 hover:from-orange-600 hover:to-amber-600 text-white rounded-xl text-sm font-extrabold shadow-md shadow-orange-500/25 transition active:scale-95 cursor-pointer flex items-center gap-2"
+            className="px-8 py-2.5 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 hover:from-orange-600 hover:to-amber-600 text-white rounded-xl text-sm font-bold shadow-md shadow-orange-500/25 transition active:scale-95 cursor-pointer flex items-center gap-2"
           >
             <CheckCircle2 size={16} />
             <span>{isBn ? 'সংরক্ষণ করুন' : 'Save Batch'}</span>
@@ -572,7 +572,7 @@ export const BatchExpiryManager = ({
           <button 
             type="button"
             onClick={saveBatch} 
-            className="px-8 py-2.5 bg-gradient-to-r from-amber-500 via-orange-500 to-orange-600 hover:from-amber-600 hover:to-orange-600 text-white rounded-xl text-sm font-extrabold shadow-md shadow-orange-500/25 transition active:scale-95 cursor-pointer flex items-center gap-2"
+            className="px-8 py-2.5 bg-gradient-to-r from-amber-500 via-orange-500 to-orange-600 hover:from-amber-600 hover:to-orange-600 text-white rounded-xl text-sm font-bold shadow-md shadow-orange-500/25 transition active:scale-95 cursor-pointer flex items-center gap-2"
           >
             <CheckCircle2 size={16} />
             <span>{isBn ? 'আপডেট করুন' : 'Update Batch'}</span>
@@ -598,3 +598,4 @@ export const BatchExpiryManager = ({
 };
 
 export default BatchExpiryManager;
+

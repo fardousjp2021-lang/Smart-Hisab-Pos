@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+﻿import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Send, MessageSquare, Users, Truck, Phone, Search, Filter, Plus,
   Trash2, Edit3, Save, X as XIcon, CheckCircle2, XCircle, Clock,
@@ -843,7 +843,7 @@ export default function SmsCenter(props: Props) {
             <Shield className="h-3 w-3" /> {t('ভূমিকা', 'Role')}: <b className="text-slate-800">{userRole}</b>
           </span>
           <button onClick={() => setIsTopUpOpen(true)}
-            className="inline-flex items-center gap-2 rounded-xl bg-rose-600 px-3.5 py-2 text-xs font-black text-white shadow-md hover:bg-rose-700 active:scale-95 transition cursor-pointer">
+            className="inline-flex items-center gap-2 rounded-xl bg-rose-600 px-3.5 py-2 text-xs font-bold text-white shadow-md hover:bg-rose-700 active:scale-95 transition cursor-pointer">
             <Wallet className="h-4 w-4" /> {t('ব্যালেন্স রিচার্জ ও প্যাকেজ', 'Recharge Balance')}
           </button>
         </div>
@@ -1629,7 +1629,7 @@ export default function SmsCenter(props: Props) {
             <div className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-rose-600 to-rose-700 text-white shadow-md">
               <div className="flex items-center gap-2.5">
                 <Wallet className="h-5 w-5 p-1 bg-white/20 rounded-lg" />
-                <h3 className="text-base font-extrabold">{t('এসএমএস ব্যালেন্স রিচার্জ ও রিচার্জ প্যাকেজ', 'SMS Balance Top-up Packages')}</h3>
+                <h3 className="text-base font-bold">{t('এসএমএস ব্যালেন্স রিচার্জ ও রিচার্জ প্যাকেজ', 'SMS Balance Top-up Packages')}</h3>
               </div>
               <button onClick={() => setIsTopUpOpen(false)} className="p-1 rounded-lg hover:bg-white/20 transition cursor-pointer">
                 <XIcon size={18} />
@@ -1640,15 +1640,15 @@ export default function SmsCenter(props: Props) {
               <div className="bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50 rounded-2xl p-4 flex items-center justify-between">
                 <div>
                   <div className="text-xs font-bold text-rose-700 dark:text-rose-300">{t('বর্তমান উপলব্ধ ব্যালেন্স:', 'Current SMS Balance:')}</div>
-                  <div className="text-2xl font-black text-rose-600 dark:text-rose-400">{provider.balance} <span className="text-xs font-bold">SMS</span></div>
+                  <div className="text-2xl font-bold text-rose-600 dark:text-rose-400">{provider.balance} <span className="text-xs font-bold">SMS</span></div>
                 </div>
                 <div className="text-right">
                   <div className="text-[10px] text-slate-400 font-semibold">{t('প্রোভাইডার:', 'Provider:')}</div>
-                  <div className="text-xs font-extrabold text-slate-700 dark:text-slate-200">{provider.provider || 'RonyTelecom SMS Gateway'}</div>
+                  <div className="text-xs font-bold text-slate-700 dark:text-slate-200">{provider.provider || 'RonyTelecom SMS Gateway'}</div>
                 </div>
               </div>
 
-              <div className="text-xs font-extrabold text-slate-800 dark:text-white pt-1">{t('রিচার্জ প্যাকেজ নির্বাচন করুন:', 'Select Top-Up Package:')}</div>
+              <div className="text-xs font-bold text-slate-800 dark:text-white pt-1">{t('রিচার্জ প্যাকেজ নির্বাচন করুন:', 'Select Top-Up Package:')}</div>
               
               <div className="space-y-2.5">
                 {[
@@ -1659,10 +1659,10 @@ export default function SmsCenter(props: Props) {
                   <div key={i} className={`flex items-center justify-between p-4 rounded-2xl border transition hover:border-rose-500 cursor-pointer ${pkg.popular ? 'border-rose-500 bg-rose-50/30 dark:bg-rose-950/20' : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950'}`}>
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-extrabold text-slate-800 dark:text-white">{pkg.title}</span>
-                        {pkg.popular && <span className="bg-rose-600 text-white text-[9px] font-black px-2 py-0.5 rounded-full">{t('জনপ্রিয়', 'Popular')}</span>}
+                        <span className="text-xs font-bold text-slate-800 dark:text-white">{pkg.title}</span>
+                        {pkg.popular && <span className="bg-rose-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full">{t('জনপ্রিয়', 'Popular')}</span>}
                       </div>
-                      <div className="text-sm font-black text-rose-600 dark:text-rose-400 mt-0.5">{pkg.sms.toLocaleString()} SMS</div>
+                      <div className="text-sm font-bold text-rose-600 dark:text-rose-400 mt-0.5">{pkg.sms.toLocaleString()} SMS</div>
                       <div className="text-[10px] text-slate-400 font-bold">{pkg.rate}</div>
                     </div>
                     <button onClick={() => {
@@ -1670,7 +1670,7 @@ export default function SmsCenter(props: Props) {
                       pushAudit({ action: 'settings_updated', note: `Recharged ${pkg.sms} SMS (${pkg.price})` });
                       showToast?.(t(`সফলভাবে ${pkg.sms} SMS রিচার্জ সম্পন্ন হয়েছে!`, `Successfully recharged ${pkg.sms} SMS!`), 'success');
                       setIsTopUpOpen(false);
-                    }} className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 active:scale-95 text-white font-black text-xs shadow-md transition">
+                    }} className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 active:scale-95 text-white font-bold text-xs shadow-md transition">
                       {pkg.price} • {t('রিচার্জ', 'Recharge')}
                     </button>
                   </div>
@@ -1731,11 +1731,11 @@ function SummaryCard({
         <div className="w-9 h-9 rounded-xl bg-white dark:bg-slate-800 shadow-xs border border-slate-200/70 dark:border-slate-700 flex items-center justify-center shrink-0">
           <span className={currentTone.iconText}><Icon className="w-5 h-5" /></span>
         </div>
-        <span className={`font-extrabold text-xs sm:text-sm tracking-tight truncate ${currentTone.text}`}>
+        <span className={`font-bold text-xs sm:text-sm tracking-tight truncate ${currentTone.text}`}>
           {label}
         </span>
       </div>
-      <div className="mt-3 text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight font-mono truncate">
+      <div className="mt-3 text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight font-mono truncate">
         {value}{suffix ? <span className="ml-1 text-xs font-bold text-slate-500">{suffix}</span> : null}
       </div>
     </div>
@@ -1807,3 +1807,4 @@ function ToggleRow({
     </div>
   );
 }
+

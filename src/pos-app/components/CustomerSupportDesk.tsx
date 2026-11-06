@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { 
   Headphones, PhoneCall, MessageCircle, Mail, Clock, 
   Send, ShieldCheck, CheckCircle2, AlertCircle, FileText, 
@@ -124,10 +124,10 @@ export const CustomerSupportDesk: React.FC<Props> = ({
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <h1 className="text-2xl sm:text-3xl font-black tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
                 {lang === 'bn' ? 'গ্রাহক সহায়তা ও হেল্পডেস্ক (Support Desk)' : 'Customer Support & Helpdesk'}
               </h1>
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-emerald-400 text-slate-950 uppercase shadow-sm">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-400 text-slate-950 uppercase shadow-sm">
                 24/7 LIVE
               </span>
             </div>
@@ -141,7 +141,7 @@ export const CustomerSupportDesk: React.FC<Props> = ({
         <div className="flex items-center gap-3 relative z-10">
           <a
             href="tel:01747046052"
-            className="px-5 py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs shadow-lg hover:shadow-amber-400/20 transition-all flex items-center gap-2 cursor-pointer"
+            className="px-5 py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs shadow-lg hover:shadow-amber-400/20 transition-all flex items-center gap-2 cursor-pointer"
           >
             <PhoneCall className="w-4 h-4" />
             <span>{lang === 'bn' ? 'হটলাইন: 01747046052' : 'Hotline: 01747046052'}</span>
@@ -160,7 +160,7 @@ export const CustomerSupportDesk: React.FC<Props> = ({
             <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
               {lang === 'bn' ? 'হোয়াটসঅ্যাপ ও মোবাইল নম্বর' : 'Helpline & Mobile'}
             </div>
-            <div className="text-sm font-black text-slate-900 mt-0.5">01747-046052 <span className="text-xs font-bold text-slate-600">(Fardous Al-Amin)</span></div>
+            <div className="text-sm font-bold text-slate-900 mt-0.5">01747-046052 <span className="text-xs font-bold text-slate-600">(Fardous Al-Amin)</span></div>
             <div className="text-[10px] text-emerald-600 font-bold">{lang === 'bn' ? 'সকাল ১০টা - রাত ৯টা' : '10:00 AM - 9:00 PM'}</div>
           </div>
         </a>
@@ -179,7 +179,7 @@ export const CustomerSupportDesk: React.FC<Props> = ({
             <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
               {lang === 'bn' ? 'হোয়াটসঅ্যাপ চ্যাট' : 'WhatsApp Support'}
             </div>
-            <div className="text-sm font-black text-slate-900 mt-0.5">01747-046052 <span className="text-xs font-bold text-slate-600">(Fardous Al-Amin)</span></div>
+            <div className="text-sm font-bold text-slate-900 mt-0.5">01747-046052 <span className="text-xs font-bold text-slate-600">(Fardous Al-Amin)</span></div>
             <div className="text-[10px] text-blue-600 font-bold">ইনস্ট্যান্ট মেসেজ</div>
           </div>
         </a>
@@ -196,7 +196,7 @@ export const CustomerSupportDesk: React.FC<Props> = ({
             <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
               {lang === 'bn' ? 'অফিসিয়াল ইমেইল' : 'Official Support Email'}
             </div>
-            <div className="text-xs font-black text-slate-900 mt-0.5 truncate max-w-[185px]" title="info.fardousit@gmail.com">
+            <div className="text-xs font-bold text-slate-900 mt-0.5 truncate max-w-[185px]" title="info.fardousit@gmail.com">
               info.fardousit@gmail.com
             </div>
             <div className="text-[10px] text-indigo-600 font-bold">ইমেইল টিকিট</div>
@@ -212,7 +212,7 @@ export const CustomerSupportDesk: React.FC<Props> = ({
             <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
               {lang === 'bn' ? 'গড় সমাধান সময়' : 'Avg Resolution Time'}
             </div>
-            <div className="text-sm font-black text-slate-900 mt-0.5">&lt; ১৫ মিনিট</div>
+            <div className="text-sm font-bold text-slate-900 mt-0.5">&lt; ১৫ মিনিট</div>
             <div className="text-[10px] text-amber-600 font-bold">দ্রুততম প্রযুক্তি সেবা</div>
           </div>
         </div>
@@ -229,7 +229,7 @@ export const CustomerSupportDesk: React.FC<Props> = ({
                 <MessageSquare className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-base font-black text-slate-900 tracking-tight">
+                <h2 className="text-base font-bold text-slate-900 tracking-tight">
                   {lang === 'bn' ? 'নতুন সাপোর্ট টিকিট তৈরি করুন (Submit Ticket)' : 'Submit Support Ticket'}
                 </h2>
                 <p className="text-xs text-slate-500 font-medium">
@@ -304,7 +304,7 @@ export const CustomerSupportDesk: React.FC<Props> = ({
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-700 to-indigo-800 hover:from-blue-800 hover:to-slate-950 text-white font-black text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-700 to-indigo-800 hover:from-blue-800 hover:to-slate-950 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
               >
                 {submitting ? <Clock className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4 text-amber-300" />}
                 <span>{lang === 'bn' ? 'টিকিট সাবমিট করুন' : 'Submit Support Ticket'}</span>
@@ -320,7 +320,7 @@ export const CustomerSupportDesk: React.FC<Props> = ({
                   <FileText className="w-5 h-5" />
                 </div>
                 <div>
-                  <h2 className="text-base font-black text-slate-900 tracking-tight">
+                  <h2 className="text-base font-bold text-slate-900 tracking-tight">
                     {lang === 'bn' ? 'আপনার সাম্প্রতিক সাপোর্ট টিকিটসমূহ' : 'My Support Tickets'}
                   </h2>
                   <p className="text-xs text-slate-500 font-medium">
@@ -329,7 +329,7 @@ export const CustomerSupportDesk: React.FC<Props> = ({
                 </div>
               </div>
 
-              <span className="px-3 py-1 rounded-full text-xs font-black bg-slate-100 text-slate-700">
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700">
                 {tickets.length} {lang === 'bn' ? 'টি টিকিট' : 'Tickets'}
               </span>
             </div>
@@ -353,7 +353,7 @@ export const CustomerSupportDesk: React.FC<Props> = ({
                       <td className="p-3 text-slate-600">{t.category}</td>
                       <td className="p-3 text-slate-500">{t.date}</td>
                       <td className="p-3 text-center">
-                        <span className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase shadow-xs ${
+                        <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase shadow-xs ${
                           t.status === 'Resolved' ? 'bg-emerald-100 text-emerald-700' :
                           t.status === 'In Progress' ? 'bg-blue-100 text-blue-700 animate-pulse' :
                           'bg-amber-100 text-amber-700'
@@ -378,7 +378,7 @@ export const CustomerSupportDesk: React.FC<Props> = ({
                 <HelpCircle className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-base font-black text-slate-900 tracking-tight">
+                <h2 className="text-base font-bold text-slate-900 tracking-tight">
                   {lang === 'bn' ? 'প্রায়শই জিজ্ঞাসিত প্রশ্নাবলী (FAQ)' : 'Frequently Asked Questions'}
                 </h2>
                 <p className="text-xs text-slate-500 font-medium">
@@ -417,3 +417,4 @@ export const CustomerSupportDesk: React.FC<Props> = ({
 };
 
 export default CustomerSupportDesk;
+

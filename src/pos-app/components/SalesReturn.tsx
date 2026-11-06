@@ -276,7 +276,7 @@ export const SalesReturn: React.FC<SalesReturnProps> = ({
       {/* Header and Brand Panel */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-3 border-b border-gray-200 dark:border-gray-800">
         <div className="flex items-baseline gap-2">
-          <h1 className="font-extrabold text-slate-800 dark:text-slate-100 text-lg sm:text-xl font-sans tracking-tight flex items-center gap-2">
+          <h1 className="font-bold text-slate-800 dark:text-slate-100 text-lg sm:text-xl font-sans tracking-tight flex items-center gap-2">
             <RotateCcw className="text-[#008d44] shrink-0" size={22} />
             {lang === 'bn' ? 'পণ্য রিটার্ন ও এক্সচেঞ্জ সিস্টেম' : 'Product Return & Exchange Center'}
           </h1>
@@ -289,7 +289,7 @@ export const SalesReturn: React.FC<SalesReturnProps> = ({
         <div className="flex gap-2.5 mt-3 sm:mt-0">
           <button
             onClick={() => setActiveTab2('create')}
-            className={`px-4 py-2 text-xs font-extrabold rounded-xl transition cursor-pointer flex items-center gap-1.5 ${
+            className={`px-4 py-2 text-xs font-bold rounded-xl transition cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'create'
                 ? 'bg-[#008d44] text-white shadow-sm'
                 : 'bg-slate-200/70 hover:bg-slate-250 text-slate-700 dark:bg-gray-850 dark:text-slate-300 dark:hover:bg-gray-800'
@@ -300,7 +300,7 @@ export const SalesReturn: React.FC<SalesReturnProps> = ({
           </button>
           <button
             onClick={() => setActiveTab2('history')}
-            className={`px-4 py-2 text-xs font-extrabold rounded-xl transition cursor-pointer flex items-center gap-1.5 ${
+            className={`px-4 py-2 text-xs font-bold rounded-xl transition cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'history'
                 ? 'bg-[#008d44] text-white shadow-sm'
                 : 'bg-slate-200/70 hover:bg-slate-250 text-slate-700 dark:bg-gray-850 dark:text-slate-300 dark:hover:bg-gray-800'
@@ -384,7 +384,7 @@ export const SalesReturn: React.FC<SalesReturnProps> = ({
                     <button
                       type="button"
                       onClick={handleSearchInvoice}
-                      className="bg-[#008d44] hover:bg-[#00733e] text-white px-4 py-2 rounded-lg text-xs font-extrabold flex items-center gap-1.5 transition cursor-pointer"
+                      className="bg-[#008d44] hover:bg-[#00733e] text-white px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition cursor-pointer"
                     >
                       <Search size={14} />
                       {lang === 'bn' ? 'খুঁজুন' : 'Search'}
@@ -431,7 +431,7 @@ export const SalesReturn: React.FC<SalesReturnProps> = ({
 
             {/* Quick specifications / instructions of company return rules */}
             <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-[11.5px] leading-relaxed text-amber-800 dark:text-amber-400 space-y-1 select-none">
-              <span className="font-extrabold flex items-center gap-1">
+              <span className="font-bold flex items-center gap-1">
                 <Info size={14} />
                 {lang === 'bn' ? 'রিটার্ন পলিসি ও নিয়মাবলী' : 'Store Returns Guidelines'}
               </span>
@@ -632,7 +632,7 @@ export const SalesReturn: React.FC<SalesReturnProps> = ({
                     <div className="p-4 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-150 rounded-xl space-y-1.5 font-sans select-none">
                       <div className="flex justify-between text-xs font-bold text-emerald-800 dark:text-emerald-300">
                         <span>{lang === 'bn' ? 'মোট রিফান্ডের পরিমাণ:' : 'Estimated Settlement Refund:'}</span>
-                        <span className="font-mono text-sm font-black">
+                        <span className="font-mono text-sm font-bold">
                           ৳{((parseFloat(isManualReturn ? manualPrice : customRefundAmount) || 0) * (isManualReturn ? manualQty : qtyToReturn)).toFixed(2)}
                         </span>
                       </div>
@@ -653,7 +653,7 @@ export const SalesReturn: React.FC<SalesReturnProps> = ({
                       <button
                         type="button"
                         onClick={handleProcessReturn}
-                        className="bg-[#008d44] hover:bg-[#00733e] text-white px-5 py-2.5 rounded-xl font-extrabold text-xs shadow-md transition transform active:scale-95 cursor-pointer flex items-center gap-1.5"
+                        className="bg-[#008d44] hover:bg-[#00733e] text-white px-5 py-2.5 rounded-xl font-bold text-xs shadow-md transition transform active:scale-95 cursor-pointer flex items-center gap-1.5"
                       >
                         <ArrowRightLeft size={14} />
                         {lang === 'bn' ? 'রিটার্ন সম্পন্ন করুন' : 'Confirm Return Ledger'}
@@ -688,7 +688,7 @@ export const SalesReturn: React.FC<SalesReturnProps> = ({
             <div className="flex gap-2 w-full md:w-auto shrink-0 justify-end">
               <button
                 onClick={exportToExcel}
-                className="bg-[#17a2b8]/90 hover:bg-[#138496] text-white font-extrabold text-xs px-3.5 py-2 rounded-lg cursor-pointer transition flex items-center gap-1.5"
+                className="bg-[#17a2b8]/90 hover:bg-[#138496] text-white font-bold text-xs px-3.5 py-2 rounded-lg cursor-pointer transition flex items-center gap-1.5"
                 title="Export as Excel Workbook"
               >
                 <FileSpreadsheet size={14} />
@@ -696,7 +696,7 @@ export const SalesReturn: React.FC<SalesReturnProps> = ({
               </button>
               <button
                 onClick={exportToPDF}
-                className="bg-[#17a2b8]/90 hover:bg-[#138496] text-white font-extrabold text-xs px-3.5 py-2 rounded-lg cursor-pointer transition flex items-center gap-1.5"
+                className="bg-[#17a2b8]/90 hover:bg-[#138496] text-white font-bold text-xs px-3.5 py-2 rounded-lg cursor-pointer transition flex items-center gap-1.5"
                 title="Export as PDF"
               >
                 <Download size={14} />
@@ -709,8 +709,8 @@ export const SalesReturn: React.FC<SalesReturnProps> = ({
           <div className="p-6 bg-white dark:bg-gray-850 border border-slate-205 dark:border-gray-800 rounded-2xl shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-left border-collapse font-sans font-medium">
-                {/* Specific table header mapping from custom styling rules */}
-                <thead className="bg-[#e4ebf0] text-slate-800 border-b border-slate-300">
+                {/* Modern clean table header */}
+                <thead className="bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-700 font-bold uppercase tracking-wider text-xs">
                   <tr>
                     <th className="px-4 py-3 border-r border-slate-200">Return ID ⇅</th>
                     <th className="px-4 py-3 border-r border-slate-200">Original Sale ID ⇅</th>
@@ -776,10 +776,10 @@ export const SalesReturn: React.FC<SalesReturnProps> = ({
                           <td className="px-4 py-3.5 border-r border-slate-200 font-medium text-slate-700 dark:text-slate-300">
                             {r.productName}
                           </td>
-                          <td className="px-4 py-3.5 text-center border-r border-slate-200 font-mono font-black text-slate-800 dark:text-white text-[12.5px]">
+                          <td className="px-4 py-3.5 text-center border-r border-slate-200 font-mono font-bold text-slate-800 dark:text-white text-[12.5px]">
                             {r.quantityReturned}
                           </td>
-                          <td className="px-4 py-3.5 text-right border-r border-slate-200 font-mono font-black text-red-600">
+                          <td className="px-4 py-3.5 text-right border-r border-slate-200 font-mono font-bold text-red-600">
                             ৳{r.refundAmount.toFixed(2)}
                           </td>
                           <td className="px-4 py-3.5 text-center border-r border-slate-200">

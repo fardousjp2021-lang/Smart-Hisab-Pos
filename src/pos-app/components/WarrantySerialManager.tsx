@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useState, useMemo, useEffect } from 'react';
 import {
   ShieldCheck, Plus, Trash2, Edit2, Check, X, AlertCircle, Search,
@@ -353,7 +353,7 @@ export const WarrantySerialManager = ({
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-3 border-b border-gray-200 mb-4 select-none">
           <div className="flex items-baseline gap-2">
-            <h1 className="font-extrabold text-slate-800 text-lg sm:text-xl font-sans tracking-tight flex items-center gap-2">
+            <h1 className="font-bold text-slate-800 text-lg sm:text-xl font-sans tracking-tight flex items-center gap-2">
               <ShieldCheck size={22} className="text-purple-600" />
               {isBn ? 'ওয়ারেন্টি ও সিরিয়াল ম্যানেজার' : 'Warranty & Serial Manager'}
             </h1>
@@ -363,7 +363,7 @@ export const WarrantySerialManager = ({
           </div>
           <button 
             onClick={() => { resetForm(); setAddOpen(true); }}
-            className="bg-[#00a65a] hover:bg-[#008d4c] text-white text-xs font-extrabold px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition duration-150 active:scale-95 cursor-pointer h-10 shadow-sm hover:shadow"
+            className="bg-[#00a65a] hover:bg-[#008d4c] text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition duration-150 active:scale-95 cursor-pointer h-10 shadow-sm hover:shadow"
           >
             <Plus size={16} />
             <span>{isBn ? 'নতুন ওয়ারেন্টি' : 'Add Warranty'}</span>
@@ -379,7 +379,7 @@ export const WarrantySerialManager = ({
             { label: isBn ? 'শীঘ্রই শেষ' : 'Expiring Soon', value: stats.expiringSoon, color: 'from-amber-400 to-orange-500', bg: 'bg-amber-50', text: 'text-amber-600' },
           ].map((s, i) => (
             <div key={i} className={`${s.bg} rounded-2xl p-4 border border-white shadow-sm`}>
-              <p className={`text-2xl font-black ${s.text}`}>{s.value}</p>
+              <p className={`text-2xl font-bold ${s.text}`}>{s.value}</p>
               <p className="text-xs text-gray-500 mt-1">{s.label}</p>
             </div>
           ))}
@@ -621,3 +621,4 @@ export const WarrantySerialManager = ({
 };
 
 export default WarrantySerialManager;
+

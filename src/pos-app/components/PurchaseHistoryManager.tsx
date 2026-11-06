@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useState, useMemo, useEffect } from 'react';
 import {
   History, Search, Download, Eye, X, Package,
@@ -164,7 +164,7 @@ export const PurchaseHistoryManager = ({
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-extrabold text-gray-800 tracking-tight flex items-center gap-2">
+            <h1 className="text-2xl font-bold text-gray-800 tracking-tight flex items-center gap-2">
               <History size={24} className="text-blue-500" />
               {isBn ? 'ক্রয় মূল্য ইতিহাস' : 'Purchase Price History'}
             </h1>
@@ -190,7 +190,7 @@ export const PurchaseHistoryManager = ({
             { label: isBn ? 'গড় পরিবর্তন' : 'Avg Change', value: stats.avgChange + '%', text: 'text-amber-600', bg: 'bg-amber-50' },
           ].map((s, i) => (
             <div key={i} className={`${s.bg} rounded-2xl p-4 border border-white shadow-sm`}>
-              <p className={`text-xl font-black ${s.text}`}>{s.value}</p>
+              <p className={`text-xl font-bold ${s.text}`}>{s.value}</p>
               <p className="text-xs text-gray-500 mt-1">{s.label}</p>
             </div>
           ))}
@@ -396,3 +396,4 @@ export const PurchaseHistoryManager = ({
 };
 
 export default PurchaseHistoryManager;
+

@@ -368,7 +368,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
       {/* 1. Header/Breadcrumbs block exactly as mockup */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center pb-3 border-b border-gray-200">
         <div className="flex items-baseline gap-2.5">
-          <h1 className="font-extrabold text-slate-900 text-xl tracking-tight">
+          <h1 className="font-bold text-slate-900 text-xl tracking-tight">
             {lang === 'bn' ? 'বিক্রয় তালিকা' : 'Sales Invoices'}
           </h1>
           <span className="text-gray-500 text-xs font-semibold">
@@ -388,7 +388,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
       <div className="p-5 bg-white dark:bg-gray-850 rounded-xl border border-slate-205 shadow-xs grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         {/* Filter A: Warehouse */}
         <div className="space-y-1">
-          <label className="text-[11px] font-black uppercase text-slate-500 block">
+          <label className="text-[11px] font-bold uppercase text-slate-500 block">
             {lang === 'bn' ? 'Warehouse *' : 'Warehouse *'}
           </label>
           <select
@@ -403,7 +403,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
 
         {/* Filter B: Customers */}
         <div className="space-y-1">
-          <label className="text-[11px] font-black uppercase text-slate-500 block">
+          <label className="text-[11px] font-bold uppercase text-slate-500 block">
             {lang === 'bn' ? 'Customers' : 'Customers'}
           </label>
           <select
@@ -421,7 +421,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
 
         {/* Filter C: Users */}
         <div className="space-y-1">
-          <label className="text-[11px] font-black uppercase text-slate-500 block">
+          <label className="text-[11px] font-bold uppercase text-slate-500 block">
             {lang === 'bn' ? 'Users' : 'Users'}
           </label>
           <select
@@ -438,7 +438,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
 
         {/* Filter D: From Date */}
         <div className="space-y-1">
-          <label className="text-[11px] font-black uppercase text-slate-500 block">
+          <label className="text-[11px] font-bold uppercase text-slate-500 block">
             {lang === 'bn' ? 'From Date' : 'From Date'}
           </label>
           <input
@@ -451,7 +451,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
 
         {/* Filter E: To Date */}
         <div className="space-y-1">
-          <label className="text-[11px] font-black uppercase text-slate-500 block">
+          <label className="text-[11px] font-bold uppercase text-slate-500 block">
             {lang === 'bn' ? 'To Date' : 'To Date'}
           </label>
           <input
@@ -468,7 +468,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
         
         {/* Card Title and Header POS Shortcut bar */}
         <div className="px-5 py-4 border-b border-dashed border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-          <h3 className="font-extrabold text-slate-800 text-sm tracking-tight flex items-center gap-2">
+          <h3 className="font-bold text-slate-800 text-sm tracking-tight flex items-center gap-2">
             <Briefcase size={16} className="text-[#008d44]" />
             {lang === 'bn' ? 'বিক্রয় তালিকা' : 'Sales Listing'}
           </h3>
@@ -479,18 +479,18 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
               setActiveSubTab('pos_terminal');
               setActiveTab('pos');
             }}
-            className="bg-[#00c0ef] hover:bg-[#00acd6] text-white font-black text-xs px-4 py-2.5 rounded-lg transition active:scale-95 cursor-pointer shadow-3xs flex items-center gap-1.5"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition active:scale-95 cursor-pointer shadow-sm hover:shadow flex items-center gap-1.5"
           >
             <Plus size={14} className="stroke-[3]" />
             {lang === 'bn' ? 'ইনভয়েস তৈরি করুন (POS)' : 'Create Invoice (POS)'}
           </button>
         </div>
 
-        {/* 4. Action bar inside card (Under dotted separator): Copier/Excel buttons & Items-per-page, Search input */}
-        <div className="px-5 py-3.5 bg-slate-50/50 border-b border-dashed border-slate-200 flex flex-col xl:flex-row justify-between items-stretch xl:items-center gap-4">
+        {/* 4. Action bar inside card: Copier/Excel buttons & Items-per-page, Search input */}
+        <div className="px-5 py-3.5 bg-slate-50/50 border-b border-slate-200 flex flex-col xl:flex-row justify-between items-stretch xl:items-center gap-4">
           
           {/* Left panel: Row per page entry count */}
-          <div className="flex items-center gap-2 text-xs font-bold text-slate-600">
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
             <span>{lang === 'bn' ? 'দেখান' : 'Show'}</span>
             <select
               value={itemsPerPage}
@@ -498,7 +498,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
                 setItemsPerPage(Number(e.target.value));
                 setCurrentPage(1);
               }}
-              className="px-2 py-1 bg-white border border-slate-250 rounded-md"
+              className="px-2.5 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-800 focus:outline-none"
             >
               <option value={5}>5</option>
               <option value={10}>10</option>
@@ -509,56 +509,56 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
             <span>{lang === 'bn' ? 'এন্ট্রি' : 'entries'}</span>
           </div>
 
-          {/* Center panel: ACCENTS buttons matching deep turquoise info styling (#17a2b8) */}
+          {/* Center panel: Modern neutral chips buttons */}
           <div className="flex flex-wrap items-center gap-1.5">
             <button
               onClick={handleCopyTable}
-              className="bg-[#17a2b8]/95 hover:bg-[#138496] text-white font-extrabold text-[11px] px-3 py-1.5 rounded-md transition cursor-pointer flex items-center gap-1"
+              className="bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs px-3 py-1.5 rounded-xl border border-slate-200 transition shadow-2xs cursor-pointer flex items-center gap-1.5 hover:border-slate-300"
             >
-              <Copy size={12} />
-              {lang === 'bn' ? 'কপি' : 'Copy'}
+              <Copy size={13} className="text-slate-500" />
+              <span>{lang === 'bn' ? 'কপি' : 'Copy'}</span>
             </button>
             <button
               onClick={handleExportExcel}
-              className="bg-[#17a2b8]/95 hover:bg-[#138496] text-white font-extrabold text-[11px] px-3 py-1.5 rounded-md transition cursor-pointer flex items-center gap-1"
+              className="bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs px-3 py-1.5 rounded-xl border border-slate-200 transition shadow-2xs cursor-pointer flex items-center gap-1.5 hover:border-slate-300"
             >
-              <FileSpreadsheet size={12} />
-              {lang === 'bn' ? 'এক্সেল' : 'Excel'}
+              <FileSpreadsheet size={13} className="text-emerald-600" />
+              <span>{lang === 'bn' ? 'এক্সেল' : 'Excel'}</span>
             </button>
             <button
               onClick={handleExportCSV}
-              className="bg-[#17a2b8]/95 hover:bg-[#138496] text-white font-extrabold text-[11px] px-3 py-1.5 rounded-md transition cursor-pointer flex items-center gap-1"
+              className="bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs px-3 py-1.5 rounded-xl border border-slate-200 transition shadow-2xs cursor-pointer flex items-center gap-1.5 hover:border-slate-300"
             >
-              <Download size={12} />
-              {lang === 'bn' ? 'পিডিএফ (CSV)' : 'PDF (CSV)'}
+              <Download size={13} className="text-blue-600" />
+              <span>{lang === 'bn' ? 'পিডিএফ (CSV)' : 'PDF (CSV)'}</span>
             </button>
             <button
               onClick={handlePrintTable}
-              className="bg-[#17a2b8]/95 hover:bg-[#138496] text-white font-extrabold text-[11px] px-3 py-1.5 rounded-md transition cursor-pointer flex items-center gap-1"
+              className="bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs px-3 py-1.5 rounded-xl border border-slate-200 transition shadow-2xs cursor-pointer flex items-center gap-1.5 hover:border-slate-300"
             >
-              <Printer size={12} />
-              {lang === 'bn' ? 'প্রিন্ট' : 'Print'}
+              <Printer size={13} className="text-purple-600" />
+              <span>{lang === 'bn' ? 'প্রিন্ট' : 'Print'}</span>
             </button>
             <button
               onClick={handleExportCSV}
-              className="bg-[#17a2b8]/95 hover:bg-[#138496] text-white font-extrabold text-[11px] px-3 py-1.5 rounded-md transition cursor-pointer flex items-center gap-1"
+              className="bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs px-3 py-1.5 rounded-xl border border-slate-200 transition shadow-2xs cursor-pointer flex items-center gap-1.5 hover:border-slate-300"
             >
-              <FileText size={12} />
-              {lang === 'bn' ? 'সিএসভি' : 'CSV'}
+              <FileText size={13} className="text-amber-600" />
+              <span>{lang === 'bn' ? 'সিএসভি' : 'CSV'}</span>
             </button>
             
             {/* Column visibility controller dropdown */}
             <div className="relative">
               <button
                 onClick={() => setShowColumnsDropdown(!showColumnsDropdown)}
-                className="bg-[#17a2b8]/95 hover:bg-[#138496] text-white font-extrabold text-[11px] px-3 py-1.5 rounded-md transition cursor-pointer flex items-center gap-1"
+                className="bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs px-3 py-1.5 rounded-xl border border-slate-200 transition shadow-2xs cursor-pointer flex items-center gap-1.5 hover:border-slate-300"
               >
-                <Columns size={12} />
-                {lang === 'bn' ? 'কলামসমূহ' : 'Columns'}
+                <Columns size={13} className="text-slate-500" />
+                <span>{lang === 'bn' ? 'কলামসমূহ' : 'Columns'}</span>
               </button>
 
               {showColumnsDropdown && (
-                <div className="absolute left-0 mt-1 w-48 bg-white border border-slate-200 rounded-lg shadow-lg py-2 z-20 text-xs font-semibold text-slate-700">
+                <div className="absolute left-0 mt-1 w-48 bg-white border border-slate-200 rounded-xl shadow-lg py-2 z-20 text-xs font-semibold text-slate-700">
                   {columnsList.map(col => {
                     if (col.key === 'checkbox' || col.key === 'action') return null;
                     return (
@@ -633,8 +633,8 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
 
           <table className="w-full text-xs text-left border-collapse text-slate-700 font-medium">
             
-            {/* Custom UI: Off-white/light-blue background matching client preferences */}
-            <thead className="bg-[#e4ebf0] text-slate-800 border-b border-slate-300 font-extrabold uppercase text-[11.5px]">
+            {/* Modern Clean Table Header */}
+            <thead className="bg-slate-50 text-slate-700 border-b border-slate-200 font-bold uppercase tracking-wider text-xs">
               <tr>
                 {visibleColumns.includes('checkbox') && (
                   <th className="px-4 py-3 border-r border-slate-200 text-center w-12">
@@ -727,13 +727,13 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
                       )}
 
                       {visibleColumns.includes('total') && (
-                        <td className="px-4 py-3.5 border-r border-slate-200 font-mono font-black text-slate-800 text-[12.5px]">
+                        <td className="px-4 py-3.5 border-r border-slate-200 font-mono font-bold text-slate-800 text-[12.5px]">
                           ৳ {totalVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         </td>
                       )}
 
                       {visibleColumns.includes('paidAmount') && (
-                        <td className={`px-4 py-3.5 border-r border-slate-200 font-mono font-black text-[12.5px] ${
+                        <td className={`px-4 py-3.5 border-r border-slate-200 font-mono font-bold text-[12.5px] ${
                           status === 'PAID' ? 'text-[#008d44]' : status === 'PARTIAL' ? 'text-amber-600' : 'text-red-600'
                         }`}>
                           ৳ {paidVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
@@ -866,7 +866,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
                 <button
                   key={pg}
                   onClick={() => setCurrentPage(pg)}
-                  className={`w-8 h-8 text-xs font-black rounded-lg transition border ${
+                  className={`w-8 h-8 text-xs font-bold rounded-lg transition border ${
                     isCurrent
                       ? 'bg-blue-600 border-blue-600 text-white shadow-3xs'
                       : 'bg-white border-slate-250 text-slate-700 hover:bg-slate-50 cursor-pointer'
@@ -943,7 +943,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
               <button
                 type="button"
                 onClick={() => setReceiptTab('receipt')}
-                className={`px-3 py-1.5 text-[11px] font-extrabold rounded-lg transition cursor-pointer flex items-center gap-1.5 ${
+                className={`px-3 py-1.5 text-[11px] font-bold rounded-lg transition cursor-pointer flex items-center gap-1.5 ${
                   receiptTab === 'receipt'
                     ? 'bg-[#008d44] text-white shadow-sm'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
@@ -955,7 +955,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
               <button
                 type="button"
                 onClick={() => setReceiptTab('return')}
-                className={`px-3 py-1.5 text-[11px] font-extrabold rounded-lg transition cursor-pointer flex items-center gap-1.5 ${
+                className={`px-3 py-1.5 text-[11px] font-bold rounded-lg transition cursor-pointer flex items-center gap-1.5 ${
                   receiptTab === 'return'
                     ? 'bg-[#008d44] text-white shadow-sm'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
@@ -983,7 +983,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
               
               {/* Header exact matches user photo */}
               <div className="text-center space-y-0.5">
-                <h1 className="font-extrabold text-[24px] uppercase tracking-wide text-black leading-tight select-none" style={{ fontWeight: 800 }}>
+                <h1 className="font-bold text-[24px] uppercase tracking-wide text-black leading-tight select-none" style={{ fontWeight: 800 }}>
                   RONY TELECOM
                 </h1>
                 <p className="text-[11.5px] text-black font-semibold leading-tight">
@@ -1093,7 +1093,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
                           <td className="py-1.5 text-center font-bold">{qty}</td>
                           <td className="py-1.5 text-right font-semibold">{rate.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                           <td className="py-1.5 text-center font-semibold">{disc > 0 ? disc : '-'}</td>
-                          <td className="py-1.5 text-right font-extrabold">{lineTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                          <td className="py-1.5 text-right font-bold">{lineTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                         </tr>
                       );
                     });
@@ -1192,7 +1192,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
                 onClick={() => {
                   window.print();
                 }}
-                className="w-full bg-[#008d44] hover:bg-[#00733e] text-white font-extrabold text-xs py-3.5 rounded-xl transition active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 select-none shadow-sm shadow-[#008d44]/20"
+                className="w-full bg-[#008d44] hover:bg-[#00733e] text-white font-bold text-xs py-3.5 rounded-xl transition active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 select-none shadow-sm shadow-[#008d44]/20"
               >
                 {/* Print bills look cash card icon */}
                 <span className="text-sm font-semibold">💵</span>
@@ -1229,7 +1229,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
             
             {/* Header */}
             <div className="flex justify-between items-center border-b pb-2">
-              <h3 className="font-extrabold text-sm text-slate-800">
+              <h3 className="font-bold text-sm text-slate-800">
                 {lang === 'bn' ? 'ইনভয়েস এডিট' : 'Edit Invoice Data'} - {selectedInvoiceForEdit.id}
               </h3>
               <button
@@ -1299,7 +1299,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
               </button>
               <button
                 onClick={handleSaveInvoiceEdit}
-                className="bg-[#008d44] hover:bg-[#00733e] text-white font-extrabold text-xs px-4 py-2 rounded-lg cursor-pointer transition"
+                className="bg-[#008d44] hover:bg-[#00733e] text-white font-bold text-xs px-4 py-2 rounded-lg cursor-pointer transition"
               >
                 {lang === 'bn' ? 'সংরক্ষণ করুন' : 'Save Changes'}
               </button>
@@ -1599,7 +1599,7 @@ const ReturnExchangePanel: React.FC<ReturnExchangePanelProps> = ({
   return (
     <div className="pt-3 space-y-4 text-slate-800">
       <div className="flex items-center justify-between">
-        <h3 className="font-extrabold text-sm flex items-center gap-2">
+        <h3 className="font-bold text-sm flex items-center gap-2">
           <RotateCcw size={16} className="text-[#008d44]" />
           {lang === 'bn' ? 'রিটার্ন / এক্সচেঞ্জ' : 'Return / Exchange'}
         </h3>
@@ -1763,8 +1763,8 @@ const ReturnExchangePanel: React.FC<ReturnExchangePanelProps> = ({
           </div>
         )}
         <div className="flex justify-between border-t border-slate-200 pt-1 mt-1">
-          <span className="font-extrabold">{lang === 'bn' ? 'নেট রিফান্ড' : 'Net refund'}</span>
-          <span className={`font-mono font-extrabold ${netRefund >= 0 ? 'text-[#008d44]' : 'text-red-600'}`}>
+          <span className="font-bold">{lang === 'bn' ? 'নেট রিফান্ড' : 'Net refund'}</span>
+          <span className={`font-mono font-bold ${netRefund >= 0 ? 'text-[#008d44]' : 'text-red-600'}`}>
             ৳{netRefund.toFixed(2)}
           </span>
         </div>
@@ -1773,10 +1773,11 @@ const ReturnExchangePanel: React.FC<ReturnExchangePanelProps> = ({
       <button
         type="button"
         onClick={handleSubmit}
-        className="w-full bg-[#008d44] hover:bg-[#00733e] text-white font-extrabold text-xs py-3 rounded-xl transition cursor-pointer"
+        className="w-full bg-[#008d44] hover:bg-[#00733e] text-white font-bold text-xs py-3 rounded-xl transition cursor-pointer"
       >
         {lang === 'bn' ? 'প্রক্রিয়া সম্পন্ন করুন' : 'Process Return / Exchange'}
       </button>
     </div>
   );
 };
+

@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { AiBusinessAssistant } from './AiBusinessAssistant';
@@ -404,18 +404,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
       <div className="bg-[#011B2B] text-white py-2.5 border-b border-blue-950 z-50 relative select-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2.5">
           <div className="flex items-center gap-2 flex-wrap justify-center">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-rose-600 border border-rose-500 text-white font-black uppercase text-[10px] sm:text-[11px] select-none tracking-wider shadow-sm animate-pulse">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-rose-600 border border-rose-500 text-white font-bold uppercase text-[10px] sm:text-[11px] select-none tracking-wider shadow-sm animate-pulse">
               ● Live 2026 Edition
             </span>
-            <span className="text-amber-400 font-black text-xs sm:text-sm tracking-wide">
+            <span className="text-amber-400 font-bold text-xs sm:text-sm tracking-wide">
               সম্পূর্ণ ক্লাউড ব্যাকআপ সাপোর্টেড সুরক্ষিত পস ইনভেন্টরি ট্র্যাকার।
             </span>
           </div>
           <div className="flex items-center gap-2.5 hidden sm:flex">
-            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-emerald-600/90 border border-emerald-500 text-white font-black text-[11px] select-none tracking-wide shadow-xs">
+            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-emerald-600/90 border border-emerald-500 text-white font-bold text-[11px] select-none tracking-wide shadow-xs">
               ⚡ ৭ দিনের ফ্রি ট্রায়াল
             </span>
-            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-purple-600/90 border border-purple-500 text-white font-black text-[11px] select-none tracking-wide shadow-xs">
+            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-purple-600/90 border border-purple-500 text-white font-bold text-[11px] select-none tracking-wide shadow-xs">
               ☁️ ১০০% ক্লাউড সিঙ্কড
             </span>
           </div>
@@ -453,10 +453,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
               <Linkedin size={12} className="text-white" />
             </a>
             <a href="https://skype.com" target="_blank" rel="noopener noreferrer" className="h-6.5 w-6.5 rounded-full bg-white/10 flex items-center justify-center hover:bg-sky-600 duration-150 transition" title="Skype">
-              <div className="text-[10px] font-black font-sans text-white">S</div>
+              <div className="text-[10px] font-bold font-sans text-white">S</div>
             </a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="h-6.5 w-6.5 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#1DA1F2] duration-150 transition" title="Twitter/X">
-              <span className="text-[9px] font-extrabold font-sans text-white">X</span>
+              <span className="text-[9px] font-bold font-sans text-white">X</span>
             </a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="h-6.5 w-6.5 rounded-full bg-white/10 flex items-center justify-center hover:bg-pink-500 duration-150 transition" title="Instagram">
               <div className="text-[9px] font-sans font-bold text-white">IG</div>
@@ -484,9 +484,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
           {/* Nav Items matched from screenshot */}
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-bold text-slate-700 dark:text-slate-100">
             <a href="#top" onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', window.location.pathname); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-[#004b73] dark:hover:text-amber-400 transition">মেইন ওয়েবসাইট</a>
-            <a href="#pricing" onClick={(e) => handleScrollToSection(e, 'pricing')} className="hover:text-[#004b73] dark:hover:text-amber-400 transition text-[#8b26c7] dark:text-purple-400 font-extrabold flex items-center gap-1">
+            <a href="#pricing" onClick={(e) => handleScrollToSection(e, 'pricing')} className="hover:text-[#004b73] dark:hover:text-amber-400 transition text-[#8b26c7] dark:text-purple-400 font-bold flex items-center gap-1">
               <span>প্যাকেজ সমূহ</span>
-              <span className="text-[9px] bg-rose-600 text-white px-1.5 py-0.2 rounded font-black uppercase">নতুন</span>
+              <span className="text-[9px] bg-rose-600 text-white px-1.5 py-0.2 rounded font-bold uppercase">নতুন</span>
             </a>
             <a href="#features" onClick={(e) => handleScrollToSection(e, 'features')} className="hover:text-[#004b73] dark:hover:text-amber-400 transition">রেডি সফটওয়্যার</a>
             <a href="#faq" onClick={(e) => handleScrollToSection(e, 'faq')} className="hover:text-[#004b73] dark:hover:text-amber-400 transition">জিজ্ঞাসা</a>
@@ -534,7 +534,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
               <button
                 type="button"
                 onClick={onEnterApp}
-                className="px-4 min-h-[44px] py-2 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 rounded-md text-[13px] font-black duration-150 hover:scale-[1.02] active:scale-95 cursor-pointer shadow-md text-center flex items-center gap-1.5 border border-amber-300/40"
+                className="px-4 min-h-[44px] py-2 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 rounded-md text-[13px] font-bold duration-150 hover:scale-[1.02] active:scale-95 cursor-pointer shadow-md text-center flex items-center gap-1.5 border border-amber-300/40"
                 title="সফ্টওয়্যার ড্যাশবোর্ডে ফিরে যান"
               >
                 <span>🔑 ড্যাশবোর্ড</span>
@@ -569,9 +569,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
           <div className="lg:hidden p-4 border-t border-slate-200 dark:border-slate-800 space-y-3 bg-white dark:bg-slate-950 animate-fadeIn">
             <nav className="flex flex-col gap-2.5 text-xs font-bold text-slate-700 dark:text-slate-300">
               <a href="#top" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); window.history.pushState(null, '', window.location.pathname); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="py-2 px-3 hover:bg-slate-100 rounded">মেইন ওয়েবসাইট</a>
-              <a href="#pricing" onClick={(e) => { setMobileMenuOpen(false); handleScrollToSection(e, 'pricing'); }} className="py-2 px-3 hover:bg-purple-50 text-[#8b26c7] font-extrabold rounded flex items-center justify-between">
+              <a href="#pricing" onClick={(e) => { setMobileMenuOpen(false); handleScrollToSection(e, 'pricing'); }} className="py-2 px-3 hover:bg-purple-50 text-[#8b26c7] font-bold rounded flex items-center justify-between">
                 <span>প্যাকেজ সমূহ</span>
-                <span className="text-[9px] bg-rose-600 text-white px-1.5 py-0.2 rounded font-black uppercase">NEW</span>
+                <span className="text-[9px] bg-rose-600 text-white px-1.5 py-0.2 rounded font-bold uppercase">NEW</span>
               </a>
               <a href="#features" onClick={(e) => { setMobileMenuOpen(false); handleScrollToSection(e, 'features'); }} className="py-2 px-3 hover:bg-slate-100 rounded">রেডি সফটওয়্যার</a>
               <a href="#faq" onClick={(e) => { setMobileMenuOpen(false); handleScrollToSection(e, 'faq'); }} className="py-2 px-3 hover:bg-slate-100 rounded">জিজ্ঞাসা</a>
@@ -619,7 +619,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
               <span>১০০% ক্লাউড সিকিউরড লাইভ পিওএস ইনভেন্টরি ট্র্যাকার</span>
             </div>
 
-            <h1 className="text-3.5xl sm:text-5xl font-black font-display tracking-tight leading-tight text-[#004b73] dark:text-white">
+            <h1 className="text-3.5xl sm:text-5xl font-bold font-display tracking-tight leading-tight text-[#004b73] dark:text-white">
               স্মার্ট হিসাব পস সফটওয়্যার (SmartHisab) এর মাধ্যমে ব্যবসা পরিচালনা হবে আরো সহজে
             </h1>
 
@@ -673,7 +673,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                 href="https://wa.me/message/NTKAFHJ7Y4NUO1?src=qr" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-[#004b73] dark:text-sky-400 font-black text-xs sm:text-sm hover:underline flex items-center gap-1.5 leading-none font-mono"
+                className="text-[#004b73] dark:text-sky-400 font-bold text-xs sm:text-sm hover:underline flex items-center gap-1.5 leading-none font-mono"
               >
                 📞 01747-046052 (Fardous Al-Amin)
               </a>
@@ -747,7 +747,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
 
                     <div className="flex justify-between items-center bg-slate-50 dark:bg-slate-900 p-2 rounded-lg text-[11px] border border-slate-100 dark:border-slate-900">
                       <span className="font-semibold truncate max-w-[120px]">মেডিসিন কসমেটিক্স</span>
-                      <span className="text-[10px] text-rose-500 font-black animate-pulse">০৫ পিস কম স্টক</span>
+                      <span className="text-[10px] text-rose-500 font-bold animate-pulse">০৫ পিস কম স্টক</span>
                     </div>
                   </div>
 
@@ -779,7 +779,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                 <Users size={24} />
               </div>
               <div>
-                <span className="text-2xl sm:text-3xl font-black font-mono text-[#004b73] dark:text-sky-400 block leading-tight">১,২৫০+</span>
+                <span className="text-2xl sm:text-3xl font-bold font-mono text-[#004b73] dark:text-sky-400 block leading-tight">১,২৫০+</span>
                 <span className="text-xs font-bold text-slate-700 dark:text-slate-400">সক্রিয় মার্চেন্ট ও ব্যবসায়ী</span>
               </div>
             </div>
@@ -790,7 +790,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                 <Database size={24} />
               </div>
               <div>
-                <span className="text-2xl sm:text-3xl font-black font-mono text-[#004b73] dark:text-sky-400 block leading-tight">৳৯৫ লাখ+</span>
+                <span className="text-2xl sm:text-3xl font-bold font-mono text-[#004b73] dark:text-sky-400 block leading-tight">৳৯৫ লাখ+</span>
                 <span className="text-xs font-bold text-slate-700 dark:text-slate-400">ট্রানজ্যাকশন সম্পন্ন</span>
               </div>
             </div>
@@ -801,7 +801,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                 <Cloud size={24} />
               </div>
               <div>
-                <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-600 dark:text-emerald-400 block leading-tight">৯৯.৯৯%</span>
+                <span className="text-2xl sm:text-3xl font-bold font-mono text-emerald-600 dark:text-emerald-400 block leading-tight">৯৯.৯৯%</span>
                 <span className="text-xs font-bold text-slate-700 dark:text-slate-400">ক্লাউড ডাটা ব্যাকআপ</span>
               </div>
             </div>
@@ -812,7 +812,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                 <Layers size={24} />
               </div>
               <div>
-                <span className="text-2xl sm:text-3xl font-black font-mono text-amber-600 dark:text-amber-400 block leading-tight">১০+ ক্যাটাগরি</span>
+                <span className="text-2xl sm:text-3xl font-bold font-mono text-amber-600 dark:text-amber-400 block leading-tight">১০+ ক্যাটাগরি</span>
                 <span className="text-xs font-bold text-slate-700 dark:text-slate-400">ব্যবসার মেমো ধরণ</span>
               </div>
             </div>
@@ -828,10 +828,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
           
           <div className="space-y-3 max-w-3xl mx-auto">
-            <span className="text-xs uppercase font-extrabold tracking-widest text-[#8b26c7] bg-purple-500/10 py-1 px-3.5 rounded-full inline-block leading-none">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#8b26c7] bg-purple-500/10 py-1 px-3.5 rounded-full inline-block leading-none">
               মডিউল ও কার্যাবলী
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold font-display text-slate-800 dark:text-white leading-tight">
+            <h2 className="text-2xl sm:text-4xl font-bold font-display text-slate-800 dark:text-white leading-tight">
               অনন্য এবং ব্যবহারকারী-বান্ধব ফিচার প্যানেল সমূহ
             </h2>
             <p className="text-sm text-slate-500 dark:text-slate-400">
@@ -903,15 +903,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                 {activeFeatureTab === 'billing' && (
                   <div className="space-y-5">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-[#8b26c7] font-black bg-purple-100 dark:bg-purple-950/60 px-3 py-1 rounded-lg border border-purple-200/60">
+                      <span className="text-xs text-[#8b26c7] font-bold bg-purple-100 dark:bg-purple-950/60 px-3 py-1 rounded-lg border border-purple-200/60">
                         পয়েন্ট অফ সেলস (POS) বিলিং স্ক্রিন
                       </span>
-                      <span className="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
+                      <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                         ⚡ ইনস্ট্যান্ট ক্যাশ রেজিস্টার
                       </span>
                     </div>
 
-                    <h3 className="text-2xl font-black text-slate-900 dark:text-white leading-tight">
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white leading-tight">
                       কীবোর্ড শর্টকাট ও সুপার ফাস্ট ক্যাশ রেজিস্টার
                     </h3>
 
@@ -933,8 +933,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                     {/* Interactive Sample POS Memo Card Preview */}
                     <div className="p-4 bg-gradient-to-r from-purple-900 to-indigo-900 text-white rounded-2xl shadow-md space-y-2 font-mono text-xs">
                       <div className="flex justify-between items-center border-b border-white/20 pb-2">
-                        <span className="font-extrabold text-amber-300">📜 নমুনা ক্যাশ মেমো রসিদ (POS Receipt)</span>
-                        <span className="bg-emerald-500 text-slate-950 text-[9px] px-2 py-0.5 rounded font-black">PAID</span>
+                        <span className="font-bold text-amber-300">📜 নমুনা ক্যাশ মেমো রসিদ (POS Receipt)</span>
+                        <span className="bg-emerald-500 text-slate-950 text-[9px] px-2 py-0.5 rounded font-bold">PAID</span>
                       </div>
                       <div className="flex justify-between text-[11px]">
                         <span>স্মার্ট গ্যাজেট হেডফোন (x১)</span>
@@ -944,7 +944,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                         <span>ডিসকাউন্ট (৫%)</span>
                         <span className="text-rose-300">-৳৬০</span>
                       </div>
-                      <div className="flex justify-between font-black text-sm pt-1 border-t border-white/10 text-amber-300">
+                      <div className="flex justify-between font-bold text-sm pt-1 border-t border-white/10 text-amber-300">
                         <span>সর্বমোট পরিগ্রেহনীয়:</span>
                         <span>৳১,১৪০</span>
                       </div>
@@ -1028,11 +1028,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
           
           {/* Header Badge & Title */}
           <div className="space-y-3 max-w-3xl mx-auto">
-            <span className="text-xs uppercase font-extrabold tracking-widest text-[#8b26c7] bg-purple-500/10 py-1.5 px-4 rounded-full inline-flex items-center gap-1.5 border border-purple-500/20 shadow-xs">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#8b26c7] bg-purple-500/10 py-1.5 px-4 rounded-full inline-flex items-center gap-1.5 border border-purple-500/20 shadow-xs">
               <Sparkles size={14} className="text-amber-500" />
               <span>প্যাকেজ ও সাবস্ক্রিপশন প্ল্যান সমূহ</span>
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold font-display text-slate-900 dark:text-white leading-tight">
+            <h2 className="text-2xl sm:text-4xl font-bold font-display text-slate-900 dark:text-white leading-tight">
               আপনার ব্যবসার পরিধি অনুযায়ী সঠিক প্যাকেজ বেছে নিন
             </h2>
             <p className="text-sm text-slate-600 dark:text-slate-400 font-sans max-w-2xl mx-auto">
@@ -1041,7 +1041,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
 
             {/* Monthly / Yearly Billing Cycle Toggle Switch */}
             <div className="pt-4 flex items-center justify-center gap-3">
-              <span className={`text-xs font-extrabold cursor-pointer transition ${pricingCycle === 'monthly' ? 'text-[#8b26c7] dark:text-purple-400 font-black' : 'text-slate-500'}`} onClick={() => setPricingCycle('monthly')}>
+              <span className={`text-xs font-bold cursor-pointer transition ${pricingCycle === 'monthly' ? 'text-[#8b26c7] dark:text-purple-400 font-bold' : 'text-slate-500'}`} onClick={() => setPricingCycle('monthly')}>
                 মাসিক বিলিং
               </span>
               <button
@@ -1053,10 +1053,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                 <div className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-200 ${pricingCycle === 'yearly' ? 'translate-x-7' : 'translate-x-0'}`} />
               </button>
               <div className="flex items-center gap-1.5 cursor-pointer" onClick={() => setPricingCycle('yearly')}>
-                <span className={`text-xs font-extrabold transition ${pricingCycle === 'yearly' ? 'text-[#8b26c7] dark:text-purple-400 font-black' : 'text-slate-500'}`}>
+                <span className={`text-xs font-bold transition ${pricingCycle === 'yearly' ? 'text-[#8b26c7] dark:text-purple-400 font-bold' : 'text-slate-500'}`}>
                   বাৎসরিক বিলিং
                 </span>
-                <span className="text-[10px] font-black bg-emerald-500 text-white px-2 py-0.5 rounded-full uppercase tracking-wider animate-bounce shadow-xs">
+                <span className="text-[10px] font-bold bg-emerald-500 text-white px-2 py-0.5 rounded-full uppercase tracking-wider animate-bounce shadow-xs">
                   -{pricingConfig.yearlyDiscountPercent || 20}% ছাড় 🎉
                 </span>
               </div>
@@ -1068,7 +1068,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                 <button
                   type="button"
                   onClick={() => { setTempPricingConfig(pricingConfig); setIsEditPriceModalOpen(true); }}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-black text-xs shadow-md transition cursor-pointer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold text-xs shadow-md transition cursor-pointer"
                   title="শুধুমাত্র সুপার এডমিন (ফেরদৌস আল আমিন) এই বাটনটি দেখতে পাবেন"
                 >
                   <span>👑 সুপার এডমিন কন্ট্রোল: সাবস্ক্রিপশনের টাকা পরিবর্তন করুন</span>
@@ -1085,7 +1085,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
             <div className={`p-6 sm:p-7 rounded-3xl border flex flex-col justify-between text-left transition-all duration-300 relative ${theme === 'dark' ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200 shadow-lg hover:shadow-xl'}`}>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-xs font-black uppercase tracking-wider px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg">
+                  <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg">
                     🎁 ফ্রি ট্রায়াল
                   </span>
                   <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/50 px-2 py-0.5 rounded border border-emerald-200">
@@ -1099,7 +1099,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                 </div>
 
                 <div className="py-2 border-y border-slate-100 dark:border-slate-800">
-                  <span className="text-3xl sm:text-4xl font-black font-mono text-slate-900 dark:text-white">৳০</span>
+                  <span className="text-3xl sm:text-4xl font-bold font-mono text-slate-900 dark:text-white">৳০</span>
                   <span className="text-xs text-slate-400 font-medium ml-1">/৭ দিন</span>
                 </div>
 
@@ -1142,7 +1142,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
             <div className={`p-6 sm:p-7 rounded-3xl border flex flex-col justify-between text-left transition-all duration-300 relative ${theme === 'dark' ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200 shadow-lg hover:shadow-xl'}`}>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-xs font-black uppercase tracking-wider px-3 py-1 bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 rounded-lg">
+                  <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 rounded-lg">
                     🚀 স্টার্টার
                   </span>
                   <span className="text-[10px] font-bold text-sky-600 bg-sky-50 dark:bg-sky-950/50 px-2 py-0.5 rounded border border-sky-200">
@@ -1156,7 +1156,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                 </div>
 
                 <div className="py-2 border-y border-slate-100 dark:border-slate-800">
-                  <span className="text-3xl sm:text-4xl font-black font-mono text-sky-600 dark:text-sky-400">
+                  <span className="text-3xl sm:text-4xl font-bold font-mono text-sky-600 dark:text-sky-400">
                     {pricingCycle === 'yearly' ? starterYearlyStr : starterMonthlyStr}
                   </span>
                   <span className="text-xs text-slate-400 font-medium ml-1">
@@ -1203,17 +1203,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
             <div className={`p-6 sm:p-7 rounded-3xl border-2 flex flex-col justify-between text-left transition-all duration-300 relative shadow-2xl scale-[1.02] ${theme === 'dark' ? 'bg-[#0f172a] border-[#8b26c7]' : 'bg-white border-[#8b26c7] ring-4 ring-purple-500/10'}`}>
               
               {/* Top Highlight Ribbon */}
-              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#8b26c7] to-[#701fa3] text-white text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-wider shadow-md flex items-center gap-1.5 whitespace-nowrap">
+              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#8b26c7] to-[#701fa3] text-white text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-md flex items-center gap-1.5 whitespace-nowrap">
                 <Sparkles size={12} className="text-amber-300" />
                 <span>🌟 সবচেয়ে জনপ্রিয় (Best Value)</span>
               </div>
 
               <div className="space-y-4 pt-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-xs font-black uppercase tracking-wider px-3 py-1 bg-purple-100 dark:bg-purple-950 text-[#8b26c7] dark:text-purple-300 rounded-lg">
+                  <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-purple-100 dark:bg-purple-950 text-[#8b26c7] dark:text-purple-300 rounded-lg">
                     ⚡ প্রো বিজনেস
                   </span>
-                  <span className="text-[10px] font-black text-amber-600 bg-amber-50 dark:bg-amber-950/50 px-2 py-0.5 rounded border border-amber-300">
+                  <span className="text-[10px] font-bold text-amber-600 bg-amber-50 dark:bg-amber-950/50 px-2 py-0.5 rounded border border-amber-300">
                     অল-ইন-ওয়ান
                   </span>
                 </div>
@@ -1224,7 +1224,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                 </div>
 
                 <div className="py-2 border-y border-purple-100 dark:border-slate-800">
-                  <span className="text-3xl sm:text-4xl font-black font-mono text-[#8b26c7] dark:text-purple-400">
+                  <span className="text-3xl sm:text-4xl font-bold font-mono text-[#8b26c7] dark:text-purple-400">
                     {pricingCycle === 'yearly' ? proYearlyStr : proMonthlyStr}
                   </span>
                   <span className="text-xs text-slate-400 font-medium ml-1">
@@ -1264,7 +1264,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                 <button
                   type="button"
                   onClick={() => handleSelectPackage('প্রো বিজনেস প্যাকেজ', proMonthlyStr, proYearlyStr, 'মোবাইল শপ, ফার্মেসি ও মাঝারি সকল ব্যবসার জন্য অল-ইন-ওয়ান সমাধান', ['অনলিমিটেড মেমো ও ইনভেন্টরি', 'IMEI ও ওয়ারেন্টি মডিউল', 'ফার্মেসি ব্যাচ ও মেয়াদ ট্র্যাকিং', 'কিস্তি বিক্রির হিসাব', '৫জন ক্যাশিয়ার সাপোর্ট', 'রিয়েল-টাইম ক্লাউড ব্যাকআপ'])}
-                  className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[#8b26c7] to-[#701fa3] hover:brightness-110 text-white font-extrabold text-xs transition duration-150 cursor-pointer shadow-lg shadow-purple-500/20 text-center"
+                  className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[#8b26c7] to-[#701fa3] hover:brightness-110 text-white font-bold text-xs transition duration-150 cursor-pointer shadow-lg shadow-purple-500/20 text-center"
                 >
                   ⚡ প্রো প্যাকেজটি বেছে নিন →
                 </button>
@@ -1275,7 +1275,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
             <div className={`p-6 sm:p-7 rounded-3xl border flex flex-col justify-between text-left transition-all duration-300 relative ${theme === 'dark' ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200 shadow-lg hover:shadow-xl'}`}>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-xs font-black uppercase tracking-wider px-3 py-1 bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 rounded-lg">
+                  <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 rounded-lg">
                     🌟 এন্টারপ্রাইজ
                   </span>
                   <span className="text-[10px] font-bold text-amber-600 bg-amber-50 dark:bg-amber-950/50 px-2 py-0.5 rounded border border-amber-200">
@@ -1289,7 +1289,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                 </div>
 
                 <div className="py-2 border-y border-slate-100 dark:border-slate-800">
-                  <span className="text-3xl sm:text-4xl font-black font-mono text-amber-600 dark:text-amber-400">
+                  <span className="text-3xl sm:text-4xl font-bold font-mono text-amber-600 dark:text-amber-400">
                     {pricingCycle === 'yearly' ? enterpriseYearlyStr : enterpriseMonthlyStr}
                   </span>
                   <span className="text-xs text-slate-400 font-medium ml-1">
@@ -1351,7 +1351,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                 <table className="w-full text-xs font-sans">
                   <thead>
                     <tr className="border-b border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white">
-                      <th className="p-3 text-left font-black">ফিচার বা সার্ভিসসমূহ</th>
+                      <th className="p-3 text-left font-bold">ফিচার বা সার্ভিসসমূহ</th>
                       <th className="p-3 text-center font-bold">🎁 ফ্রি ডেমো</th>
                       <th className="p-3 text-center font-bold">🚀 স্টার্টার</th>
                       <th className="p-3 text-center font-bold text-[#8b26c7] dark:text-purple-400">⚡ প্রো বিজনেস</th>
@@ -1438,10 +1438,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
           
           <div className="space-y-3 max-w-3xl mx-auto">
-            <span className="text-xs uppercase font-extrabold tracking-wider text-[#8b26c7] bg-purple-500/10 py-1 px-3.5 rounded-full inline-block leading-none">
+            <span className="text-xs uppercase font-bold tracking-wider text-[#8b26c7] bg-purple-500/10 py-1 px-3.5 rounded-full inline-block leading-none">
               ব্যবহার নির্দেশিকা / How It Works
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold font-display text-slate-800 dark:text-white leading-tight">
+            <h2 className="text-2xl sm:text-4xl font-bold font-display text-slate-800 dark:text-white leading-tight">
               সহজ ৩টি ধাপে আপনার ব্যবসার অনলাইন হিসাব শুরু করুন
             </h2>
             <p className="text-sm text-slate-700 dark:text-slate-400 font-sans">
@@ -1453,7 +1453,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
             {/* Step 1 */}
             <div className={`p-8 rounded-2xl border text-left flex flex-col justify-between hover:translate-y-[-4px] transition-all duration-200 ${theme === 'dark' ? 'bg-slate-900 border-slate-800' : 'bg-white border-[#e2e8f0] shadow-sm'}`}>
               <div className="space-y-4">
-                <div className="h-12 w-12 bg-purple-500/10 rounded-full flex items-center justify-center text-[#8b26c7] font-black text-xl font-mono">
+                <div className="h-12 w-12 bg-purple-500/10 rounded-full flex items-center justify-center text-[#8b26c7] font-bold text-xl font-mono">
                   ০১
                 </div>
                 <h3 className="text-lg font-bold text-slate-800 dark:text-white">১-ক্লিক গুগল লগইন</h3>
@@ -1470,7 +1470,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
             {/* Step 2 */}
             <div className={`p-8 rounded-2xl border text-left flex flex-col justify-between hover:translate-y-[-4px] transition-all duration-200 ${theme === 'dark' ? 'bg-slate-900 border-slate-800' : 'bg-white border-[#e2e8f0] shadow-sm'}`}>
               <div className="space-y-4">
-                <div className="h-12 w-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 font-black text-xl font-mono">
+                <div className="h-12 w-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold text-xl font-mono">
                   ০২
                 </div>
                 <h3 className="text-lg font-bold text-slate-800 dark:text-white">পণ্য ও সেলস স্টক এন্ট্রি</h3>
@@ -1487,7 +1487,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
             {/* Step 3 */}
             <div className={`p-8 rounded-2xl border text-left flex flex-col justify-between hover:translate-y-[-4px] transition-all duration-200 ${theme === 'dark' ? 'bg-slate-900 border-slate-800' : 'bg-white border-[#e2e8f0] shadow-sm'}`}>
               <div className="space-y-4">
-                <div className="h-12 w-12 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-black text-xl font-mono">
+                <div className="h-12 w-12 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-xl font-mono">
                   ০৩
                 </div>
                 <h3 className="text-lg font-bold text-slate-800 dark:text-white">১-সেকেন্ডে চালান ও প্রিন্ট</h3>
@@ -1512,10 +1512,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
       <section id="happy-clients" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
         
         <div className="space-y-3 max-w-3xl mx-auto">
-          <span className="text-xs uppercase font-extrabold tracking-wider text-[#8b26c7] bg-purple-500/10 py-1 px-3.5 rounded-full inline-block leading-none">
+          <span className="text-xs uppercase font-bold tracking-wider text-[#8b26c7] bg-purple-500/10 py-1 px-3.5 rounded-full inline-block leading-none">
             গ্রাহকদের বাস্তব রিভিউ
           </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold font-display text-slate-800 dark:text-white leading-tight">
+          <h2 className="text-2xl sm:text-4xl font-bold font-display text-slate-800 dark:text-white leading-tight">
             Happy Clients About SmartHisab POS
           </h2>
           <p className="text-sm text-slate-500 dark:text-slate-400 font-sans">
@@ -1534,7 +1534,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
               
               {/* Card Header Tagline */}
               <div className="bg-[#004b73] py-2.5 text-center border-b border-white/5 relative">
-                <span className="text-[10px] font-extrabold tracking-widest text-sky-200 block uppercase font-mono">
+                <span className="text-[10px] font-bold tracking-widest text-sky-200 block uppercase font-mono">
                   ◆ SmartHisab POS ◆
                 </span>
                 
@@ -1565,7 +1565,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
 
                 {/* Main Client Info Area */}
                 <div className="py-3 px-1 text-center space-y-2">
-                  <div className="inline-block bg-[#ff3333] text-white font-extrabold text-[10px] px-3 py-1 rounded-md shadow-xs leading-none">
+                  <div className="inline-block bg-[#ff3333] text-white font-bold text-[10px] px-3 py-1 rounded-md shadow-xs leading-none">
                     স্থান: {client.location}
                   </div>
 
@@ -1627,10 +1627,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
           <div className="space-y-3 text-center max-w-3xl mx-auto">
-            <span className="text-xs uppercase font-extrabold tracking-wider text-[#8b26c7] bg-purple-500/10 py-1 px-3.5 rounded-full inline-block leading-none">
+            <span className="text-xs uppercase font-bold tracking-wider text-[#8b26c7] bg-purple-500/10 py-1 px-3.5 rounded-full inline-block leading-none">
               ভিডিও গাইডলাইন / Tutorials
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold font-display text-slate-800 dark:text-white leading-tight">
+            <h2 className="text-2xl sm:text-4xl font-bold font-display text-slate-800 dark:text-white leading-tight">
               ভিডিও টিউটোরিয়াল ডেক্স
             </h2>
             <p className="text-sm text-slate-700 dark:text-slate-400 font-sans">
@@ -1654,7 +1654,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                     </div>
                     <div className="space-y-0.5 flex-1">
                       <div className="flex items-center gap-2 justify-between">
-                        <h4 className="text-xs font-black font-sans leading-none">{video.title}</h4>
+                        <h4 className="text-xs font-bold font-sans leading-none">{video.title}</h4>
                         <span className="text-[9px] px-1.5 py-0.5 rounded bg-slate-150 dark:bg-slate-800 text-slate-500 font-mono font-bold whitespace-nowrap">{video.duration}</span>
                       </div>
                       <p className="text-[10px] text-slate-500 dark:text-slate-600 font-sans leading-relaxed mt-1 font-normal">{video.description}</p>
@@ -1664,7 +1664,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
               </div>
 
               <div className={`p-4 rounded-2xl border text-left hidden lg:block ${theme === 'dark' ? 'bg-slate-900/50 border-slate-850' : 'bg-white border-[#e2e8f0]'}`}>
-                <span className="text-[10px] font-black text-slate-400 block mb-1">প্রয়োজনে কাস্টম ট্রেইনিংঃ</span>
+                <span className="text-[10px] font-bold text-slate-400 block mb-1">প্রয়োজনে কাস্টম ট্রেইনিংঃ</span>
                 <p className="text-[11px] text-slate-500 leading-normal font-sans">
                   দোকানে রিমোট এন্ডডেক্স সেটাপ বা সরাসরি কাস্টম জুম ট্রেইনিং চাইলে আমাদের সাপোর্ট ডেস্কে মেসেজ দিতে পারেন।
                 </p>
@@ -1684,7 +1684,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                       <Play size={28} className="translate-x-0.5 fill-white" />
                     </div>
                     <div className="space-y-1 max-w-md">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-amber-400/10 px-2.5 py-0.5 rounded border border-amber-400/20">
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-amber-400 bg-amber-400/10 px-2.5 py-0.5 rounded border border-amber-400/20">
                         SmartHisab HD Video Guide
                       </span>
                       <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
@@ -1697,7 +1697,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                     <button
                       type="button"
                       onClick={() => handleScrollToAuth('login')}
-                      className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs transition shadow-lg shadow-purple-600/30 flex items-center gap-2 cursor-pointer"
+                      className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition shadow-lg shadow-purple-600/30 flex items-center gap-2 cursor-pointer"
                     >
                       <Sparkles size={14} className="text-amber-300" />
                       <span>১-ক্লিকে প্র্যাকটিক্যাল ডেমো ড্যাশবোর্ডে দেখুন →</span>
@@ -1709,7 +1709,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                 <div className="flex items-center justify-between border-t border-slate-150 dark:border-slate-800 pt-3 flex-wrap gap-2">
                   <div className="text-left">
                     <span className="text-[10px] uppercase font-bold tracking-wider text-rose-500 block leading-none">এখন প্লে হচ্ছে / NOW PLAYING</span>
-                    <h3 className="text-sm font-black mt-1 text-slate-800 dark:text-white font-sans">{videoTutorials[activeVideoIndex].title}</h3>
+                    <h3 className="text-sm font-bold mt-1 text-slate-800 dark:text-white font-sans">{videoTutorials[activeVideoIndex].title}</h3>
                   </div>
                   <a
                     href="https://youtube.com"
@@ -1737,10 +1737,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
           <div className="space-y-3 text-center">
-            <span className="text-xs uppercase font-extrabold tracking-wider text-[#cc2222] bg-red-100 dark:bg-red-950/40 px-3.5 py-1 rounded-full inline-block leading-none">
+            <span className="text-xs uppercase font-bold tracking-wider text-[#cc2222] bg-red-100 dark:bg-red-950/40 px-3.5 py-1 rounded-full inline-block leading-none">
               জিজ্ঞাসিত প্রশ্নোত্তর / FAQ
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold font-display text-slate-800 dark:text-white leading-tight">
+            <h2 className="text-2xl sm:text-4xl font-bold font-display text-slate-800 dark:text-white leading-tight">
               সাধারণ জিজ্ঞাসা ও উত্তর সমূহ
             </h2>
             <p className="text-sm text-slate-700 dark:text-slate-400 font-sans">
@@ -1760,7 +1760,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                     onClick={() => setOpenFaq(isOpen ? null : index)}
                     className="w-full p-5 flex items-center justify-between gap-4 text-left font-sans cursor-pointer select-none"
                   >
-                    <span className={`text-xs sm:text-xs font-black ${isOpen ? 'text-[#8b26c7] dark:text-purple-300' : 'text-slate-800 dark:text-slate-250'}`}>
+                    <span className={`text-xs sm:text-xs font-bold ${isOpen ? 'text-[#8b26c7] dark:text-purple-300' : 'text-slate-800 dark:text-slate-250'}`}>
                       {item.question}
                     </span>
                     <span className={`shrink-0 h-6 w-6 rounded-full flex items-center justify-center transition-transform duration-200 ${isOpen ? 'bg-[#8b26c7] text-white rotate-180' : 'bg-slate-150 dark:bg-slate-850 text-slate-500'}`}>
@@ -1789,8 +1789,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
           
           {/* Contact Details Left */}
           <div className="lg:col-span-5 space-y-6 text-left">
-            <span className="text-[10px] uppercase font-extrabold tracking-widest text-[#cc2222] bg-red-100 dark:bg-red-950/40 px-2.5 py-1 rounded-md inline-block">সরাসরি যোগাযোগ ও ঠিকানা</span>
-            <h2 className="text-2xl sm:text-3.5xl font-extrabold font-display leading-tight">ফটোটাইপ সার্ভিস ও মেইনটেন্যান্স সেন্টার</h2>
+            <span className="text-[10px] uppercase font-bold tracking-widest text-[#cc2222] bg-red-100 dark:bg-red-950/40 px-2.5 py-1 rounded-md inline-block">সরাসরি যোগাযোগ ও ঠিকানা</span>
+            <h2 className="text-2xl sm:text-3.5xl font-bold font-display leading-tight">ফটোটাইপ সার্ভিস ও মেইনটেন্যান্স সেন্টার</h2>
             <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-sans">
               SmartHisab POS সফটওয়্যারটি ফায়ারবেস ক্লাউড ডাটাবেজ দ্বারা চালিত। এটি লাইসেন্স কি বা মাসিক বিল ছাড়া আজীবন সিকিউরড ব্যবহার করতে পারবেন। যেকোনো কাস্টম মডিউল বা হার্ডওয়্যার সংযোগে সাহায্য করতে আমাদের টিম প্রস্তুত আছে।
             </p>
@@ -1817,7 +1817,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                   <div className="flex items-center gap-2 mt-0.5">
                     <a 
                       href="mailto:info.fardousit@gmail.com" 
-                      className="text-sm font-black text-slate-900 dark:text-white font-mono hover:underline"
+                      className="text-sm font-bold text-slate-900 dark:text-white font-mono hover:underline"
                     >
                       info.fardousit@gmail.com
                     </a>
@@ -1827,7 +1827,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                       title="ইমেইল কপি করুন"
                     >
                       {copiedEmail ? (
-                        <span className="text-emerald-500 font-extrabold">কপি হয়েছে!</span>
+                        <span className="text-emerald-500 font-bold">কপি হয়েছে!</span>
                       ) : (
                         <>
                           <Copy size={11} />
@@ -1898,7 +1898,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
               {authTab === 'login' ? (
                 <div className="space-y-6 my-auto flex flex-col justify-center py-4">
                   <div className="space-y-2">
-                    <div className="mx-auto h-12 w-12 bg-gradient-to-tr from-[#8b26c7] to-[#701fa3] rounded-full flex items-center justify-center text-white font-extrabold shadow-sm">
+                    <div className="mx-auto h-12 w-12 bg-gradient-to-tr from-[#8b26c7] to-[#701fa3] rounded-full flex items-center justify-center text-white font-bold shadow-sm">
                       ✓
                     </div>
                     <h3 className="text-xl font-bold font-display">আজই আপনার ব্যবসার রূপান্তর শুরু করুন!</h3>
@@ -1971,7 +1971,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                           <button
                             type="button"
                             onClick={handleForgotPassword}
-                            className="text-[11px] font-extrabold text-[#8b26c7] dark:text-sky-400 hover:underline cursor-pointer"
+                            className="text-[11px] font-bold text-[#8b26c7] dark:text-sky-400 hover:underline cursor-pointer"
                           >
                             পাসওয়ার্ড ভুলে গেছেন?
                           </button>
@@ -2219,7 +2219,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
           
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-slate-200/80 dark:border-slate-800 pb-6 text-left">
             <div className="space-y-1">
-              <span className="text-lg sm:text-xl font-extrabold font-display tracking-tight text-[#8b26c7] dark:text-purple-400 flex items-center gap-2">
+              <span className="text-lg sm:text-xl font-bold font-display tracking-tight text-[#8b26c7] dark:text-purple-400 flex items-center gap-2">
                 <Cloud size={20} className="text-[#8b26c7]" /> SmartHisab POS & Stock Recorder v2.0
               </span>
               <p className="text-xs text-slate-600 dark:text-slate-400 font-medium font-sans">
@@ -2234,7 +2234,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
               <span className="text-slate-300 dark:text-slate-700">|</span>
               <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-slate-700 dark:text-slate-300 hover:text-[#8b26c7] transition duration-150 underline underline-offset-2">Terms of Service</a>
               <span className="text-slate-300 dark:text-slate-700">|</span>
-              <span className="text-[#8b26c7] font-extrabold bg-purple-50 dark:bg-purple-950/50 px-2.5 py-1 rounded border border-purple-200/60">Helpline: 01747-046052</span>
+              <span className="text-[#8b26c7] font-bold bg-purple-50 dark:bg-purple-950/50 px-2.5 py-1 rounded border border-purple-200/60">Helpline: 01747-046052</span>
             </div>
           </div>
 
@@ -2297,10 +2297,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
             </button>
 
             <div className="space-y-2">
-              <span className="text-xs font-black uppercase tracking-wider text-[#8b26c7] bg-purple-100 dark:bg-purple-950/60 px-3 py-1 rounded-lg border border-purple-200">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#8b26c7] bg-purple-100 dark:bg-purple-950/60 px-3 py-1 rounded-lg border border-purple-200">
                 প্যাকেজ নির্বাচন সম্পূর্ণ
               </span>
-              <h3 className="text-2xl font-black text-slate-900 dark:text-white">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
                 {selectedPackageModal.name}
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -2311,12 +2311,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
             <div className="p-4 bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-900/40 rounded-2xl flex items-center justify-between">
               <div>
                 <span className="text-[11px] font-bold text-slate-500 block">নির্ধারিত প্যাকেজ মূল্য:</span>
-                <span className="text-2xl font-mono font-black text-[#8b26c7] dark:text-purple-300">
+                <span className="text-2xl font-mono font-bold text-[#8b26c7] dark:text-purple-300">
                   {selectedPackageModal.price}
                 </span>
                 <span className="text-xs font-semibold text-slate-400">/{selectedPackageModal.cycle}</span>
               </div>
-              <span className="text-xs font-black text-emerald-600 bg-emerald-100 dark:bg-emerald-950 px-3 py-1 rounded-full border border-emerald-200">
+              <span className="text-xs font-bold text-emerald-600 bg-emerald-100 dark:bg-emerald-950 px-3 py-1 rounded-full border border-emerald-200">
                 ফ্রি ক্লাউড ব্যাকআপ সহ
               </span>
             </div>
@@ -2337,7 +2337,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
               <button
                 type="button"
                 onClick={handleConfirmPackageOrder}
-                className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs transition duration-150 shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition duration-150 shadow-md flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>💬 হোয়াটসঅ্যাপে অর্ডার দিন</span>
               </button>
@@ -2347,7 +2347,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                   setSelectedPackageModal(null);
                   handleScrollToAuth('register');
                 }}
-                className="w-full py-3.5 px-4 rounded-xl bg-[#8b26c7] hover:bg-[#7e1ebd] text-white font-extrabold text-xs transition duration-150 shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3.5 px-4 rounded-xl bg-[#8b26c7] hover:bg-[#7e1ebd] text-white font-bold text-xs transition duration-150 shadow-md flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>🚀 ফ্রি রেজিস্ট্রেশন পূরণ করুন</span>
               </button>
@@ -2373,7 +2373,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
               <div className="flex items-center gap-2.5">
                 <div className="p-2 rounded-xl bg-amber-500/10 text-amber-500 font-bold text-lg">💰</div>
                 <div>
-                  <h3 className="text-lg font-black text-slate-900 dark:text-white">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                     সুপার এডমিন - সাবস্ক্রিপশন প্যাকেজের মূল্য নির্ধারণ
                   </h3>
                   <p className="text-xs text-slate-500">
@@ -2393,7 +2393,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
             <form onSubmit={handleSavePricingConfig} className="space-y-4 text-xs font-bold text-slate-700 dark:text-slate-300">
               {/* Starter Package Pricing */}
               <div className="p-4 bg-sky-50/50 dark:bg-sky-950/20 border border-sky-200/60 dark:border-sky-900/40 rounded-2xl space-y-2">
-                <div className="text-sky-600 dark:text-sky-400 font-black text-sm flex items-center gap-1.5">
+                <div className="text-sky-600 dark:text-sky-400 font-bold text-sm flex items-center gap-1.5">
                   <span>🚀 স্টার্টার প্যাকেজ (Starter Plan)</span>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
@@ -2404,7 +2404,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                       required
                       value={tempPricingConfig.starterMonthly}
                       onChange={(e) => setTempPricingConfig({ ...tempPricingConfig, starterMonthly: Number(e.target.value) })}
-                      className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-mono font-black"
+                      className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-mono font-bold"
                     />
                   </div>
                   <div>
@@ -2414,7 +2414,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                       required
                       value={tempPricingConfig.starterYearly}
                       onChange={(e) => setTempPricingConfig({ ...tempPricingConfig, starterYearly: Number(e.target.value) })}
-                      className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-mono font-black"
+                      className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-mono font-bold"
                     />
                   </div>
                 </div>
@@ -2422,7 +2422,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
 
               {/* Pro Business Package Pricing */}
               <div className="p-4 bg-purple-50/50 dark:bg-purple-950/20 border border-purple-200/60 dark:border-purple-900/40 rounded-2xl space-y-2">
-                <div className="text-[#8b26c7] dark:text-purple-300 font-black text-sm flex items-center gap-1.5">
+                <div className="text-[#8b26c7] dark:text-purple-300 font-bold text-sm flex items-center gap-1.5">
                   <span>⚡ প্রো বিজনেস প্যাকেজ (Pro Business - Best Value)</span>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
@@ -2433,7 +2433,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                       required
                       value={tempPricingConfig.proMonthly}
                       onChange={(e) => setTempPricingConfig({ ...tempPricingConfig, proMonthly: Number(e.target.value) })}
-                      className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-mono font-black"
+                      className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-mono font-bold"
                     />
                   </div>
                   <div>
@@ -2443,7 +2443,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                       required
                       value={tempPricingConfig.proYearly}
                       onChange={(e) => setTempPricingConfig({ ...tempPricingConfig, proYearly: Number(e.target.value) })}
-                      className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-mono font-black"
+                      className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-mono font-bold"
                     />
                   </div>
                 </div>
@@ -2451,7 +2451,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
 
               {/* Enterprise Package Pricing */}
               <div className="p-4 bg-amber-50/50 dark:bg-amber-950/20 border border-amber-200/60 dark:border-amber-900/40 rounded-2xl space-y-2">
-                <div className="text-amber-600 dark:text-amber-400 font-black text-sm flex items-center gap-1.5">
+                <div className="text-amber-600 dark:text-amber-400 font-bold text-sm flex items-center gap-1.5">
                   <span>🌟 এন্টারপ্রাইজ আনলিমিটেড (Enterprise Plan)</span>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
@@ -2462,7 +2462,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                       required
                       value={tempPricingConfig.enterpriseMonthly}
                       onChange={(e) => setTempPricingConfig({ ...tempPricingConfig, enterpriseMonthly: Number(e.target.value) })}
-                      className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-mono font-black"
+                      className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-mono font-bold"
                     />
                   </div>
                   <div>
@@ -2472,7 +2472,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                       required
                       value={tempPricingConfig.enterpriseYearly}
                       onChange={(e) => setTempPricingConfig({ ...tempPricingConfig, enterpriseYearly: Number(e.target.value) })}
-                      className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-mono font-black"
+                      className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-mono font-bold"
                     />
                   </div>
                 </div>
@@ -2486,7 +2486,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                   required
                   value={tempPricingConfig.yearlyDiscountPercent}
                   onChange={(e) => setTempPricingConfig({ ...tempPricingConfig, yearlyDiscountPercent: Number(e.target.value) })}
-                  className="w-full px-3.5 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-mono font-black"
+                  className="w-full px-3.5 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-mono font-bold"
                 />
               </div>
 
@@ -2500,7 +2500,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
                 </button>
                 <button
                   type="submit"
-                  className="w-2/3 py-3 rounded-xl bg-gradient-to-r from-[#8b26c7] to-[#701fa3] hover:brightness-110 text-white font-extrabold shadow-md cursor-pointer text-center"
+                  className="w-2/3 py-3 rounded-xl bg-gradient-to-r from-[#8b26c7] to-[#701fa3] hover:brightness-110 text-white font-bold shadow-md cursor-pointer text-center"
                 >
                   💾 নতুন মূল্য সেভ করুন
                 </button>

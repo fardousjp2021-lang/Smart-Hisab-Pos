@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+﻿import React, { useEffect, useMemo, useState } from 'react';
 import { Package, Plus, Trash2, Edit3, ShoppingCart, BarChart3, Search, X } from 'lucide-react';
 
 const STORAGE_KEY = 'roni_combo_products_v1';
@@ -169,7 +169,7 @@ export function ComboManager({ lang, products, showToast, onSellCombo }: Props) 
             <Package className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
           </div>
           <div>
-            <h1 className="font-extrabold text-slate-800 dark:text-white text-lg sm:text-xl tracking-tight">
+            <h1 className="font-bold text-slate-800 dark:text-white text-lg sm:text-xl tracking-tight">
               {t('কম্বো / বান্ডেল প্রোডাক্ট', 'Combo / Bundled Products')}
             </h1>
             <p className="text-slate-500 dark:text-slate-400 text-xs mt-0.5">
@@ -197,7 +197,7 @@ export function ComboManager({ lang, products, showToast, onSellCombo }: Props) 
 
           <button 
             onClick={openCreate} 
-            className="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-extrabold px-4 py-2 rounded-xl shadow-md transition cursor-pointer"
+            className="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-md transition cursor-pointer"
           >
             <Plus className="w-4 h-4" /> {t('নতুন কম্বো', 'New Combo')}
           </button>
@@ -209,7 +209,7 @@ export function ComboManager({ lang, products, showToast, onSellCombo }: Props) 
         <div className="bg-gradient-to-br from-indigo-500 to-indigo-700 text-white rounded-2xl p-4 sm:p-5 shadow-sm border border-indigo-400/30 flex items-center justify-between">
           <div>
             <span className="text-xs font-bold opacity-80 uppercase tracking-wider block">{t('মোট সক্রিয় কম্বো', 'Active Combos')}</span>
-            <span className="text-2xl sm:text-3xl font-black mt-1 block">{totalStats.totalCombos} {t('টি', 'Packs')}</span>
+            <span className="text-2xl sm:text-3xl font-bold mt-1 block">{totalStats.totalCombos} {t('টি', 'Packs')}</span>
           </div>
           <span className="text-3xl bg-white/20 p-2.5 rounded-2xl">📦</span>
         </div>
@@ -217,7 +217,7 @@ export function ComboManager({ lang, products, showToast, onSellCombo }: Props) 
         <div className="bg-gradient-to-br from-emerald-500 to-emerald-700 text-white rounded-2xl p-4 sm:p-5 shadow-sm border border-emerald-400/30 flex items-center justify-between">
           <div>
             <span className="text-xs font-bold opacity-80 uppercase tracking-wider block">{t('মোট বান্ডেল বিক্রি', 'Total Sold')}</span>
-            <span className="text-2xl sm:text-3xl font-black mt-1 block">{totalStats.totalSold} {t('টি', 'Units')}</span>
+            <span className="text-2xl sm:text-3xl font-bold mt-1 block">{totalStats.totalSold} {t('টি', 'Units')}</span>
           </div>
           <span className="text-3xl bg-white/20 p-2.5 rounded-2xl">🛍️</span>
         </div>
@@ -225,7 +225,7 @@ export function ComboManager({ lang, products, showToast, onSellCombo }: Props) 
         <div className="bg-gradient-to-br from-amber-500 to-amber-700 text-white rounded-2xl p-4 sm:p-5 shadow-sm border border-amber-400/30 flex items-center justify-between">
           <div>
             <span className="text-xs font-bold opacity-80 uppercase tracking-wider block">{t('মোট বান্ডেল আয়', 'Total Revenue')}</span>
-            <span className="text-2xl sm:text-3xl font-black mt-1 block">৳{totalStats.totalRevenue.toLocaleString()}</span>
+            <span className="text-2xl sm:text-3xl font-bold mt-1 block">৳{totalStats.totalRevenue.toLocaleString()}</span>
           </div>
           <span className="text-3xl bg-white/20 p-2.5 rounded-2xl">💰</span>
         </div>
@@ -262,16 +262,16 @@ export function ComboManager({ lang, products, showToast, onSellCombo }: Props) 
                   <div>
                     <div className="flex justify-between items-start gap-2 mb-3">
                       <div>
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-indigo-100 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300 inline-block mb-1.5">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-indigo-100 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300 inline-block mb-1.5">
                           🔥 HOT DEAL
                         </span>
-                        <h3 className="font-extrabold text-slate-800 dark:text-white text-base leading-snug">{c.name}</h3>
+                        <h3 className="font-bold text-slate-800 dark:text-white text-base leading-snug">{c.name}</h3>
                         {c.description && <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1">{c.description}</p>}
                       </div>
                       <div className="text-right shrink-0">
-                        <div className="font-black text-indigo-600 dark:text-indigo-400 text-xl">৳{c.bundlePrice.toLocaleString()}</div>
+                        <div className="font-bold text-indigo-600 dark:text-indigo-400 text-xl">৳{c.bundlePrice.toLocaleString()}</div>
                         {savings > 0 && (
-                          <div className="inline-block px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 mt-1">
+                          <div className="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 mt-1">
                             {t('সাশ্রয়', 'Saves')} ৳{savings.toLocaleString()}
                           </div>
                         )}
@@ -280,7 +280,7 @@ export function ComboManager({ lang, products, showToast, onSellCombo }: Props) 
 
                     {/* Items List inside Combo */}
                     <div className="bg-slate-50 dark:bg-slate-950/50 rounded-xl p-3 border border-slate-100 dark:border-slate-800/80 space-y-1.5 text-xs text-slate-700 dark:text-slate-300 my-3">
-                      <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider block mb-1">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
                         📦 {t('প্যাকেজের অন্তর্ভুক্ত আইটেম:', 'Package Includes:')}
                       </span>
                       {c.items.map((i, idx) => (
@@ -305,7 +305,7 @@ export function ComboManager({ lang, products, showToast, onSellCombo }: Props) 
                       {onSellCombo && (
                         <button 
                           onClick={() => onSellCombo(c)} 
-                          className="flex-1 inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black py-2 rounded-xl shadow-xs transition cursor-pointer"
+                          className="flex-1 inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2 rounded-xl shadow-xs transition cursor-pointer"
                         >
                           <ShoppingCart className="w-3.5 h-3.5" /> {t('বিক্রি করুন', 'Sell Combo')}
                         </button>
@@ -335,7 +335,7 @@ export function ComboManager({ lang, products, showToast, onSellCombo }: Props) 
         <div className="space-y-4">
           <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xs">
             <table className="w-full text-xs text-left">
-              <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 font-extrabold uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
+              <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
                 <tr>
                   <th className="px-4 py-3 text-left">{t('কম্বো নাম', 'Combo Name')}</th>
                   <th className="px-4 py-3 text-right">{t('বান্ডেল দাম', 'Bundle Price')}</th>
@@ -353,10 +353,10 @@ export function ComboManager({ lang, products, showToast, onSellCombo }: Props) 
                   const s = usage[c.id];
                   return (
                     <tr key={c.id} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition">
-                      <td className="px-4 py-3 font-extrabold text-slate-800 dark:text-white">{c.name}</td>
-                      <td className="px-4 py-3 text-right font-black text-indigo-600 dark:text-indigo-400">৳{c.bundlePrice.toLocaleString()}</td>
-                      <td className="px-4 py-3 text-right font-extrabold">{s?.count || 0}</td>
-                      <td className="px-4 py-3 text-right font-black text-emerald-600 dark:text-emerald-400">৳{(s?.totalRevenue || 0).toLocaleString()}</td>
+                      <td className="px-4 py-3 font-bold text-slate-800 dark:text-white">{c.name}</td>
+                      <td className="px-4 py-3 text-right font-bold text-indigo-600 dark:text-indigo-400">৳{c.bundlePrice.toLocaleString()}</td>
+                      <td className="px-4 py-3 text-right font-bold">{s?.count || 0}</td>
+                      <td className="px-4 py-3 text-right font-bold text-emerald-600 dark:text-emerald-400">৳{(s?.totalRevenue || 0).toLocaleString()}</td>
                       <td className="px-4 py-3 text-slate-500 font-bold">{s?.lastUsed ? new Date(s.lastUsed).toLocaleDateString() : '—'}</td>
                       <td className="px-4 py-3 text-center">
                         {onSellCombo && (
@@ -399,7 +399,7 @@ function StatCard({ label, value, color }: { label: string; value: string; color
   return (
     <div className={`bg-gradient-to-br ${map[color]} text-white rounded-xl p-4 shadow-sm`}>
       <div className="text-xs opacity-80">{label}</div>
-      <div className="text-2xl font-extrabold mt-1">{value}</div>
+      <div className="text-2xl font-bold mt-1">{value}</div>
     </div>
   );
 }
@@ -466,7 +466,7 @@ function ComboEditor({
           <div className="flex items-center gap-2.5">
             <span className="text-xl p-1.5 bg-white/20 rounded-xl">📦</span>
             <div>
-              <h2 className="font-extrabold text-base sm:text-lg leading-tight">
+              <h2 className="font-bold text-base sm:text-lg leading-tight">
                 {initial ? t('কম্বো প্যাকেজ এডিটর', 'Edit Combo Pack') : t('নতুন কম্বো প্যাকেজ তৈরি করুন', 'Create New Combo Pack')}
               </h2>
               <p className="text-white/80 text-xs font-semibold">
@@ -484,13 +484,13 @@ function ComboEditor({
           
           {/* Top Full-Width Section: Basic Info & Description */}
           <div className="bg-slate-50 dark:bg-slate-950/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-4 text-left">
-            <span className="text-xs font-black text-slate-400 uppercase tracking-wider block border-b border-slate-200 dark:border-slate-800/80 pb-2">
+            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block border-b border-slate-200 dark:border-slate-800/80 pb-2">
               📋 {t('১. প্যাকেজের তথ্য ও বিস্তারিত বিবরণ', '1. Package Information & Detailed Description')}
             </span>
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
               {/* Combo Name Field */}
-              <label className="md:col-span-12 block text-xs font-extrabold text-slate-700 dark:text-slate-200 space-y-1">
+              <label className="md:col-span-12 block text-xs font-bold text-slate-700 dark:text-slate-200 space-y-1">
                 <span>{t('কম্বো প্যাকেজের নাম', 'Combo Package Name')} *</span>
                 <input 
                   value={name} 
@@ -501,7 +501,7 @@ function ComboEditor({
               </label>
 
               {/* Full-Width Multi-line Textarea for Long Offer Description */}
-              <label className="md:col-span-12 block text-xs font-extrabold text-slate-700 dark:text-slate-200 space-y-1">
+              <label className="md:col-span-12 block text-xs font-bold text-slate-700 dark:text-slate-200 space-y-1">
                 <span className="flex items-center justify-between">
                   <span>{t('অফার বিবরণ / বিস্তারিত ট্যাগলাইন', 'Description / Offer Details & Terms')}</span>
                   <span className="text-[10px] text-indigo-600 dark:text-indigo-400 font-semibold">{t('(ফুল-উইডথ বিস্তারিত টেক্সট বক্স)', '(Full-width Multi-line Box)')}</span>
@@ -523,11 +523,11 @@ function ComboEditor({
             {/* Left Column: Price Input & Savings Summary */}
             <div className="md:col-span-5 space-y-4 text-left">
               <div className="bg-slate-50 dark:bg-slate-950/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
-                <span className="text-xs font-black text-slate-400 uppercase tracking-wider block">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
                   💳 {t('২. বান্ডেল অফার বিক্রয়মূল্য', '2. Bundle Offer Price')}
                 </span>
 
-                <label className="block text-xs font-extrabold text-slate-700 dark:text-slate-200 space-y-1">
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 space-y-1">
                   <span>{t('বান্ডেল অফার বিক্রয়মূল্য (৳)', 'Bundle Offer Price (৳)')} *</span>
                   <input 
                     type="number" 
@@ -535,28 +535,28 @@ function ComboEditor({
                     value={bundlePrice || ''} 
                     onChange={e => setBundlePrice(Number(e.target.value))} 
                     placeholder="0.00"
-                    className="w-full px-4 py-3 border border-indigo-300 dark:border-indigo-800 rounded-xl text-lg font-black bg-indigo-50/50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none" 
+                    className="w-full px-4 py-3 border border-indigo-300 dark:border-indigo-800 rounded-xl text-lg font-bold bg-indigo-50/50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none" 
                   />
                 </label>
               </div>
 
               {/* Real-time Savings Calculation Card */}
               <div className="bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-2xl p-4 shadow-sm border border-slate-800 space-y-2.5 text-xs">
-                <span className="text-[10px] font-black text-indigo-300 uppercase tracking-wider block">
+                <span className="text-[10px] font-bold text-indigo-300 uppercase tracking-wider block">
                   💰 {t('মূল্য হিসাব ও গ্রাহক সাশ্রয় সমীকরণ', 'Price & Customer Savings Summary')}
                 </span>
                 
                 <div className="flex justify-between items-center pt-1">
                   <span className="text-slate-300 font-bold">{t('পণ্যসমূহের আসল মোট দাম:', 'Original Items Total:')}</span>
-                  <span className="font-mono font-extrabold text-slate-200">৳{sumOriginal.toLocaleString()}</span>
+                  <span className="font-mono font-bold text-slate-200">৳{sumOriginal.toLocaleString()}</span>
                 </div>
 
                 <div className="flex justify-between items-center">
                   <span className="text-slate-300 font-bold">{t('বান্ডেল অফার মূল্য:', 'Bundle Offer Price:')}</span>
-                  <span className="font-mono font-black text-indigo-400 text-sm">৳{bundlePrice.toLocaleString()}</span>
+                  <span className="font-mono font-bold text-indigo-400 text-sm">৳{bundlePrice.toLocaleString()}</span>
                 </div>
 
-                <div className="flex justify-between items-center border-t border-slate-800 pt-2 text-emerald-400 font-black">
+                <div className="flex justify-between items-center border-t border-slate-800 pt-2 text-emerald-400 font-bold">
                   <span className="flex items-center gap-1">🎁 {t('গ্রাহকের মোট সাশ্রয়:', 'Customer Savings:')}</span>
                   <span className="font-mono text-base text-emerald-300 bg-emerald-950/60 px-2.5 py-0.5 rounded-lg border border-emerald-800/60">
                     ৳{customerSavings.toLocaleString()}
@@ -569,7 +569,7 @@ function ComboEditor({
             <div className="md:col-span-7 space-y-3 text-left border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800 md:pl-6 pt-4 md:pt-0">
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="text-xs font-black text-slate-800 dark:text-white uppercase tracking-wider block">
+                  <span className="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-wider block">
                     📦 {t('৩. প্যাকেজে অন্তর্ভুক্ত পণ্যসমূহ', '3. Bundled Products List')} ({items.length})
                   </span>
                   <p className="text-[11px] font-semibold text-slate-400 mt-0.5">
@@ -580,7 +580,7 @@ function ComboEditor({
                 <button 
                   type="button"
                   onClick={() => setPickerOpen(true)} 
-                  className="text-xs font-extrabold text-white bg-indigo-600 hover:bg-indigo-700 px-3.5 py-2 rounded-xl inline-flex items-center gap-1.5 transition shadow-xs cursor-pointer"
+                  className="text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 px-3.5 py-2 rounded-xl inline-flex items-center gap-1.5 transition shadow-xs cursor-pointer"
                 >
                   <Plus className="w-3.5 h-3.5" /> {t('পণ্য যোগ করুন', 'Add Product')}
                 </button>
@@ -598,7 +598,7 @@ function ComboEditor({
                 {items.map(i => (
                   <div key={i.productId} className="flex items-center justify-between gap-3 px-4 py-3 text-xs bg-white dark:bg-slate-900">
                     <div className="flex-1 min-w-0">
-                      <div className="font-extrabold text-slate-800 dark:text-white truncate">{i.productName}</div>
+                      <div className="font-bold text-slate-800 dark:text-white truncate">{i.productName}</div>
                       <div className="text-slate-400 text-[11px] font-semibold">৳{i.unitPrice.toLocaleString()} {t('প্রতি পিস', 'each')}</div>
                     </div>
 
@@ -611,7 +611,7 @@ function ComboEditor({
                       >
                         -
                       </button>
-                      <span className="w-8 text-center font-extrabold text-xs">{i.quantity}</span>
+                      <span className="w-8 text-center font-bold text-xs">{i.quantity}</span>
                       <button 
                         type="button" 
                         onClick={() => updateQty(i.productId, i.quantity + 1)}
@@ -621,7 +621,7 @@ function ComboEditor({
                       </button>
                     </div>
 
-                    <div className="w-24 text-right font-black text-slate-800 dark:text-white text-xs">
+                    <div className="w-24 text-right font-bold text-slate-800 dark:text-white text-xs">
                       ৳{(i.unitPrice * i.quantity).toLocaleString()}
                     </div>
 
@@ -651,7 +651,7 @@ function ComboEditor({
           <button 
             type="button"
             onClick={submit} 
-            className="px-6 py-2.5 text-xs font-extrabold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-md transition cursor-pointer active:scale-95 flex items-center gap-1.5"
+            className="px-6 py-2.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-md transition cursor-pointer active:scale-95 flex items-center gap-1.5"
           >
             ✓ {t('কম্বো প্যাকেজ সেভ করুন', 'Save Combo Pack')}
           </button>
@@ -662,7 +662,7 @@ function ComboEditor({
           <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-3" onClick={() => setPickerOpen(false)}>
             <div className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-md max-h-[75vh] flex flex-col shadow-2xl border border-slate-200 dark:border-slate-800" onClick={e => e.stopPropagation()}>
               <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
-                <span className="font-extrabold text-sm text-slate-800 dark:text-white">🔍 {t('পণ্য নির্বাচন করুন', 'Select Product')}</span>
+                <span className="font-bold text-sm text-slate-800 dark:text-white">🔍 {t('পণ্য নির্বাচন করুন', 'Select Product')}</span>
                 <button onClick={() => setPickerOpen(false)} className="text-slate-400 hover:text-slate-600"><X className="w-4 h-4" /></button>
               </div>
               <div className="p-3 border-b border-slate-100 dark:border-slate-800">
@@ -682,10 +682,10 @@ function ComboEditor({
                     className="w-full text-left px-3.5 py-2.5 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 rounded-xl text-xs transition flex justify-between items-center cursor-pointer"
                   >
                     <div>
-                      <div className="font-extrabold text-slate-800 dark:text-white">{p.name}</div>
+                      <div className="font-bold text-slate-800 dark:text-white">{p.name}</div>
                       <div className="text-slate-400 text-[10px] font-semibold">{p.sku ? `SKU: ${p.sku}` : 'Standard Product'}</div>
                     </div>
-                    <div className="font-black text-indigo-600 dark:text-indigo-400">
+                    <div className="font-bold text-indigo-600 dark:text-indigo-400">
                       ৳{Number(p.sellingPrice || p.price || 0).toLocaleString()}
                     </div>
                   </button>
@@ -699,3 +699,4 @@ function ComboEditor({
     </div>
   );
 }
+

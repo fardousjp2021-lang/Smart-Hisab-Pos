@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useState, useMemo } from 'react';
 import {
   Scale, Plus, Trash2, Edit2, Check, X, AlertCircle, Search,
@@ -174,7 +174,7 @@ export const UnitsManager = ({
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-extrabold text-gray-800 tracking-tight flex items-center gap-2">
+            <h1 className="text-2xl font-bold text-gray-800 tracking-tight flex items-center gap-2">
               <Scale size={24} className="text-indigo-500" />
               {isBn ? 'একক ব্যবস্থাপনা' : 'Units Manager'}
             </h1>
@@ -210,7 +210,7 @@ export const UnitsManager = ({
                 <s.icon size={18} className="text-white" />
               </div>
               <div>
-                <p className="text-2xl font-black text-gray-800">{s.value}</p>
+                <p className="text-2xl font-bold text-gray-800">{s.value}</p>
                 <p className="text-xs text-gray-400">{s.label}</p>
               </div>
             </div>
@@ -391,3 +391,4 @@ export const UnitsManager = ({
 };
 
 export default UnitsManager;
+

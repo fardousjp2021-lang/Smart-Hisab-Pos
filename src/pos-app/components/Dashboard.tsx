@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { SummaryCard } from './SummaryCard';
@@ -183,7 +183,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ setActiveTab }) => {
                 theme === 'dark' ? 'bg-slate-900 border-slate-800 text-white' : 'bg-white border-slate-200 text-slate-800'
               }`}>
                 <div className="flex justify-between items-center pb-2 border-b border-slate-700/30 mb-2">
-                  <span className="text-xs font-black">সিস্টেম নোটিফিকেশন</span>
+                  <span className="text-xs font-bold">সিস্টেম নোটিফিকেশন</span>
                   <span className="text-[10px] bg-red-500 text-white px-2 py-0.5 rounded-full font-bold">নতুন</span>
                 </div>
                 <div className="space-y-2 max-h-52 overflow-y-auto divide-y divide-slate-100/10">
@@ -306,7 +306,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ setActiveTab }) => {
             theme === 'dark' ? 'bg-[#1e293b]/40 border-slate-800' : 'bg-white border-slate-250'
           }`}>
             <div className="flex items-center gap-2 mb-6 border-b border-dashed border-slate-705/30 pb-3">
-              <span className="text-yellow-500 font-extrabold text-sm">⚡</span>
+              <span className="text-yellow-500 font-bold text-sm">⚡</span>
               <h3 className={`font-display font-medium text-sm tracking-tight ${theme === 'dark' ? 'text-white' : 'text-slate-800'}`}>
                 দ্রুত কাজ
               </h3>
@@ -403,7 +403,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ setActiveTab }) => {
                       <td className="px-3 py-2.5 text-right font-bold text-blue-500">
                         ৳{toBengaliNumber(sale.unitPrice.toLocaleString('en-US'))}
                       </td>
-                      <td className="px-3 py-2.5 text-right font-black text-emerald-500">
+                      <td className="px-3 py-2.5 text-right font-bold text-emerald-500">
                         ৳{toBengaliNumber(sale.totalPrice.toLocaleString('en-US'))}
                       </td>
                       <td className="px-3 py-2.5 text-center text-[10px] text-slate-400 font-mono">

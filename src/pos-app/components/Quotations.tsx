@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react';
+﻿import { useMemo, useState, useEffect } from 'react';
 import {
   FileText, Plus, Search, Filter, Trash2, Edit3, Printer, Copy,
   CheckCircle2, XCircle, Clock, Send, Eye, X as XIcon, Download,
@@ -461,7 +461,7 @@ export function Quotations({
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-black text-slate-800 flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
             <span className="p-2 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 text-white shadow-md">
               <FileText size={20} />
             </span>
@@ -478,7 +478,7 @@ export function Quotations({
           </button>
           <button
             onClick={() => { resetForm(); setIsAddQuotationOpen(true); }}
-            className="px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-extrabold rounded-xl text-xs flex items-center gap-1.5 shadow-md cursor-pointer border-none"
+            className="px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-bold rounded-xl text-xs flex items-center gap-1.5 shadow-md cursor-pointer border-none"
           >
             <Plus size={14} /> {t.newQuote}
           </button>
@@ -552,14 +552,14 @@ export function Quotations({
           <table className="w-full text-xs">
             <thead className="bg-slate-50 text-slate-600">
               <tr>
-                <th className="text-left px-4 py-3 font-black uppercase tracking-wider text-[10px]">{t.id}</th>
-                <th className="text-left px-4 py-3 font-black uppercase tracking-wider text-[10px]">{t.customer}</th>
-                <th className="text-left px-4 py-3 font-black uppercase tracking-wider text-[10px]">{t.date}</th>
-                <th className="text-left px-4 py-3 font-black uppercase tracking-wider text-[10px]">{t.valid}</th>
-                <th className="text-center px-4 py-3 font-black uppercase tracking-wider text-[10px]">{t.items}</th>
-                <th className="text-right px-4 py-3 font-black uppercase tracking-wider text-[10px]">{t.amount}</th>
-                <th className="text-center px-4 py-3 font-black uppercase tracking-wider text-[10px]">{t.status}</th>
-                <th className="text-right px-4 py-3 font-black uppercase tracking-wider text-[10px]">{t.actions}</th>
+                <th className="text-left px-4 py-3 font-bold uppercase tracking-wider text-[10px]">{t.id}</th>
+                <th className="text-left px-4 py-3 font-bold uppercase tracking-wider text-[10px]">{t.customer}</th>
+                <th className="text-left px-4 py-3 font-bold uppercase tracking-wider text-[10px]">{t.date}</th>
+                <th className="text-left px-4 py-3 font-bold uppercase tracking-wider text-[10px]">{t.valid}</th>
+                <th className="text-center px-4 py-3 font-bold uppercase tracking-wider text-[10px]">{t.items}</th>
+                <th className="text-right px-4 py-3 font-bold uppercase tracking-wider text-[10px]">{t.amount}</th>
+                <th className="text-center px-4 py-3 font-bold uppercase tracking-wider text-[10px]">{t.status}</th>
+                <th className="text-right px-4 py-3 font-bold uppercase tracking-wider text-[10px]">{t.actions}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -578,7 +578,7 @@ export function Quotations({
                 return (
                   <tr key={q.id} className="hover:bg-slate-50 transition">
                     <td className="px-4 py-3">
-                      <button onClick={() => setViewing(q)} className="font-black text-indigo-600 hover:underline cursor-pointer">
+                      <button onClick={() => setViewing(q)} className="font-bold text-indigo-600 hover:underline cursor-pointer">
                         {q.id}
                       </button>
                     </td>
@@ -590,15 +590,15 @@ export function Quotations({
                     <td className="px-4 py-3 font-mono text-slate-600">
                       {q.validUntil}
                       {isExpiringSoon && (
-                        <span className="ml-1 text-[9px] font-black text-amber-600">
+                        <span className="ml-1 text-[9px] font-bold text-amber-600">
                           ⚠ {lang === 'bn' ? 'শীঘ্রই' : 'soon'}
                         </span>
                       )}
                     </td>
                     <td className="px-4 py-3 text-center font-bold text-slate-700">{q.items.length}</td>
-                    <td className="px-4 py-3 text-right font-black text-slate-800 font-mono">৳{q.total.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-right font-bold text-slate-800 font-mono">৳{q.total.toLocaleString()}</td>
                     <td className="px-4 py-3 text-center">
-                      <span className={`inline-flex items-center gap-1 px-2 py-1 border rounded-full text-[10px] font-black ${STATUS_STYLES[q.status]}`}>
+                      <span className={`inline-flex items-center gap-1 px-2 py-1 border rounded-full text-[10px] font-bold ${STATUS_STYLES[q.status]}`}>
                         <SIcon size={10} /> {q.status}
                       </span>
                     </td>
@@ -624,19 +624,19 @@ export function Quotations({
         <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 flex items-start lg:items-center justify-center p-4">
           <div className="bg-white rounded-2xl border border-slate-200 w-full max-w-6xl p-6 shadow-2xl space-y-4 animate-fade-in max-h-[92vh] overflow-y-auto">
             <div className="flex justify-between items-center pb-3 border-b border-slate-100">
-              <h3 className="text-base font-black text-slate-800 flex items-center gap-2">
+              <h3 className="text-base font-bold text-slate-800 flex items-center gap-2">
                 <FileText size={18} className="text-indigo-600" />
                 {editingId ? t.editHeading : t.newHeading}
               </h3>
               <button onClick={() => { setIsAddQuotationOpen(false); resetForm(); }}
-                className="text-slate-400 hover:text-slate-600 font-black cursor-pointer text-sm">✕</button>
+                className="text-slate-400 hover:text-slate-600 font-bold cursor-pointer text-sm">✕</button>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-5 text-xs font-semibold">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                 {/* LEFT — Customer + meta */}
                 <div className="space-y-4 lg:border-r lg:border-slate-100 lg:pr-5">
-                  <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 pb-1 border-b border-dashed border-slate-200">
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 pb-1 border-b border-dashed border-slate-200">
                     {lang === 'bn' ? '১ · গ্রাহক ও মেটা' : '1 · Customer & Meta'}
                   </div>
 
@@ -734,10 +734,10 @@ export function Quotations({
 
                 {/* RIGHT — Items + totals */}
                 <div className="space-y-4">
-                  <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 pb-1 border-b border-dashed border-slate-200 flex justify-between items-center">
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 pb-1 border-b border-dashed border-slate-200 flex justify-between items-center">
                     <span>{lang === 'bn' ? '২ · আইটেম ও মূল্য' : '2 · Items & Pricing'}</span>
                     <button type="button" onClick={() => setForm(f => ({ ...f, items: [...f.items, emptyItem()] }))}
-                      className="px-2 py-1 rounded-md text-[10px] font-black text-indigo-600 hover:bg-indigo-50 cursor-pointer">
+                      className="px-2 py-1 rounded-md text-[10px] font-bold text-indigo-600 hover:bg-indigo-50 cursor-pointer">
                       {t.addItem}
                     </button>
                   </div>
@@ -808,7 +808,7 @@ export function Quotations({
                           title={t.lineTax}
                           className="col-span-1 p-2 border border-slate-200 rounded-md text-xs font-mono bg-white"
                         />
-                        <div className="col-span-1 text-right text-[11px] font-black text-slate-700 font-mono py-2">
+                        <div className="col-span-1 text-right text-[11px] font-bold text-slate-700 font-mono py-2">
                           ৳{Math.round(lineTotal(it)).toLocaleString()}
                         </div>
                         <button type="button"
@@ -850,7 +850,7 @@ export function Quotations({
                     </div>
                     <div className="flex justify-between border-t border-slate-700 pt-1.5 text-[14px]">
                       <span className="text-slate-300">{t.grand}:</span>
-                      <span className="text-emerald-400 font-black">৳{formGrand.toLocaleString()}</span>
+                      <span className="text-emerald-400 font-bold">৳{formGrand.toLocaleString()}</span>
                     </div>
                   </div>
                 </div>
@@ -862,7 +862,7 @@ export function Quotations({
                   {t.cancel}
                 </button>
                 <button type="submit"
-                  className="px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-extrabold rounded-xl cursor-pointer border-none shadow-md">
+                  className="px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-bold rounded-xl cursor-pointer border-none shadow-md">
                   {t.save}
                 </button>
               </div>
@@ -877,7 +877,7 @@ export function Quotations({
           <div className="bg-white rounded-2xl border border-slate-200 w-full max-w-3xl p-6 shadow-2xl space-y-4 animate-fade-in max-h-[92vh] overflow-y-auto">
             <div className="flex justify-between items-center pb-3 border-b border-slate-100">
               <div>
-                <h3 className="text-base font-black text-slate-800 flex items-center gap-2">
+                <h3 className="text-base font-bold text-slate-800 flex items-center gap-2">
                   <FileText size={18} className="text-indigo-600" /> {t.detailHeading}
                 </h3>
                 <p className="text-[11px] text-slate-500 font-mono mt-0.5">{viewing.id}</p>
@@ -896,11 +896,11 @@ export function Quotations({
               <table className="w-full text-xs">
                 <thead className="bg-slate-50">
                   <tr>
-                    <th className="text-left px-3 py-2 font-black text-slate-600">#</th>
-                    <th className="text-left px-3 py-2 font-black text-slate-600">{t.itemName}</th>
-                    <th className="text-center px-3 py-2 font-black text-slate-600">{t.qty}</th>
-                    <th className="text-right px-3 py-2 font-black text-slate-600">{t.price}</th>
-                    <th className="text-right px-3 py-2 font-black text-slate-600">{t.subtotal}</th>
+                    <th className="text-left px-3 py-2 font-bold text-slate-600">#</th>
+                    <th className="text-left px-3 py-2 font-bold text-slate-600">{t.itemName}</th>
+                    <th className="text-center px-3 py-2 font-bold text-slate-600">{t.qty}</th>
+                    <th className="text-right px-3 py-2 font-bold text-slate-600">{t.price}</th>
+                    <th className="text-right px-3 py-2 font-bold text-slate-600">{t.subtotal}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -922,7 +922,7 @@ export function Quotations({
                 <Row label={t.subtotal} v={`৳${Math.round(viewing.items.reduce((s, i) => s + lineTotal(i), 0)).toLocaleString()}`} />
                 <Row label={t.discount} v={`- ৳${(viewing.discount || 0).toLocaleString()}`} />
                 <Row label={`${t.tax} (${viewing.tax || 0}%)`} v={`৳${Math.round((viewing.items.reduce((s, i) => s + lineTotal(i), 0) - (viewing.discount || 0)) * ((viewing.tax || 0) / 100)).toLocaleString()}`} />
-                <div className="border-t border-slate-300 pt-1 mt-1 flex justify-between font-black text-[13px]">
+                <div className="border-t border-slate-300 pt-1 mt-1 flex justify-between font-bold text-[13px]">
                   <span>{t.grand}</span>
                   <span className="text-emerald-600">৳{viewing.total.toLocaleString()}</span>
                 </div>
@@ -942,10 +942,10 @@ export function Quotations({
 
             <div className="flex flex-wrap justify-between items-center gap-2 pt-3 border-t border-slate-100">
               <div className="flex items-center gap-1">
-                <span className="text-[10px] font-black uppercase text-slate-500">{t.changeStatus}:</span>
+                <span className="text-[10px] font-bold uppercase text-slate-500">{t.changeStatus}:</span>
                 {(['Draft', 'Sent', 'Approved', 'Rejected'] as const).map(s => (
                   <button key={s} onClick={() => changeStatus(viewing.id, s)}
-                    className={`px-2 py-1 rounded-md text-[10px] font-black border cursor-pointer ${viewing.status === s ? STATUS_STYLES[s] : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50'}`}>
+                    className={`px-2 py-1 rounded-md text-[10px] font-bold border cursor-pointer ${viewing.status === s ? STATUS_STYLES[s] : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50'}`}>
                     {s}
                   </button>
                 ))}
@@ -1014,9 +1014,9 @@ function StatCard({ color, icon: Icon, label, value, sub }: any) {
         <div className="w-9 h-9 rounded-xl bg-white dark:bg-slate-800 shadow-xs border border-slate-200/70 dark:border-slate-700 flex items-center justify-center shrink-0">
           <span className={t.text}><Icon size={18} /></span>
         </div>
-        <span className={`font-extrabold text-xs sm:text-sm tracking-tight truncate ${t.text}`}>{label}</span>
+        <span className={`font-bold text-xs sm:text-sm tracking-tight truncate ${t.text}`}>{label}</span>
       </div>
-      <div className="mt-3 text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight font-mono truncate">{value}</div>
+      <div className="mt-3 text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight font-mono truncate">{value}</div>
       {sub ? <div className="mt-1 text-xs font-medium text-slate-500 truncate">{sub}</div> : null}
     </div>
   );
@@ -1034,8 +1034,8 @@ function IconBtn({ onClick, title, color, children }: any) {
 function InfoBox({ label, value, sub, accent }: any) {
   return (
     <div className={`p-3 rounded-xl border ${accent || 'bg-slate-50 border-slate-200'}`}>
-      <div className="text-[10px] font-black uppercase tracking-wider opacity-70">{label}</div>
-      <div className="text-sm font-black mt-1">{value}</div>
+      <div className="text-[10px] font-bold uppercase tracking-wider opacity-70">{label}</div>
+      <div className="text-sm font-bold mt-1">{value}</div>
       {sub && <div className="text-[10px] font-mono opacity-70 mt-0.5">{sub}</div>}
     </div>
   );
@@ -1051,3 +1051,4 @@ function Row({ label, v }: any) {
 }
 
 export default Quotations;
+

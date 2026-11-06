@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useState, useEffect, useMemo } from 'react';
 import { SummaryCard } from './SummaryCard';
 import {
@@ -427,7 +427,7 @@ export const Contacts = ({
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-black text-slate-800 dark:text-white tracking-tight flex items-center gap-2.5">
+            <h1 className="text-2xl font-bold text-slate-800 dark:text-white tracking-tight flex items-center gap-2.5">
               <span className="p-2 rounded-xl bg-purple-100 dark:bg-purple-950/50 text-[#7c3aed]">
                 <Users size={22} />
               </span>
@@ -483,7 +483,7 @@ export const Contacts = ({
             <div className="bg-[#f5f3ff] dark:bg-purple-950/20 border border-purple-100 dark:border-purple-900/30 rounded-2xl p-4.5 flex items-center justify-between shadow-3xs">
               <div className="space-y-1">
                 <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{lang === 'bn' ? 'মোট সরবরাহকারী' : 'Total Suppliers'}</span>
-                <p className="text-2xl font-black text-[#7c3aed]">{suppliers.length}</p>
+                <p className="text-2xl font-bold text-[#7c3aed]">{suppliers.length}</p>
               </div>
               <div className="w-10 h-10 rounded-xl bg-[#7c3aed] text-white flex items-center justify-center shadow-xs">
                 <Building2 size={18} />
@@ -493,7 +493,7 @@ export const Contacts = ({
             <div className="bg-[#f0fdf4] dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/30 rounded-2xl p-4.5 flex items-center justify-between shadow-3xs">
               <div className="space-y-1">
                 <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{lang === 'bn' ? 'মোট পূর্ববর্তী পাওনা' : 'Total Opening Balance'}</span>
-                <p className="text-2xl font-black text-[#059669]">৳{suppliers.reduce((s, sup) => s + sup.openingBalance, 0).toLocaleString()}</p>
+                <p className="text-2xl font-bold text-[#059669]">৳{suppliers.reduce((s, sup) => s + sup.openingBalance, 0).toLocaleString()}</p>
               </div>
               <div className="w-10 h-10 rounded-xl bg-[#10b981] text-white flex items-center justify-center shadow-xs">
                 <DollarSign size={18} />
@@ -503,7 +503,7 @@ export const Contacts = ({
             <div className="bg-[#f0f9ff] dark:bg-sky-950/20 border border-sky-100 dark:border-sky-900/30 rounded-2xl p-4.5 flex items-center justify-between shadow-3xs">
               <div className="space-y-1">
                 <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{lang === 'bn' ? 'সক্রিয় সরবরাহকারী' : 'Active Suppliers'}</span>
-                <p className="text-2xl font-black text-[#0284c7]">{suppliers.length} {lang === 'bn' ? 'টি' : ''}</p>
+                <p className="text-2xl font-bold text-[#0284c7]">{suppliers.length} {lang === 'bn' ? 'টি' : ''}</p>
               </div>
               <div className="w-10 h-10 rounded-xl bg-[#0284c7] text-white flex items-center justify-center shadow-xs">
                 <UserCheck size={18} />
@@ -533,7 +533,7 @@ export const Contacts = ({
                 >
                   <tab.icon size={14} />
                   <span>{tab.label}</span>
-                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-black ${
+                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
                     activeSubTab === tab.id ? 'bg-purple-100 dark:bg-purple-950 text-[#7c3aed]' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
                   }`}>
                     {tab.count}
@@ -637,11 +637,11 @@ export const Contacts = ({
                       </td>
                       <td className="px-4 py-3 text-right">
                         {c.dueAmount > 0 ? (
-                          <span className="bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 px-2.5 py-1 rounded-lg text-xs font-extrabold border border-rose-200/60 dark:border-rose-900/40">
+                          <span className="bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 px-2.5 py-1 rounded-lg text-xs font-bold border border-rose-200/60 dark:border-rose-900/40">
                             ৳{c.dueAmount.toLocaleString()}
                           </span>
                         ) : (
-                          <span className="bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 px-2.5 py-1 rounded-lg text-xs font-extrabold border border-emerald-200/60 dark:border-emerald-900/40">পরিশোধিত</span>
+                          <span className="bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 px-2.5 py-1 rounded-lg text-xs font-bold border border-emerald-200/60 dark:border-emerald-900/40">পরিশোধিত</span>
                         )}
                       </td>
                       <td className="px-4 py-3">
@@ -786,14 +786,14 @@ export const Contacts = ({
                       </td>
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2 font-bold text-slate-800 dark:text-slate-100 text-xs">
-                          <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black text-white ${t.partyType === 'Supplier' ? 'bg-purple-600' : 'bg-indigo-600'}`}>
+                          <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-white ${t.partyType === 'Supplier' ? 'bg-purple-600' : 'bg-indigo-600'}`}>
                             {t.partyName.charAt(0).toUpperCase()}
                           </div>
                           <span>{t.partyName}</span>
                         </div>
                       </td>
                       <td className="px-4 py-3 text-center">
-                        <span className={`px-2.5 py-0.5 rounded-full text-[10.5px] font-extrabold border ${
+                        <span className={`px-2.5 py-0.5 rounded-full text-[10.5px] font-bold border ${
                           t.type === 'Sale' 
                             ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 border-emerald-200/60' 
                             : 'bg-purple-50 dark:bg-purple-950/40 text-purple-600 border-purple-200/60'
@@ -801,7 +801,7 @@ export const Contacts = ({
                           {t.type === 'Sale' ? (lang === 'bn' ? '🟢 বিক্রয়' : '🟢 Sale') : (lang === 'bn' ? '🔵 ক্রয়' : '🔵 Purchase')}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-right font-black text-[#059669] dark:text-emerald-400 text-sm">
+                      <td className="px-4 py-3 text-right font-bold text-[#059669] dark:text-emerald-400 text-sm">
                         ৳{t.amount.toLocaleString()}
                       </td>
                       <td className="px-4 py-3 text-center">
@@ -811,11 +811,11 @@ export const Contacts = ({
                       </td>
                       <td className="px-4 py-3 text-center">
                         {t.dueAmount > 0 ? (
-                          <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-extrabold bg-rose-50 text-rose-600 border border-rose-200/60">
+                          <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-rose-50 text-rose-600 border border-rose-200/60">
                             ⚠️ {lang === 'bn' ? `বকেয়া (৳${t.dueAmount.toLocaleString()})` : `Due (৳${t.dueAmount.toLocaleString()})`}
                           </span>
                         ) : (
-                          <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-extrabold bg-emerald-50 text-emerald-600 border border-emerald-200/60">
+                          <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-emerald-50 text-emerald-600 border border-emerald-200/60">
                             ✅ {lang === 'bn' ? 'পরিশোধিত' : 'Paid'}
                           </span>
                         )}
@@ -942,7 +942,7 @@ export const Contacts = ({
         {viewingCust && (
           <div className="space-y-4 font-sans text-left">
             <div className="flex items-center gap-4 pb-4 border-b border-slate-100 dark:border-slate-800">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-black text-2xl shadow-sm">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-2xl shadow-sm">
                 {viewingCust.name.charAt(0).toUpperCase()}
               </div>
               <div>
@@ -968,11 +968,11 @@ export const Contacts = ({
             <div className="grid grid-cols-2 gap-3 text-xs">
               <div className="bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900/40 rounded-xl p-3 text-center">
                 <p className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">মোট ক্রয়</p>
-                <p className="text-lg font-black text-[#059669]">৳{viewingCust.totalPurchase.toLocaleString()}</p>
+                <p className="text-lg font-bold text-[#059669]">৳{viewingCust.totalPurchase.toLocaleString()}</p>
               </div>
               <div className={`rounded-xl p-3 text-center border ${viewingCust.dueAmount > 0 ? 'bg-rose-50 dark:bg-rose-950/40 border-rose-100 dark:border-rose-900/40' : 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700'}`}>
                 <p className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">বকেয়া</p>
-                <p className={`text-lg font-black ${viewingCust.dueAmount > 0 ? 'text-[#e11d48]' : 'text-slate-400'}`}>৳{viewingCust.dueAmount.toLocaleString()}</p>
+                <p className={`text-lg font-bold ${viewingCust.dueAmount > 0 ? 'text-[#e11d48]' : 'text-slate-400'}`}>৳{viewingCust.dueAmount.toLocaleString()}</p>
               </div>
             </div>
             {viewingCust.notes && (
@@ -1067,7 +1067,7 @@ export const Contacts = ({
         {viewingSupp && (
           <div className="space-y-4 font-sans text-left">
             <div className="flex items-center gap-4 pb-4 border-b border-slate-100 dark:border-slate-800">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white font-black text-2xl shadow-sm">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white font-bold text-2xl shadow-sm">
                 {viewingSupp.name.charAt(0)}
               </div>
               <div>
@@ -1090,7 +1090,7 @@ export const Contacts = ({
             </div>
             <div className="bg-purple-50 dark:bg-purple-950/40 border border-purple-100 dark:border-purple-900/40 rounded-xl p-3.5 text-center">
               <p className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">পূর্ববর্তী পাওনা</p>
-              <p className="text-xl font-black text-[#7c3aed]">৳{viewingSupp.openingBalance.toLocaleString()}</p>
+              <p className="text-xl font-bold text-[#7c3aed]">৳{viewingSupp.openingBalance.toLocaleString()}</p>
             </div>
           </div>
         )}
@@ -1122,12 +1122,12 @@ export const Contacts = ({
             <div className="p-3.5 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/40 rounded-xl flex items-center justify-between">
               <div>
                 <p className="text-xs text-rose-500 font-bold">গ্রাহকের নাম</p>
-                <p className="text-base font-black text-slate-800 dark:text-white">{collectingDueCust.name}</p>
+                <p className="text-base font-bold text-slate-800 dark:text-white">{collectingDueCust.name}</p>
                 <p className="text-xs text-slate-400">ফোন: {collectingDueCust.phone}</p>
               </div>
               <div className="text-right">
                 <p className="text-xs text-rose-500 font-bold">বর্তমান বকেয়া</p>
-                <p className="text-xl font-black text-rose-600 dark:text-rose-400">৳{collectingDueCust.dueAmount.toLocaleString()}</p>
+                <p className="text-xl font-bold text-rose-600 dark:text-rose-400">৳{collectingDueCust.dueAmount.toLocaleString()}</p>
               </div>
             </div>
 
@@ -1200,3 +1200,4 @@ export const Contacts = ({
 };
 
 export default Contacts;
+

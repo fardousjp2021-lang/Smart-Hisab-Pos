@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useState, useEffect } from 'react';
 import { 
   Users, 
@@ -429,14 +429,14 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
                   
                   {/* Dynamic Module / Feature Category Badge */}
                   <div className="mb-3.5">
-                    <span className="text-xs sm:text-[12.5px] font-black uppercase tracking-wider text-[#0284c7] bg-sky-100/95 px-4 py-1.5 rounded-full border border-sky-200/90 inline-flex items-center gap-2 shadow-2xs">
+                    <span className="text-xs sm:text-[12.5px] font-bold uppercase tracking-wider text-[#0284c7] bg-sky-100/95 px-4 py-1.5 rounded-full border border-sky-200/90 inline-flex items-center gap-2 shadow-2xs">
                       <span className="w-2 h-2 rounded-full bg-[#0284c7] animate-pulse" />
                       <span>{slide.category}</span>
                     </span>
                   </div>
 
                   {/* Main Hero Headline matching your website's core characteristics */}
-                  <h1 className="text-2xl sm:text-3xl lg:text-[36px] xl:text-[38px] font-black text-slate-900 tracking-tight leading-[1.25] mb-8 sm:mb-10 text-center max-w-xl mx-auto">
+                  <h1 className="text-2xl sm:text-3xl lg:text-[36px] xl:text-[38px] font-bold text-slate-900 tracking-tight leading-[1.25] mb-8 sm:mb-10 text-center max-w-xl mx-auto">
                     {slide.titlePrefix}{' '}
                     <span className="text-[#FF8A00]">{slide.titleHighlight}</span>
                   </h1>
@@ -453,7 +453,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
                           <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl ${item.bg} ${item.color} flex items-center justify-center shrink-0 shadow-xs`}>
                             <IconComp className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.2]" />
                           </div>
-                          <span className="text-sm sm:text-base lg:text-[16px] font-extrabold text-slate-800 tracking-tight leading-snug text-left">
+                          <span className="text-sm sm:text-base lg:text-[16px] font-bold text-slate-800 tracking-tight leading-snug text-left">
                             {item.label}
                           </span>
                         </div>
@@ -535,7 +535,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
             />
 
             {/* Main Sub-headline */}
-            <h2 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight leading-snug mt-3 text-center">
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight leading-snug mt-3 text-center">
               আপনার ব্যবসার অল ইন ওয়ান বিজনেস সল্যুশন{' '}
               <span className="text-[#FF8A00] block sm:inline">স্মার্ট হিসাব ক্লাউড</span>
             </h2>
@@ -548,7 +548,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
             <button
               type="button"
               onClick={() => { setAuthMode('login'); setErrorMessage(null); setSuccessMessage(null); }}
-              className={`flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-black flex items-center justify-center gap-2 transition-all cursor-pointer ${
+              className={`flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
                 authMode === 'login'
                   ? 'bg-white text-[#0284c7] shadow-sm scale-[1.01]'
                   : 'text-slate-600 hover:text-slate-900'
@@ -561,7 +561,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
             <button
               type="button"
               onClick={() => { setAuthMode('register'); setErrorMessage(null); setSuccessMessage(null); }}
-              className={`flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-black flex items-center justify-center gap-2 transition-all cursor-pointer ${
+              className={`flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
                 authMode === 'register'
                   ? 'bg-white text-[#0284c7] shadow-sm scale-[1.01]'
                   : 'text-slate-600 hover:text-slate-900'
@@ -569,7 +569,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
             >
               <UserPlus size={15} className={authMode === 'register' ? 'text-[#0284c7]' : 'text-slate-400'} />
               <span>নতুন রেজিস্ট্রেশন</span>
-              <span className="hidden sm:inline px-1.5 py-0.2 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-extrabold">ফ্রি</span>
+              <span className="hidden sm:inline px-1.5 py-0.2 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold">ফ্রি</span>
             </button>
           </div>
 
@@ -600,7 +600,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
                   <button
                     type="button"
                     onClick={() => { setLoginMethod('mobile'); setErrorMessage(null); }}
-                    className={`flex-1 py-2 rounded-lg text-xs font-black flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                    className={`flex-1 py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
                       loginMethod === 'mobile'
                         ? 'bg-white text-[#0284c7] shadow-xs'
                         : 'text-slate-600 hover:text-slate-900'
@@ -612,7 +612,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
                   <button
                     type="button"
                     onClick={() => { setLoginMethod('email'); setErrorMessage(null); }}
-                    className={`flex-1 py-2 rounded-lg text-xs font-black flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                    className={`flex-1 py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
                       loginMethod === 'email'
                         ? 'bg-white text-[#0284c7] shadow-xs'
                         : 'text-slate-600 hover:text-slate-900'
@@ -627,7 +627,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
                   /* Mobile Number Option */
                   <div className="space-y-1.5">
                     <label className="block text-xs font-bold text-slate-700">
-                      মোবাইল নম্বর <span className="text-rose-500 font-black">*</span>
+                      মোবাইল নম্বর <span className="text-rose-500 font-bold">*</span>
                     </label>
                     <div className="flex rounded-xl border border-slate-300 focus-within:border-[#0284c7] focus-within:ring-4 focus-within:ring-[#0284c7]/10 bg-white overflow-hidden transition shadow-2xs">
                       <div className="flex items-center gap-1.5 px-3 py-2.5 bg-slate-50 border-r border-slate-200 text-xs font-bold text-slate-700 select-none shrink-0">
@@ -649,7 +649,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
                   /* Email Address Option */
                   <div className="space-y-1.5">
                     <label className="block text-xs font-bold text-slate-700">
-                      ইমেইল অ্যাড্রেস <span className="text-rose-500 font-black">*</span>
+                      ইমেইল অ্যাড্রেস <span className="text-rose-500 font-bold">*</span>
                     </label>
                     <div className="flex rounded-xl border border-slate-300 focus-within:border-[#0284c7] focus-within:ring-4 focus-within:ring-[#0284c7]/10 bg-white overflow-hidden transition shadow-2xs">
                       <div className="flex items-center justify-center px-3.5 py-2.5 bg-slate-50 border-r border-slate-200 text-slate-400 select-none shrink-0">
@@ -672,7 +672,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
               <div className="space-y-1.5">
                 <div className="flex justify-between items-center">
                   <label className="block text-xs font-bold text-slate-700">
-                    পাসওয়ার্ড <span className="text-rose-500 font-black">*</span>
+                    পাসওয়ার্ড <span className="text-rose-500 font-bold">*</span>
                   </label>
                   <button
                     type="button"
@@ -719,7 +719,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3.5 px-6 rounded-xl bg-[#0284c7] hover:bg-[#0369a1] text-white text-base font-extrabold shadow-md shadow-blue-500/20 transition active:scale-[0.99] cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
+                className="w-full py-3.5 px-6 rounded-xl bg-[#0284c7] hover:bg-[#0369a1] text-white text-base font-bold shadow-md shadow-blue-500/20 transition active:scale-[0.99] cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
               >
                 {isLoading ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -738,7 +738,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
                   <button
                     type="button"
                     onClick={() => { setAuthMode('register'); setErrorMessage(null); setSuccessMessage(null); }}
-                    className="text-[#0284c7] font-black hover:underline cursor-pointer ml-1 inline-flex items-center gap-1"
+                    className="text-[#0284c7] font-bold hover:underline cursor-pointer ml-1 inline-flex items-center gap-1"
                   >
                     <span>বিনামূল্যে নিবন্ধন করুন</span>
                     <ArrowRight size={12} />
@@ -766,7 +766,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
               {/* 1. Full Name */}
               <div className="space-y-1">
                 <label className="block text-xs font-bold text-slate-700">
-                  আপনার নাম (Owner Name) <span className="text-rose-500 font-black">*</span>
+                  আপনার নাম (Owner Name) <span className="text-rose-500 font-bold">*</span>
                 </label>
                 <div className="flex rounded-xl border border-slate-300 focus-within:border-[#0284c7] focus-within:ring-4 focus-within:ring-[#0284c7]/10 bg-white overflow-hidden transition shadow-2xs">
                   <div className="flex items-center justify-center px-3 py-2.5 bg-slate-50 border-r border-slate-200 text-slate-400 shrink-0">
@@ -786,7 +786,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
               {/* 2. Shop / Business Name */}
               <div className="space-y-1">
                 <label className="block text-xs font-bold text-slate-700">
-                  দোকান বা প্রতিষ্ঠানের নাম <span className="text-rose-500 font-black">*</span>
+                  দোকান বা প্রতিষ্ঠানের নাম <span className="text-rose-500 font-bold">*</span>
                 </label>
                 <div className="flex rounded-xl border border-slate-300 focus-within:border-[#0284c7] focus-within:ring-4 focus-within:ring-[#0284c7]/10 bg-white overflow-hidden transition shadow-2xs">
                   <div className="flex items-center justify-center px-3 py-2.5 bg-slate-50 border-r border-slate-200 text-slate-400 shrink-0">
@@ -806,7 +806,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
               {/* 3. Business Type Dropdown */}
               <div className="space-y-1">
                 <label className="block text-xs font-bold text-slate-700">
-                  ব্যবসার ধরন (Business Category) <span className="text-rose-500 font-black">*</span>
+                  ব্যবসার ধরন (Business Category) <span className="text-rose-500 font-bold">*</span>
                 </label>
                 <div className="flex rounded-xl border border-slate-300 focus-within:border-[#0284c7] focus-within:ring-4 focus-within:ring-[#0284c7]/10 bg-white overflow-hidden transition shadow-2xs">
                   <div className="flex items-center justify-center px-3 py-2.5 bg-slate-50 border-r border-slate-200 text-slate-400 shrink-0">
@@ -832,7 +832,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
               {/* 4. Mobile Number */}
               <div className="space-y-1">
                 <label className="block text-xs font-bold text-slate-700">
-                  মোবাইল নম্বর (লগইনে ব্যবহৃত হবে) <span className="text-rose-500 font-black">*</span>
+                  মোবাইল নম্বর (লগইনে ব্যবহৃত হবে) <span className="text-rose-500 font-bold">*</span>
                 </label>
                 <div className="flex rounded-xl border border-slate-300 focus-within:border-[#0284c7] focus-within:ring-4 focus-within:ring-[#0284c7]/10 bg-white overflow-hidden transition shadow-2xs">
                   <div className="flex items-center gap-1.5 px-3 py-2 bg-slate-50 border-r border-slate-200 text-xs font-bold text-slate-700 select-none shrink-0">
@@ -853,7 +853,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
               {/* 5. Email Address */}
               <div className="space-y-1">
                 <label className="block text-xs font-bold text-slate-700">
-                  ইমেইল অ্যাড্রেস <span className="text-rose-500 font-black">*</span>
+                  ইমেইল অ্যাড্রেস <span className="text-rose-500 font-bold">*</span>
                 </label>
                 <div className="flex rounded-xl border border-slate-300 focus-within:border-[#0284c7] focus-within:ring-4 focus-within:ring-[#0284c7]/10 bg-white overflow-hidden transition shadow-2xs">
                   <div className="flex items-center justify-center px-3 py-2 bg-slate-50 border-r border-slate-200 text-slate-400 shrink-0">
@@ -874,7 +874,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <div className="space-y-1">
                   <label className="block text-xs font-bold text-slate-700">
-                    পাসওয়ার্ড <span className="text-rose-500 font-black">*</span>
+                    পাসওয়ার্ড <span className="text-rose-500 font-bold">*</span>
                   </label>
                   <div className="relative flex items-center rounded-xl border border-slate-300 focus-within:border-[#0284c7] bg-white shadow-2xs">
                     <input
@@ -897,7 +897,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
 
                 <div className="space-y-1">
                   <label className="block text-xs font-bold text-slate-700">
-                    কনফার্ম পাসওয়ার্ড <span className="text-rose-500 font-black">*</span>
+                    কনফার্ম পাসওয়ার্ড <span className="text-rose-500 font-bold">*</span>
                   </label>
                   <div className="relative flex items-center rounded-xl border border-slate-300 focus-within:border-[#0284c7] bg-white shadow-2xs">
                     <input
@@ -916,7 +916,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-sm sm:text-base font-extrabold shadow-md shadow-emerald-600/20 transition active:scale-[0.99] cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 mt-3"
+                className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-sm sm:text-base font-bold shadow-md shadow-emerald-600/20 transition active:scale-[0.99] cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 mt-3"
               >
                 {isLoading ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -936,7 +936,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
                   <button
                     type="button"
                     onClick={() => { setAuthMode('login'); setErrorMessage(null); setSuccessMessage(null); }}
-                    className="text-[#0284c7] font-black hover:underline cursor-pointer ml-1 inline-flex items-center gap-1"
+                    className="text-[#0284c7] font-bold hover:underline cursor-pointer ml-1 inline-flex items-center gap-1"
                   >
                     <span>এখানে ক্লিক করে লগইন করুন</span>
                     <ArrowRight size={12} />
@@ -969,3 +969,4 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
 };
 
 export default LoginPage;
+

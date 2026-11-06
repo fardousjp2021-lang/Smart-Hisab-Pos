@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { Product } from '../types';
@@ -289,7 +289,7 @@ export const Products: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Category Filter */}
           <div className="space-y-1.5">
-            <span className="text-[10px] font-black tracking-wider text-slate-500 uppercase block">ক্যাটাগরি ফিল্টার</span>
+            <span className="text-[10px] font-bold tracking-wider text-slate-500 uppercase block">ক্যাটাগরি ফিল্টার</span>
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
@@ -304,7 +304,7 @@ export const Products: React.FC = () => {
 
           {/* Stock state filter */}
           <div className="space-y-1.5">
-            <span className="text-[10px] font-black tracking-wider text-slate-500 uppercase block">স্টক মাত্রা ফিল্টার</span>
+            <span className="text-[10px] font-bold tracking-wider text-slate-500 uppercase block">স্টক মাত্রা ফিল্টার</span>
             <select
               value={selectedStockLevel}
               onChange={(e) => setSelectedStockLevel(e.target.value)}
@@ -323,7 +323,7 @@ export const Products: React.FC = () => {
       <div className="bg-white rounded-2xl border border-slate-150 shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left text-slate-500">
-            <thead className="text-slate-700 bg-slate-50/50 border-b border-slate-150 uppercase font-black tracking-wider text-[11px]">
+            <thead className="text-slate-700 bg-slate-50/50 border-b border-slate-150 uppercase font-bold tracking-wider text-[11px]">
               <tr>
                 <th className="px-6 py-4">পণ্যের নাম / SKU</th>
                 <th className="px-6 py-4">ক্যাটাগরি</th>
@@ -374,7 +374,7 @@ export const Products: React.FC = () => {
                         {p.stock} <span className="text-[10px] font-medium text-slate-400 ml-0.5">({p.unit || 'টি (Pcs)'})</span>
                       </td>
                       <td className="px-6 py-4 text-center">
-                        <span className={`px-2.5 py-0.5 rounded-lg text-[10px] font-black border tracking-wide uppercase ${badgeBg}`}>
+                        <span className={`px-2.5 py-0.5 rounded-lg text-[10px] font-bold border tracking-wide uppercase ${badgeBg}`}>
                           {statusText}
                         </span>
                       </td>
@@ -751,7 +751,7 @@ export const Products: React.FC = () => {
           <div className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-lg shadow-2xl border border-slate-100 dark:border-slate-800 overflow-hidden print:shadow-none print:border-none print:w-full print:max-w-none">
             {/* Modal Header */}
             <div className="p-4 sm:p-5 bg-slate-50 dark:bg-slate-800 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center print:hidden">
-              <h3 className="font-extrabold text-base text-slate-800 dark:text-white flex items-center gap-2">
+              <h3 className="font-bold text-base text-slate-800 dark:text-white flex items-center gap-2">
                 <Printer size={18} className="text-emerald-600" />
                 🏷️ থার্মাল বারকোড স্টিকার প্রিন্ট
               </h3>
@@ -766,8 +766,8 @@ export const Products: React.FC = () => {
             <div className="p-5 space-y-4 print:p-0">
               {/* Product Info (Screen only) */}
               <div className="bg-blue-50/60 dark:bg-blue-950/40 p-3 rounded-xl border border-blue-100 dark:border-blue-900 print:hidden">
-                <p className="text-[11px] font-extrabold text-blue-600 dark:text-blue-400 uppercase tracking-wider">নির্বাচিত পণ্য:</p>
-                <div className="font-extrabold text-sm text-slate-900 dark:text-white mt-0.5">{stickerProduct.name}</div>
+                <p className="text-[11px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">নির্বাচিত পণ্য:</p>
+                <div className="font-bold text-sm text-slate-900 dark:text-white mt-0.5">{stickerProduct.name}</div>
                 <div className="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 mt-0.5">
                   SKU: {stickerProduct.sku || stickerProduct.id} | মূল্য: ৳{stickerProduct.sellingPrice} | স্টক: {stickerProduct.stock} {stickerProduct.unit || 'Pcs'}
                 </div>
@@ -783,7 +783,7 @@ export const Products: React.FC = () => {
                     max="500"
                     value={stickerCopies}
                     onChange={(e) => setStickerCopies(Math.max(1, parseInt(e.target.value) || 1))}
-                    className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 rounded-xl text-sm font-extrabold font-mono bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                    className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 rounded-xl text-sm font-bold font-mono bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
                   />
                 </div>
                 <div>
@@ -804,13 +804,13 @@ export const Products: React.FC = () => {
               <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-3 bg-slate-50 dark:bg-slate-950 print:hidden">
                 <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-2 flex justify-between items-center">
                   <span>স্টিকার প্রিভিউ (১টি নমুনা):</span>
-                  <span className="text-[10px] text-emerald-600 font-extrabold">{stickerCopies} টি প্রিন্ট হবে</span>
+                  <span className="text-[10px] text-emerald-600 font-bold">{stickerCopies} টি প্রিন্ট হবে</span>
                 </div>
                 <div className="border border-slate-300 rounded-lg p-2 bg-white text-center max-w-[210px] mx-auto text-black font-sans space-y-1 shadow-xs flex flex-col justify-between items-center">
-                  <div className="text-[10px] font-black uppercase text-slate-900 border-b border-slate-200 pb-0.5 w-full text-center truncate">
+                  <div className="text-[10px] font-bold uppercase text-slate-900 border-b border-slate-200 pb-0.5 w-full text-center truncate">
                     রনি টেলিকম
                   </div>
-                  <div className="text-[10px] font-extrabold text-center truncate text-slate-900 px-1 w-full">
+                  <div className="text-[10px] font-bold text-center truncate text-slate-900 px-1 w-full">
                     {stickerProduct.name}
                   </div>
                   {/* SVG Barcode simulation line */}
@@ -837,7 +837,7 @@ export const Products: React.FC = () => {
                   <div className="text-[9px] font-mono font-bold tracking-wider text-slate-800 leading-none text-center w-full">
                     {stickerProduct.sku || stickerProduct.id}
                   </div>
-                  <div className="text-[10.5px] font-black text-slate-950 text-center w-full flex justify-center items-center">
+                  <div className="text-[10.5px] font-bold text-slate-950 text-center w-full flex justify-center items-center">
                     MRP: ৳{Number(stickerProduct.sellingPrice || 0).toLocaleString()}
                   </div>
                 </div>
@@ -847,10 +847,10 @@ export const Products: React.FC = () => {
               <div id="printable-quick-sticker" className="hidden print:block text-center">
                 {Array.from({ length: stickerCopies }).map((_, idx) => (
                   <div key={idx} className="quick-sticker-unit border border-slate-300 rounded-lg p-2 bg-white text-center text-black font-sans space-y-1 my-1 flex flex-col justify-between items-center">
-                    <div className="text-[10px] font-black uppercase border-b border-slate-200 pb-0.5 w-full text-center truncate">
+                    <div className="text-[10px] font-bold uppercase border-b border-slate-200 pb-0.5 w-full text-center truncate">
                       রনি টেলিকম
                     </div>
-                    <div className="text-[10px] font-extrabold text-center truncate text-slate-900 px-1 w-full">
+                    <div className="text-[10px] font-bold text-center truncate text-slate-900 px-1 w-full">
                       {stickerProduct.name}
                     </div>
                     <div className="w-full flex justify-center items-center py-0.5 text-center">
@@ -876,7 +876,7 @@ export const Products: React.FC = () => {
                     <div className="text-[9px] font-mono font-bold tracking-wider text-slate-800 leading-none text-center w-full">
                       {stickerProduct.sku || stickerProduct.id}
                     </div>
-                    <div className="text-[10.5px] font-black text-slate-950 text-center w-full flex justify-center items-center">
+                    <div className="text-[10.5px] font-bold text-slate-950 text-center w-full flex justify-center items-center">
                       MRP: ৳{Number(stickerProduct.sellingPrice || 0).toLocaleString()}
                     </div>
                   </div>
@@ -895,7 +895,7 @@ export const Products: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => window.print()}
-                  className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs rounded-xl shadow-md flex items-center gap-1.5 cursor-pointer active:scale-95"
+                  className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-md flex items-center gap-1.5 cursor-pointer active:scale-95"
                 >
                   <Printer size={15} />
                   <span>সরাসরি থার্মাল প্রিন্ট করুন</span>

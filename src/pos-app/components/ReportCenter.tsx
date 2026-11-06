@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 /**
  * ReportCenter — unified Report Center dispatcher (v1 P0).
  *
@@ -443,7 +443,7 @@ export const ReportCenter: React.FC<Props> = ({
             <Icon className="w-7 h-7 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl sm:text-3xl font-black text-white tracking-tight">{meta[lang]}</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">{meta[lang]}</h1>
             <p className="text-white/80 text-xs sm:text-sm font-medium mt-0.5">
               {tt(lang, 'সময়সীমা', 'Period')}: <span className="font-bold bg-white/15 px-2 py-0.5 rounded-md">{startDate}</span> → <span className="font-bold bg-white/15 px-2 py-0.5 rounded-md">{endDate}</span>
             </p>
@@ -602,35 +602,35 @@ export const ReportCenter: React.FC<Props> = ({
       {subId === 'rep_warranty' && viewLedgerMode === 'main' && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm hover:shadow-md transition group">
-            <div className="flex items-center justify-between text-xs text-indigo-600 font-black tracking-wide uppercase">
+            <div className="flex items-center justify-between text-xs text-indigo-600 font-bold tracking-wide uppercase">
               <span>{tt(lang, 'নিবন্ধিত সিরিয়াল / IMEI', 'Total Registered Serials')}</span>
               <div className="p-2 rounded-xl bg-indigo-50 text-indigo-600 group-hover:scale-110 transition-transform">
                 <ShieldCheck className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-black text-slate-900 mt-2 tracking-tight">{warrantyTotals.total.toLocaleString('en-US')}</div>
+            <div className="text-2xl sm:text-3xl font-bold text-slate-900 mt-2 tracking-tight">{warrantyTotals.total.toLocaleString('en-US')}</div>
             <div className="text-xs text-slate-500 mt-1 font-medium">{tt(lang, 'ট্র্যাককৃত পণ্যের মোট রেকর্ড', 'Total tracked units')}</div>
           </div>
 
           <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm hover:shadow-md transition group">
-            <div className="flex items-center justify-between text-xs text-emerald-600 font-black tracking-wide uppercase">
+            <div className="flex items-center justify-between text-xs text-emerald-600 font-bold tracking-wide uppercase">
               <span>{tt(lang, 'সক্রিয় ওয়ারেন্টি (Active Warranty)', 'Active Warranty')}</span>
               <div className="p-2 rounded-xl bg-emerald-50 text-emerald-600 group-hover:scale-110 transition-transform">
                 <ShieldCheck className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-black text-emerald-600 mt-2 tracking-tight">{warrantyTotals.activeCount.toLocaleString('en-US')}</div>
+            <div className="text-2xl sm:text-3xl font-bold text-emerald-600 mt-2 tracking-tight">{warrantyTotals.activeCount.toLocaleString('en-US')}</div>
             <div className="text-xs text-slate-500 mt-1 font-medium">{tt(lang, 'মেয়াদ এখনো বহাল আছে', 'Under valid coverage')}</div>
           </div>
 
           <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm hover:shadow-md transition group">
-            <div className="flex items-center justify-between text-xs text-slate-500 font-black tracking-wide uppercase">
+            <div className="flex items-center justify-between text-xs text-slate-500 font-bold tracking-wide uppercase">
               <span>{tt(lang, 'মেয়াদোত্তীর্ণ (Expired Warranty)', 'Expired Warranty')}</span>
               <div className="p-2 rounded-xl bg-slate-100 text-slate-600 group-hover:scale-110 transition-transform">
                 <AlertTriangle className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-black text-slate-700 mt-2 tracking-tight">{warrantyTotals.expiredCount.toLocaleString('en-US')}</div>
+            <div className="text-2xl sm:text-3xl font-bold text-slate-700 mt-2 tracking-tight">{warrantyTotals.expiredCount.toLocaleString('en-US')}</div>
             <div className="text-xs text-slate-500 mt-1 font-medium">{tt(lang, 'ওয়ারেন্টির মেয়াদ শেষ হয়েছে', 'Coverage period elapsed')}</div>
           </div>
         </div>
@@ -641,46 +641,46 @@ export const ReportCenter: React.FC<Props> = ({
       {subId === 'rep_analytics' && viewLedgerMode === 'main' && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm hover:shadow-md transition group">
-            <div className="flex items-center justify-between text-xs text-indigo-600 font-black tracking-wide uppercase">
+            <div className="flex items-center justify-between text-xs text-indigo-600 font-bold tracking-wide uppercase">
               <span>{tt(lang, 'সেরা বিক্রীত পণ্য (Top Item)', 'Top Selling Product')}</span>
               <div className="p-2 rounded-xl bg-indigo-50 text-indigo-600 group-hover:scale-110 transition-transform">
                 <BarChart2 className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-lg sm:text-xl font-black text-slate-900 mt-2 tracking-tight truncate">{analytics[0]?.name || '—'}</div>
+            <div className="text-lg sm:text-xl font-bold text-slate-900 mt-2 tracking-tight truncate">{analytics[0]?.name || '—'}</div>
             <div className="text-xs text-slate-500 mt-1 font-medium">{analytics[0]?.units || 0} {tt(lang, 'টি পিস বিক্রি হয়েছে', 'units sold')}</div>
           </div>
 
           <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm hover:shadow-md transition group">
-            <div className="flex items-center justify-between text-xs text-cyan-600 font-black tracking-wide uppercase">
+            <div className="flex items-center justify-between text-xs text-cyan-600 font-bold tracking-wide uppercase">
               <span>{tt(lang, 'মোট বিক্রিত ইউনিট (Units)', 'Total Units Sold')}</span>
               <div className="p-2 rounded-xl bg-cyan-50 text-cyan-600 group-hover:scale-110 transition-transform">
                 <Package className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-black text-cyan-600 mt-2 tracking-tight">{analytics.reduce((a, b) => a + Number(b.units || 0), 0).toLocaleString('en-US')} <span className="text-sm font-bold text-slate-500">pcs</span></div>
+            <div className="text-2xl sm:text-3xl font-bold text-cyan-600 mt-2 tracking-tight">{analytics.reduce((a, b) => a + Number(b.units || 0), 0).toLocaleString('en-US')} <span className="text-sm font-bold text-slate-500">pcs</span></div>
             <div className="text-xs text-slate-500 mt-1 font-medium">{analytics.length} {tt(lang, 'টি ভিন্ন ভিন্ন পণ্য', 'unique items')}</div>
           </div>
 
           <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm hover:shadow-md transition group">
-            <div className="flex items-center justify-between text-xs text-blue-600 font-black tracking-wide uppercase">
+            <div className="flex items-center justify-between text-xs text-blue-600 font-bold tracking-wide uppercase">
               <span>{tt(lang, 'মোট রেভিনিউ (Revenue)', 'Total Revenue')}</span>
               <div className="p-2 rounded-xl bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform">
                 <DollarSign className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-black text-slate-900 mt-2 tracking-tight">{money(analytics.reduce((a, b) => a + Number(b.revenue || 0), 0))}</div>
+            <div className="text-2xl sm:text-3xl font-bold text-slate-900 mt-2 tracking-tight">{money(analytics.reduce((a, b) => a + Number(b.revenue || 0), 0))}</div>
             <div className="text-xs text-slate-500 mt-1 font-medium">{tt(lang, 'অ্যানালিটিক্স আয় সমষ্টি', 'Aggregated revenue')}</div>
           </div>
 
           <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm hover:shadow-md transition group">
-            <div className="flex items-center justify-between text-xs text-emerald-600 font-black tracking-wide uppercase">
+            <div className="flex items-center justify-between text-xs text-emerald-600 font-bold tracking-wide uppercase">
               <span>{tt(lang, 'মোট প্রফিট (Net Profit)', 'Total Profit')}</span>
               <div className="p-2 rounded-xl bg-emerald-50 text-emerald-600 group-hover:scale-110 transition-transform">
                 <TrendingUp className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-black text-emerald-600 mt-2 tracking-tight">{canSeeCost ? money(analytics.reduce((a, b) => a + Number(b.profit || 0), 0)) : '—'}</div>
+            <div className="text-2xl sm:text-3xl font-bold text-emerald-600 mt-2 tracking-tight">{canSeeCost ? money(analytics.reduce((a, b) => a + Number(b.profit || 0), 0)) : '—'}</div>
             <div className="text-xs text-slate-500 mt-1 font-medium">{tt(lang, 'পণ্য ভিত্তিক মোট লাভ', 'Aggregated net margin')}</div>
           </div>
         </div>
@@ -694,13 +694,13 @@ export const ReportCenter: React.FC<Props> = ({
             onClick={() => exportCSV([active.headers, ...active.rows], `${active.title}_${startDate}_${endDate}.csv`)}
             className="rounded-2xl border border-emerald-200 bg-emerald-50/50 hover:bg-emerald-100/80 p-5 shadow-sm hover:shadow-md transition text-left group cursor-pointer"
           >
-            <div className="flex items-center justify-between text-xs text-emerald-700 font-black tracking-wide uppercase">
+            <div className="flex items-center justify-between text-xs text-emerald-700 font-bold tracking-wide uppercase">
               <span>{tt(lang, 'CSV ফাইল ডাউনলোড', 'Export CSV File')}</span>
               <div className="p-2 rounded-xl bg-emerald-500 text-white group-hover:scale-110 transition-transform">
                 <FileText className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-lg font-black text-emerald-900 mt-2 tracking-tight">{tt(lang, 'স্প্রেডশিট ডেটা', 'Spreadsheet CSV')}</div>
+            <div className="text-lg font-bold text-emerald-900 mt-2 tracking-tight">{tt(lang, 'স্প্রেডশিট ডেটা', 'Spreadsheet CSV')}</div>
             <div className="text-xs text-emerald-700 mt-1 font-medium">{tt(lang, 'দ্রুত CSV ফাইল জেনারেট করুন', 'Generate instant CSV document')}</div>
           </button>
 
@@ -709,13 +709,13 @@ export const ReportCenter: React.FC<Props> = ({
             disabled={exporting === 'excel'}
             className="rounded-2xl border border-emerald-300 bg-emerald-600 text-white hover:bg-emerald-700 p-5 shadow-sm hover:shadow-md transition text-left group cursor-pointer disabled:opacity-50"
           >
-            <div className="flex items-center justify-between text-xs text-emerald-100 font-black tracking-wide uppercase">
+            <div className="flex items-center justify-between text-xs text-emerald-100 font-bold tracking-wide uppercase">
               <span>{tt(lang, 'Excel ফাইল ডাউনলোড', 'Export Excel File')}</span>
               <div className="p-2 rounded-xl bg-white/20 text-white group-hover:scale-110 transition-transform">
                 <FileSpreadsheet className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-lg font-black text-white mt-2 tracking-tight">{exporting === 'excel' ? 'প্রসেস হচ্ছে...' : tt(lang, 'মাইক্রোসফট এক্সেল', 'Microsoft Excel')}</div>
+            <div className="text-lg font-bold text-white mt-2 tracking-tight">{exporting === 'excel' ? 'প্রসেস হচ্ছে...' : tt(lang, 'মাইক্রোসফট এক্সেল', 'Microsoft Excel')}</div>
             <div className="text-xs text-emerald-100 mt-1 font-medium">{tt(lang, 'ফরম্যাটকৃত এক্সেল ওয়ার্কশিট', 'Formatted XLSX workbook')}</div>
           </button>
 
@@ -724,13 +724,13 @@ export const ReportCenter: React.FC<Props> = ({
             disabled={exporting === 'pdf'}
             className="rounded-2xl border border-indigo-300 bg-indigo-600 text-white hover:bg-indigo-700 p-5 shadow-sm hover:shadow-md transition text-left group cursor-pointer disabled:opacity-50"
           >
-            <div className="flex items-center justify-between text-xs text-indigo-100 font-black tracking-wide uppercase">
+            <div className="flex items-center justify-between text-xs text-indigo-100 font-bold tracking-wide uppercase">
               <span>{tt(lang, 'PDF নথি ডাউনলোড', 'Export PDF Document')}</span>
               <div className="p-2 rounded-xl bg-white/20 text-white group-hover:scale-110 transition-transform">
                 <Download className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-lg font-black text-white mt-2 tracking-tight">{exporting === 'pdf' ? 'প্রসেস হচ্ছে...' : tt(lang, 'পিডিএফ লেআউট', 'PDF Document')}</div>
+            <div className="text-lg font-bold text-white mt-2 tracking-tight">{exporting === 'pdf' ? 'প্রসেস হচ্ছে...' : tt(lang, 'পিডিএফ লেআউট', 'PDF Document')}</div>
             <div className="text-xs text-indigo-100 mt-1 font-medium">{tt(lang, 'প্রিন্ট-প্রস্তুত পিডিএফ ফরম্যাট', 'Print-ready PDF report')}</div>
           </button>
 
@@ -738,13 +738,13 @@ export const ReportCenter: React.FC<Props> = ({
             onClick={doPrint}
             className="rounded-2xl border border-slate-300 bg-slate-800 text-white hover:bg-slate-900 p-5 shadow-sm hover:shadow-md transition text-left group cursor-pointer"
           >
-            <div className="flex items-center justify-between text-xs text-slate-300 font-black tracking-wide uppercase">
+            <div className="flex items-center justify-between text-xs text-slate-300 font-bold tracking-wide uppercase">
               <span>{tt(lang, 'সরাসরি প্রিন্ট', 'Direct Print')}</span>
               <div className="p-2 rounded-xl bg-white/20 text-white group-hover:scale-110 transition-transform">
                 <Printer className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-lg font-black text-white mt-2 tracking-tight">{tt(lang, 'ব্রাউজার প্রিন্ট লেআউট', 'Browser Print Preview')}</div>
+            <div className="text-lg font-bold text-white mt-2 tracking-tight">{tt(lang, 'ব্রাউজার প্রিন্ট লেআউট', 'Browser Print Preview')}</div>
             <div className="text-xs text-slate-300 mt-1 font-medium">{tt(lang, 'কাগজে প্রিন্ট করার পৃষ্ঠা', 'Physical paper invoice print')}</div>
           </button>
         </div>
@@ -754,7 +754,7 @@ export const ReportCenter: React.FC<Props> = ({
       <div className="flex flex-wrap items-center gap-2">
         <button
           onClick={() => setViewLedgerMode('main')}
-          className={`px-4 py-2 rounded-xl text-xs font-black border transition-all cursor-pointer ${
+          className={`px-4 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
             viewLedgerMode === 'main' ? 'bg-indigo-600 text-white border-indigo-600 shadow-md ring-2 ring-indigo-200' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
           }`}
         >
@@ -762,7 +762,7 @@ export const ReportCenter: React.FC<Props> = ({
         </button>
         <button
           onClick={() => setViewLedgerMode('customer_dues')}
-          className={`px-4 py-2 rounded-xl text-xs font-black border transition-all cursor-pointer ${
+          className={`px-4 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
             viewLedgerMode === 'customer_dues' ? 'bg-rose-600 text-white border-rose-600 shadow-md ring-2 ring-rose-200' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
           }`}
         >
@@ -770,7 +770,7 @@ export const ReportCenter: React.FC<Props> = ({
         </button>
         <button
           onClick={() => setViewLedgerMode('supplier_dues')}
-          className={`px-4 py-2 rounded-xl text-xs font-black border transition-all cursor-pointer ${
+          className={`px-4 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
             viewLedgerMode === 'supplier_dues' ? 'bg-amber-600 text-white border-amber-600 shadow-md ring-2 ring-amber-200' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
           }`}
         >
@@ -869,14 +869,14 @@ export const ReportCenter: React.FC<Props> = ({
           <div className="p-4 rounded-full bg-slate-100 text-slate-400">
             <Inbox className="w-10 h-10" />
           </div>
-          <p className="text-base font-extrabold text-slate-800">{tt(lang, 'এই সময়ের জন্য কোনো ডেটা পাওয়া যায়নি', 'No data for this period')}</p>
+          <p className="text-base font-bold text-slate-800">{tt(lang, 'এই সময়ের জন্য কোনো ডেটা পাওয়া যায়নি', 'No data for this period')}</p>
           <p className="text-xs text-slate-500 max-w-sm text-center">{tt(lang, 'অন্য তারিখ পরিসীমা নির্বাচন করুন বা ওপরে ফিল্টার সার্চ পরিবর্তন করে আবার চেষ্টা করুন।', 'Select a different date range or clear the search query to try again.')}</p>
         </div>
       ) : (
         <div ref={printRef} className="rounded-2xl bg-white text-slate-900 border border-slate-200 shadow-md overflow-hidden">
           <div className="p-4 border-b border-slate-200 bg-slate-50/80 flex flex-wrap items-center justify-between gap-2">
             <div>
-              <h1 className="text-lg font-black text-slate-800 tracking-tight">{active.title}</h1>
+              <h1 className="text-lg font-bold text-slate-800 tracking-tight">{active.title}</h1>
               <h2 className="text-xs font-semibold text-slate-500 mt-0.5">{startDate} → {endDate} · {active.rows.length} {tt(lang, 'টি রেকর্ড', 'rows')}</h2>
             </div>
             {!online && (
@@ -890,7 +890,7 @@ export const ReportCenter: React.FC<Props> = ({
               <thead className="bg-slate-100/90 text-slate-700 sticky top-0 border-b border-slate-200">
                 <tr>
                   {active.headers.map((h, i) => (
-                    <th key={i} className="text-left px-4 py-3 font-extrabold text-slate-700 text-xs tracking-wider uppercase">{h}</th>
+                    <th key={i} className="text-left px-4 py-3 font-bold text-slate-700 text-xs tracking-wider uppercase">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -920,3 +920,4 @@ export const ReportCenter: React.FC<Props> = ({
 };
 
 export default ReportCenter;
+

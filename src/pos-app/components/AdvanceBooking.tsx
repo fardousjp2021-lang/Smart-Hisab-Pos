@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import QRCode from 'qrcode';
 import {
@@ -1651,3 +1651,4 @@ function Modal({ children, onClose, wide }: any) {
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useState, useMemo, useEffect } from 'react';
 import {
   AlertTriangle, Bell, BellOff, Search, Package,
@@ -161,7 +161,7 @@ export const StockAlertManager = ({
               <AlertTriangle className="w-6 h-6 text-amber-600 dark:text-amber-400" />
             </div>
             <div>
-              <h1 className="font-extrabold text-slate-800 dark:text-white text-lg sm:text-xl tracking-tight">
+              <h1 className="font-bold text-slate-800 dark:text-white text-lg sm:text-xl tracking-tight">
                 {isBn ? 'স্টক অ্যালার্ট ম্যানেজার' : 'Stock Alert Manager'}
               </h1>
               <p className="text-slate-500 dark:text-slate-400 text-xs mt-0.5">
@@ -173,7 +173,7 @@ export const StockAlertManager = ({
           <div className="flex items-center gap-2.5 self-end sm:self-auto print:hidden">
             <button 
               onClick={handlePrintReorderList}
-              className="flex items-center gap-1.5 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 px-3.5 py-2 rounded-xl text-xs font-extrabold hover:bg-slate-50 dark:hover:bg-slate-800 transition cursor-pointer"
+              className="flex items-center gap-1.5 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 px-3.5 py-2 rounded-xl text-xs font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition cursor-pointer"
             >
               <Printer size={14} /> {isBn ? 'ক্রয় তালিকা প্রিন্ট' : 'Print Purchase List'}
             </button>
@@ -193,32 +193,32 @@ export const StockAlertManager = ({
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div className="bg-rose-50/80 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/50 rounded-2xl p-4 sm:p-5 flex items-center justify-between shadow-xs">
             <div>
-              <span className="text-2xl sm:text-3xl font-black text-rose-700 dark:text-rose-400 block">{stats.out}</span>
-              <span className="text-xs font-extrabold text-rose-800 dark:text-rose-300 mt-0.5 block">{isBn ? 'স্টক শেষ' : 'Out of Stock'}</span>
+              <span className="text-2xl sm:text-3xl font-bold text-rose-700 dark:text-rose-400 block">{stats.out}</span>
+              <span className="text-xs font-bold text-rose-800 dark:text-rose-300 mt-0.5 block">{isBn ? 'স্টক শেষ' : 'Out of Stock'}</span>
             </div>
             <span className="text-2xl p-2 bg-rose-100 dark:bg-rose-900/50 rounded-xl">🔴</span>
           </div>
 
           <div className="bg-amber-50/80 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50 rounded-2xl p-4 sm:p-5 flex items-center justify-between shadow-xs">
             <div>
-              <span className="text-2xl sm:text-3xl font-black text-amber-700 dark:text-amber-400 block">{stats.low}</span>
-              <span className="text-xs font-extrabold text-amber-800 dark:text-amber-300 mt-0.5 block">{isBn ? 'স্বল্প স্টক' : 'Low Stock'}</span>
+              <span className="text-2xl sm:text-3xl font-bold text-amber-700 dark:text-amber-400 block">{stats.low}</span>
+              <span className="text-xs font-bold text-amber-800 dark:text-amber-300 mt-0.5 block">{isBn ? 'স্বল্প স্টক' : 'Low Stock'}</span>
             </div>
             <span className="text-2xl p-2 bg-amber-100 dark:bg-amber-900/50 rounded-xl">⚠️</span>
           </div>
 
           <div className="bg-emerald-50/80 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900/50 rounded-2xl p-4 sm:p-5 flex items-center justify-between shadow-xs">
             <div>
-              <span className="text-2xl sm:text-3xl font-black text-emerald-700 dark:text-emerald-400 block">{stats.ok}</span>
-              <span className="text-xs font-extrabold text-emerald-800 dark:text-emerald-300 mt-0.5 block">{isBn ? 'পর্যাপ্ত স্টক' : 'In Stock'}</span>
+              <span className="text-2xl sm:text-3xl font-bold text-emerald-700 dark:text-emerald-400 block">{stats.ok}</span>
+              <span className="text-xs font-bold text-emerald-800 dark:text-emerald-300 mt-0.5 block">{isBn ? 'পর্যাপ্ত স্টক' : 'In Stock'}</span>
             </div>
             <span className="text-2xl p-2 bg-emerald-100 dark:bg-emerald-900/50 rounded-xl">✅</span>
           </div>
 
           <div className="bg-slate-100/80 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 flex items-center justify-between shadow-xs">
             <div>
-              <span className="text-2xl sm:text-3xl font-black text-slate-700 dark:text-slate-300 block">{stats.muted}</span>
-              <span className="text-xs font-extrabold text-slate-600 dark:text-slate-400 mt-0.5 block">{isBn ? 'নিরব করা' : 'Muted Alerts'}</span>
+              <span className="text-2xl sm:text-3xl font-bold text-slate-700 dark:text-slate-300 block">{stats.muted}</span>
+              <span className="text-xs font-bold text-slate-600 dark:text-slate-400 mt-0.5 block">{isBn ? 'নিরব করা' : 'Muted Alerts'}</span>
             </div>
             <span className="text-2xl p-2 bg-slate-200 dark:bg-slate-700 rounded-xl">🔕</span>
           </div>
@@ -244,7 +244,7 @@ export const StockAlertManager = ({
               <button 
                 key={f} 
                 onClick={() => setFilter(f)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-extrabold transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                   filter === f 
                     ? 'bg-amber-500 text-white shadow-xs' 
                     : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
@@ -255,7 +255,7 @@ export const StockAlertManager = ({
             ))}
             <button 
               onClick={() => setShowMuted(p => !p)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-extrabold transition-all flex items-center gap-1 cursor-pointer ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
                 showMuted 
                   ? 'bg-slate-800 text-white' 
                   : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
@@ -273,7 +273,7 @@ export const StockAlertManager = ({
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left border-collapse select-none">
             <thead>
-              <tr className="bg-slate-50 dark:bg-slate-800/60 border-b border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 font-black uppercase tracking-wider">
+              <tr className="bg-slate-50 dark:bg-slate-800/60 border-b border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wider">
                 <th className="py-3.5 px-4 text-center w-12">#</th>
                 <th className="py-3.5 px-4">{isBn ? "পণ্যের নাম ও ক্যাটাগরি" : "Product & Category"}</th>
                 <th className="py-3.5 px-4 text-center">{isBn ? "বর্তমান স্টক" : "Current Stock"}</th>
@@ -301,7 +301,7 @@ export const StockAlertManager = ({
                       className={`hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition duration-150 ${p.muted ? 'opacity-50 bg-slate-50/40' : ''}`}
                     >
                       {/* Sl.No */}
-                      <td className="py-3.5 px-4 text-center font-extrabold text-slate-400">
+                      <td className="py-3.5 px-4 text-center font-bold text-slate-400">
                         {idx + 1}
                       </td>
 
@@ -312,7 +312,7 @@ export const StockAlertManager = ({
                             <Package size={16} />
                           </div>
                           <div>
-                            <p className="font-extrabold text-slate-800 dark:text-white text-xs leading-snug">{p.name}</p>
+                            <p className="font-bold text-slate-800 dark:text-white text-xs leading-snug">{p.name}</p>
                             <div className="flex items-center gap-2 mt-0.5">
                               <span className="text-[10px] font-bold text-slate-400">{p.category || 'General'}</span>
                               {p.sku && (
@@ -328,7 +328,7 @@ export const StockAlertManager = ({
                       {/* Current Stock Progress */}
                       <td className="py-3.5 px-4 text-center whitespace-nowrap">
                         <div className="flex flex-col items-center gap-1">
-                          <span className={`font-black text-xs ${cfg.text}`}>
+                          <span className={`font-bold text-xs ${cfg.text}`}>
                             {p.stock ?? 0} {isBn ? 'টি' : 'pcs'}
                           </span>
                           <div className="w-24 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
@@ -357,7 +357,7 @@ export const StockAlertManager = ({
                         ) : (
                           <button 
                             onClick={() => { setEditingId(p.id); setEditQty(String(p.alertQty)); }}
-                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800/80 hover:bg-amber-100 hover:text-amber-800 text-slate-600 dark:text-slate-300 font-extrabold text-xs transition cursor-pointer border border-slate-200 dark:border-slate-700"
+                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800/80 hover:bg-amber-100 hover:text-amber-800 text-slate-600 dark:text-slate-300 font-bold text-xs transition cursor-pointer border border-slate-200 dark:border-slate-700"
                             title={isBn ? "অ্যালার্ট সীমা পরিবর্তন করুন" : "Edit Alert Limit"}
                           >
                             <Edit2 size={10} />
@@ -368,7 +368,7 @@ export const StockAlertManager = ({
 
                       {/* Stock Status Badge */}
                       <td className="py-3.5 px-4 text-center whitespace-nowrap">
-                        <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-black border ${cfg.badgeCls}`}>
+                        <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold border ${cfg.badgeCls}`}>
                           <span className={`w-2 h-2 rounded-full shrink-0 ${cfg.dotCls}`} />
                           <span>{isBn ? cfg.label : cfg.labelEn}</span>
                         </span>
@@ -379,7 +379,7 @@ export const StockAlertManager = ({
                         <div className="flex items-center justify-center gap-2">
                           <button 
                             onClick={() => handleReorderClick(p)}
-                            className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-extrabold text-xs shadow-xs transition cursor-pointer flex items-center gap-1"
+                            className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold text-xs shadow-xs transition cursor-pointer flex items-center gap-1"
                             title={isBn ? "সরাসরি ক্রয় অর্ডার তৈরি করুন" : "Reorder Item"}
                           >
                             <ShoppingBag size={12} />
@@ -412,3 +412,4 @@ export const StockAlertManager = ({
 };
 
 export default StockAlertManager;
+

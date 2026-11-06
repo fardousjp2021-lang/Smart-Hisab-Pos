@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import { 
@@ -586,7 +586,7 @@ export const AdminPanel: React.FC = () => {
       <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-6">
         <div className="flex items-center justify-between pb-3 border-b border-slate-100">
           <div>
-            <h2 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
+            <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
               <span>💳</span>
               <span>দোকান সাবস্ক্রিপশন ও মেয়াদ প্যাকেজ ম্যানেজার (Merchant Subscription Manager)</span>
             </h2>
@@ -594,7 +594,7 @@ export const AdminPanel: React.FC = () => {
               নিবন্ধিত সকল ব্যবসায়ীদের মাসিক/বার্ষিক সাবস্ক্রিপশন প্যাকেজ নির্ধারণ ও মেয়াদের তারিখ আপডেট করার প্যানেল
             </p>
           </div>
-          <span className="px-3 py-1 rounded-full text-xs font-black bg-emerald-100 text-emerald-800">
+          <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
             SaaS Billing Active
           </span>
         </div>
@@ -625,7 +625,7 @@ export const AdminPanel: React.FC = () => {
                       <div className="text-[10px] text-slate-500">{u.phone || '—'}</div>
                     </td>
                     <td className="p-3">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-black bg-purple-100 text-purple-700 uppercase">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-700 uppercase">
                         {sub.plan}
                       </span>
                     </td>
@@ -682,7 +682,7 @@ export const AdminPanel: React.FC = () => {
                               }
                             }
                           }}
-                          className="px-2 py-1 rounded bg-amber-500 text-slate-950 font-extrabold text-[10px] hover:bg-amber-600 transition cursor-pointer border border-amber-600"
+                          className="px-2 py-1 rounded bg-amber-500 text-slate-950 font-bold text-[10px] hover:bg-amber-600 transition cursor-pointer border border-amber-600"
                         >
                           ⚙️ কাস্টম দিন
                         </button>
@@ -700,7 +700,7 @@ export const AdminPanel: React.FC = () => {
       <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-6">
         <div className="flex items-center justify-between pb-3 border-b border-slate-100">
           <div>
-            <h2 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
+            <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
               <span>🏬</span>
               <span>পাবলিক হোম পেজ ক্লায়েন্ট শোপকেস ম্যানেজার (Client Showcase Manager)</span>
             </h2>
@@ -708,7 +708,7 @@ export const AdminPanel: React.FC = () => {
               পাবলিক হোম পেজে প্রদর্শিত ব্যবসায়ীদের আসল নাম, ছবি, ঠিকানা ও রিভিউ ইনপুট ও ম্যানেজ করার প্যানেল
             </p>
           </div>
-          <span className="px-3 py-1 rounded-full text-xs font-black bg-[#8b26c7]/10 text-[#8b26c7]">
+          <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#8b26c7]/10 text-[#8b26c7]">
             {clientCards.length} টি ক্লায়েন্ট কার্ড
           </span>
         </div>

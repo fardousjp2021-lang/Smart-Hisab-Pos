@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useMemo } from 'react';
 import { BarChart3, TrendingUp, Package, AlertTriangle, Grid3X3 } from 'lucide-react';
 
@@ -71,7 +71,7 @@ export const StockHeatmap = ({
       <div className="space-y-5 max-w-6xl mx-auto">
         {/* Header */}
         <div>
-          <h1 className="text-2xl font-extrabold text-gray-800 tracking-tight flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-gray-800 tracking-tight flex items-center gap-2">
             <Grid3X3 size={24} className="text-teal-500" />
             {isBn ? 'স্টক হিটম্যাপ' : 'Stock Heatmap'}
           </h1>
@@ -91,7 +91,7 @@ export const StockHeatmap = ({
             <div key={i} className={`${s.color} rounded-2xl p-4 border border-white shadow-sm flex items-center gap-3`}>
               <div className="w-3 h-10 rounded-full" style={{ backgroundColor: s.indicator }} />
               <div>
-                <p className={`text-xl font-black ${s.text}`}>{s.value}</p>
+                <p className={`text-xl font-bold ${s.text}`}>{s.value}</p>
                 <p className="text-xs text-gray-500">{s.label}</p>
               </div>
             </div>
@@ -196,3 +196,4 @@ export const StockHeatmap = ({
 };
 
 export default StockHeatmap;
+

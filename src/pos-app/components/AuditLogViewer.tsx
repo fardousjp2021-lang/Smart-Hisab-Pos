@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useState, useMemo } from 'react';
 import {
   ClipboardList, Search, Download, Trash2, X, Filter,
@@ -150,7 +150,7 @@ export const AuditLogViewer = ({
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-extrabold text-gray-800 tracking-tight flex items-center gap-2">
+            <h1 className="text-2xl font-bold text-gray-800 tracking-tight flex items-center gap-2">
               <ClipboardList size={24} className="text-slate-500" />
               {isBn ? 'অডিট লগ ভিউয়ার' : 'Audit Log Viewer'}
             </h1>
@@ -184,7 +184,7 @@ export const AuditLogViewer = ({
                 <s.icon size={16} className={s.color} />
               </div>
               <div>
-                <p className={`text-xl font-black ${s.color}`}>{s.value}</p>
+                <p className={`text-xl font-bold ${s.color}`}>{s.value}</p>
                 <p className="text-xs text-gray-500">{s.label}</p>
               </div>
             </div>
@@ -343,3 +343,4 @@ export const AuditLogViewer = ({
 };
 
 export default AuditLogViewer;
+

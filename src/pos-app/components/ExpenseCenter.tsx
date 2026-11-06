@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+﻿import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Plus, Search, Printer, Trash2, Edit3, Filter, X as XIcon, Save,
   FileText, TrendingDown, Calendar, Download, Tag, ChevronDown, ChevronUp,
@@ -230,7 +230,7 @@ export default function ExpenseCenter(props: Props) {
             <TrendingDown className="w-6 h-6 text-rose-600 dark:text-rose-400" />
           </div>
           <div>
-            <h1 className="text-lg sm:text-xl font-extrabold text-slate-800 dark:text-white tracking-tight">
+            <h1 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white tracking-tight">
               {t('খরচ ব্যবস্থাপনা কেন্দ্র', 'Expense Management Center')}
             </h1>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
@@ -240,16 +240,16 @@ export default function ExpenseCenter(props: Props) {
         </div>
 
         <div className="flex flex-wrap gap-2.5">
-          <button onClick={() => setCatModalOpen(true)} className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3.5 py-2 text-xs font-extrabold text-slate-700 dark:text-slate-300 hover:bg-slate-50 transition cursor-pointer">
+          <button onClick={() => setCatModalOpen(true)} className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3.5 py-2 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-50 transition cursor-pointer">
             <Tag size={14} /> {t('ক্যাটাগরি সমূহ', 'Categories')}
           </button>
-          <button onClick={exportCSV} className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3.5 py-2 text-xs font-extrabold text-slate-700 dark:text-slate-300 hover:bg-slate-50 transition cursor-pointer">
+          <button onClick={exportCSV} className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3.5 py-2 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-50 transition cursor-pointer">
             <Download size={14} /> CSV
           </button>
-          <button onClick={printReport} className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3.5 py-2 text-xs font-extrabold text-slate-700 dark:text-slate-300 hover:bg-slate-50 transition cursor-pointer">
+          <button onClick={printReport} className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3.5 py-2 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-50 transition cursor-pointer">
             <Printer size={14} /> {t('প্রিন্ট রিপোর্ট', 'Print Report')}
           </button>
-          <button onClick={() => { setEditing(null); setOpen(true); }} className="inline-flex items-center gap-1.5 rounded-xl bg-rose-600 hover:bg-rose-700 active:scale-95 px-4 py-2 text-xs font-black text-white shadow-md transition cursor-pointer">
+          <button onClick={() => { setEditing(null); setOpen(true); }} className="inline-flex items-center gap-1.5 rounded-xl bg-rose-600 hover:bg-rose-700 active:scale-95 px-4 py-2 text-xs font-bold text-white shadow-md transition cursor-pointer">
             <Plus size={15} /> {t('+ নতুন খরচ যোগ করুন', '+ Add Expense')}
           </button>
         </div>
@@ -269,7 +269,7 @@ export default function ExpenseCenter(props: Props) {
           {(['all', 'today', '7d', '30d', 'month'] as QuickRange[]).map(k => (
             <button key={k}
               onClick={() => setQuick(k)}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-extrabold border transition cursor-pointer ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold border transition cursor-pointer ${
                 quick === k
                   ? 'bg-rose-600 text-white border-rose-600 shadow-xs'
                   : 'bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100'
@@ -283,7 +283,7 @@ export default function ExpenseCenter(props: Props) {
             </button>
           ))}
           <div className="ml-auto text-xs font-bold text-slate-500">
-            {t('ফিল্টারকৃত মোট:', 'Filtered Total:')} <span className="font-black text-rose-600 dark:text-rose-400 text-sm">{fmt(total)}</span>
+            {t('ফিল্টারকৃত মোট:', 'Filtered Total:')} <span className="font-bold text-rose-600 dark:text-rose-400 text-sm">{fmt(total)}</span>
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
@@ -305,7 +305,7 @@ export default function ExpenseCenter(props: Props) {
         </div>
         {(q || cat || from || to || quick !== 'all') && (
           <div>
-            <button onClick={clearFilters} className="text-xs text-rose-600 hover:text-rose-700 font-extrabold inline-flex items-center gap-1 cursor-pointer">
+            <button onClick={clearFilters} className="text-xs text-rose-600 hover:text-rose-700 font-bold inline-flex items-center gap-1 cursor-pointer">
               <XIcon size={12} /> {t('ফিল্টার রিসেট করুন', 'Reset filters')}
             </button>
           </div>
@@ -317,13 +317,13 @@ export default function ExpenseCenter(props: Props) {
         {/* Left Column: Expense Data Table */}
         <div className="lg:col-span-2 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden shadow-xs">
           <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
-            <h3 className="text-sm font-extrabold text-slate-800 dark:text-white">{t('খরচের তালিকা (Expense Log)', 'Expense List')}</h3>
+            <h3 className="text-sm font-bold text-slate-800 dark:text-white">{t('খরচের তালিকা (Expense Log)', 'Expense List')}</h3>
             <span className="text-xs font-bold text-slate-400">{filtered.length} {t('টি রেকর্ড সংগৃহীত', 'entries found')}</span>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-left border-collapse select-none">
-              <thead className="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 font-black uppercase">
+              <thead className="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 font-bold uppercase">
                 <tr>
                   <th className="py-3 px-4 w-28">{t('তারিখ', 'Date')}</th>
                   <th className="py-3 px-4">{t('খরচের বিবরণ', 'Expense Title')}</th>
@@ -342,20 +342,20 @@ export default function ExpenseCenter(props: Props) {
                     <tr className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition">
                       <td className="py-3 px-4 font-semibold text-slate-500 text-[11px] whitespace-nowrap">{row.date}</td>
                       <td className="py-3 px-4">
-                        <div className="font-extrabold text-slate-800 dark:text-white text-xs">{row.title}</div>
+                        <div className="font-bold text-slate-800 dark:text-white text-xs">{row.title}</div>
                         {row.note && <div className="text-[10px] text-slate-400 font-semibold truncate max-w-xs">{row.note}</div>}
                       </td>
                       <td className="py-3 px-4 whitespace-nowrap">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[10px] font-black border border-slate-200 dark:border-slate-700">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[10px] font-bold border border-slate-200 dark:border-slate-700">
                           {row.category}
                         </span>
                       </td>
                       <td className="py-3 px-4 whitespace-nowrap">
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 text-[10px] font-black border border-indigo-200 dark:border-indigo-900/50">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 text-[10px] font-bold border border-indigo-200 dark:border-indigo-900/50">
                           💳 {row.paymentMethod || 'Cash'}
                         </span>
                       </td>
-                      <td className="py-3 px-4 text-right text-rose-600 dark:text-rose-400 font-black text-sm whitespace-nowrap">
+                      <td className="py-3 px-4 text-right text-rose-600 dark:text-rose-400 font-bold text-sm whitespace-nowrap">
                         {fmt(row.amount)}
                       </td>
                       <td className="py-3 px-4 text-center whitespace-nowrap">
@@ -401,7 +401,7 @@ export default function ExpenseCenter(props: Props) {
         <div className="space-y-4">
           {/* Category Percentage Analytics */}
           <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs space-y-3">
-            <h3 className="text-sm font-extrabold text-slate-800 dark:text-white flex items-center gap-2 pb-2 border-b border-slate-100 dark:border-slate-800">
+            <h3 className="text-sm font-bold text-slate-800 dark:text-white flex items-center gap-2 pb-2 border-b border-slate-100 dark:border-slate-800">
               <Tag size={16} className="text-rose-500" />
               <span>{t('ক্যাটাগরি ভিত্তিক খরচের হিসাব (% Ratio)', 'Category Cost Analytics (%)')}</span>
             </h3>
@@ -414,7 +414,7 @@ export default function ExpenseCenter(props: Props) {
                 <div key={item.category} className="space-y-1 text-xs">
                   <div className="flex justify-between items-center font-bold">
                     <span className="text-slate-700 dark:text-slate-300">{item.category}</span>
-                    <span className="font-mono text-rose-600 dark:text-rose-400 font-extrabold">{fmt(item.amount)} ({item.pct}%)</span>
+                    <span className="font-mono text-rose-600 dark:text-rose-400 font-bold">{fmt(item.amount)} ({item.pct}%)</span>
                   </div>
                   <div className="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                     <div className="h-full bg-rose-500 rounded-full transition-all duration-300" style={{ width: `${item.pct}%` }} />
@@ -522,11 +522,11 @@ function SummaryCard(props: { tone?: string; label: string; value: string; icon:
         <div className="w-9 h-9 rounded-xl bg-white dark:bg-slate-800 shadow-xs border border-slate-200/70 dark:border-slate-700 flex items-center justify-center shrink-0">
           <span className={tStyle.text}>{props.icon}</span>
         </div>
-        <span className={`font-extrabold text-xs sm:text-sm tracking-tight truncate ${tStyle.text}`}>
+        <span className={`font-bold text-xs sm:text-sm tracking-tight truncate ${tStyle.text}`}>
           {props.label}
         </span>
       </div>
-      <div className="mt-3 text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight font-mono truncate">
+      <div className="mt-3 text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight font-mono truncate">
         {props.value}
       </div>
       {props.sub && <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 mt-1">{props.sub}</div>}
@@ -539,7 +539,7 @@ function BreakdownCard(props: { title: string; rows: [string, number][]; empty: 
   return (
     <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden shadow-xs">
       <div className="px-5 py-3 border-b border-slate-100 dark:border-slate-800">
-        <h3 className="text-sm font-extrabold text-slate-800 dark:text-white">{props.title}</h3>
+        <h3 className="text-sm font-bold text-slate-800 dark:text-white">{props.title}</h3>
       </div>
       <div className="p-4 space-y-3">
         {props.rows.length === 0 && <div className="text-xs text-slate-400 font-semibold text-center py-4">{props.empty}</div>}
@@ -547,7 +547,7 @@ function BreakdownCard(props: { title: string; rows: [string, number][]; empty: 
           <div key={k}>
             <div className="flex items-center justify-between text-xs text-slate-600 dark:text-slate-300 font-bold">
               <span>{k}</span>
-              <span className="font-extrabold text-rose-600 dark:text-rose-400">{fmt(v)}</span>
+              <span className="font-bold text-rose-600 dark:text-rose-400">{fmt(v)}</span>
             </div>
             <div className="h-2 bg-slate-100 dark:bg-slate-800 rounded-full mt-1 overflow-hidden">
               <div className="h-full bg-rose-500 rounded-full transition-all duration-300" style={{ width: `${(v / max) * 100}%` }} />
@@ -624,7 +624,7 @@ function ExpenseModal(props: {
         <div className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-rose-600 to-rose-700 text-white shadow-md">
           <div className="flex items-center gap-2.5">
             <TrendingDown size={20} className="p-1 bg-white/20 rounded-lg" />
-            <h3 className="text-base font-extrabold">{props.title}</h3>
+            <h3 className="text-base font-bold">{props.title}</h3>
           </div>
           <button onClick={props.onClose} className="p-1 rounded-lg hover:bg-white/20 transition cursor-pointer">
             <XIcon size={18} />
@@ -636,7 +636,7 @@ function ExpenseModal(props: {
           {/* LEFT column */}
           <div className="space-y-4">
             <div>
-              <label className="block text-xs font-extrabold text-slate-700 dark:text-slate-200 mb-1">{props.t('খরচের শিরোনাম', 'Title')} *</label>
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1">{props.t('খরচের শিরোনাম', 'Title')} *</label>
               <input
                 autoFocus
                 value={title}
@@ -647,13 +647,13 @@ function ExpenseModal(props: {
             </div>
 
             <div>
-              <label className="flex items-center justify-between text-xs font-extrabold text-slate-700 dark:text-slate-200 mb-1">
+              <label className="flex items-center justify-between text-xs font-bold text-slate-700 dark:text-slate-200 mb-1">
                 <span>{props.t('ক্যাটাগরি', 'Category')} *</span>
                 {props.onAddCategory && !addingCat && (
                   <button
                     type="button"
                     onClick={() => { setAddingCat(true); setCustomCat(''); }}
-                    className="inline-flex items-center gap-1 text-[11px] font-black text-rose-600 dark:text-rose-400 hover:underline cursor-pointer"
+                    className="inline-flex items-center gap-1 text-[11px] font-bold text-rose-600 dark:text-rose-400 hover:underline cursor-pointer"
                   >
                     <Plus size={12} /> {props.t('নতুন ক্যাটাগরি', 'New')}
                   </button>
@@ -703,11 +703,11 @@ function ExpenseModal(props: {
             </div>
 
             <div>
-              <label className="block text-xs font-extrabold text-slate-700 dark:text-slate-200 mb-1">{props.t('পেমেন্ট মাধ্যম (Payment Source)', 'Payment Source')} *</label>
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1">{props.t('পেমেন্ট মাধ্যম (Payment Source)', 'Payment Source')} *</label>
               <select
                 value={paymentMethod}
                 onChange={e => setPaymentMethod(e.target.value)}
-                className="w-full rounded-xl border border-slate-200 dark:border-slate-800 px-3.5 py-2.5 text-xs font-extrabold bg-indigo-50/50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 focus:ring-2 focus:ring-rose-500 focus:outline-none"
+                className="w-full rounded-xl border border-slate-200 dark:border-slate-800 px-3.5 py-2.5 text-xs font-bold bg-indigo-50/50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 focus:ring-2 focus:ring-rose-500 focus:outline-none"
               >
                 <option value="Cash Drawer (ক্যাশ)">💵 Cash Drawer (ক্যাশ ড্রয়ার)</option>
                 <option value="bKash / Mobile Banking (বিকাশ)">📱 bKash / Mobile Banking (বিকাশ)</option>
@@ -720,22 +720,22 @@ function ExpenseModal(props: {
           {/* RIGHT column */}
           <div className="space-y-4">
             <div>
-              <label className="block text-xs font-extrabold text-slate-700 dark:text-slate-200 mb-1">{props.t('পরিমাণ (৳)', 'Amount (৳)')} *</label>
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1">{props.t('পরিমাণ (৳)', 'Amount (৳)')} *</label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-3 flex items-center text-slate-400 text-sm font-black">৳</span>
+                <span className="absolute inset-y-0 left-3 flex items-center text-slate-400 text-sm font-bold">৳</span>
                 <input
                   type="number"
                   min={0}
                   value={amount || ''}
                   onChange={e => setAmount(Number(e.target.value))}
                   placeholder="0.00"
-                  className="w-full rounded-xl border border-rose-200 dark:border-rose-900/50 pl-8 pr-3.5 py-2.5 text-base font-black text-rose-600 dark:text-rose-400 bg-rose-50/30 dark:bg-rose-950/30 focus:ring-2 focus:ring-rose-500 focus:outline-none"
+                  className="w-full rounded-xl border border-rose-200 dark:border-rose-900/50 pl-8 pr-3.5 py-2.5 text-base font-bold text-rose-600 dark:text-rose-400 bg-rose-50/30 dark:bg-rose-950/30 focus:ring-2 focus:ring-rose-500 focus:outline-none"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-extrabold text-slate-700 dark:text-slate-200 mb-1">{props.t('তারিখ', 'Date')} *</label>
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1">{props.t('তারিখ', 'Date')} *</label>
               <input
                 type="date"
                 value={date}
@@ -745,7 +745,7 @@ function ExpenseModal(props: {
             </div>
 
             <div>
-              <label className="block text-xs font-extrabold text-slate-700 dark:text-slate-200 mb-1">{props.t('নোট / অতিরিক্ত তথ্য', 'Note')}</label>
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1">{props.t('নোট / অতিরিক্ত তথ্য', 'Note')}</label>
               <textarea
                 value={note}
                 onChange={e => setNote(e.target.value)}
@@ -774,7 +774,7 @@ function ExpenseModal(props: {
                 if (!title.trim() || amount <= 0) return;
                 props.onSave({ title: title.trim(), category, paymentMethod, amount, date, note });
               }}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-rose-600 hover:bg-rose-700 active:scale-95 px-6 py-2.5 text-xs font-black text-white shadow-md transition cursor-pointer"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-rose-600 hover:bg-rose-700 active:scale-95 px-6 py-2.5 text-xs font-bold text-white shadow-md transition cursor-pointer"
             >
               <Save size={14} /> {props.t('সংরক্ষণ করুন', 'Save Expense')}
             </button>
@@ -835,3 +835,4 @@ function escapeHtml(s: string): string {
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
+

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import * as XLSX from 'xlsx';
 import { Download, Upload, CheckCircle2, AlertCircle, FileSpreadsheet, X, ArrowLeft } from 'lucide-react';
 
@@ -351,7 +351,7 @@ export const ImportItems: React.FC<Props> = ({
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 shadow-xs flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-lg font-black text-slate-900 dark:text-white tracking-tight">
+            <h1 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
               Import Items
             </h1>
             <span className="text-xs text-slate-400 font-semibold">
@@ -432,7 +432,7 @@ export const ImportItems: React.FC<Props> = ({
           <button
             type="button"
             onClick={handleExecuteImport}
-            className="px-8 py-2.5 bg-[#00a65a] hover:bg-[#008d4c] text-white font-extrabold text-xs rounded-md shadow-xs transition active:scale-95 cursor-pointer flex items-center gap-1.5"
+            className="px-8 py-2.5 bg-[#00a65a] hover:bg-[#008d4c] text-white font-bold text-xs rounded-md shadow-xs transition active:scale-95 cursor-pointer flex items-center gap-1.5"
           >
             <span>📥</span>
             <span>{importCompleted ? 'Import Completed ✓' : 'Import'}</span>
@@ -443,7 +443,7 @@ export const ImportItems: React.FC<Props> = ({
             onClick={() => {
               if (setActiveSubTab) setActiveSubTab('list_products');
             }}
-            className="px-8 py-2.5 bg-[#f39c12] hover:bg-[#e08e0b] text-white font-extrabold text-xs rounded-md shadow-xs transition active:scale-95 cursor-pointer"
+            className="px-8 py-2.5 bg-[#f39c12] hover:bg-[#e08e0b] text-white font-bold text-xs rounded-md shadow-xs transition active:scale-95 cursor-pointer"
           >
             Close
           </button>
@@ -454,7 +454,7 @@ export const ImportItems: React.FC<Props> = ({
       {parsedRows.length > 0 && (
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-xs space-y-3">
           <div className="flex justify-between items-center pb-2 border-b border-slate-100 dark:border-slate-800">
-            <h3 className="text-xs font-extrabold text-slate-800 dark:text-white flex items-center gap-2">
+            <h3 className="text-xs font-bold text-slate-800 dark:text-white flex items-center gap-2">
               <span>📋 Parsed CSV Rows ({parsedRows.length})</span>
               <span className="text-emerald-600 font-bold">✓ Ready: {validCount}</span>
             </h3>
@@ -462,7 +462,7 @@ export const ImportItems: React.FC<Props> = ({
 
           <div className="overflow-x-auto max-h-[300px] overflow-y-auto border border-slate-200 dark:border-slate-700 rounded-md">
             <table className="w-full text-xs text-left border-collapse">
-              <thead className="bg-slate-100 dark:bg-slate-800 font-extrabold text-slate-700 dark:text-slate-300 border-b border-slate-200">
+              <thead className="bg-slate-100 dark:bg-slate-800 font-bold text-slate-700 dark:text-slate-300 border-b border-slate-200">
                 <tr>
                   <th className="p-2 text-center">#</th>
                   <th className="p-2">Item Name</th>
@@ -486,9 +486,9 @@ export const ImportItems: React.FC<Props> = ({
                     <td className="p-2 text-center font-bold">{r.openingStock} {r.unit}</td>
                     <td className="p-2 text-center">
                       {r.isValid ? (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-black bg-emerald-100 text-emerald-800">✓ Ready</span>
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">✓ Ready</span>
                       ) : (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-black bg-rose-100 text-rose-800">✕ {r.validationError}</span>
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800">✕ {r.validationError}</span>
                       )}
                     </td>
                   </tr>
@@ -504,14 +504,14 @@ export const ImportItems: React.FC<Props> = ({
         
         {/* Panel Header */}
         <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
-          <h3 className="text-xs font-black text-slate-800 dark:text-white tracking-tight">
+          <h3 className="text-xs font-bold text-slate-800 dark:text-white tracking-tight">
             Import Instructions
           </h3>
 
           <button
             type="button"
             onClick={handleDownloadExampleFormat}
-            className="px-4 py-1.5 bg-[#00c0ef] hover:bg-[#00acd6] text-white font-extrabold text-xs rounded-md shadow-2xs transition active:scale-95 cursor-pointer flex items-center gap-1.5"
+            className="px-4 py-1.5 bg-[#00c0ef] hover:bg-[#00acd6] text-white font-bold text-xs rounded-md shadow-2xs transition active:scale-95 cursor-pointer flex items-center gap-1.5"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Download Example Format</span>
@@ -521,12 +521,12 @@ export const ImportItems: React.FC<Props> = ({
         {/* 20 Specification Rows Table */}
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left border-collapse">
-            <thead className="bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 font-black border-b border-slate-200 dark:border-slate-700 text-[11px]">
+            <thead className="bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 font-bold border-b border-slate-200 dark:border-slate-700 text-[11px]">
               <tr>
                 <th className="py-2.5 px-3 w-12 text-center">#</th>
-                <th className="py-2.5 px-4 font-black">Column Name</th>
-                <th className="py-2.5 px-4 font-black w-32">Value</th>
-                <th className="py-2.5 px-4 font-black">Description</th>
+                <th className="py-2.5 px-4 font-bold">Column Name</th>
+                <th className="py-2.5 px-4 font-bold w-32">Value</th>
+                <th className="py-2.5 px-4 font-bold">Description</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 font-semibold text-slate-700 dark:text-slate-300">
@@ -536,7 +536,7 @@ export const ImportItems: React.FC<Props> = ({
                   <td className="py-2 px-4 font-bold text-slate-800 dark:text-slate-200">{spec.name}</td>
                   <td className="py-2 px-4">
                     {spec.required ? (
-                      <span className="px-2.5 py-0.5 rounded text-[10px] font-black bg-[#00a65a] text-white shadow-2xs inline-block">
+                      <span className="px-2.5 py-0.5 rounded text-[10px] font-bold bg-[#00a65a] text-white shadow-2xs inline-block">
                         Required
                       </span>
                     ) : (
@@ -559,3 +559,4 @@ export const ImportItems: React.FC<Props> = ({
   );
 };
 export default ImportItems;
+

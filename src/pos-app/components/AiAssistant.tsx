@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useState, useRef, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { 
@@ -267,7 +267,7 @@ export const AiAssistant: React.FC = () => {
           
           {/* Real-time statistics Widget */}
           <div className="bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl">
-            <h2 className="text-xs uppercase font-extrabold tracking-wider text-slate-400 mb-3 flex items-center gap-2">
+            <h2 className="text-xs uppercase font-bold tracking-wider text-slate-400 mb-3 flex items-center gap-2">
               <FileCheck size={14} className="text-slate-500" />
               ইনস্ট্যান্ট স্টোর কাউন্টারস
             </h2>

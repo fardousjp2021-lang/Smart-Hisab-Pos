@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import {
   X, Search, Printer, Camera, Package, Users, Plus,
@@ -808,7 +808,7 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
             </div>
             <div>
               <p className="text-[9px] font-bold text-[#81c995] uppercase">{isBn ? 'গ্র্যান্ড টোটাল' : 'Grand Total'}</p>
-              <p className="text-sm font-black text-[#81c995] mt-0.5">৳{totals.grand.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
+              <p className="text-sm font-bold text-[#81c995] mt-0.5">৳{totals.grand.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
             </div>
           </div>
 
@@ -930,7 +930,7 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
                       {/* Info */}
                       <div className="text-center mt-2">
                         <p className="text-[10px] font-bold text-slate-800 truncate" title={p.name}>{p.name}</p>
-                        <p className="text-xs font-black text-[#1a73e8] mt-0.5">৳{p.sellingPrice.toLocaleString()}</p>
+                        <p className="text-xs font-bold text-[#1a73e8] mt-0.5">৳{p.sellingPrice.toLocaleString()}</p>
                       </div>
                     </div>
                   );
@@ -997,14 +997,14 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
               <div className="p-4 space-y-3">
                 <div className="bg-[#e6f4ea] border border-[#a8dab5] rounded-md p-3 text-center">
                   <p className="text-[10px] font-bold text-[#137333] uppercase">{isBn ? 'গ্র্যান্ড টোটাল' : 'Grand Total'}</p>
-                  <p className="text-2xl font-black text-[#137333] mt-0.5">৳{totals.grand.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
+                  <p className="text-2xl font-bold text-[#137333] mt-0.5">৳{totals.grand.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">{isBn ? 'গ্রাহকের নগদ (TK)' : 'Cash Received (TK)'}</label>
                   <input autoFocus type="number" step="0.01" min="0" value={cashInput}
                     onChange={e => setCashInput(e.target.value)}
                     onKeyDown={e => { if (e.key === 'Enter') { doCheckout('Cash', cashGiven, change, [{ method: 'Cash', amount: cashGiven }]); } }}
-                    className="w-full h-10 px-3 text-lg font-black text-right border-2 border-[#188038] rounded-md focus:outline-none" />
+                    className="w-full h-10 px-3 text-lg font-bold text-right border-2 border-[#188038] rounded-md focus:outline-none" />
                 </div>
                 <div className="grid grid-cols-4 gap-1">
                   <button type="button" onClick={() => setCashInput(totals.grand.toFixed(2))} className="py-1 bg-[#e6f4ea] hover:bg-[#ceead6] text-[#137333] text-[10px] font-bold rounded border border-[#a8dab5]">{isBn ? 'সঠিক' : 'Exact'}</button>
@@ -1015,11 +1015,11 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
                 <div className="grid grid-cols-2 gap-2 text-center text-xs">
                   <div className="bg-[#fef7e0] border border-[#fde293] p-2 rounded">
                     <p className="text-[9px] font-bold text-[#b06000]">{isBn ? 'ফেরত' : 'Change'}</p>
-                    <p className="font-black text-[#b06000] text-sm mt-0.5">৳{change.toFixed(2)}</p>
+                    <p className="font-bold text-[#b06000] text-sm mt-0.5">৳{change.toFixed(2)}</p>
                   </div>
                   <div className="bg-[#fce8e6] border border-[#fad2cf] p-2 rounded">
                     <p className="text-[9px] font-bold text-[#c5221f]">{isBn ? 'বকেয়া' : 'Remaining Due'}</p>
-                    <p className={`font-black text-sm mt-0.5 ${due > 0 ? 'text-[#c5221f]' : 'text-slate-400'}`}>৳{due.toFixed(2)}</p>
+                    <p className={`font-bold text-sm mt-0.5 ${due > 0 ? 'text-[#c5221f]' : 'text-slate-400'}`}>৳{due.toFixed(2)}</p>
                   </div>
                 </div>
               </div>
@@ -1054,12 +1054,12 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
                 </div>
                 <div className="bg-[#e8f0fe] rounded-md p-3 text-center border border-[#aecbfa]">
                   <p className="text-[10px] font-bold text-[#1a73e8] uppercase">{isBn ? 'গ্র্যান্ড টোটাল' : 'Grand Total'}</p>
-                  <p className="text-xl font-black text-[#1a73e8] mt-0.5">৳{totals.grand.toFixed(2)}</p>
+                  <p className="text-xl font-bold text-[#1a73e8] mt-0.5">৳{totals.grand.toFixed(2)}</p>
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">{isBn ? 'পেমেন্টের পরিমাণ' : 'Amount Paid'}</label>
                   <input autoFocus type="number" step="0.01" value={digitalInput} onChange={e => setDigitalInput(e.target.value)}
-                    className="w-full h-10 px-3 text-lg font-black text-right border-2 border-[#1a73e8] rounded-md focus:outline-none" />
+                    className="w-full h-10 px-3 text-lg font-bold text-right border-2 border-[#1a73e8] rounded-md focus:outline-none" />
                 </div>
               </div>
               <div className="px-4 pb-4 flex gap-2">
@@ -1088,16 +1088,16 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
               <div className="p-4 space-y-3">
                 <div className="bg-[#fce8e6] border border-[#fad2cf] rounded-md p-3 text-center">
                   <p className="text-[10px] font-bold text-[#c5221f] uppercase">{isBn ? 'মোট পরিশোধযোগ্য' : 'Total Payable'}</p>
-                  <p className="text-2xl font-black text-[#c5221f] mt-0.5">৳{totals.grand.toFixed(2)}</p>
+                  <p className="text-2xl font-bold text-[#c5221f] mt-0.5">৳{totals.grand.toFixed(2)}</p>
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">{isBn ? 'আংশিক জমা' : 'Partial Payment'}</label>
                   <input type="number" step="0.01" min="0" max={totals.grand} value={dueInput} onChange={e => setDueInput(e.target.value)}
-                    className="w-full h-10 px-3 text-lg font-black text-right border-2 border-[#d93025] rounded-md focus:outline-none" />
+                    className="w-full h-10 px-3 text-lg font-bold text-right border-2 border-[#d93025] rounded-md focus:outline-none" />
                 </div>
                 <div className="bg-[#fef7e0] rounded-md p-2 text-center border border-[#fde293]">
                   <p className="text-[10px] font-bold text-[#b06000]">{isBn ? 'বকেয়া থাকবে' : 'Remaining Due'}</p>
-                  <p className="text-lg font-black text-[#b06000]">৳{dueLeft.toFixed(2)}</p>
+                  <p className="text-lg font-bold text-[#b06000]">৳{dueLeft.toFixed(2)}</p>
                 </div>
               </div>
               <div className="px-4 pb-4 flex gap-2">
@@ -1127,9 +1127,9 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
               </div>
               <div className="p-4 space-y-3">
                 <div className="grid grid-cols-3 gap-2 bg-[#f8f9fa] border border-[#dadce0] rounded-md p-2 text-center text-xs">
-                  <div><p className="text-[9px] font-bold text-slate-500 uppercase">Total</p><p className="font-black text-[#1a73e8]">৳{totals.grand.toFixed(2)}</p></div>
-                  <div><p className="text-[9px] font-bold text-slate-500 uppercase">Paid</p><p className="font-black text-[#188038]">৳{paid.toFixed(2)}</p></div>
-                  <div><p className="text-[9px] font-bold text-slate-500 uppercase">{due > 0 ? 'Due' : 'Change'}</p><p className={`font-black ${due > 0 ? 'text-[#d93025]' : 'text-[#b06000]'}`}>৳{(due > 0 ? due : change).toFixed(2)}</p></div>
+                  <div><p className="text-[9px] font-bold text-slate-500 uppercase">Total</p><p className="font-bold text-[#1a73e8]">৳{totals.grand.toFixed(2)}</p></div>
+                  <div><p className="text-[9px] font-bold text-slate-500 uppercase">Paid</p><p className="font-bold text-[#188038]">৳{paid.toFixed(2)}</p></div>
+                  <div><p className="text-[9px] font-bold text-slate-500 uppercase">{due > 0 ? 'Due' : 'Change'}</p><p className={`font-bold ${due > 0 ? 'text-[#d93025]' : 'text-[#b06000]'}`}>৳{(due > 0 ? due : change).toFixed(2)}</p></div>
                 </div>
                 <div className="space-y-1.5 max-h-44 overflow-y-auto">
                   {multiSplits.map((row, idx) => (
@@ -1140,7 +1140,7 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
                       </select>
                       <input type="number" step="0.01" value={row.amount} placeholder="0.00"
                         onChange={e => { const u = [...multiSplits]; u[idx] = { ...u[idx], amount: e.target.value }; setMultiSplits(u); }}
-                        className="flex-1 h-8 px-2 text-xs font-black text-right border border-[#dadce0] rounded-md focus:outline-none" />
+                        className="flex-1 h-8 px-2 text-xs font-bold text-right border border-[#dadce0] rounded-md focus:outline-none" />
                       <button type="button" onClick={() => setMultiSplits(prev => prev.filter((_, i) => i !== idx))}
                         className="w-8 h-8 flex items-center justify-center text-[#d93025] hover:bg-[#fce8e6] rounded-md border border-[#fad2cf]"><X size={12} /></button>
                     </div>
@@ -1207,7 +1207,7 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
             <div className="flex-1 overflow-y-auto p-4" id="pos-receipt">
               <div className="max-w-[280px] mx-auto space-y-2.5 text-[11px] text-black font-sans">
                 <div className="text-center space-y-0.5">
-                  <h1 className="font-black text-base tracking-wider uppercase">RONY TELECOM</h1>
+                  <h1 className="font-bold text-base tracking-wider uppercase">RONY TELECOM</h1>
                   <p className="text-[10px] text-slate-600">কামাল পাশা মোড়, Azad Nagar, রামগতি, লক্ষ্মীপুর</p>
                   <p className="text-[10px] text-slate-600">Tel: 01718389900</p>
                 </div>
@@ -1296,23 +1296,23 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
               <div className="grid grid-cols-2 gap-2 text-xs font-semibold">
                 <div className="p-3 bg-[#e8f0fe] text-[#1a73e8] rounded-xl border border-[#aecbfa] flex items-center justify-between">
                   <span>{isBn ? 'ক্যাশ ক্যাশিয়ার পেমেন্ট' : 'Cash Payment'}</span>
-                  <span className="font-mono font-black bg-white px-2 py-0.5 rounded text-slate-800 shadow-2xs">F1</span>
+                  <span className="font-mono font-bold bg-white px-2 py-0.5 rounded text-slate-800 shadow-2xs">F1</span>
                 </div>
                 <div className="p-3 bg-[#fce8e6] text-[#d93025] rounded-xl border border-[#fad2cf] flex items-center justify-between">
                   <span>{isBn ? 'ডিজিটাল (bKash/Nagad)' : 'Digital Pay'}</span>
-                  <span className="font-mono font-black bg-white px-2 py-0.5 rounded text-slate-800 shadow-2xs">F2</span>
+                  <span className="font-mono font-bold bg-white px-2 py-0.5 rounded text-slate-800 shadow-2xs">F2</span>
                 </div>
                 <div className="p-3 bg-[#f3e8fd] text-[#9334e6] rounded-xl border border-[#d7aefb] flex items-center justify-between">
                   <span>{isBn ? 'স্প্লিট / মিক্সড পেমেন্ট' : 'Split/Mix Pay'}</span>
-                  <span className="font-mono font-black bg-white px-2 py-0.5 rounded text-slate-800 shadow-2xs">F3</span>
+                  <span className="font-mono font-bold bg-white px-2 py-0.5 rounded text-slate-800 shadow-2xs">F3</span>
                 </div>
                 <div className="p-3 bg-[#feefc3] text-[#b06000] rounded-xl border border-[#fde293] flex items-center justify-between">
                   <span>{isBn ? 'বিল হোল্ড করুন' : 'Hold Bill'}</span>
-                  <span className="font-mono font-black bg-white px-2 py-0.5 rounded text-slate-800 shadow-2xs">F4</span>
+                  <span className="font-mono font-bold bg-white px-2 py-0.5 rounded text-slate-800 shadow-2xs">F4</span>
                 </div>
                 <div className="p-3 bg-[#f1f3f4] text-[#3c4043] rounded-xl border border-[#dadce0] flex items-center justify-between col-span-2">
                   <span>{isBn ? 'পেমেন্ট উইন্ডো বন্ধ করুন' : 'Cancel Modal'}</span>
-                  <span className="font-mono font-black bg-white px-2 py-0.5 rounded text-slate-800 shadow-2xs">ESC</span>
+                  <span className="font-mono font-bold bg-white px-2 py-0.5 rounded text-slate-800 shadow-2xs">ESC</span>
                 </div>
               </div>
             </div>

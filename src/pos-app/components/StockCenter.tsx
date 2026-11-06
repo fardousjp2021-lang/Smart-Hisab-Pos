@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useEffect, useMemo, useState } from 'react';
 import {
   Package, TrendingUp, TrendingDown, AlertTriangle, Search, Plus, Minus,
@@ -167,7 +167,7 @@ export const StockCenter: React.FC<Props> = ({
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-3 border-b border-gray-200 gap-3 select-none">
         <div className="flex items-baseline gap-2">
-          <h1 className="font-extrabold text-slate-800 text-lg sm:text-xl font-sans tracking-tight flex items-center gap-2">
+          <h1 className="font-bold text-slate-800 text-lg sm:text-xl font-sans tracking-tight flex items-center gap-2">
             <Boxes className="w-5 h-5 text-indigo-600" />
             {t('স্টক সেন্টার', 'Stock Center')}
           </h1>
@@ -189,22 +189,22 @@ export const StockCenter: React.FC<Props> = ({
       {/* Adjustment form */}
       <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xs p-5 space-y-4">
         <div className="flex justify-between items-center pb-2 border-b border-slate-100 dark:border-slate-800">
-          <h2 className="font-extrabold text-sm text-slate-800 dark:text-white flex items-center gap-2">
+          <h2 className="font-bold text-sm text-slate-800 dark:text-white flex items-center gap-2">
             <RefreshCw className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
             {t('স্টক সমন্বয় ও দ্রুত স্টক প্যানেল', 'Stock Adjustment Panel')}
           </h2>
           {selectedProduct && (
             <div className="flex items-center gap-2 text-xs font-bold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 px-3 py-1 rounded-xl border border-indigo-200 dark:border-indigo-800/60">
-              <span>{t('বর্তমান স্টক:', 'Current Stock:')} <strong className="font-black">{selectedProductCurrentStock}</strong></span>
+              <span>{t('বর্তমান স্টক:', 'Current Stock:')} <strong className="font-bold">{selectedProductCurrentStock}</strong></span>
               <span>➔</span>
-              <span>{t('নতুন স্টক হবে:', 'New Stock:')} <strong className="font-black text-emerald-600 dark:text-emerald-400">{selectedProductNewStock}</strong> ({movementType === 'in' ? '+' : '-'}{quantity})</span>
+              <span>{t('নতুন স্টক হবে:', 'New Stock:')} <strong className="font-bold text-emerald-600 dark:text-emerald-400">{selectedProductNewStock}</strong> ({movementType === 'in' ? '+' : '-'}{quantity})</span>
             </div>
           )}
         </div>
 
         <form onSubmit={submit} className="grid grid-cols-1 md:grid-cols-6 gap-4 text-xs items-start">
           <div className="md:col-span-2 relative">
-            <label className="block text-xs font-extrabold text-slate-700 dark:text-slate-200 mb-1.5">{t('পণ্য খুঁজুন', 'Find product')} *</label>
+            <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1.5">{t('পণ্য খুঁজুন', 'Find product')} *</label>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <input
@@ -220,7 +220,7 @@ export const StockCenter: React.FC<Props> = ({
                   <button type="button" key={p.id}
                     onClick={() => { setSelectedProductId(p.id); setSearch(`${p.name} (${p.id})`); }}
                     className="w-full text-left px-3.5 py-2.5 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 transition cursor-pointer">
-                    <div className="font-extrabold text-slate-800 dark:text-white">{p.name}</div>
+                    <div className="font-bold text-slate-800 dark:text-white">{p.name}</div>
                     <div className="text-[10px] text-slate-400 font-semibold mt-0.5">
                       SKU: {p.id} • {t('বর্তমান স্টক', 'Current Stock')}: <span className="font-bold text-indigo-600 dark:text-indigo-400">{p.stock ?? 0} {p.unit || 'pcs'}</span>
                     </div>
@@ -231,28 +231,28 @@ export const StockCenter: React.FC<Props> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-extrabold text-slate-700 dark:text-slate-200 mb-1.5">{t('ধরন', 'Type')}</label>
+            <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1.5">{t('ধরন', 'Type')}</label>
             <div className="flex gap-1.5">
               <button type="button" onClick={() => setMovementType('in')}
-                className={`flex-1 py-2.5 rounded-xl border text-xs font-black inline-flex items-center justify-center gap-1 transition cursor-pointer ${movementType === 'in' ? 'bg-emerald-600 text-white border-emerald-600 shadow-xs' : 'bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800'}`}>
+                className={`flex-1 py-2.5 rounded-xl border text-xs font-bold inline-flex items-center justify-center gap-1 transition cursor-pointer ${movementType === 'in' ? 'bg-emerald-600 text-white border-emerald-600 shadow-xs' : 'bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800'}`}>
                 <Plus className="w-3.5 h-3.5" /> {t('ইন (+)', 'IN (+)')}
               </button>
               <button type="button" onClick={() => setMovementType('out')}
-                className={`flex-1 py-2.5 rounded-xl border text-xs font-black inline-flex items-center justify-center gap-1 transition cursor-pointer ${movementType === 'out' ? 'bg-rose-600 text-white border-rose-600 shadow-xs' : 'bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800'}`}>
+                className={`flex-1 py-2.5 rounded-xl border text-xs font-bold inline-flex items-center justify-center gap-1 transition cursor-pointer ${movementType === 'out' ? 'bg-rose-600 text-white border-rose-600 shadow-xs' : 'bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800'}`}>
                 <Minus className="w-3.5 h-3.5" /> {t('আউট (-)', 'OUT (-)')}
               </button>
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-extrabold text-slate-700 dark:text-slate-200 mb-1.5">{t('পরিমাণ', 'Quantity')} *</label>
+            <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1.5">{t('পরিমাণ', 'Quantity')} *</label>
             <input type="number" min={0} value={quantity || ''} onChange={e => setQuantity(Number(e.target.value))}
               placeholder="0"
-              className="w-full px-3 py-2.5 border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 dark:text-white font-black text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none" />
+              className="w-full px-3 py-2.5 border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 dark:text-white font-bold text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none" />
           </div>
 
           <div className="md:col-span-2">
-            <label className="block text-xs font-extrabold text-slate-700 dark:text-slate-200 mb-1.5">{t('নোট / রেফারেন্স', 'Note / Reference')}</label>
+            <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1.5">{t('নোট / রেফারেন্স', 'Note / Reference')}</label>
             <input value={note} onChange={e => setNote(e.target.value)}
               placeholder={t('যেমন: নতুন পারচেজ বা সমন্বয় কারণ', 'e.g. Purchase or adjustment reason')}
               className="w-full px-3 py-2.5 border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 dark:text-white font-semibold text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none" />
@@ -260,7 +260,7 @@ export const StockCenter: React.FC<Props> = ({
 
           <div className="md:col-span-6 flex justify-end">
             <button type="submit"
-              className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-extrabold shadow-md transition cursor-pointer">
+              className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-bold shadow-md transition cursor-pointer">
               ✓ {t('স্টক সমন্বয় সংরক্ষণ করুন', 'Save Stock Adjustment')}
             </button>
           </div>
@@ -272,7 +272,7 @@ export const StockCenter: React.FC<Props> = ({
         <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-2">
             <AlertTriangle className="w-5 h-5 text-amber-500" />
-            <h2 className="font-extrabold text-slate-800 dark:text-white text-sm">
+            <h2 className="font-bold text-slate-800 dark:text-white text-sm">
               {t('স্টক সতর্কতা ও পারচেজ রিকুইজিশন টেবিল', 'Stock Alerts & Reorder Table')}
             </h2>
           </div>
@@ -283,7 +283,7 @@ export const StockCenter: React.FC<Props> = ({
       {/* Movement History Table */}
       <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xs overflow-hidden">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center px-5 py-4 border-b border-slate-100 dark:border-slate-800 gap-3">
-          <h2 className="font-extrabold text-sm text-slate-800 dark:text-white flex items-center gap-2">
+          <h2 className="font-bold text-sm text-slate-800 dark:text-white flex items-center gap-2">
             <History className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
             {t('স্টক সমন্বয় ও মুভমেন্ট ইতিহাস', 'Stock Movement Audit Log')}
             <span className="text-xs font-bold text-slate-400">({filteredMovements.length})</span>
@@ -293,19 +293,19 @@ export const StockCenter: React.FC<Props> = ({
             <div className="flex text-xs rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 p-0.5 bg-slate-50 dark:bg-slate-950">
               {(['all', 'in', 'out'] as const).map(k => (
                 <button key={k} onClick={() => setHistoryFilter(k)}
-                  className={`px-3 py-1 rounded-lg font-extrabold transition cursor-pointer ${historyFilter === k ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}`}>
+                  className={`px-3 py-1 rounded-lg font-bold transition cursor-pointer ${historyFilter === k ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'}`}>
                   {k === 'all' ? t('সব', 'All') : k === 'in' ? t('ইন (+)', 'IN (+)') : t('আউট (-)', 'OUT (-)')}
                 </button>
               ))}
             </div>
 
             <button onClick={exportMovementsCsv}
-              className="inline-flex items-center gap-1.5 text-xs font-extrabold px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition cursor-pointer">
+              className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition cursor-pointer">
               <Download className="w-3.5 h-3.5" /> {t('এক্সপোর্ট', 'Export')}
             </button>
 
             <button onClick={printMovements}
-              className="inline-flex items-center gap-1.5 text-xs font-extrabold px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white shadow-xs transition cursor-pointer">
+              className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white shadow-xs transition cursor-pointer">
               <Printer className="w-3.5 h-3.5" /> {t('প্রিন্ট', 'Print')}
             </button>
           </div>
@@ -313,7 +313,7 @@ export const StockCenter: React.FC<Props> = ({
 
         <div className="overflow-x-auto max-h-80 overflow-y-auto">
           <table className="w-full text-xs text-left border-collapse select-none">
-            <thead className="bg-slate-50 dark:bg-slate-800/80 sticky top-0 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 font-black uppercase">
+            <thead className="bg-slate-50 dark:bg-slate-800/80 sticky top-0 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 font-bold uppercase">
               <tr>
                 <th className="px-4 py-3 text-center w-10">#</th>
                 <th className="px-4 py-3">{t('তারিখ ও সময়', 'Date & Time')}</th>
@@ -327,14 +327,14 @@ export const StockCenter: React.FC<Props> = ({
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
               {filteredMovements.map((m, idx) => (
                 <tr key={m.id || idx} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition">
-                  <td className="px-4 py-3 text-center font-extrabold text-slate-400 text-[11px]">{idx + 1}</td>
+                  <td className="px-4 py-3 text-center font-bold text-slate-400 text-[11px]">{idx + 1}</td>
                   <td className="px-4 py-3 font-semibold text-slate-500 text-[11px] whitespace-nowrap">{new Date(m.date).toLocaleString()}</td>
                   <td className="px-4 py-3">
-                    <div className="font-extrabold text-slate-800 dark:text-white">{m.productName}</div>
+                    <div className="font-bold text-slate-800 dark:text-white">{m.productName}</div>
                     <div className="text-[10px] text-slate-400 font-mono">{m.productId}</div>
                   </td>
                   <td className="px-4 py-3 text-center whitespace-nowrap">
-                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black border ${
+                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${
                       m.type === 'in' 
                         ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border-emerald-200' 
                         : 'bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300 border-rose-200'
@@ -342,7 +342,7 @@ export const StockCenter: React.FC<Props> = ({
                       {m.type === 'in' ? t('🟢 ইন (+)', '🟢 IN (+)') : t('🔴 আউট (-)', '🔴 OUT (-)')}
                     </span>
                   </td>
-                  <td className={`px-4 py-3 text-right font-black text-sm whitespace-nowrap ${m.type === 'in' ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}>
+                  <td className={`px-4 py-3 text-right font-bold text-sm whitespace-nowrap ${m.type === 'in' ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}>
                     {m.type === 'in' ? '+' : '-'}{m.quantity}
                   </td>
                   <td className="px-4 py-3 text-slate-500 font-semibold max-w-[200px] truncate">{m.note || '—'}</td>
@@ -368,3 +368,4 @@ export const StockCenter: React.FC<Props> = ({
     </div>
   );
 };
+

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import * as XLSX from 'xlsx';
 import { Upload, Download, FileSpreadsheet, CheckCircle2, AlertCircle, Wrench, RefreshCw, X, Layers } from 'lucide-react';
 
@@ -256,7 +256,7 @@ export const ImportServices: React.FC<Props> = ({
             <Wrench className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-xl sm:text-2xl font-black text-slate-800 dark:text-white tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white tracking-tight">
               📥 {isBn ? "ইমপোর্ট সার্ভিসেস ( Import Services )" : "Bulk Import Service Catalog"}
             </h1>
             <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">
@@ -268,7 +268,7 @@ export const ImportServices: React.FC<Props> = ({
         <button
           type="button"
           onClick={handleDownloadSampleServicesTemplate}
-          className="px-5 py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 font-extrabold text-xs rounded-xl border border-emerald-200 dark:border-emerald-800 shadow-xs transition active:scale-95 cursor-pointer flex items-center gap-2"
+          className="px-5 py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 font-bold text-xs rounded-xl border border-emerald-200 dark:border-emerald-800 shadow-xs transition active:scale-95 cursor-pointer flex items-center gap-2"
         >
           <Download className="w-4 h-4" />
           <span>{isBn ? "স্যাম্পল সার্ভিস এক্সেল ডাউনলোড" : "Download Service Template"}</span>
@@ -291,7 +291,7 @@ export const ImportServices: React.FC<Props> = ({
           </div>
 
           <div>
-            <h3 className="text-base font-extrabold text-slate-800 dark:text-white">
+            <h3 className="text-base font-bold text-slate-800 dark:text-white">
               {selectedFile ? selectedFile.name : (isBn ? "সার্ভিস লিস্ট এক্সেল বা CSV ফাইল সিলেক্ট করুন" : "Select Service List Excel/CSV File")}
             </h3>
             <p className="text-xs text-slate-400 font-medium mt-1">
@@ -303,7 +303,7 @@ export const ImportServices: React.FC<Props> = ({
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="px-6 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-extrabold text-xs rounded-xl shadow-md shadow-emerald-500/20 transition active:scale-95 cursor-pointer flex items-center gap-2"
+              className="px-6 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold text-xs rounded-xl shadow-md shadow-emerald-500/20 transition active:scale-95 cursor-pointer flex items-center gap-2"
             >
               <Upload className="w-4 h-4" />
               <span>{selectedFile ? (isBn ? "অন্য ফাইল সিলেক্ট করুন" : "Choose Another File") : (isBn ? "ফাইল আপলোড করুন" : "Browse File")}</span>
@@ -334,22 +334,22 @@ export const ImportServices: React.FC<Props> = ({
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
             <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 shadow-2xs">
               <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">{isBn ? "মোট সার্ভিস" : "Parsed Services"}</span>
-              <span className="text-xl font-black text-slate-800 dark:text-white mt-1 block">{parsedRows.length} {isBn ? "টি" : "services"}</span>
+              <span className="text-xl font-bold text-slate-800 dark:text-white mt-1 block">{parsedRows.length} {isBn ? "টি" : "services"}</span>
             </div>
 
             <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-emerald-200/80 dark:border-emerald-900/40 shadow-2xs">
               <span className="text-[11px] font-bold text-emerald-600 uppercase tracking-wider block">{isBn ? "বৈধ সার্ভিস" : "Valid Services"}</span>
-              <span className="text-xl font-black text-emerald-600 mt-1 block">✓ {validCount} {isBn ? "টি" : ""}</span>
+              <span className="text-xl font-bold text-emerald-600 mt-1 block">✓ {validCount} {isBn ? "টি" : ""}</span>
             </div>
 
             <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-amber-200/80 dark:border-amber-900/40 shadow-2xs">
               <span className="text-[11px] font-bold text-amber-600 uppercase tracking-wider block">{isBn ? "বিদ্যমান আইডি (আপডেট হবে)" : "Duplicate Service IDs"}</span>
-              <span className="text-xl font-black text-amber-600 mt-1 block">⚠️ {duplicateCount} {isBn ? "টি" : ""}</span>
+              <span className="text-xl font-bold text-amber-600 mt-1 block">⚠️ {duplicateCount} {isBn ? "টি" : ""}</span>
             </div>
 
             <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-rose-200/80 dark:border-rose-900/40 shadow-2xs">
               <span className="text-[11px] font-bold text-rose-600 uppercase tracking-wider block">{isBn ? "ত্রুটিপূর্ণ সারি" : "Invalid Rows"}</span>
-              <span className="text-xl font-black text-rose-600 mt-1 block">✕ {invalidCount} {isBn ? "টি" : ""}</span>
+              <span className="text-xl font-bold text-rose-600 mt-1 block">✕ {invalidCount} {isBn ? "টি" : ""}</span>
             </div>
           </div>
 
@@ -357,7 +357,7 @@ export const ImportServices: React.FC<Props> = ({
           <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
             <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
               <div>
-                <h3 className="text-sm font-extrabold text-slate-800 dark:text-white">
+                <h3 className="text-sm font-bold text-slate-800 dark:text-white">
                   📋 {isBn ? "সার্ভিস ডাটা প্রিভিউ ও ভ্যালিডেশন" : "Service Data Preview Table"}
                 </h3>
                 <p className="text-xs text-slate-400 font-medium">
@@ -369,7 +369,7 @@ export const ImportServices: React.FC<Props> = ({
                 type="button"
                 onClick={handleExecuteImport}
                 disabled={validCount === 0 || importCompleted}
-                className="px-6 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 disabled:opacity-50 text-white font-extrabold text-xs rounded-xl shadow-md shadow-emerald-500/20 transition active:scale-95 cursor-pointer flex items-center gap-2 shrink-0"
+                className="px-6 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 disabled:opacity-50 text-white font-bold text-xs rounded-xl shadow-md shadow-emerald-500/20 transition active:scale-95 cursor-pointer flex items-center gap-2 shrink-0"
               >
                 <CheckCircle2 className="w-4 h-4" />
                 <span>
@@ -382,7 +382,7 @@ export const ImportServices: React.FC<Props> = ({
 
             <div className="overflow-x-auto max-h-[480px] overflow-y-auto">
               <table className="w-full text-xs text-left border-collapse">
-                <thead className="bg-slate-50 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 font-extrabold uppercase text-[10.5px] border-b border-slate-200 dark:border-slate-700 sticky top-0 z-10">
+                <thead className="bg-slate-50 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 font-bold uppercase text-[10.5px] border-b border-slate-200 dark:border-slate-700 sticky top-0 z-10">
                   <tr>
                     <th className="py-3 px-3 text-center">Row</th>
                     <th className="py-3 px-3">{isBn ? "সার্ভিসের নাম" : "Service Name"}</th>
@@ -411,15 +411,15 @@ export const ImportServices: React.FC<Props> = ({
                       <td className="py-2.5 px-3 text-slate-400 max-w-[200px] truncate" title={r.description}>{r.description || '-'}</td>
                       <td className="py-2.5 px-3 text-center">
                         {!r.isValid ? (
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300 border border-rose-200">
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300 border border-rose-200">
                             ✕ {r.validationError || 'Invalid'}
                           </span>
                         ) : r.isDuplicateID ? (
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 border border-amber-200">
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 border border-amber-200">
                             ⚠️ Update ID
                           </span>
                         ) : (
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200">
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200">
                             ✓ Ready
                           </span>
                         )}
@@ -436,3 +436,4 @@ export const ImportServices: React.FC<Props> = ({
   );
 };
 export default ImportServices;
+

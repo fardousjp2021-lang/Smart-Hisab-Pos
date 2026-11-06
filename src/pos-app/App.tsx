@@ -145,11 +145,11 @@ class ComponentErrorBoundary extends React.Component<{ children: React.ReactNode
     if (this.state.hasError) {
       return (
         <div className="p-6 m-4 bg-rose-50 border border-rose-200 rounded-2xl text-rose-800 space-y-3">
-          <h2 className="text-base font-extrabold flex items-center gap-2">⚠️ রিপোর্ট কেন্দ্র লোড সমস্যা</h2>
+          <h2 className="text-base font-bold flex items-center gap-2">⚠️ রিপোর্ট কেন্দ্র লোড সমস্যা</h2>
           <div className="text-xs font-mono bg-rose-100/80 p-3 rounded-xl overflow-x-auto text-rose-900 border border-rose-200">
             {String(this.state.error?.stack || this.state.error?.message || this.state.error)}
           </div>
-          <button onClick={() => this.setState({ hasError: false, error: null })} className="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-black shadow-sm transition">
+          <button onClick={() => this.setState({ hasError: false, error: null })} className="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-bold shadow-sm transition">
             পুনরায় চেষ্টা করুন (Retry)
           </button>
         </div>
@@ -166,7 +166,7 @@ const BOM = '\uFEFF';
 
 // Custom Lucide-Like Simple Core SVG Icons for Sidebars
 const SquarePlusIcon = (props: any) => (
-  <div className={`w-3.5 h-3.5 border border-white/60 text-white/85 rounded flex items-center justify-center font-extrabold text-[9px] leading-none shrink-0 select-none bg-white/5 ${props.className || ''}`}>
+  <div className={`w-3.5 h-3.5 border border-white/60 text-white/85 rounded flex items-center justify-center font-bold text-[9px] leading-none shrink-0 select-none bg-white/5 ${props.className || ''}`}>
     +
   </div>
 );
@@ -180,7 +180,7 @@ const ListIcon = (props: any) => (
 );
 
 const ImportIcon = (props: any) => (
-  <div className={`w-3.5 h-3.5 border border-white/60 text-white/85 rounded-full flex items-center justify-center font-extrabold text-[8px] leading-none shrink-0 select-none bg-white/5 ${props.className || ''}`}>
+  <div className={`w-3.5 h-3.5 border border-white/60 text-white/85 rounded-full flex items-center justify-center font-bold text-[8px] leading-none shrink-0 select-none bg-white/5 ${props.className || ''}`}>
     &larr;
   </div>
 );
@@ -2320,12 +2320,12 @@ export default function App() {
                   setReportShopTitleEn(e.target.value);
                 }
               }}
-              className="bg-transparent border-b border-dashed border-slate-300 focus:border-blue-600 focus:outline-none text-center font-display font-black text-2xl text-blue-805 tracking-wide cursor-text w-full max-w-md py-1"
+              className="bg-transparent border-b border-dashed border-slate-300 focus:border-blue-600 focus:outline-none text-center font-display font-bold text-2xl text-blue-805 tracking-wide cursor-text w-full max-w-md py-1"
               title={isBn ? "দোকানের নামটি পরিবর্তন করতে এখানে ক্লিক করুন" : "Click here to edit your shop title directly"}
               placeholder={isBn ? "দোকানের নাম" : "Shop Name"}
             />
           </div>
-          <h2 className="text-lg font-extrabold text-blue-900/90 font-sans tracking-wide mt-2">
+          <h2 className="text-lg font-bold text-blue-900/90 font-sans tracking-wide mt-2">
             {isBn ? "বিক্রয় রিপোর্ট" : "Sales Report Statement"}
           </h2>
           <p className="text-xs text-slate-500 font-mono font-medium bg-slate-50 border border-slate-200/60 px-3 py-1 mt-1.5 rounded-full inline-block print:border-none print:bg-transparent">
@@ -2337,7 +2337,7 @@ export default function App() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 font-sans">
           {/* Card 1: Blue (Total Sales) */}
           <div className="border border-blue-500 bg-blue-50/10 p-4 rounded-xl text-center flex flex-col justify-center items-center min-h-[95px] shadow-sm">
-            <span className="text-[11px] font-black text-blue-600 uppercase tracking-wider mb-2">
+            <span className="text-[11px] font-bold text-blue-600 uppercase tracking-wider mb-2">
               {isBn ? "মোট বিক্রয়" : "Total Sales"}
             </span>
             <span className="text-xl font-bold text-blue-700 block font-sans">
@@ -2347,7 +2347,7 @@ export default function App() {
 
           {/* Card 2: Green (Total Quantity) */}
           <div className="border border-emerald-500 bg-emerald-50/10 p-4 rounded-xl text-center flex flex-col justify-center items-center min-h-[95px] shadow-sm">
-            <span className="text-[11px] font-black text-emerald-600 uppercase tracking-wider mb-2">
+            <span className="text-[11px] font-bold text-emerald-600 uppercase tracking-wider mb-2">
               {isBn ? "মোট সংখ্যা" : "Total Quantity"}
             </span>
             <span className="text-xl font-bold text-emerald-600 block font-sans">
@@ -2357,7 +2357,7 @@ export default function App() {
 
           {/* Card 3: Purple (Report Date) */}
           <div className="border border-purple-500 bg-purple-50/10 p-4 rounded-xl text-center flex flex-col justify-center items-center min-h-[95px] shadow-sm">
-            <span className="text-[11px] font-black text-purple-600 uppercase tracking-wider mb-2">
+            <span className="text-[11px] font-bold text-purple-600 uppercase tracking-wider mb-2">
               {isBn ? "রিপোর্ট তারিখ" : "Report Date"}
             </span>
             <span className="text-xl font-bold text-purple-600 block font-sans">
@@ -2371,7 +2371,7 @@ export default function App() {
           <table className="w-full text-xs text-left text-gray-750 border-collapse">
             <thead>
               {/* Very clean blue headers background styled like screenshot page 1 */}
-              <tr className="bg-[#ebf4fa] text-[#00385c] font-black uppercase text-[10.5px] border-y border-slate-350">
+              <tr className="bg-[#ebf4fa] text-[#00385c] font-bold uppercase text-[10.5px] border-y border-slate-350">
                 <th className="px-5 py-3.5 border-r border-[#d4e1f0]">{isBn ? "পণ্যের নাম" : "Product Name"}</th>
                 <th className="px-4 py-3.5 border-r border-[#d4e1f0] text-center whitespace-nowrap">{isBn ? "তারিখ" : "Date"}</th>
                 <th className="px-4 py-3.5 border-r border-[#d4e1f0] text-right">{isBn ? "টাকা" : "Price"}</th>
@@ -2405,7 +2405,7 @@ export default function App() {
                       <td className="px-4 py-3.5 border-r border-gray-200 text-center text-gray-900 font-semibold whitespace-nowrap">
                         {isBn ? toBnDigits(sale.quantity) + " " + unitLabel : sale.quantity + " " + unitLabel}
                       </td>
-                      <td className="px-4 py-3.5 border-r border-gray-200 text-right font-black text-gray-955 font-mono">
+                      <td className="px-4 py-3.5 border-r border-gray-200 text-right font-bold text-gray-955 font-mono">
                         {isBn ? toBnDigits(totalLabel) : totalLabel}
                       </td>
                       <td className="px-4 py-3.5 text-center text-gray-500 whitespace-nowrap font-medium">
@@ -2416,7 +2416,7 @@ export default function App() {
                 })
               ) : (
                 <tr>
-                  <td colSpan={6} className="py-12 text-center text-gray-500 font-black tracking-wide uppercase text-xs">
+                  <td colSpan={6} className="py-12 text-center text-gray-500 font-bold tracking-wide uppercase text-xs">
                     {isBn ? "কোনো বিক্রয় রেকর্ড পাওয়া যায়নি।" : "No transaction records matches filters."}
                   </td>
                 </tr>
@@ -2428,7 +2428,7 @@ export default function App() {
         {/* Centered Authorities signature layout styled exactly like screenshot page 1 */}
         <div className="flex flex-col items-center justify-center pt-6 text-center space-y-1.5 text-xs text-gray-700 select-none">
           <span className="font-semibold block text-[11px]">{isBn ? "ধন্যবাদান্তে," : "Best Regards,"}</span>
-          <span className="font-black text-blue-800 tracking-wide block uppercase text-[12px]">
+          <span className="font-bold text-blue-800 tracking-wide block uppercase text-[12px]">
             {isBn ? activeShopTitle + " কর্তৃপক্ষ" : activeShopTitle + " Authority"}
           </span>
         </div>
@@ -3565,7 +3565,7 @@ export default function App() {
           <div className="w-full max-w-4xl space-y-6">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4 no-print bg-gray-900 border border-gray-800 p-5 rounded-2xl shadow-xl">
               <div>
-                <span className="text-sm font-black text-cyan-400 block tracking-wider uppercase flex items-center gap-2">
+                <span className="text-sm font-bold text-cyan-400 block tracking-wider uppercase flex items-center gap-2">
                   <span>📊</span>
                   <span>{reportLang === 'bn' ? "রিপোর্ট প্রিন্ট প্রিভিউ" : "A4 Report Print Preview"}</span>
                 </span>
@@ -3622,12 +3622,12 @@ export default function App() {
         
         {/* Read-Only Demo Protective Banner (Active for Demo Users) */}
         {(sessionUser?.isDemo || sessionUser?.email === 'owner@smarthisab.com' || sessionUser?.email === 'demo@smarthisab.com') && (
-          <div className="bg-gradient-to-r from-amber-500 via-amber-600 to-orange-600 text-slate-950 text-xs px-4 py-1.5 font-black flex items-center justify-between shadow-md z-40 select-none">
+          <div className="bg-gradient-to-r from-amber-500 via-amber-600 to-orange-600 text-slate-950 text-xs px-4 py-1.5 font-bold flex items-center justify-between shadow-md z-40 select-none">
             <span className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-slate-950 animate-ping" />
               <span>🔒 ডেমো এক্সপ্লোরেশন মোড (Read-Only Demo Mode): ডেমো দেখতে আপনি সব পেজে ঢুকতে পারবেন, কিন্তু তথ্য ডিলিট বা পরিবর্তন করা সংরক্ষিত।</span>
             </span>
-            <span className="text-[10px] font-extrabold bg-slate-950 text-amber-400 px-2 py-0.5 rounded-full uppercase tracking-widest border border-amber-300/40">
+            <span className="text-[10px] font-bold bg-slate-950 text-amber-400 px-2 py-0.5 rounded-full uppercase tracking-widest border border-amber-300/40">
               DEMO ONLY
             </span>
           </div>
@@ -3661,7 +3661,7 @@ export default function App() {
                     'info'
                   );
                 }}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-black shadow-md border transition cursor-pointer active:scale-95 ml-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700 hover:border-slate-600"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold shadow-md border transition cursor-pointer active:scale-95 ml-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700 hover:border-slate-600"
                 title={lang === 'bn' ? "হোমপেজ / মূল ওয়েবসাইটে যান" : "Go to Homepage"}
               >
                 <Home className="h-3.5 w-3.5 text-sky-400" />
@@ -3672,7 +3672,7 @@ export default function App() {
             )}
 
             {/* White-Label Platform Brand Header (Super Admin Editable) */}
-            <div className="flex items-center gap-1.5 font-sans font-black text-xl sm:text-2xl text-white select-none ml-1 tracking-wide">
+            <div className="flex items-center gap-1.5 font-sans font-bold text-xl sm:text-2xl text-white select-none ml-1 tracking-wide">
               <span>{platformBrandName || 'Nexus'}</span>
               <span className="uppercase">{platformBrandBadge || 'ERP'}</span>
             </div>
@@ -3682,7 +3682,7 @@ export default function App() {
             <div className="relative">
               <button
                 onClick={function() { setIsQuickAddOpen(!isQuickAddOpen); }}
-                className="w-10 h-10 rounded bg-[#FF4500] hover:bg-[#ff5d20] flex items-center justify-center text-white text-lg font-black shadow-md transition active:scale-95 cursor-pointer ml-1"
+                className="w-10 h-10 rounded bg-[#FF4500] hover:bg-[#ff5d20] flex items-center justify-center text-white text-lg font-bold shadow-md transition active:scale-95 cursor-pointer ml-1"
                 title="Quick Add Menu"
               >
                 <Plus className="h-5 w-5 stroke-[3.5px] text-white" />
@@ -3697,44 +3697,44 @@ export default function App() {
                   <div 
                     className="absolute left-0 mt-2 w-60 rounded-xl bg-[rgb(1,12,45)] border border-blue-500/40 shadow-2xl py-1.5 z-50 text-white font-sans text-xs"
                   >
-                    <div className="px-4 py-2 text-[11px] text-amber-400 font-extrabold uppercase tracking-wider border-b border-white/10 flex items-center justify-between">
+                    <div className="px-4 py-2 text-[11px] text-amber-400 font-bold uppercase tracking-wider border-b border-white/10 flex items-center justify-between">
                       <span>{lang === 'bn' ? 'কুইক অ্যাকশন' : 'Quick Actions'}</span>
-                      <span className="text-[9.5px] bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded font-black">FAST</span>
+                      <span className="text-[9.5px] bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded font-bold">FAST</span>
                     </div>
                     <button
                       onClick={function() { setIsQuickAddOpen(false); setIsAddProductOpen(true); }}
-                      className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-blue-600/30 text-left cursor-pointer transition font-extrabold text-[13.5px] text-white hover:text-amber-300"
+                      className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-blue-600/30 text-left cursor-pointer transition font-bold text-[13.5px] text-white hover:text-amber-300"
                     >
                       <Package className="h-4 w-4 text-[#FFB200] shrink-0 stroke-[2.5px]" />
-                      <span className="font-extrabold tracking-wide">{lang === 'bn' ? 'আইটেম যোগ করুন' : 'Add Item/Product'}</span>
+                      <span className="font-bold tracking-wide">{lang === 'bn' ? 'আইটেম যোগ করুন' : 'Add Item/Product'}</span>
                     </button>
                     <button
                       onClick={function() { setIsQuickAddOpen(false); setIsAddCustomerOpen(true); }}
-                      className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-blue-600/30 text-left cursor-pointer transition font-extrabold text-[13.5px] text-white hover:text-amber-300"
+                      className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-blue-600/30 text-left cursor-pointer transition font-bold text-[13.5px] text-white hover:text-amber-300"
                     >
                       <UserPlus className="h-4 w-4 text-[#FFB200] shrink-0 stroke-[2.5px]" />
-                      <span className="font-extrabold tracking-wide">{lang === 'bn' ? 'গ্রাহক যোগ করুন' : 'Add Customer'}</span>
+                      <span className="font-bold tracking-wide">{lang === 'bn' ? 'গ্রাহক যোগ করুন' : 'Add Customer'}</span>
                     </button>
                     <button
                       onClick={function() { setIsQuickAddOpen(false); setIsAddEmployeeOpen(true); }}
-                      className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-blue-600/30 text-left cursor-pointer transition font-extrabold text-[13.5px] text-white hover:text-amber-300"
+                      className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-blue-600/30 text-left cursor-pointer transition font-bold text-[13.5px] text-white hover:text-amber-300"
                     >
                       <Users className="h-4 w-4 text-[#FFB200] shrink-0 stroke-[2.5px]" />
-                      <span className="font-extrabold tracking-wide">{lang === 'bn' ? 'স্টাফ যোগ করুন' : 'Add Staff'}</span>
+                      <span className="font-bold tracking-wide">{lang === 'bn' ? 'স্টাফ যোগ করুন' : 'Add Staff'}</span>
                     </button>
                     <button
                       onClick={function() { setIsQuickAddOpen(false); setIsAddQuotationOpen(true); }}
-                      className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-blue-600/30 text-left cursor-pointer transition font-extrabold text-[13.5px] text-white hover:text-amber-300"
+                      className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-blue-600/30 text-left cursor-pointer transition font-bold text-[13.5px] text-white hover:text-amber-300"
                     >
                       <FileText className="h-4 w-4 text-[#FFB200] shrink-0 stroke-[2.5px]" />
-                      <span className="font-extrabold tracking-wide">{lang === 'bn' ? 'কোটেশন যোগ করুন' : 'New Quotation'}</span>
+                      <span className="font-bold tracking-wide">{lang === 'bn' ? 'কোটেশন যোগ করুন' : 'New Quotation'}</span>
                     </button>
                     <button
                       onClick={function() { setIsQuickAddOpen(false); setActiveTab('pos'); setActiveSubTab('pos'); }}
-                      className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-blue-600/30 text-left cursor-pointer transition font-extrabold text-[13.5px] text-white hover:text-amber-300 border-t border-white/10 mt-1"
+                      className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-blue-600/30 text-left cursor-pointer transition font-bold text-[13.5px] text-white hover:text-amber-300 border-t border-white/10 mt-1"
                     >
                       <ShoppingCart className="h-4 w-4 text-[#FFB200] shrink-0 stroke-[2.5px]" />
-                      <span className="font-extrabold tracking-wide">{lang === 'bn' ? 'পিওএস (POS)' : 'Open POS Screen'}</span>
+                      <span className="font-bold tracking-wide">{lang === 'bn' ? 'পিওএস (POS)' : 'Open POS Screen'}</span>
                     </button>
                   </div>
                 </>
@@ -3900,7 +3900,7 @@ export default function App() {
                   setActiveSubTab('');
                 }}
                 title={lang === 'bn' ? 'সুপার এডমিন প্যানেলে ফিরে যান' : 'Return to Super Admin Panel'}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-amber-400 hover:bg-amber-300 text-[#1a1300] text-[11px] font-black shadow-md shadow-amber-500/30 border border-amber-200 transition cursor-pointer animate-pulse"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-amber-400 hover:bg-amber-300 text-[#1a1300] text-[11px] font-bold shadow-md shadow-amber-500/30 border border-amber-200 transition cursor-pointer animate-pulse"
               >
                 <ShieldAlert className="h-3.5 w-3.5" />
                 <span>{lang === 'bn' ? 'অ্যাডমিন অপশন' : 'Admin Option'}</span>
@@ -3920,17 +3920,17 @@ export default function App() {
               return (
             <div className={`relative group/role flex items-center gap-2.5 pl-3 pr-2 py-1 border-l border-white/15 rounded-lg ring-2 ${roleColor.ring} ${roleColor.chipBg} border ${roleColor.chipBorder}`}>
               <div className={`w-9 h-9 rounded-full p-0.5 ${roleColor.bg} shrink-0 cursor-pointer shadow-lg`} title={lang === 'bn' ? "রোল নিয়ন্ত্রণ কেন্দ্র" : "Role Control Hub"}>
-                <div className="w-full h-full rounded-full bg-[rgb(1,12,45)] flex items-center justify-center text-[10px] font-black text-white">
+                <div className="w-full h-full rounded-full bg-[rgb(1,12,45)] flex items-center justify-center text-[10px] font-bold text-white">
                   {sessionUser.role === 'super_admin' ? 'DEV' : sessionUser.role === 'owner' ? 'OWN' : 'EMP'}
                 </div>
               </div>
 
               <div className="flex flex-col text-left leading-none">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-white text-[12.5px] font-extrabold whitespace-nowrap truncate max-w-[110px] inline-block">
+                  <span className="text-white text-[12.5px] font-bold whitespace-nowrap truncate max-w-[110px] inline-block">
                     {sessionUser.name}
                   </span>
-                  <span className={`px-1.5 py-0.5 rounded text-[9px] font-black uppercase tracking-wide ${roleColor.bg} text-white shadow`}>
+                  <span className={`px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide ${roleColor.bg} text-white shadow`}>
                     {roleColor.label}
                   </span>
                 </div>
@@ -3943,7 +3943,7 @@ export default function App() {
               {/* Elegant Dropdown to switch roles for testing */}
               <div className="absolute right-0 top-full mt-1 w-60 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl p-2.5 hidden group-hover/role:block z-50 text-slate-800 dark:text-white">
                 <div className="px-2 py-1.5 border-b border-slate-100 dark:border-slate-800 mb-2">
-                  <span className="text-[9.5px] font-black text-slate-400 block uppercase tracking-wider">{lang === 'bn' ? 'লাইভ রোল পরিবর্তন করুন' : 'SWITCH ACTIVE ROLE'}</span>
+                  <span className="text-[9.5px] font-bold text-slate-400 block uppercase tracking-wider">{lang === 'bn' ? 'লাইভ রোল পরিবর্তন করুন' : 'SWITCH ACTIVE ROLE'}</span>
                 </div>
                 
                 {/* 1. Super Admin Option — always visible in this role switcher */}
@@ -4020,13 +4020,13 @@ export default function App() {
                       try { localStorage.setItem('smarthisab_public_landing_enabled', 'true'); } catch (e) {}
                       showToast && showToast(lang === 'bn' ? 'সফলভাবে লগ আউট করা হয়েছে!' : 'Logged out successfully!', 'info');
                     }}
-                    className="w-full text-left px-2.5 py-2 rounded-xl text-xs font-black flex items-center justify-between bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/60 dark:hover:bg-rose-900/80 text-rose-700 dark:text-rose-300 border border-rose-200/80 dark:border-rose-800/60 cursor-pointer transition shadow-xs"
+                    className="w-full text-left px-2.5 py-2 rounded-xl text-xs font-bold flex items-center justify-between bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/60 dark:hover:bg-rose-900/80 text-rose-700 dark:text-rose-300 border border-rose-200/80 dark:border-rose-800/60 cursor-pointer transition shadow-xs"
                   >
                     <span className="flex items-center gap-1.5">
                       <LogOut className="h-4 w-4 text-rose-600 dark:text-rose-400" />
                       <span>{lang === 'bn' ? "লগ আউট (Sign Out)" : "Log Out"}</span>
                     </span>
-                    <span className="text-[11px] font-black text-rose-500">→</span>
+                    <span className="text-[11px] font-bold text-rose-500">→</span>
                   </button>
                 </div>
               </div>
@@ -4058,17 +4058,17 @@ export default function App() {
               ) : (
                 <div className="w-full overflow-hidden">
                   <div 
-                    className={`font-black text-white leading-tight tracking-tight break-words drop-shadow-md ${
-                      storeFontSize === 'sm' ? 'text-lg font-extrabold' :
-                      storeFontSize === 'lg' ? 'text-2xl font-black' :
-                      storeFontSize === 'xl' ? 'text-3xl font-black' : 'text-xl sm:text-2xl font-black'
+                    className={`font-bold text-white leading-tight tracking-tight break-words drop-shadow-md ${
+                      storeFontSize === 'sm' ? 'text-lg font-bold' :
+                      storeFontSize === 'lg' ? 'text-2xl font-bold' :
+                      storeFontSize === 'xl' ? 'text-3xl font-bold' : 'text-xl sm:text-2xl font-bold'
                     }`}
                     title={shopName}
                   >
                     {shopName || 'রনি টেলিকম'}
                   </div>
                   <div className="flex items-center gap-2 mt-1.5">
-                    <span className="px-2 py-0.5 rounded-md text-[10px] font-black bg-amber-400 text-slate-950 uppercase tracking-wider shadow-sm">
+                    <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-400 text-slate-950 uppercase tracking-wider shadow-sm">
                       {storeCode || 'ST0002'}
                     </span>
                     <span className="text-[11px] text-emerald-400 font-bold flex items-center gap-1">
@@ -4298,7 +4298,7 @@ export default function App() {
                         <div className="relative">
                           <ItemIcon className={`h-4.5 w-4.5 shrink-0 ${isSelected ? 'text-[#FFB200]' : 'text-white'}`} />
                           {isLocked && (
-                            <span className="absolute -top-1.5 -right-1.5 bg-red-600 rounded-full w-3.5 h-3.5 flex items-center justify-center text-white text-[8px] font-black" title="Locked">🔒</span>
+                            <span className="absolute -top-1.5 -right-1.5 bg-red-600 rounded-full w-3.5 h-3.5 flex items-center justify-center text-white text-[8px] font-bold" title="Locked">🔒</span>
                           )}
                         </div>
                         {item.hasBadge && (
@@ -4374,7 +4374,7 @@ export default function App() {
                             <span className="text-yellow-500 text-xs font-bold font-[805]">🔒</span>
                           )}
                           {item.hasBadge && (
-                            <span className="bg-[#ff4d4f] text-white rounded-[3px] px-1.5 py-0.5 text-[9.5px] font-black uppercase tracking-wider leading-none select-none">
+                            <span className="bg-[#ff4d4f] text-white rounded-[3px] px-1.5 py-0.5 text-[9.5px] font-bold uppercase tracking-wider leading-none select-none">
                               new
                             </span>
                           )}
@@ -4411,9 +4411,9 @@ export default function App() {
                                     sub.action();
                                   }
                                 }}
-                                className={`w-full flex items-center gap-3 px-5 py-2.5 text-[14px] sm:text-[15px] font-extrabold transition-all cursor-pointer block truncate focus:outline-none focus:ring-2 focus:ring-[#FFB200] ${
+                                className={`w-full flex items-center gap-3 px-5 py-2.5 text-[14px] sm:text-[15px] font-bold transition-all cursor-pointer block truncate focus:outline-none focus:ring-2 focus:ring-[#FFB200] ${
                                   isSubActive
-                                    ? 'text-white bg-[rgb(12,45,140)] font-black border-l-2 border-[#FFB200]'
+                                    ? 'text-white bg-[rgb(12,45,140)] font-bold border-l-2 border-[#FFB200]'
                                     : 'text-[#cfe2fe] hover:text-white hover:bg-[rgb(6,36,115)] font-bold'
                                 }`}
                               >
@@ -4445,7 +4445,7 @@ export default function App() {
                   <span>⌨️</span>
                   <span>{lang === 'bn' ? 'কিবোর্ড: Alt+M | ↑↓' : 'Nav: Alt+M | ↑↓'}</span>
                 </div>
-                <span className="text-[10px] bg-[#FFB200] text-[#1a1300] font-black px-1.5 py-0.5 rounded group-hover:scale-105 transition">
+                <span className="text-[10px] bg-[#FFB200] text-[#1a1300] font-bold px-1.5 py-0.5 rounded group-hover:scale-105 transition">
                   {lang === 'bn' ? 'গাইড' : 'Guide'}
                 </span>
               </div>
@@ -4455,7 +4455,7 @@ export default function App() {
           {isSidebarCollapsed ? (
             <div className="h-14 border-t border-[rgb(12,45,140)] bg-[rgb(1,12,45)] flex items-center justify-center shrink-0">
               <div 
-                className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 text-white flex items-center justify-center font-extrabold text-sm shadow-md shrink-0 cursor-default"
+                className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 text-white flex items-center justify-center font-bold text-sm shadow-md shrink-0 cursor-default"
                 title={sessionUser.name}
               >
                 {sessionUser.role === 'super_admin' ? 'D' : sessionUser.role === 'owner' ? 'O' : 'E'}
@@ -4463,7 +4463,7 @@ export default function App() {
             </div>
           ) : (
             <div className="h-14 px-4 border-t border-[rgb(12,45,140)] bg-[rgb(1,12,45)] flex items-center gap-3 shrink-0">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-405 text-white flex items-center justify-center font-black text-xs shadow-md shrink-0 select-none">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-405 text-white flex items-center justify-center font-bold text-xs shadow-md shrink-0 select-none">
                 {sessionUser.role === 'super_admin' ? 'DEV' : sessionUser.role === 'owner' ? 'OWN' : 'EMP'}
               </div>
               <div className="flex flex-col min-w-0 text-left">
@@ -4504,7 +4504,7 @@ export default function App() {
                           ⚠️
                         </div>
                         <div>
-                          <p className="font-extrabold text-xs text-amber-900 dark:text-amber-200 uppercase tracking-wider">
+                          <p className="font-bold text-xs text-amber-900 dark:text-amber-200 uppercase tracking-wider">
                             {lang === 'bn' ? 'সফটওয়্যার সাবস্ক্রিপশন মেয়াদ অ্যালার্ট' : 'Subscription Expiration Warning'}
                           </p>
                           <p className="text-xs text-slate-700 dark:text-slate-300 font-semibold mt-0.5">
@@ -4531,7 +4531,7 @@ export default function App() {
                       <div className="w-20 h-20 bg-red-100 dark:bg-red-950/60 rounded-full flex items-center justify-center text-red-600 dark:text-red-400 text-4xl mb-4 shadow-inner">
                         🔒
                       </div>
-                      <h2 className="text-2xl sm:text-3xl font-black text-slate-800 dark:text-white tracking-tight">
+                      <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white tracking-tight">
                         {isUserBlocked 
                           ? (lang === 'bn' ? "আপনার দোকান অ্যাকাউন্ট সাময়িক ব্লক করা হয়েছে" : "Account Suspended") 
                           : (lang === 'bn' ? "সাবস্ক্রিপশন মেয়াদ উত্তীর্ণ হয়েছে" : "Subscription Expired")}
@@ -4543,10 +4543,10 @@ export default function App() {
                       </p>
 
                       <div className="mt-6 flex flex-wrap justify-center items-center gap-3">
-                        <a href="tel:01711944027" className="px-6 py-3 bg-[#1a73e8] hover:bg-[#1557b0] text-white font-black text-xs rounded-xl shadow-lg transition flex items-center gap-2">
+                        <a href="tel:01711944027" className="px-6 py-3 bg-[#1a73e8] hover:bg-[#1557b0] text-white font-bold text-xs rounded-xl shadow-lg transition flex items-center gap-2">
                           📞 01711944027 ({lang === 'bn' ? "সুপার এডমিনকে কল করুন" : "Call Admin"})
                         </a>
-                        <a href="https://wa.me/8801711944027" target="_blank" rel="noreferrer" className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs rounded-xl shadow-lg transition flex items-center gap-2">
+                        <a href="https://wa.me/8801711944027" target="_blank" rel="noreferrer" className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-lg transition flex items-center gap-2">
                           💬 WhatsApp Support
                         </a>
                       </div>
@@ -4560,21 +4560,21 @@ export default function App() {
                     <UserCheck size={16} />
                   </div>
                   <div className="space-y-0.5">
-                    <p className="font-black text-amber-900 dark:text-amber-200 uppercase tracking-wider text-[10px]">
+                    <p className="font-bold text-amber-900 dark:text-amber-200 uppercase tracking-wider text-[10px]">
                       {lang === 'bn' ? 'ইউজার পোর্টাল অ্যাক্সেস (সুপার এডমিন)' : 'User Portal Access (Super Admin)'}
                     </p>
                     <p className="text-slate-700 dark:text-slate-200 font-semibold flex flex-wrap items-center gap-x-2 gap-y-0.5">
                       <span>{lang === 'bn' ? 'দেখছেন:' : 'Viewing as:'}</span>
-                      <span className="font-black text-amber-800 dark:text-amber-300">{sessionUser.name}</span>
+                      <span className="font-bold text-amber-800 dark:text-amber-300">{sessionUser.name}</span>
                       <span className="text-slate-500 font-mono text-[10px]">({sessionUser.email})</span>
-                      <span className="px-1.5 py-0.5 rounded bg-amber-200/70 dark:bg-amber-900/40 text-amber-900 dark:text-amber-200 text-[10px] font-black uppercase">
+                      <span className="px-1.5 py-0.5 rounded bg-amber-200/70 dark:bg-amber-900/40 text-amber-900 dark:text-amber-200 text-[10px] font-bold uppercase">
                         {lang === 'bn' ? sessionUser.roleTitleBn : sessionUser.roleTitleEn}
                       </span>
                     </p>
                     {((sessionUser as any).shopName || (sessionUser as any).shopOwnerName) && (
                       <p className="text-[11px] text-slate-600 dark:text-slate-300 font-semibold flex flex-wrap items-center gap-x-2">
                         {(sessionUser as any).shopName && (
-                          <span>🏬 <span className="font-black">{(sessionUser as any).shopName}</span></span>
+                          <span>🏬 <span className="font-bold">{(sessionUser as any).shopName}</span></span>
                         )}
                         {(sessionUser as any).shopOwnerName && (
                           <span className="text-slate-500">
@@ -4588,11 +4588,11 @@ export default function App() {
                       <span className="text-slate-500">
                         {lang === 'bn' ? 'ফিরে যাবেন:' : 'Return to:'}
                       </span>
-                      <span className="font-black text-blue-700 dark:text-blue-300">
+                      <span className="font-bold text-blue-700 dark:text-blue-300">
                         💻 {impersonationOrigin.name}
                       </span>
                       <span className="text-slate-500 font-mono text-[10px]">({impersonationOrigin.email})</span>
-                      <span className="px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 text-[10px] font-black uppercase">
+                      <span className="px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 text-[10px] font-bold uppercase">
                         {lang === 'bn' ? impersonationOrigin.roleTitleBn : impersonationOrigin.roleTitleEn}
                       </span>
                     </p>
@@ -4600,7 +4600,7 @@ export default function App() {
                 </div>
                 <button
                   onClick={exitImpersonation}
-                  className="text-xs font-black px-3 py-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white flex items-center gap-1.5 shadow-md active:scale-95 transition"
+                  className="text-xs font-bold px-3 py-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white flex items-center gap-1.5 shadow-md active:scale-95 transition"
                 >
                   <ArrowLeftCircle size={14} />
                   {lang === 'bn' ? 'সুপার এডমিন সেশনে ফিরুন' : 'Return to Super Admin'}
@@ -4614,32 +4614,32 @@ export default function App() {
                 <div className="pointer-events-auto bg-gradient-to-br from-amber-500 to-orange-600 backdrop-blur border-2 border-amber-200 shadow-2xl shadow-amber-900/40 rounded-2xl overflow-hidden max-w-[340px]">
                   {/* Header strip: current role */}
                   <div className="bg-black/25 px-3 py-1.5 flex items-center gap-2">
-                    <span className={`px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-widest text-white shadow ${sessionUser.role === 'owner' ? 'bg-emerald-600' : 'bg-amber-700'}`}>
+                    <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-widest text-white shadow ${sessionUser.role === 'owner' ? 'bg-emerald-600' : 'bg-amber-700'}`}>
                       {sessionUser.role === 'owner' ? (lang === 'bn' ? '🔑 দোকানের মালিক' : '🔑 Shop Owner') : (lang === 'bn' ? '👥 কর্মচারী' : '👥 Employee')}
                     </span>
-                    <span className="text-[9px] font-black text-amber-100 uppercase tracking-wider">
+                    <span className="text-[9px] font-bold text-amber-100 uppercase tracking-wider">
                       {lang === 'bn' ? 'ইম্পার্সোনেশন চলছে' : 'Impersonating'}
                     </span>
                   </div>
 
                   {/* Body: who + which shop */}
                   <div className="px-3 py-2 space-y-1">
-                    <div className="text-[11px] font-black text-white leading-tight">
+                    <div className="text-[11px] font-bold text-white leading-tight">
                       👁 <span className="underline decoration-amber-200 decoration-2 underline-offset-2">{sessionUser.name}</span>
                     </div>
                     {(sessionUser as any).shopName && (
                       <div className="text-[11px] font-bold text-amber-50 leading-tight">
-                        🏬 <span className="bg-white/20 px-1.5 py-0.5 rounded font-black">{(sessionUser as any).shopName}</span>
+                        🏬 <span className="bg-white/20 px-1.5 py-0.5 rounded font-bold">{(sessionUser as any).shopName}</span>
                         {(sessionUser as any).shopOwnerName && (
                           <span className="text-amber-100/80 ml-1">
-                            · {lang === 'bn' ? 'মালিক' : 'Owner'}: <span className="font-black text-white">{(sessionUser as any).shopOwnerName}</span>
+                            · {lang === 'bn' ? 'মালিক' : 'Owner'}: <span className="font-bold text-white">{(sessionUser as any).shopOwnerName}</span>
                           </span>
                         )}
                       </div>
                     )}
                     <div className="text-[10px] font-bold text-amber-50/95 leading-tight pt-1 border-t border-white/20">
                       {lang === 'bn' ? 'ফিরবেন:' : 'Return to:'}{' '}
-                      <span className="font-black text-white">💻 {impersonationOrigin.name}</span>
+                      <span className="font-bold text-white">💻 {impersonationOrigin.name}</span>
                     </div>
                   </div>
 
@@ -4647,7 +4647,7 @@ export default function App() {
                   <button
                     onClick={exitImpersonation}
                     title={lang === 'bn' ? 'সুপার এডমিন সেশনে ফিরুন' : 'Return to Super Admin'}
-                    className="w-full flex items-center justify-center gap-1.5 px-3 py-2 bg-white hover:bg-amber-50 text-amber-900 text-xs font-black shadow-inner active:scale-[0.98] transition cursor-pointer"
+                    className="w-full flex items-center justify-center gap-1.5 px-3 py-2 bg-white hover:bg-amber-50 text-amber-900 text-xs font-bold shadow-inner active:scale-[0.98] transition cursor-pointer"
                   >
                     <ArrowLeftCircle size={14} />
                     {lang === 'bn' ? 'সুপার এডমিন সেশনে ফিরুন' : 'Return to Super Admin'}
@@ -4663,12 +4663,12 @@ export default function App() {
               <div className="space-y-6 animate-fadeIn text-left">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-200 dark:border-slate-800 pb-5">
                   <div>
-                    <span className="text-[11px] font-black tracking-wider text-blue-600 dark:text-blue-400 uppercase">System Integrity & Version Controls</span>
-                    <h1 className="text-2xl sm:text-3xl font-black text-slate-800 dark:text-white tracking-tight mt-1">
+                    <span className="text-[11px] font-bold tracking-wider text-blue-600 dark:text-blue-400 uppercase">System Integrity & Version Controls</span>
+                    <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white tracking-tight mt-1">
                       💻 {lang === 'bn' ? "সুপার এডমিন কন্ট্রোল সেন্টার" : "Developer Super Admin Hub"}
                     </h1>
                   </div>
-                  <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl shadow-lg px-4 py-2.5 text-xs font-black flex items-center gap-2 select-none shrink-0">
+                  <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl shadow-lg px-4 py-2.5 text-xs font-bold flex items-center gap-2 select-none shrink-0">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -4686,7 +4686,7 @@ export default function App() {
                       <Sparkles className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="text-base font-black text-slate-800 dark:text-white tracking-tight">
+                      <h3 className="text-base font-bold text-slate-800 dark:text-white tracking-tight">
                         {lang === 'bn' ? 'ওয়েবসাইট ও প্ল্যাটফর্ম ব্রান্ডিং সেটিংস (Platform Branding)' : 'Platform Branding Settings'}
                       </h3>
                       <p className="text-xs text-slate-500 font-medium">
@@ -4734,7 +4734,7 @@ export default function App() {
                         'success'
                       );
                     }}
-                    className="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-black text-xs shadow-md transition cursor-pointer flex items-center justify-center gap-2"
+                    className="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold text-xs shadow-md transition cursor-pointer flex items-center justify-center gap-2"
                   >
                     <Save className="w-4 h-4" />
                     <span>{lang === 'bn' ? 'ব্র্যান্ড সেটিংস সেভ করুন' : 'Save Platform Brand'}</span>
@@ -4748,7 +4748,7 @@ export default function App() {
                       <Sparkles className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="text-base font-black text-slate-800 dark:text-white tracking-tight">
+                      <h3 className="text-base font-bold text-slate-800 dark:text-white tracking-tight">
                         💰 {lang === 'bn' ? 'সাবস্ক্রিপশন প্যাকেজের মূল্য নির্ধারণ (Subscription Pricing Controls)' : 'Subscription Pricing Controls'}
                       </h3>
                       <p className="text-xs text-slate-500 font-medium">
@@ -4760,7 +4760,7 @@ export default function App() {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-bold">
                     {/* Starter */}
                     <div className="p-3.5 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700 space-y-2">
-                      <span className="text-sky-600 dark:text-sky-400 font-black block">🚀 স্টার্টার প্যাকেজ</span>
+                      <span className="text-sky-600 dark:text-sky-400 font-bold block">🚀 স্টার্টার প্যাকেজ</span>
                       <div>
                         <label className="text-[11px] text-slate-500 block">মাসিক (৳)</label>
                         <input
@@ -4783,7 +4783,7 @@ export default function App() {
 
                     {/* Pro */}
                     <div className="p-3.5 bg-purple-50/50 dark:bg-purple-950/30 rounded-xl border border-purple-200 dark:border-purple-800 space-y-2">
-                      <span className="text-[#8b26c7] dark:text-purple-300 font-black block">⚡ প্রো বিজনেস</span>
+                      <span className="text-[#8b26c7] dark:text-purple-300 font-bold block">⚡ প্রো বিজনেস</span>
                       <div>
                         <label className="text-[11px] text-slate-500 block">মাসিক (৳)</label>
                         <input
@@ -4806,7 +4806,7 @@ export default function App() {
 
                     {/* Enterprise */}
                     <div className="p-3.5 bg-amber-50/50 dark:bg-amber-950/30 rounded-xl border border-amber-200 dark:border-amber-800 space-y-2">
-                      <span className="text-amber-600 dark:text-amber-400 font-black block">🌟 এন্টারপ্রাইজ</span>
+                      <span className="text-amber-600 dark:text-amber-400 font-bold block">🌟 এন্টারপ্রাইজ</span>
                       <div>
                         <label className="text-[11px] text-slate-500 block">মাসিক (৳)</label>
                         <input
@@ -4854,7 +4854,7 @@ export default function App() {
                         'success'
                       );
                     }}
-                    className="w-full py-3 rounded-xl bg-gradient-to-r from-[#8b26c7] to-[#701fa3] hover:brightness-110 text-white font-black text-xs shadow-md transition cursor-pointer flex items-center justify-center gap-2"
+                    className="w-full py-3 rounded-xl bg-gradient-to-r from-[#8b26c7] to-[#701fa3] hover:brightness-110 text-white font-bold text-xs shadow-md transition cursor-pointer flex items-center justify-center gap-2"
                   >
                     <Save className="w-4 h-4" />
                     <span>{lang === 'bn' ? 'প্যাকেজের নতুন ফি সেভ করুন (Save New Plan Prices)' : 'Save Package Prices'}</span>
@@ -4867,7 +4867,7 @@ export default function App() {
                   <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                     <div>
                       <span className="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Live Cloud Telemetry</span>
-                      <h3 className="text-lg font-black text-slate-800 dark:text-white mt-1 border-b border-slate-100 dark:border-slate-800 pb-2">☁️ {lang === 'bn' ? "ডাটাবেজ ও ক্লাউড স্ট্যাটাস" : "Cloud Sandbox Logs"}</h3>
+                      <h3 className="text-lg font-bold text-slate-800 dark:text-white mt-1 border-b border-slate-100 dark:border-slate-800 pb-2">☁️ {lang === 'bn' ? "ডাটাবেজ ও ক্লাউড স্ট্যাটাস" : "Cloud Sandbox Logs"}</h3>
                       <div className="mt-4 space-y-3.5 text-xs font-semibold text-slate-600 dark:text-slate-300">
                         <div className="flex justify-between items-center">
                           <span>Connection Link:</span>
@@ -4875,7 +4875,7 @@ export default function App() {
                         </div>
                         <div className="flex justify-between items-center">
                           <span>Real-time Snapshots:</span>
-                          <span className="bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 rounded-md px-1.5 py-0.5 text-[10px] font-black">Active (onSnapshot)</span>
+                          <span className="bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 rounded-md px-1.5 py-0.5 text-[10px] font-bold">Active (onSnapshot)</span>
                         </div>
                         <div className="flex justify-between items-center">
                           <span>Firestore Database:</span>
@@ -4892,11 +4892,11 @@ export default function App() {
                   {/* Card 2: Interactive Live Update Deployment Center */}
                   <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-2xl p-6 shadow-sm col-span-1 md:col-span-2">
                     <span className="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Hot-Patch Delivery Service</span>
-                    <h3 className="text-lg font-black text-slate-800 dark:text-white mt-1 pb-2 border-b border-slate-100 dark:border-slate-800">🚀 {lang === 'bn' ? "লাইভ ভার্সন আপগ্রেড সিস্টেম" : "Live Release Upgrades (No Data Loss)"}</h3>
+                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mt-1 pb-2 border-b border-slate-100 dark:border-slate-800">🚀 {lang === 'bn' ? "লাইভ ভার্সন আপগ্রেড সিস্টেম" : "Live Release Upgrades (No Data Loss)"}</h3>
                     
                     <div className="mt-4 space-y-4">
                       <div>
-                        <label className="block text-[11px] font-extrabold text-slate-500 uppercase tracking-wider mb-1.5">{lang === 'bn' ? "নতুন আপডেট এর বিবরণী লিখুন" : "Enter Deployment Log / Patch Notes"}</label>
+                        <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">{lang === 'bn' ? "নতুন আপডেট এর বিবরণী লিখুন" : "Enter Deployment Log / Patch Notes"}</label>
                         <input
                           type="text"
                           defaultValue="সাপ্লায়ার বকেয়া হিসাব লকিং আপগ্রেড এবং রিয়াল-টাইম সিকিউরিটি পলিসি ডেপ্লয়মেন্ট সফলভাবে সম্পন্ন।"
@@ -4927,7 +4927,7 @@ export default function App() {
                               });
                             }, 2000);
                           }}
-                          className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs transition-all tracking-wider shadow-md shrink-0 flex items-center gap-2 cursor-pointer"
+                          className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs transition-all tracking-wider shadow-md shrink-0 flex items-center gap-2 cursor-pointer"
                         >
                           ⚙️ {lang === 'bn' ? "সিস্টেম আপডেট করুন" : "Release Upgrade"}
                         </button>
@@ -4941,7 +4941,7 @@ export default function App() {
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-3 mb-4">
                     <div>
                       <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest block">SaaS Merchant Access Controls</span>
-                      <h3 className="text-lg font-black text-slate-800 dark:text-white mt-0.5">
+                      <h3 className="text-lg font-bold text-slate-800 dark:text-white mt-0.5">
                         📅 {lang === 'bn' ? "দোকান মালিকদের সাবস্ক্রিপশন ও ডেমো অ্যাকাউন্ট কন্ট্রোল" : "Merchant Subscriptions & Demo Access"}
                       </h3>
                     </div>
@@ -4984,7 +4984,7 @@ export default function App() {
                                        showToast(`দোকানদার "${owner.shopName}" এর পোর্টালে সুইচ করা হয়েছে! এখন আপনি স্টক ও প্রোডাক্ট সেটআপ করতে পারবেন।`, 'success');
                                      }
                                    }}
-                                   className="mt-1.5 px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/70 border border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 font-extrabold text-[9.5px] hover:bg-indigo-100 transition cursor-pointer flex items-center gap-1"
+                                   className="mt-1.5 px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/70 border border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 font-bold text-[9.5px] hover:bg-indigo-100 transition cursor-pointer flex items-center gap-1"
                                  >
                                    <span>🔑 দোকান পোর্টালে প্রবেশ (প্রোডাক্ট এন্ট্রি)</span>
                                  </button>
@@ -5000,7 +5000,7 @@ export default function App() {
                                 {owner.subscriptionExpiry || '2026-12-31'}
                               </td>
                               <td className="py-3 px-2">
-                                <span className={`px-2 py-0.5 rounded text-[10px] font-black ${
+                                <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                                   owner.isBlocked ? 'bg-red-100 text-red-700' : isExp ? 'bg-red-100 text-red-700' : isWarn ? 'bg-amber-100 text-amber-800 animate-pulse' : 'bg-emerald-100 text-emerald-800'
                                 }`}>
                                   {owner.isBlocked ? 'BLOCKED' : isExp ? 'Expired' : `${leftDays} Days`}
@@ -5095,7 +5095,7 @@ export default function App() {
                                         showToast("সঠিক সংখ্যা বসান!", "error");
                                       }
                                     }
-                                  }} className="px-2 py-1 bg-amber-500 hover:bg-amber-600 text-slate-950 text-[10px] font-extrabold rounded cursor-pointer shadow-2xs border border-amber-600">
+                                  }} className="px-2 py-1 bg-amber-500 hover:bg-amber-600 text-slate-950 text-[10px] font-bold rounded cursor-pointer shadow-2xs border border-amber-600">
                                     ⚙️ কাস্টম দিন
                                   </button>
 
@@ -5125,11 +5125,11 @@ export default function App() {
                   <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                     <div>
                       <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest block">Interactive Developer Console</span>
-                      <h3 className="text-base font-black text-slate-900 mt-0.5">
+                      <h3 className="text-base font-bold text-slate-900 mt-0.5">
                         📟 {lang === 'bn' ? "সুপার এডমিন কন্ট্রোল প্রম্পট সেন্টার" : "Super Admin Command Control & Prompt"}
                       </h3>
                     </div>
-                    <span className="text-[9.5px] font-mono bg-blue-50 text-blue-700 border border-blue-200/60 px-2.5 py-1 rounded-full font-extrabold select-none">
+                    <span className="text-[9.5px] font-mono bg-blue-50 text-blue-700 border border-blue-200/60 px-2.5 py-1 rounded-full font-bold select-none">
                       ONLINE SHELL
                     </span>
                   </div>
@@ -5147,9 +5147,9 @@ export default function App() {
                       const isSuccess = log.startsWith('SUCCESS');
                       const isError = log.startsWith('ERROR');
                       let textColor = "text-slate-700 font-semibold";
-                      if (isInput) textColor = "text-blue-700 font-extrabold";
-                      else if (isSuccess) textColor = "text-emerald-600 font-extrabold";
-                      else if (isError) textColor = "text-rose-600 font-extrabold";
+                      if (isInput) textColor = "text-blue-700 font-bold";
+                      else if (isSuccess) textColor = "text-emerald-600 font-bold";
+                      else if (isError) textColor = "text-rose-600 font-bold";
                       
                       return (
                         <div key={idx} className={`${textColor} whitespace-pre-wrap`}>
@@ -5180,7 +5180,7 @@ export default function App() {
                     </div>
                     <button
                       type="submit"
-                      className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white text-xs font-extrabold transition active:scale-95 shadow-md flex items-center gap-1.5 cursor-pointer shrink-0 border border-indigo-500/30"
+                      className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white text-xs font-bold transition active:scale-95 shadow-md flex items-center gap-1.5 cursor-pointer shrink-0 border border-indigo-500/30"
                     >
                       🚀 {lang === 'bn' ? "রান করুন" : "Execute Command"}
                     </button>
@@ -5188,7 +5188,7 @@ export default function App() {
 
                   {/* Quick Shortcut Buttons */}
                   <div>
-                    <span className="text-[10px] font-extrabold text-slate-600 uppercase tracking-wider block mb-2.5">
+                    <span className="text-[10px] font-bold text-slate-600 uppercase tracking-wider block mb-2.5">
                       💡 {lang === 'bn' ? "কুইক সিমুলেশন বাটন সমূহ (Quick Shortcuts):" : "Quick simulation shortcut commands:"}
                     </span>
                     <div className="flex flex-wrap gap-2">
@@ -5242,7 +5242,7 @@ export default function App() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Left Column: Data Backups & Master JSON Export Table */}
                   <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-2xl p-6 shadow-sm text-left">
-                    <h3 className="text-base font-black text-slate-800 dark:text-white mb-2">📁 {lang === 'bn' ? "ডাটাবেজ টেবিল ব্যাকআপ ও সিকিউর এক্সপোর্ট" : "Raw Collections Inspection & Backups"}</h3>
+                    <h3 className="text-base font-bold text-slate-800 dark:text-white mb-2">📁 {lang === 'bn' ? "ডাটাবেজ টেবিল ব্যাকআপ ও সিকিউর এক্সপোর্ট" : "Raw Collections Inspection & Backups"}</h3>
                     <p className="text-xs text-slate-400 mb-4 font-semibold leading-relaxed">
                       {lang === 'bn' ? "ভার্সন আপডেটের পর কোন ডাটা মুছে যাওয়ার ঝুঁকি এড়াতে পুরো রিলেশনাল ডাটা টেবিলটি এখানে এক ক্লিকে ব্যাকআপ ফাইল আকারে সংরক্ষণ করে রাখুন।" : "Extract database states in binary JSON blocks to secure merchant transactions before platform maintenance."}
                     </p>
@@ -5251,22 +5251,22 @@ export default function App() {
                       {/* Products count row */}
                       <div className="flex justify-between items-center p-2.5 text-xs font-semibold bg-slate-50 dark:bg-slate-950 border-b border-slate-100 dark:border-slate-800 dark:text-white">
                         <span>🏷️ Products Collection</span>
-                        <span className="font-mono text-indigo-600 font-black">{products.length} Items</span>
+                        <span className="font-mono text-indigo-600 font-bold">{products.length} Items</span>
                       </div>
                       {/* Sales count row */}
                       <div className="flex justify-between items-center p-2.5 text-xs font-semibold bg-slate-50 dark:bg-slate-950 border-b border-slate-100 dark:border-slate-800 dark:text-white">
                         <span>💰 Sales Collection</span>
-                        <span className="font-mono text-green-600 font-black">{sales.length} Records</span>
+                        <span className="font-mono text-green-600 font-bold">{sales.length} Records</span>
                       </div>
                       {/* Customers count row */}
                       <div className="flex justify-between items-center p-2.5 text-xs font-semibold bg-slate-50 dark:bg-slate-950 border-b border-slate-100 dark:border-slate-800 dark:text-white">
                         <span>👥 Customers List</span>
-                        <span className="font-mono text-yellow-600 font-black">{customers.length} Accounts</span>
+                        <span className="font-mono text-yellow-600 font-bold">{customers.length} Accounts</span>
                       </div>
                       {/* Support tickets count row */}
                       <div className="flex justify-between items-center p-2.5 text-xs font-semibold bg-slate-50 dark:bg-slate-950 dark:text-white">
                         <span>🛠️ Support Tickets Database</span>
-                        <span className="font-mono text-blue-600 font-black">{supportTickets.length} Threads</span>
+                        <span className="font-mono text-blue-600 font-bold">{supportTickets.length} Threads</span>
                       </div>
                     </div>
 
@@ -5285,12 +5285,12 @@ export default function App() {
                           document.body.removeChild(a);
                           URL.revokeObjectURL(url);
                         }}
-                        className="w-full text-center py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs transition rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                        className="w-full text-center py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-md"
                       >
                         💾 {lang === 'bn' ? "সকল ডাটা ব্যাকআপ ডাউনলোড" : "Download Master Backup (.json)"}
                       </button>
 
-                      <label className="w-full text-center py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-extrabold text-xs transition rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-md">
+                      <label className="w-full text-center py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-xs transition rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-md">
                         📥 {lang === 'bn' ? "ফাইল থেকে রিস্টোর করুন" : "Restore from JSON File"}
                         <input
                           type="file"
@@ -5305,12 +5305,12 @@ export default function App() {
                   {/* Right Column: Deployment Release Log */}
                   <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-2xl p-6 shadow-sm text-left flex flex-col justify-between">
                     <div>
-                      <h3 className="text-base font-black text-slate-800 dark:text-white mb-2">📜 {lang === 'bn' ? "রিলিজ ও আপগ্রেড হিস্ট্রি" : "Active Release Logs"}</h3>
+                      <h3 className="text-base font-bold text-slate-800 dark:text-white mb-2">📜 {lang === 'bn' ? "রিলিজ ও আপগ্রেড হিস্ট্রি" : "Active Release Logs"}</h3>
                       <div className="space-y-3.5 max-h-[220px] overflow-y-auto pr-1" style={{ scrollbarWidth: 'none' }}>
                         {systemLogText.length === 0 ? (
                           <div className="flex items-start gap-2.5 text-xs text-slate-500 font-semibold leading-relaxed border-l-2 border-indigo-500 pl-3.5">
                             <div>
-                              <span className="font-extrabold text-slate-700 dark:text-slate-200 block">v2.4.1 (Active Release)</span>
+                              <span className="font-bold text-slate-700 dark:text-slate-200 block">v2.4.1 (Active Release)</span>
                               <span>{lang === 'bn' ? "সাপ্লায়ার বকেয়া হিসাব লকিং মেকানিজম অ্যান্ড সাপোর্ট টিম চ্যানেল ডেপ্লয়মেন্ট সফল।" : "Supplier secure locking mechanisms and local support helpdesk channel successfully configured."}</span>
                             </div>
                           </div>
@@ -5319,7 +5319,7 @@ export default function App() {
                             return (
                               <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-500 dark:text-slate-400 font-semibold leading-relaxed border-l-2 border-blue-500 pl-3.5">
                                 <div>
-                                  <span className="font-extrabold text-slate-700 dark:text-slate-200 block">Patch update #{systemLogText.length - idx}</span>
+                                  <span className="font-bold text-slate-700 dark:text-slate-200 block">Patch update #{systemLogText.length - idx}</span>
                                   <span>{txt}</span>
                                 </div>
                               </div>
@@ -5340,12 +5340,12 @@ export default function App() {
               <div className="space-y-6 animate-fadeIn text-left">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-200 dark:border-slate-800 pb-5">
                   <div>
-                    <span className="text-[11px] font-black tracking-wider text-indigo-600 dark:text-indigo-400 uppercase">Live Technical Help Center</span>
-                    <h1 className="text-2xl sm:text-3xl font-black text-slate-800 dark:text-white tracking-tight mt-1">
+                    <span className="text-[11px] font-bold tracking-wider text-indigo-600 dark:text-indigo-400 uppercase">Live Technical Help Center</span>
+                    <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white tracking-tight mt-1">
                       🛠️ {lang === 'bn' ? "গ্রাহক সহায়তা ডেস্ক (Helpdesk)" : "Telecom Support Helpdesk"}
                     </h1>
                   </div>
-                  <div className="bg-indigo-50 dark:bg-slate-950 text-indigo-700 dark:text-indigo-400 rounded-xl px-4 py-2 border border-indigo-100 dark:border-indigo-900/40 text-xs font-black flex items-center gap-1.5 select-none shrink-0">
+                  <div className="bg-indigo-50 dark:bg-slate-950 text-indigo-700 dark:text-indigo-400 rounded-xl px-4 py-2 border border-indigo-100 dark:border-indigo-900/40 text-xs font-bold flex items-center gap-1.5 select-none shrink-0">
                     <span className="w-2 h-2 bg-green-500 rounded-full animate-ping shrink-0" />
                     {lang === 'bn' ? "সাপোর্ট এজেন্ট অনলাইনে আছে" : "Support Technicians Online"}
                   </div>
@@ -5354,7 +5354,7 @@ export default function App() {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                   {/* Left Column: Log a block/complaint Ticket form */}
                   <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 p-6 rounded-2xl shadow-sm text-left h-fit">
-                    <h2 className="text-base font-black text-slate-800 dark:text-white mb-2 pb-2 border-b border-slate-100 dark:border-slate-800">📝 {lang === 'bn' ? "নতুন টিকেট সাবমিট করুন" : "Submit Support Ticket"}</h2>
+                    <h2 className="text-base font-bold text-slate-800 dark:text-white mb-2 pb-2 border-b border-slate-100 dark:border-slate-800">📝 {lang === 'bn' ? "নতুন টিকেট সাবমিট করুন" : "Submit Support Ticket"}</h2>
                     <p className="text-xs text-slate-400 font-semibold mb-5 leading-relaxed">
                       {lang === 'bn' ? "আপনার সফটওয়্যার পরিচালনায় কোনো সমস্যা বা আইটি পরামর্শের প্রয়োজন হলে টিকেট কাটুন।" : "Submit a ticket directly to developer. Ensure you describe visual/routing errors completely."}
                     </p>
@@ -5378,7 +5378,7 @@ export default function App() {
                     }} className="space-y-4">
                       {/* Submitter Name Block read-only */}
                       <div>
-                        <label className="block text-[11px] font-extrabold text-slate-500 uppercase tracking-widest mb-1.5">{lang === 'bn' ? "টিকেট সাবমিটকারী" : "Ticket Submitter"}</label>
+                        <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">{lang === 'bn' ? "টিকেট সাবমিটকারী" : "Ticket Submitter"}</label>
                         <div className="w-full text-xs font-bold p-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-500 dark:text-slate-400 capitalize">
                           👤 {sessionUser.name} ({sessionUser.roleTitleEn})
                         </div>
@@ -5386,7 +5386,7 @@ export default function App() {
 
                       {/* Msg text area */}
                       <div>
-                        <label className="block text-[11px] font-extrabold text-slate-500 uppercase tracking-widest mb-1.5">{lang === 'bn' ? "আপনার সমস্যার বিবরণ বিস্তারিত লিখুন" : "Describe Your Problem / Error Details"}</label>
+                        <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">{lang === 'bn' ? "আপনার সমস্যার বিবরণ বিস্তারিত লিখুন" : "Describe Your Problem / Error Details"}</label>
                         <textarea
                           rows={4}
                           value={newTicketMessage}
@@ -5399,7 +5399,7 @@ export default function App() {
 
                       <button
                         type="submit"
-                        className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs rounded-xl tracking-wider shadow-md transition cursor-pointer"
+                        className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl tracking-wider shadow-md transition cursor-pointer"
                       >
                         🚀 {lang === 'bn' ? "টিকেট সাবমিট করুন" : "Publish Support Ticket"}
                       </button>
@@ -5408,7 +5408,7 @@ export default function App() {
 
                   {/* Right Column: Existing Tickets list with interactive actions */}
                   <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-855 p-6 rounded-2xl shadow-sm col-span-1 lg:col-span-2 text-left">
-                    <h2 className="text-base font-black text-slate-800 dark:text-white mb-2 pb-2 border-b border-slate-100 dark:border-slate-800">📁 {lang === 'bn' ? "আপনার পূর্ববর্তী টিকেট সমূহ" : "Ticket Threads Management"}</h2>
+                    <h2 className="text-base font-bold text-slate-800 dark:text-white mb-2 pb-2 border-b border-slate-100 dark:border-slate-800">📁 {lang === 'bn' ? "আপনার পূর্ববর্তী টিকেট সমূহ" : "Ticket Threads Management"}</h2>
                     
                     <div className="mt-4 space-y-4 max-h-[500px] overflow-y-auto pr-1" style={{ scrollbarWidth: 'none' }}>
                       {supportTickets.length === 0 ? (
@@ -5421,12 +5421,12 @@ export default function App() {
                             <div key={tkt.id} className="border border-slate-150 dark:border-slate-800 rounded-2xl p-4 sm:p-5 relative overflow-hidden bg-slate-50/45 dark:bg-slate-950/25">
                               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800/50 pb-2.5 mb-3">
                                 <div>
-                                  <span className="bg-slate-100 dark:bg-slate-800 dark:text-slate-300 font-mono text-[10px] font-extrabold px-1.5 py-0.5 rounded-[4px] uppercase tracking-wider">{tkt.id}</span>
+                                  <span className="bg-slate-100 dark:bg-slate-800 dark:text-slate-300 font-mono text-[10px] font-bold px-1.5 py-0.5 rounded-[4px] uppercase tracking-wider">{tkt.id}</span>
                                   <span className="text-[11px] text-slate-400 ml-2 font-bold">{tkt.date}</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                   <span className="text-[10px] text-slate-500 font-semibold hidden sm:inline">Submitter: {tkt.merchantName}</span>
-                                  <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider ${
+                                  <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${
                                     tkt.isResolved 
                                       ? "bg-green-100 text-green-700 dark:bg-green-950/30 dark:text-green-400" 
                                       : "bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400 animate-pulse"
@@ -5443,7 +5443,7 @@ export default function App() {
                               {/* Resolution Card Block if present */}
                               {tkt.isResolved && tkt.resolutionNote && (
                                 <div className="mt-3.5 p-3 rounded-xl bg-green-50/50 dark:bg-green-950/20 border border-green-100/60 dark:border-green-900/20 text-xs text-left">
-                                  <span className="font-extrabold text-green-700 dark:text-green-400 block mb-1">👨‍💻 {lang === 'bn' ? "ডেভেলপার সমাধান মন্তব্য:" : "Developer Resolution Note:"}</span>
+                                  <span className="font-bold text-green-700 dark:text-green-400 block mb-1">👨‍💻 {lang === 'bn' ? "ডেভেলপার সমাধান মন্তব্য:" : "Developer Resolution Note:"}</span>
                                   <p className="font-semibold text-slate-600 dark:text-slate-300 leading-relaxed">{tkt.resolutionNote}</p>
                                 </div>
                               )}
@@ -5470,7 +5470,7 @@ export default function App() {
                                         });
                                       });
                                     }}
-                                    className="px-3.5 py-1.5 rounded-lg bg-green-600 hover:bg-green-700 text-white text-[11px] font-black uppercase tracking-wider shrink-0 transition cursor-pointer"
+                                    className="px-3.5 py-1.5 rounded-lg bg-green-600 hover:bg-green-700 text-white text-[11px] font-bold uppercase tracking-wider shrink-0 transition cursor-pointer"
                                   >
                                     ✓ {lang === 'bn' ? "সমাধান করুন" : "Resolve"}
                                   </button>
@@ -5610,7 +5610,7 @@ export default function App() {
                   }`}>
                     {/* Header title block */}
                     <div className="border-b border-slate-100 dark:border-slate-800 pb-3 text-left">
-                      <h2 className={`text-lg sm:text-xl font-black tracking-tight flex items-center gap-2 transition-colors duration-300 ${
+                      <h2 className={`text-lg sm:text-xl font-bold tracking-tight flex items-center gap-2 transition-colors duration-300 ${
                         theme === 'dark' ? 'text-white' : 'text-slate-800'
                       }`}>
                         📊 {lang === 'bn' ? "ক্রয়, বিক্রয় এবং ব্যয় বার চার্ট" : "Purchase, Sales and Expense Bar Chart"}
@@ -5637,7 +5637,7 @@ export default function App() {
                         <div className="w-14 h-14 rounded-full bg-yellow-500/10 flex items-center justify-center mb-3.5 text-yellow-500">
                           <Shield className="w-7 h-7 stroke-[1.5]" />
                         </div>
-                        <h3 className="text-base font-extrabold text-gray-800 dark:text-gray-100">
+                        <h3 className="text-base font-bold text-gray-800 dark:text-gray-100">
                           {lang === 'bn' ? "আর্থিক চার্ট সুরক্ষিত" : "Financial Analytics Locked"}
                         </h3>
                         <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 max-w-sm leading-relaxed font-semibold">
@@ -5822,12 +5822,12 @@ export default function App() {
                       <div className="flex-1 flex flex-col justify-between">
                         {/* Header title block */}
                         <div className="border-b border-slate-100 dark:border-slate-800 pb-3 text-left flex items-center justify-between">
-                          <h2 className={`text-lg sm:text-xl font-black tracking-tight flex items-center gap-2 transition-colors duration-300 ${
+                          <h2 className={`text-lg sm:text-xl font-bold tracking-tight flex items-center gap-2 transition-colors duration-300 ${
                             theme === 'dark' ? 'text-white' : 'text-slate-800'
                           }`}>
                             ⚠️ {lang === 'bn' ? "স্টক সতর্কতা আইটেম সমূহ" : "Stock Warning Items"}
                           </h2>
-                          <span className="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-200/50 dark:border-amber-900/40">
+                          <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-200/50 dark:border-amber-900/40">
                             {products.filter(p => (p.stock ?? 0) <= (p.alertQty ?? 5)).length || 8} {lang === 'bn' ? "টি সতর্কতা" : "Alerts"}
                           </span>
                         </div>
@@ -5839,16 +5839,16 @@ export default function App() {
                               <tr className={`border-b transition-colors duration-150 ${
                                 theme === 'dark' ? 'border-gray-800 text-gray-400 bg-gray-900/40' : 'border-slate-200 text-slate-700 font-bold bg-slate-50/70'
                               }`}>
-                                <th className="py-2.5 px-3 font-extrabold text-left w-10 text-slate-500">#</th>
-                                <th className="py-2.5 px-3 font-extrabold text-left">{lang === 'bn' ? "আইটেম নাম" : "Item Name"}</th>
+                                <th className="py-2.5 px-3 font-bold text-left w-10 text-slate-500">#</th>
+                                <th className="py-2.5 px-3 font-bold text-left">{lang === 'bn' ? "আইটেম নাম" : "Item Name"}</th>
                                 <th 
-                                  className="py-2.5 px-3 font-extrabold text-center whitespace-nowrap"
+                                  className="py-2.5 px-3 font-bold text-center whitespace-nowrap"
                                   style={{ whiteSpace: 'nowrap' }}
                                 >
                                   {lang === 'bn' ? "বিভাগ" : "Department"}
                                 </th>
                                 <th 
-                                  className="py-2.5 px-3 font-extrabold text-center whitespace-nowrap"
+                                  className="py-2.5 px-3 font-bold text-center whitespace-nowrap"
                                   style={{ whiteSpace: 'nowrap' }}
                                 >
                                   {lang === 'bn' ? "অবশিষ্ট স্টক" : "Stock"}
@@ -5881,7 +5881,7 @@ export default function App() {
                                       className="hover:bg-slate-50/80 dark:hover:bg-gray-800/40 transition duration-100"
                                     >
                                       {/* Sl.No */}
-                                      <td className="py-2.5 px-3 text-left font-extrabold text-slate-500 dark:text-slate-400 w-10">
+                                      <td className="py-2.5 px-3 text-left font-bold text-slate-500 dark:text-slate-400 w-10">
                                         {lang === 'bn' ? toBnDigits(idx + 1) : (idx + 1)}
                                       </td>
 
@@ -5955,7 +5955,7 @@ export default function App() {
                   theme === 'dark' ? 'bg-[#182237] border-gray-800/60' : 'bg-white border-slate-200 shadow-sm'
                 }`}>
                   <div className="flex justify-between items-center pb-3.5 border-b border-slate-100 dark:border-slate-800 mb-4">
-                    <h2 className="text-sm font-black tracking-tight text-slate-800 dark:text-white flex items-center gap-2">
+                    <h2 className="text-sm font-bold tracking-tight text-slate-800 dark:text-white flex items-center gap-2">
                       🛒 {lang === 'bn' ? "সাম্প্রতিক বিক্রয়সমূহ" : "Recent Sales Log"}
                     </h2>
                     <span className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1 rounded-full border border-emerald-200/60 dark:border-emerald-900/40">
@@ -6032,10 +6032,10 @@ export default function App() {
                                 </span>
                               </td>
                               <td className="py-3 px-3 font-bold text-slate-800 dark:text-slate-100">{s.productName}</td>
-                              <td className="py-3 px-2 text-center font-extrabold text-slate-700 dark:text-slate-300">
+                              <td className="py-3 px-2 text-center font-bold text-slate-700 dark:text-slate-300">
                                 {lang === 'bn' ? toBnDigits(s.quantity) : s.quantity}
                               </td>
-                              <td className="py-3 px-3 text-right font-black text-[#059669] dark:text-emerald-400 text-sm">
+                              <td className="py-3 px-3 text-right font-bold text-[#059669] dark:text-emerald-400 text-sm">
                                 ৳{s.totalPrice.toLocaleString()}
                               </td>
                               <td className="py-3 px-3">
@@ -6133,7 +6133,7 @@ export default function App() {
                   <div className={`flex justify-between items-center pb-2 border-b ${
                     theme === 'dark' ? 'border-gray-800' : 'border-slate-100'
                   }`}>
-                    <h3 className={`text-xs font-black uppercase tracking-wider ${
+                    <h3 className={`text-xs font-bold uppercase tracking-wider ${
                       theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
                     }`}>💸 POS INSTANT DIRECT TRANSACTION</h3>
                     <button 
@@ -6147,7 +6147,7 @@ export default function App() {
                   <div className={`p-4 border rounded-xl space-y-1 transition-all duration-300 ${
                     theme === 'dark' ? 'bg-gray-900/60 border-gray-850' : 'bg-slate-50 border-slate-100'
                   }`}>
-                    <p className="text-[10px] text-gray-500 uppercase font-black">Active Product Context</p>
+                    <p className="text-[10px] text-gray-500 uppercase font-bold">Active Product Context</p>
                     <p className={`text-sm font-bold transition-colors ${
                       theme === 'dark' ? 'text-white' : 'text-slate-805'
                     }`}>{directSellProduct.name}</p>
@@ -6222,7 +6222,7 @@ export default function App() {
                               key={method}
                               onClick={function() { setSellPayment(method); }}
                               className={isSel 
-                                ? "bg-cyan-500/20 border-2 border-cyan-400 text-cyan-500 dark:text-cyan-300 font-extrabold p-2.5 rounded-xl text-xs flex justify-center transition cursor-pointer" 
+                                ? "bg-cyan-500/20 border-2 border-cyan-400 text-cyan-500 dark:text-cyan-300 font-bold p-2.5 rounded-xl text-xs flex justify-center transition cursor-pointer" 
                                 : `border text-xs flex justify-center p-2.5 rounded-xl transition cursor-pointer font-semibold ${
                                     theme === 'dark' ? 'bg-gray-900 border-gray-800 text-gray-400 hover:border-gray-700' : 'bg-slate-50 border-slate-202 text-slate-600 hover:bg-slate-100'
                                   }`
@@ -6240,7 +6240,7 @@ export default function App() {
                     theme === 'dark' ? 'bg-gray-900 border-gray-850' : 'bg-slate-50 border-slate-150'
                   }`}>
                     <span className="text-gray-500 font-bold">Computed Grand Total:</span>
-                    <span className={`text-base font-black ${
+                    <span className={`text-base font-bold ${
                       theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
                     }`}>৳{(sellPrice * sellQty).toLocaleString()}</span>
                   </div>
@@ -6256,7 +6256,7 @@ export default function App() {
                     </button>
                     <button
                       onClick={handleConfirmSell}
-                      className="bg-blue-600 hover:bg-blue-700 text-white font-extrabold p-3.5 rounded-xl text-xs cursor-pointer transition text-center shadow-md active:scale-95"
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-bold p-3.5 rounded-xl text-xs cursor-pointer transition text-center shadow-md active:scale-95"
                     >
                       {t.confirmSell}
                     </button>
@@ -6273,7 +6273,7 @@ export default function App() {
                     {/* Header Row */}
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-3 border-b border-gray-200 mb-4 select-none">
                       <div className="flex items-baseline gap-2">
-                        <h1 className="font-extrabold text-slate-800 text-lg sm:text-xl font-sans tracking-tight">
+                        <h1 className="font-bold text-slate-800 text-lg sm:text-xl font-sans tracking-tight">
                           {lang === 'bn' ? 'পণ্যের ভ্যারিয়েন্ট সমূহ' : 'Item Variants'}
                         </h1>
                         <span className="text-gray-400 text-xs font-normal">
@@ -6299,7 +6299,7 @@ export default function App() {
                             setNewVariantDescription("");
                             setVariantFormError(false);
                           }}
-                          className="bg-[#00a65a] hover:bg-[#008d4c] text-white text-xs font-extrabold px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition duration-150 active:scale-95 cursor-pointer h-10 shadow-sm hover:shadow"
+                          className="bg-[#00a65a] hover:bg-[#008d4c] text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition duration-150 active:scale-95 cursor-pointer h-10 shadow-sm hover:shadow"
                         >
                           <span className="text-sm">+</span>
                           <span>{lang === 'bn' ? 'নতুন ভ্যারিয়েন্ট যোগ করুন' : 'Add New Variant'}</span>
@@ -6313,7 +6313,7 @@ export default function App() {
                         <div className="flex items-center gap-3 pb-4 border-b border-slate-100 dark:border-slate-800 mb-6">
                           <span className="text-2xl">🏷️</span>
                           <div>
-                            <h3 className="font-extrabold text-slate-800 dark:text-white text-base">
+                            <h3 className="font-bold text-slate-800 dark:text-white text-base">
                               {editingVariantId 
                                 ? (lang === 'bn' ? 'ভ্যারিয়েন্ট টাইপ সম্পাদনা করুন' : 'Edit Item Variant')
                                 : (lang === 'bn' ? 'নতুন ভ্যারিয়েন্ট টাইপ এন্ট্রি করুন' : 'Register New Item Variant')}
@@ -6388,7 +6388,7 @@ export default function App() {
                                 setNewVariantName("");
                                 setNewVariantDescription("");
                               }}
-                              className="bg-[#00a65a] hover:bg-[#008d4c] text-white font-extrabold text-xs px-6 py-2.5 rounded-xl shadow-sm hover:shadow-md transition active:scale-95 cursor-pointer"
+                              className="bg-[#00a65a] hover:bg-[#008d4c] text-white font-bold text-xs px-6 py-2.5 rounded-xl shadow-sm hover:shadow-md transition active:scale-95 cursor-pointer"
                             >
                               ✓ {editingVariantId ? (lang === 'bn' ? 'আপডেট করুন' : 'Update Variant') : (lang === 'bn' ? 'সংরক্ষণ করুন' : 'Save Variant')}
                             </button>
@@ -6412,32 +6412,32 @@ export default function App() {
                           return (
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                               <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 shadow-xs flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950/40 text-blue-600 flex items-center justify-center font-black text-lg">
+                                <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950/40 text-blue-600 flex items-center justify-center font-bold text-lg">
                                   📊
                                 </div>
                                 <div>
                                   <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{lang === 'bn' ? 'ভ্যারিয়েন্ট টাইপ' : 'Variant Types'}</p>
-                                  <p className="text-lg font-black text-slate-800 dark:text-white">{totalTypes} {lang === 'bn' ? 'টি' : 'types'}</p>
+                                  <p className="text-lg font-bold text-slate-800 dark:text-white">{totalTypes} {lang === 'bn' ? 'টি' : 'types'}</p>
                                 </div>
                               </div>
 
                               <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 shadow-xs flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 flex items-center justify-center font-black text-lg">
+                                <div className="w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 flex items-center justify-center font-bold text-lg">
                                   🏷️
                                 </div>
                                 <div>
                                   <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{lang === 'bn' ? 'মোট অপশন মান' : 'Total Values'}</p>
-                                  <p className="text-lg font-black text-emerald-600">{totalOptions} {lang === 'bn' ? 'টি অপশন' : 'values'}</p>
+                                  <p className="text-lg font-bold text-emerald-600">{totalOptions} {lang === 'bn' ? 'টি অপশন' : 'values'}</p>
                                 </div>
                               </div>
 
                               <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 shadow-xs flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 flex items-center justify-center font-black text-lg">
+                                <div className="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 flex items-center justify-center font-bold text-lg">
                                   📱
                                 </div>
                                 <div>
                                   <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{lang === 'bn' ? 'ক্যাটালগ স্ট্যাটাস' : 'Catalog Status'}</p>
-                                  <p className="text-lg font-black text-indigo-600">🟢 {lang === 'bn' ? 'সক্রিয়' : 'Active'}</p>
+                                  <p className="text-lg font-bold text-indigo-600">🟢 {lang === 'bn' ? 'সক্রিয়' : 'Active'}</p>
                                 </div>
                               </div>
                             </div>
@@ -6447,7 +6447,7 @@ export default function App() {
                         <div className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
                           <div className="overflow-x-auto">
                             <table className="w-full text-xs text-left">
-                              <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 font-extrabold uppercase tracking-wider text-[10.5px] border-b border-slate-200 dark:border-slate-700">
+                              <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wider text-[10.5px] border-b border-slate-200 dark:border-slate-700">
                                 <tr>
                                   <th className="px-6 py-4 font-bold">ID</th>
                                   <th className="px-6 py-4 font-bold">{lang === 'bn' ? 'ভ্যারিয়েন্ট নাম' : 'Variant Name'}</th>
@@ -6461,7 +6461,7 @@ export default function App() {
                                   return (
                                     <tr key={item.id} className="hover:bg-slate-50/70 dark:hover:bg-slate-800/40 transition">
                                       <td className="px-6 py-4 font-mono text-xs font-bold text-blue-600 dark:text-blue-400">{item.id}</td>
-                                      <td className="px-6 py-4 font-extrabold text-slate-800 dark:text-white text-xs">{item.name}</td>
+                                      <td className="px-6 py-4 font-bold text-slate-800 dark:text-white text-xs">{item.name}</td>
                                       <td className="px-6 py-4">
                                         <div className="flex flex-wrap items-center gap-1.5">
                                           {opts.map((opt: string, i: number) => (
@@ -6519,7 +6519,7 @@ export default function App() {
                           <Folder className="w-6 h-6" />
                         </div>
                         <div>
-                          <h1 className="font-extrabold text-slate-800 dark:text-white text-lg sm:text-xl font-sans tracking-tight">
+                          <h1 className="font-bold text-slate-800 dark:text-white text-lg sm:text-xl font-sans tracking-tight">
                             {lang === 'bn' ? 'ক্যাটাগরি সমূহ' : 'Product Categories'}
                           </h1>
                           <p className="text-slate-400 text-xs font-medium mt-0.5">
@@ -6553,7 +6553,7 @@ export default function App() {
                         <button
                           type="button"
                           onClick={openAddCategoryModal}
-                          className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-xs font-extrabold px-4 sm:px-5 py-2.5 rounded-xl flex items-center gap-2 transition duration-150 active:scale-95 cursor-pointer shadow-md shadow-blue-500/20 shrink-0"
+                          className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-xs font-bold px-4 sm:px-5 py-2.5 rounded-xl flex items-center gap-2 transition duration-150 active:scale-95 cursor-pointer shadow-md shadow-blue-500/20 shrink-0"
                         >
                           <Plus className="w-4 h-4" />
                           <span>{lang === 'bn' ? 'নতুন ক্যাটাগরি যোগ করুন' : 'Add New Category'}</span>
@@ -6610,7 +6610,7 @@ export default function App() {
                             <div className="w-16 h-16 rounded-2xl bg-blue-50 dark:bg-blue-950/40 text-blue-500 flex items-center justify-center mx-auto mb-4 border border-blue-100 dark:border-blue-900/50">
                               <Folder className="w-8 h-8" />
                             </div>
-                            <h3 className="text-base font-extrabold text-slate-800 dark:text-white">
+                            <h3 className="text-base font-bold text-slate-800 dark:text-white">
                               {lang === 'bn' ? 'কোনো ক্যাটাগরি পাওয়া যায়নি' : 'No Categories Found'}
                             </h3>
                             <p className="text-xs text-slate-400 mt-1 max-w-sm mx-auto">
@@ -6690,10 +6690,10 @@ export default function App() {
                               >
                                 <div className="space-y-3 cursor-pointer" onClick={() => setSelectedCatForView(cat)}>
                                   <div className="flex justify-between items-center">
-                                    <div className={`w-11 h-11 rounded-2xl flex items-center justify-center font-black text-xl border shadow-xs group-hover:scale-105 transition duration-200 ${toneStyles.badge}`}>
+                                    <div className={`w-11 h-11 rounded-2xl flex items-center justify-center font-bold text-xl border shadow-xs group-hover:scale-105 transition duration-200 ${toneStyles.badge}`}>
                                       <Folder className="w-5 h-5" />
                                     </div>
-                                    <span className={`rounded-full px-3 py-1 text-[11px] font-black border ${
+                                    <span className={`rounded-full px-3 py-1 text-[11px] font-bold border ${
                                       count > 0 
                                         ? toneStyles.pill 
                                         : 'bg-slate-100 text-slate-400 dark:bg-slate-800 dark:text-slate-500 border-slate-200 dark:border-slate-700'
@@ -6703,7 +6703,7 @@ export default function App() {
                                   </div>
 
                                   <div>
-                                    <h3 className="font-extrabold text-base text-slate-800 dark:text-white group-hover:text-blue-600 transition truncate" title={cat}>
+                                    <h3 className="font-bold text-base text-slate-800 dark:text-white group-hover:text-blue-600 transition truncate" title={cat}>
                                       {cat}
                                     </h3>
                                     <div className="text-[11px] text-slate-500 dark:text-slate-400 font-medium mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5">
@@ -6803,10 +6803,10 @@ export default function App() {
                                 </div>
                                 <div>
                                   <div className="flex items-center gap-2">
-                                    <h2 className="text-lg font-black text-slate-800 dark:text-white tracking-tight">
+                                    <h2 className="text-lg font-bold text-slate-800 dark:text-white tracking-tight">
                                       {selectedCatForView}
                                     </h2>
-                                    <span className="px-2.5 py-0.5 rounded-full text-xs font-black bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300">
+                                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300">
                                       {allCatProducts.length} {lang === 'bn' ? 'টি পণ্য' : 'Products'}
                                     </span>
                                   </div>
@@ -6827,9 +6827,9 @@ export default function App() {
                             {/* Stats bar & Search */}
                             <div className="px-6 py-3 bg-slate-50/70 dark:bg-slate-800/40 border-b border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 shrink-0">
                               <div className="flex items-center gap-4 text-xs font-semibold text-slate-600 dark:text-slate-300">
-                                <span>{lang === 'bn' ? 'মোট স্টক:' : 'Total Stock:'} <strong className="text-slate-900 dark:text-white font-extrabold">{modalTotalStock}</strong> {lang === 'bn' ? 'টি' : 'pcs'}</span>
+                                <span>{lang === 'bn' ? 'মোট স্টক:' : 'Total Stock:'} <strong className="text-slate-900 dark:text-white font-bold">{modalTotalStock}</strong> {lang === 'bn' ? 'টি' : 'pcs'}</span>
                                 <span className="text-slate-300 dark:text-slate-700">•</span>
-                                <span>{lang === 'bn' ? 'মোট বিক্রয় মূল্য:' : 'Total Retail Value:'} <strong className="text-emerald-600 font-extrabold">৳{modalTotalValue.toLocaleString()}</strong></span>
+                                <span>{lang === 'bn' ? 'মোট বিক্রয় মূল্য:' : 'Total Retail Value:'} <strong className="text-emerald-600 font-bold">৳{modalTotalValue.toLocaleString()}</strong></span>
                               </div>
 
                               <div className="relative w-full sm:w-64">
@@ -6856,7 +6856,7 @@ export default function App() {
                               ) : (
                                 <div className="overflow-x-auto rounded-2xl border border-slate-200/80 dark:border-slate-800">
                                   <table className="w-full text-left text-xs">
-                                    <thead className="bg-slate-50 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 font-extrabold border-b border-slate-200 dark:border-slate-700">
+                                    <thead className="bg-slate-50 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 font-bold border-b border-slate-200 dark:border-slate-700">
                                       <tr>
                                         <th className="px-4 py-3">#</th>
                                         <th className="px-4 py-3">{lang === 'bn' ? 'পণ্যের নাম' : 'Product Name'}</th>
@@ -6890,7 +6890,7 @@ export default function App() {
                                             <td className="px-4 py-3 text-slate-500 dark:text-slate-400">{prod.brand || '-'}</td>
                                             <td className="px-4 py-3 text-slate-400 font-mono text-[11px]">{prod.sku || prod.id}</td>
                                             <td className="px-4 py-3 text-center">
-                                              <span className={`px-2.5 py-1 rounded-full text-[11px] font-black inline-block ${
+                                              <span className={`px-2.5 py-1 rounded-full text-[11px] font-bold inline-block ${
                                                 isOut 
                                                   ? 'bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300' 
                                                   : isLow 
@@ -6962,7 +6962,7 @@ export default function App() {
                                 <FolderPlus className="w-5 h-5" />
                               </div>
                               <div>
-                                <h2 className="text-lg font-black text-slate-800 dark:text-white tracking-tight">
+                                <h2 className="text-lg font-bold text-slate-800 dark:text-white tracking-tight">
                                   {catModalMode === 'add' 
                                     ? (lang === 'bn' ? 'নতুন ক্যাটাগরি তৈরি করুন' : 'Create New Category') 
                                     : (lang === 'bn' ? 'ক্যাটাগরি সম্পাদনা' : 'Edit Category')}
@@ -7049,7 +7049,7 @@ export default function App() {
                             <button
                               type="button"
                               onClick={handleSaveCategorySubmit}
-                              className="px-6 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl text-sm font-extrabold shadow-md shadow-blue-500/25 transition active:scale-95 cursor-pointer flex items-center gap-2"
+                              className="px-6 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl text-sm font-bold shadow-md shadow-blue-500/25 transition active:scale-95 cursor-pointer flex items-center gap-2"
                             >
                               <CheckCircle2 className="w-4 h-4" />
                               <span>{catModalMode === 'add' ? (lang === 'bn' ? 'ক্যাটাগরি যুক্ত করুন' : 'Add Category') : (lang === 'bn' ? 'আপডেট করুন' : 'Update Category')}</span>
@@ -7070,7 +7070,7 @@ export default function App() {
                           <div className="w-12 h-12 rounded-2xl bg-rose-100 dark:bg-rose-950/40 text-rose-600 flex items-center justify-center mx-auto mb-3.5 border border-rose-200 dark:border-rose-900/50">
                             <Trash2 className="w-6 h-6" />
                           </div>
-                          <h4 className="text-base font-extrabold text-slate-800 dark:text-white">
+                          <h4 className="text-base font-bold text-slate-800 dark:text-white">
                             {lang === 'bn' ? 'ক্যাটাগরি মুছে ফেলতে চান?' : 'Delete Category?'}
                           </h4>
                           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
@@ -7103,7 +7103,7 @@ export default function App() {
                                 showToast(lang === 'bn' ? `"${targetCat}" ক্যাটাগরি মুছে ফেলা হয়েছে!` : `Category "${targetCat}" deleted!`, "info");
                                 setCatToDelete(null);
                               }}
-                              className="flex-1 py-2.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-extrabold shadow-md shadow-rose-500/20 transition cursor-pointer"
+                              className="flex-1 py-2.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-bold shadow-md shadow-rose-500/20 transition cursor-pointer"
                             >
                               {lang === 'bn' ? 'মুছে ফেলুন' : 'Delete'}
                             </button>
@@ -7117,7 +7117,7 @@ export default function App() {
                     {/* Header Row */}
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-3 border-b border-gray-200 mb-4 select-none">
                       <div className="flex items-baseline gap-2">
-                        <h1 className="font-extrabold text-slate-800 text-lg sm:text-xl font-sans tracking-tight">Brands</h1>
+                        <h1 className="font-bold text-slate-800 text-lg sm:text-xl font-sans tracking-tight">Brands</h1>
                         <span className="text-gray-400 text-xs font-normal">Hardware & Electronics Manufacturers</span>
                       </div>
                       <div className="flex items-center gap-1 text-[11px] text-gray-500 font-bold">
@@ -7141,7 +7141,7 @@ export default function App() {
                             showToast("Brand registered securely!", "success");
                           }
                         }}
-                        className="bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-4 py-2.5 rounded-xl text-xs flex items-center gap-1.5 transition active:scale-95 cursor-pointer shadow-md"
+                        className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-1.5 transition active:scale-95 cursor-pointer shadow-md"
                       >
                         <span>+</span>
                         <span>Add New Brand</span>
@@ -7159,7 +7159,7 @@ export default function App() {
                         return (
                           <div key={brand.name} className="bg-white rounded-xl border border-slate-205 p-5 shadow-sm space-y-2">
                             <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Authorized</span>
-                            <h3 className="font-extrabold text-sm text-slate-805 pt-1">{brand.name}</h3>
+                            <h3 className="font-bold text-sm text-slate-805 pt-1">{brand.name}</h3>
                             <p className="text-[11px] text-slate-500 font-medium">{brand.desc}</p>
                           </div>
                         );
@@ -7171,7 +7171,7 @@ export default function App() {
                     {/* Header Row */}
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-3 border-b border-gray-200 mb-4 select-none">
                       <div className="flex items-baseline gap-2">
-                        <h1 className="font-extrabold text-slate-800 text-lg sm:text-xl font-sans tracking-tight">{lang === 'bn' ? 'সার্ভিস তালিকা' : 'Service List'}</h1>
+                        <h1 className="font-bold text-slate-800 text-lg sm:text-xl font-sans tracking-tight">{lang === 'bn' ? 'সার্ভিস তালিকা' : 'Service List'}</h1>
                         <span className="text-gray-400 text-xs font-normal">{lang === 'bn' ? 'আপনার দোকানের মেকানিক ও সার্ভিসিং ক্যাটালগ পরিচালনা করুন' : 'Manage your repair service catalog'}</span>
                       </div>
                       <button
@@ -7179,7 +7179,7 @@ export default function App() {
                           setNewProdItemType('SERVICE');
                           setIsAddProductOpen(true);
                         }}
-                        className="bg-[#00a65a] hover:bg-[#008d4c] text-white text-xs font-extrabold px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition duration-150 active:scale-95 cursor-pointer h-10 shadow-sm hover:shadow"
+                        className="bg-[#00a65a] hover:bg-[#008d4c] text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition duration-150 active:scale-95 cursor-pointer h-10 shadow-sm hover:shadow"
                       >
                         <span className="text-sm">+</span>
                         <span>{lang === 'bn' ? 'নতুন সার্ভিস যোগ করুন' : 'Add New Service'}</span>
@@ -7194,32 +7194,32 @@ export default function App() {
                       return (
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                           <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 shadow-xs flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950/40 text-blue-600 flex items-center justify-center font-black text-lg">
+                            <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950/40 text-blue-600 flex items-center justify-center font-bold text-lg">
                               📊
                             </div>
                             <div>
                               <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{lang === 'bn' ? 'মোট সার্ভিস' : 'Total Services'}</p>
-                              <p className="text-lg font-black text-slate-800 dark:text-white">{totalCount} {lang === 'bn' ? 'টি' : 'items'}</p>
+                              <p className="text-lg font-bold text-slate-800 dark:text-white">{totalCount} {lang === 'bn' ? 'টি' : 'items'}</p>
                             </div>
                           </div>
 
                           <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 shadow-xs flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 flex items-center justify-center font-black text-lg">
+                            <div className="w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 flex items-center justify-center font-bold text-lg">
                               🟢
                             </div>
                             <div>
                               <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{lang === 'bn' ? 'সক্রিয় সার্ভিস' : 'Active Services'}</p>
-                              <p className="text-lg font-black text-emerald-600">{activeCount} {lang === 'bn' ? 'টি' : 'active'}</p>
+                              <p className="text-lg font-bold text-emerald-600">{activeCount} {lang === 'bn' ? 'টি' : 'active'}</p>
                             </div>
                           </div>
 
                           <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 shadow-xs flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 flex items-center justify-center font-black text-lg">
+                            <div className="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 flex items-center justify-center font-bold text-lg">
                               🛠️
                             </div>
                             <div>
                               <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{lang === 'bn' ? 'মোট ক্যাটাগরি' : 'Categories'}</p>
-                              <p className="text-lg font-black text-indigo-600">{catCount} {lang === 'bn' ? 'টি' : 'categories'}</p>
+                              <p className="text-lg font-bold text-indigo-600">{catCount} {lang === 'bn' ? 'টি' : 'categories'}</p>
                             </div>
                           </div>
                         </div>
@@ -7258,7 +7258,7 @@ export default function App() {
                     <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
                       <div className="overflow-x-auto">
                         <table className="w-full text-xs text-left">
-                          <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 font-extrabold uppercase tracking-wider text-[10.5px] border-b border-slate-200 dark:border-slate-700">
+                          <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wider text-[10.5px] border-b border-slate-200 dark:border-slate-700">
                             <tr>
                               <th className="px-4 py-3.5">ID</th>
                               <th className="px-4 py-3.5 min-w-[200px]">{lang === 'bn' ? 'সার্ভিসিং কাজের নাম' : 'Service Name'}</th>
@@ -7293,7 +7293,7 @@ export default function App() {
                                   <td className="px-4 py-3.5 font-mono text-xs font-bold text-blue-600 dark:text-blue-400">{s.id}</td>
                                   <td className="px-4 py-3.5">
                                     <div className="flex flex-col">
-                                      <span className="font-extrabold text-slate-800 dark:text-white text-xs">{s.name}</span>
+                                      <span className="font-bold text-slate-800 dark:text-white text-xs">{s.name}</span>
                                       {s.description && <span className="text-[10px] text-slate-400 font-medium mt-0.5">{s.description}</span>}
                                     </div>
                                   </td>
@@ -7302,7 +7302,7 @@ export default function App() {
                                       {s.category}
                                     </span>
                                   </td>
-                                  <td className="px-4 py-3.5 text-right font-mono font-extrabold text-xs text-emerald-600 dark:text-emerald-400">
+                                  <td className="px-4 py-3.5 text-right font-mono font-bold text-xs text-emerald-600 dark:text-emerald-400">
                                     ৳{Number(s.price || 0).toLocaleString('en-US', { minimumFractionDigits: 2 })}
                                   </td>
                                   <td className="px-4 py-3.5 text-center">
@@ -7361,7 +7361,7 @@ export default function App() {
                                 🛠️
                               </div>
                               <div>
-                                <h3 className="font-extrabold text-slate-800 dark:text-white text-base">
+                                <h3 className="font-bold text-slate-800 dark:text-white text-base">
                                   {lang === 'bn' ? 'সার্ভিস এডিট করুন' : 'Edit Service'}
                                 </h3>
                                 <p className="text-xs text-slate-400 font-medium">ID: {editingService.id}</p>
@@ -7467,7 +7467,7 @@ export default function App() {
                                 showToast(lang === 'bn' ? 'সার্ভিস সফলভাবে আপডেট হয়েছে!' : 'Service updated successfully!', 'success');
                                 setEditingService(null);
                               }}
-                              className="flex-1 py-2.5 bg-[#00a65a] hover:bg-[#008d4c] text-white rounded-xl text-xs font-extrabold shadow-md shadow-emerald-500/20 transition cursor-pointer"
+                              className="flex-1 py-2.5 bg-[#00a65a] hover:bg-[#008d4c] text-white rounded-xl text-xs font-bold shadow-md shadow-emerald-500/20 transition cursor-pointer"
                             >
                               ✓ {lang === 'bn' ? 'আপডেট করুন' : 'Update Service'}
                             </button>
@@ -7487,7 +7487,7 @@ export default function App() {
                           <div className="w-12 h-12 rounded-2xl bg-rose-100 dark:bg-rose-950/40 text-rose-600 flex items-center justify-center mx-auto mb-3.5 border border-rose-200 dark:border-rose-900/50">
                             <Trash2 className="w-6 h-6" />
                           </div>
-                          <h4 className="text-base font-extrabold text-slate-800 dark:text-white">
+                          <h4 className="text-base font-bold text-slate-800 dark:text-white">
                             {lang === 'bn' ? 'সার্ভিস মুছে ফেলতে চান?' : 'Delete Service?'}
                           </h4>
                           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
@@ -7511,7 +7511,7 @@ export default function App() {
                                 showToast(lang === 'bn' ? 'সার্ভিস সফলভাবে মুছে ফেলা হয়েছে!' : 'Service deleted!', 'info');
                                 setServiceToDelete(null);
                               }}
-                              className="flex-1 py-2.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-extrabold shadow-md shadow-rose-500/20 transition cursor-pointer"
+                              className="flex-1 py-2.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-bold shadow-md shadow-rose-500/20 transition cursor-pointer"
                             >
                               {lang === 'bn' ? 'মুছে ফেলুন' : 'Delete'}
                             </button>
@@ -7619,7 +7619,7 @@ export default function App() {
                     {/* Header Row */}
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-3 border-b border-gray-200 mb-4 select-none">
                       <div className="flex items-baseline gap-2">
-                        <h1 className="font-extrabold text-slate-800 text-lg sm:text-xl font-sans tracking-tight">
+                        <h1 className="font-bold text-slate-800 text-lg sm:text-xl font-sans tracking-tight">
                           {activeSubTab === 'print_labels' 
                             ? (lang === 'bn' ? 'প্রিন্ট লেবেল' : 'Print Labels') 
                             : activeSubTab === 'import_items'
@@ -7651,20 +7651,20 @@ export default function App() {
                         />
                         <button
                           onClick={function() { csvInputRef.current?.click(); }}
-                          className="bg-[#00a65a] hover:bg-[#008d4c] text-white text-xs font-extrabold px-4 py-2.5 rounded flex items-center gap-1.5 transition duration-150 active:scale-95 cursor-pointer h-10 shadow-xs"
+                          className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition duration-150 active:scale-95 cursor-pointer h-10 shadow-sm hover:shadow"
                         >
                           📥 {lang === 'bn' ? 'CSV আপলোড' : 'Upload CSV'}
                         </button>
                         <button
                           onClick={function() { setNewProdItemType('ITEM'); setIsAddProductOpen(true); }}
-                          className="bg-[#00c0ef] hover:bg-[#00a7d0] hover:shadow text-white text-xs font-extrabold px-4 py-2.5 rounded flex items-center gap-1.5 transition duration-150 active:scale-95 cursor-pointer h-10 shadow-xs"
+                          className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition duration-150 active:scale-95 cursor-pointer h-10 shadow-sm hover:shadow"
                         >
                           <span className="text-sm">+</span>
                           <span>{lang === 'bn' ? 'আইটেম তৈরি করুন' : 'Create Item'}</span>
                         </button>
                         <button
                           onClick={function() { setNewProdItemType('SERVICE'); setIsAddProductOpen(true); }}
-                          className="bg-[#00a65a] hover:bg-[#008d4c] hover:shadow text-white text-xs font-extrabold px-4 py-2.5 rounded flex items-center gap-1.5 transition duration-150 active:scale-95 cursor-pointer h-10 shadow-xs"
+                          className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition duration-150 active:scale-95 cursor-pointer h-10 shadow-sm hover:shadow"
                         >
                           <span className="text-sm">+</span>
                           <span>{lang === 'bn' ? 'সার্ভিস তৈরি করুন' : 'Create Service'}</span>
@@ -7672,8 +7672,8 @@ export default function App() {
                       </div>
                     </div>
 
-                    {/* Bright Red Clean Line Separator */}
-                    <div className="h-[2px] bg-red-500 w-full rounded mb-4" />
+                    {/* Subtle, Modern Clean Separator */}
+                    <div className="border-b border-slate-200 dark:border-slate-800 w-full mb-4" />
 
                     {/* Table Utility Controls Panel */}
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 py-1 select-none">
@@ -7683,7 +7683,7 @@ export default function App() {
                         <select
                           value={entriesLimit}
                           onChange={function(e) { setEntriesLimit(parseInt(e.target.value)); }}
-                          className="bg-white border border-slate-200 rounded px-2.5 py-1.5 text-xs font-bold text-slate-800 focus:outline-none"
+                          className="bg-white border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-bold text-slate-800 focus:outline-none"
                         >
                           <option value="10">10</option>
                           <option value="25">25</option>
@@ -7694,7 +7694,7 @@ export default function App() {
                       </div>
 
                       {/* Export buttons */}
-                      <div className="inline-flex rounded-md shadow-xs border border-slate-200/80 overflow-hidden font-sans">
+                      <div className="inline-flex rounded-xl shadow-xs border border-slate-200 dark:border-slate-700 overflow-hidden font-sans">
                         <button
                           onClick={function() {
                             const clipText = filteredInventory.map(function(p) {
@@ -7703,7 +7703,7 @@ export default function App() {
                             navigator.clipboard.writeText(`ID\tName\tBrand\tCategory\tUnit\tStock\tPrice\n` + clipText);
                             showToast(lang === 'bn' ? "সমস্ত আইটেম তথ্য ক্লিপবোর্ডে কপি করা হয়েছে!" : "Product data copied to clipboard!", "success");
                           }}
-                          className="px-3.5 py-1.5 bg-[#f4f4f4] hover:bg-slate-200 text-slate-700 text-xs font-bold border-r border-slate-200 transition cursor-pointer"
+                          className="px-3.5 py-1.5 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold border-r border-slate-200 transition cursor-pointer"
                         >
                           {lang === 'bn' ? 'কপি' : 'Copy'}
                         </button>
@@ -7769,7 +7769,7 @@ export default function App() {
                       <div className="flex items-center gap-2.5 w-full md:w-auto ml-auto">
                         <button
                           onClick={handleDeleteAllProducts}
-                          className="bg-red-600 hover:bg-red-700 text-white font-extrabold px-3 py-1.5 rounded-md text-[11px] flex items-center gap-1 hover:shadow-md transition cursor-pointer border border-red-700/20 shadow-xs animate-pulse"
+                          className="bg-red-600 hover:bg-red-700 text-white font-bold px-3 py-1.5 rounded-md text-[11px] flex items-center gap-1 hover:shadow-md transition cursor-pointer border border-red-700/20 shadow-xs animate-pulse"
                           title="Delete All Items currently loaded"
                         >
                           🗑️ {lang === 'bn' ? 'সব ডিলিট করুন' : 'Delete All'}
@@ -7883,7 +7883,7 @@ export default function App() {
                     {isBulkEditOpen && (
                       <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3" onClick={() => setIsBulkEditOpen(false)}>
                         <div className="bg-white rounded-xl w-full max-w-md p-5 space-y-3" onClick={e => e.stopPropagation()}>
-                          <h3 className="font-extrabold text-slate-800">{lang === 'bn' ? 'বাল্ক এডিট' : 'Bulk Edit'} ({selectedProductIds.size})</h3>
+                          <h3 className="font-bold text-slate-800">{lang === 'bn' ? 'বাল্ক এডিট' : 'Bulk Edit'} ({selectedProductIds.size})</h3>
                           <label className="block text-xs font-bold text-slate-600 space-y-1">
                             <span>{lang === 'bn' ? 'বিক্রয় মূল্য (খালি রাখুন = অপরিবর্তিত)' : 'Selling Price (blank = keep)'}</span>
                             <input type="number" value={bulkEditPrice} onChange={e => setBulkEditPrice(e.target.value)} className="w-full px-3 py-2 border border-slate-200 rounded" />
@@ -7915,19 +7915,19 @@ export default function App() {
                       <div className="bg-emerald-50 border border-emerald-250 p-5 rounded-lg space-y-4 shadow-sm animate-fade-in relative z-10">
                         <div className="flex justify-between items-center pb-2 border-b border-emerald-200">
                           <div>
-                            <h2 className="text-emerald-800 font-extrabold text-xs uppercase tracking-wider">🕵️ CSV Live Auto Preview Draft</h2>
+                            <h2 className="text-emerald-800 font-bold text-xs uppercase tracking-wider">🕵️ CSV Live Auto Preview Draft</h2>
                             <span className="text-[10px] text-gray-550 block mt-0.5">Unsaved rows payload: {csvPreviewRows.length} Pcs</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <button
                               onClick={function() { setCsvPreviewRows([]); }}
-                              className="bg-white hover:bg-red-50 hover:text-red-600 hover:border-red-600 border border-slate-250 text-gray-550 px-3 py-1.5 text-xs font-extrabold rounded-md shadow-xs transition cursor-pointer"
+                              className="bg-white hover:bg-red-50 hover:text-red-600 hover:border-red-600 border border-slate-250 text-gray-550 px-3 py-1.5 text-xs font-bold rounded-md shadow-xs transition cursor-pointer"
                             >
                               Cancel
                             </button>
                             <button
                               onClick={confirmCsvImport}
-                              className="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-4.5 py-1.5 rounded-md text-xs shadow-xs transition cursor-pointer"
+                              className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4.5 py-1.5 rounded-md text-xs shadow-xs transition cursor-pointer"
                             >
                               Save Draft to Database
                             </button>
@@ -7952,7 +7952,7 @@ export default function App() {
                                 return (
                                   <tr key={idx} className="border-b hover:bg-slate-50 last:border-0 text-slate-600">
                                     <td className="p-2.5 pl-3 font-mono font-bold text-[10px] text-blue-650">{row.id}</td>
-                                    <td className="p-2.5 font-black text-[#333]">{row.name}</td>
+                                    <td className="p-2.5 font-bold text-[#333]">{row.name}</td>
                                     <td className="p-2.5">{row.brand || "—"}</td>
                                     <td className="p-2.5 text-stone-500">{row.category}</td>
                                     <td className="p-2.5">{row.unit}</td>
@@ -7970,7 +7970,7 @@ export default function App() {
                     {/* Table Viewport */}
                     <div className="overflow-x-auto border border-slate-205 rounded">
                       <table className="w-full text-xs text-left border-collapse font-sans font-medium text-[#222d32]">
-                        <thead className="bg-[#f9fafc] text-[#222d32] font-black uppercase tracking-wider text-[11px] border-b border-slate-205">
+                        <thead className="bg-[#f9fafc] text-[#222d32] font-bold uppercase tracking-wider text-[11px] border-b border-slate-205">
                           <tr>
                             <th className="px-3.5 py-3 text-center border-r border-slate-150 w-[42px]">
                               <input type="checkbox" className="rounded-xs border-slate-300 h-3.5 w-3.5 accent-[#00a65a]" />
@@ -8025,7 +8025,7 @@ export default function App() {
                                     <div className="flex flex-col">
                                       <span
                                         onClick={function() { setEditingProduct(p); }}
-                                        className="text-[#3c8dbc] hover:text-[#23527c] hover:underline font-extrabold text-[12.5px] cursor-pointer font-sans text-left leading-snug"
+                                        className="text-[#3c8dbc] hover:text-[#23527c] hover:underline font-bold text-[12.5px] cursor-pointer font-sans text-left leading-snug"
                                       >
                                         {p.name}
                                       </span>
@@ -8045,7 +8045,7 @@ export default function App() {
                                   <td className="px-4 py-3.5 border-r border-slate-150">
                                     <div className="flex flex-col items-start gap-1">
                                       <span className="text-[11.5px] font-bold text-slate-800 font-sans">{p.category}</span>
-                                      <span className={`px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-wider text-white ${
+                                      <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase tracking-wider text-white ${
                                         (p.itemType || "ITEM") === "SERVICE" ? "bg-cyan-500" : "bg-[#f39c12]"
                                       }`}>
                                         [{p.itemType || "ITEM"}]
@@ -8059,9 +8059,9 @@ export default function App() {
                                   </td>
 
                                   {/* Stock status check and label icon container inside table */}
-                                  <td className="px-4 py-3.5 text-center border-r border-slate-150 font-black text-xs">
+                                  <td className="px-4 py-3.5 text-center border-r border-slate-150 font-bold text-xs">
                                     <div className="flex items-center justify-center gap-1">
-                                      <span className="text-[#333] font-mono font-black text-[13px]">{p.stock}</span>
+                                      <span className="text-[#333] font-mono font-bold text-[13px]">{p.stock}</span>
                                       <span className="text-blue-500 font-semibold cursor-help select-none" title="Warehouse stock details">📦</span>
                                     </div>
                                   </td>
@@ -8072,13 +8072,13 @@ export default function App() {
                                   </td>
 
                                   {/* Total prices formatted */}
-                                  <td className="px-4 py-3.5 text-right border-r border-slate-150 font-mono font-extrabold text-[12px] text-slate-850">
+                                  <td className="px-4 py-3.5 text-right border-r border-slate-150 font-mono font-bold text-[12px] text-slate-850">
                                     {p.sellingPrice.toFixed(2)}
                                   </td>
 
                                   {/* Status field */}
                                   <td className="px-4 py-3.5 text-center border-r border-slate-150">
-                                    <span className="bg-[#00a65a] hover:bg-emerald-600 text-white font-extrabold px-2.5 py-0.5 rounded text-[9.5px] tracking-wide uppercase select-none transition">
+                                    <span className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-2.5 py-0.5 rounded-full text-[10px] tracking-wide uppercase select-none transition shadow-2xs">
                                       {p.status || "Active"}
                                     </span>
                                   </td>
@@ -8091,7 +8091,7 @@ export default function App() {
                                           e.stopPropagation();
                                           setActiveRowActionMenuId(activeRowActionMenuId === p.id ? null : p.id);
                                         }}
-                                        className="bg-[#00a65a] hover:bg-[#008d4c] text-white px-2.5 py-1.5 rounded-sm font-bold text-[11.5px] transition duration-150 flex items-center justify-center gap-1 shadow-xs cursor-pointer select-none"
+                                        className="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg font-bold text-xs transition duration-150 flex items-center justify-center gap-1 shadow-xs cursor-pointer select-none"
                                       >
                                         <span>Action</span>
                                         <span className="text-[10px]">▼</span>
@@ -8104,7 +8104,7 @@ export default function App() {
                                             className="fixed inset-0 z-10"
                                             onClick={function() { setActiveRowActionMenuId(null); }}
                                           />
-                                          <div className="absolute right-0 mt-1 w-44 bg-white border border-slate-205 rounded shadow-xl py-1.5 z-20 font-sans text-left text-xs font-bold divide-y divide-slate-100">
+                                          <div className="absolute right-0 mt-1 w-44 bg-white border border-slate-200 rounded-xl shadow-xl py-1.5 z-20 font-sans text-left text-xs font-bold divide-y divide-slate-100">
                                             {/* Adjust stock interactive prompt */}
                                             <button
                                               onClick={function() {
@@ -8188,7 +8188,7 @@ export default function App() {
                             <div className="inline-flex rounded-md border border-slate-200 overflow-hidden font-sans">
                               <button onClick={() => setProductPage(p => Math.max(1, p - 1))} disabled={page <= 1} className={`px-3.5 py-1.5 text-xs font-bold border-r border-slate-200 ${page <= 1 ? 'bg-[#f4f4f4] text-slate-400 cursor-not-allowed' : 'bg-[#f4f4f4] hover:bg-slate-200 text-slate-700'}`}>{lang === 'bn' ? 'পূর্ববর্তী' : 'Previous'}</button>
                               {pageBtns.map(n => (
-                                <button key={n} onClick={() => setProductPage(n)} className={`px-3.5 py-1.5 text-xs border-r border-slate-200 transition ${n === page ? 'bg-blue-50 text-blue-600 font-black' : 'bg-white hover:bg-slate-100 text-slate-700 font-bold'}`}>{n}</button>
+                                <button key={n} onClick={() => setProductPage(n)} className={`px-3.5 py-1.5 text-xs border-r border-slate-200 transition ${n === page ? 'bg-blue-50 text-blue-600 font-bold' : 'bg-white hover:bg-slate-100 text-slate-700 font-bold'}`}>{n}</button>
                               ))}
                               <button onClick={() => setProductPage(p => Math.min(totalPages, p + 1))} disabled={page >= totalPages} className={`px-3.5 py-1.5 text-xs font-bold ${page >= totalPages ? 'bg-[#f4f4f4] text-slate-400 cursor-not-allowed' : 'bg-[#f4f4f4] hover:bg-slate-200 text-slate-700'}`}>{lang === 'bn' ? 'পরবর্তী' : 'Next'}</button>
                             </div>
@@ -8362,8 +8362,8 @@ export default function App() {
                   {/* Header */}
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-4">
                     <div>
-                      <span className="text-[11px] font-black tracking-wider text-blue-600 dark:text-blue-400 uppercase">User Management</span>
-                      <h1 className="text-2xl sm:text-3xl font-black text-slate-800 dark:text-white tracking-tight mt-1 flex items-center gap-2">
+                      <span className="text-[11px] font-bold tracking-wider text-blue-600 dark:text-blue-400 uppercase">User Management</span>
+                      <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white tracking-tight mt-1 flex items-center gap-2">
                         <Users size={26} className="text-blue-600" />
                         {lang === 'bn' ? "ইউজার তালিকা" : "Users List"}
                       </h1>
@@ -8411,19 +8411,19 @@ export default function App() {
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3">
                       <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">{lang === 'bn' ? "মোট" : "Total"}</p>
-                      <p className="text-2xl font-black text-slate-800 dark:text-white mt-1">{systemEmployees.length}</p>
+                      <p className="text-2xl font-bold text-slate-800 dark:text-white mt-1">{systemEmployees.length}</p>
                     </div>
                     <div className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-xl p-3">
                       <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">{lang === 'bn' ? "সক্রিয়" : "Active"}</p>
-                      <p className="text-2xl font-black text-emerald-700 mt-1">{activeCount}</p>
+                      <p className="text-2xl font-bold text-emerald-700 mt-1">{activeCount}</p>
                     </div>
                     <div className="bg-rose-50 dark:bg-rose-900/20 border border-rose-200 dark:border-rose-800 rounded-xl p-3">
                       <p className="text-[10px] font-bold uppercase tracking-wider text-rose-700">{lang === 'bn' ? "ব্লকড" : "Blocked"}</p>
-                      <p className="text-2xl font-black text-rose-700 mt-1">{blockedCount}</p>
+                      <p className="text-2xl font-bold text-rose-700 mt-1">{blockedCount}</p>
                     </div>
                     <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-3">
                       <p className="text-[10px] font-bold uppercase tracking-wider text-blue-700">{lang === 'bn' ? "এডমিন" : "Admins"}</p>
-                      <p className="text-2xl font-black text-blue-700 mt-1">{adminCount}</p>
+                      <p className="text-2xl font-bold text-blue-700 mt-1">{adminCount}</p>
                     </div>
                   </div>
 
@@ -8509,7 +8509,7 @@ export default function App() {
                                   <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
                                     {lang === 'bn' ? 'দোকান / প্রতিষ্ঠান' : 'Shop / Organization'}
                                   </p>
-                                  <h3 className="text-base font-black">{g.shopName}</h3>
+                                  <h3 className="text-base font-bold">{g.shopName}</h3>
                                   <p className="text-[11px] text-slate-300 mt-0.5 font-mono">
                                     {g.members.length} {lang === 'bn' ? 'সদস্য' : 'members'} · {g.activeCount} {lang === 'bn' ? 'সক্রিয়' : 'active'}
                                     {g.blockedCount > 0 && <> · <span className="text-rose-300">{g.blockedCount} {lang === 'bn' ? 'ব্লকড' : 'blocked'}</span></>}
@@ -8519,7 +8519,7 @@ export default function App() {
                               {g.owner && (
                                 <button
                                   onClick={() => enterUserPortal(g.owner)}
-                                  className="text-[10px] font-black px-2.5 py-1.5 rounded-md bg-amber-500 hover:bg-amber-600 text-white flex items-center gap-1 shrink-0 active:scale-95 transition"
+                                  className="text-[10px] font-bold px-2.5 py-1.5 rounded-md bg-amber-500 hover:bg-amber-600 text-white flex items-center gap-1 shrink-0 active:scale-95 transition"
                                   title={lang === 'bn' ? 'মালিকের পোর্টালে প্রবেশ' : "Enter owner's portal"}
                                 >
                                   <LogIn size={11} /> {lang === 'bn' ? 'মালিক পোর্টাল' : 'Owner Portal'}
@@ -8529,17 +8529,17 @@ export default function App() {
 
                             {/* Owner block */}
                             <div className="p-3 border-b border-slate-100 dark:border-slate-800 bg-emerald-50/40 dark:bg-emerald-950/10">
-                              <p className="text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 mb-1.5 flex items-center gap-1">
+                              <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 mb-1.5 flex items-center gap-1">
                                 <Shield size={11} /> {lang === 'bn' ? 'মালিক' : 'Owner'}
                               </p>
                               {g.owner ? (
                                 <div className="flex items-center justify-between gap-2">
                                   <div className="flex items-center gap-2.5 min-w-0">
-                                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center text-xs font-black shrink-0">
+                                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center text-xs font-bold shrink-0">
                                       {(g.owner.name || '?').split(' ').map((s: string) => s[0]).slice(0, 2).join('').toUpperCase()}
                                     </div>
                                     <div className="min-w-0">
-                                      <p className="text-xs font-black text-slate-800 dark:text-white truncate">{g.owner.name}</p>
+                                      <p className="text-xs font-bold text-slate-800 dark:text-white truncate">{g.owner.name}</p>
                                       <p className="text-[10px] text-slate-500 font-mono truncate">{g.owner.email}</p>
                                       <p className="text-[10px] text-slate-400">{g.owner.phone || '—'}</p>
                                     </div>
@@ -8558,7 +8558,7 @@ export default function App() {
 
                             {/* Employees block */}
                             <div className="p-3">
-                              <p className="text-[10px] font-black uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-2 flex items-center gap-1">
+                              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-2 flex items-center gap-1">
                                 <Users size={11} /> {lang === 'bn' ? 'কর্মচারী' : 'Employees'}
                                 <span className="text-slate-400 font-mono">({g.employees.length})</span>
                               </p>
@@ -8575,7 +8575,7 @@ export default function App() {
                                         <div className="min-w-0">
                                           <p className="text-xs font-bold text-slate-800 dark:text-slate-100 truncate">
                                             {emp.name}
-                                            {emp.isBlocked && <span className="ml-1 text-[9px] font-black text-rose-600 uppercase">· blocked</span>}
+                                            {emp.isBlocked && <span className="ml-1 text-[9px] font-bold text-rose-600 uppercase">· blocked</span>}
                                           </p>
                                           <p className="text-[10px] text-slate-500 truncate">{emp.role} · {emp.email}</p>
                                         </div>
@@ -8861,11 +8861,11 @@ export default function App() {
                     <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setViewingEmployee(null)}>
                       <div className="bg-white dark:bg-slate-900 rounded-xl shadow-2xl max-w-2xl w-full overflow-hidden max-h-[90vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
                         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-5 text-white flex items-center gap-4">
-                          <div className="w-16 h-16 rounded-full bg-white/20 border-2 border-white/40 flex items-center justify-center text-xl font-black">
+                          <div className="w-16 h-16 rounded-full bg-white/20 border-2 border-white/40 flex items-center justify-center text-xl font-bold">
                             {(live.name || '?').split(' ').map((s: string) => s[0]).slice(0, 2).join('').toUpperCase()}
                           </div>
                           <div className="flex-1">
-                            <h3 className="text-lg font-black">{live.name}</h3>
+                            <h3 className="text-lg font-bold">{live.name}</h3>
                             <p className="text-xs opacity-90">{live.role} · {live.branch}</p>
                             <p className="text-[10px] opacity-80 mt-0.5 flex items-center gap-1">
                               <Clock size={10} />
@@ -8896,7 +8896,7 @@ export default function App() {
 
                           {/* Activity / audit log */}
                           <div className="pt-2">
-                            <h4 className="text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-200 mb-2 flex items-center gap-1.5">
+                            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-200 mb-2 flex items-center gap-1.5">
                               <Activity size={13} className="text-blue-600" />
                               {lang === 'bn' ? "অ্যাক্টিভিটি লগ" : "Activity / Audit Log"}
                               <span className="text-[10px] font-bold text-slate-400 ml-1">({(live.activityLog || []).length})</span>
@@ -8923,7 +8923,7 @@ export default function App() {
                           {isSuperAdmin && (
                             <button
                               onClick={() => enterUserPortal(live)}
-                              className="text-xs font-black px-4 py-2 rounded bg-amber-500 hover:bg-amber-600 text-white flex items-center gap-1.5 shadow-md"
+                              className="text-xs font-bold px-4 py-2 rounded bg-amber-500 hover:bg-amber-600 text-white flex items-center gap-1.5 shadow-md"
                             >
                               <LogIn size={12} /> {lang === 'bn' ? 'পোর্টালে প্রবেশ করুন' : 'Enter Portal'}
                             </button>
@@ -9273,7 +9273,7 @@ export default function App() {
               <div className="flex items-center gap-3">
                 <span className="text-2xl">{newProdItemType === 'SERVICE' ? '🛠️' : '📦'}</span>
                 <div>
-                  <h3 className="font-extrabold text-base tracking-tight">
+                  <h3 className="font-bold text-base tracking-tight">
                     {newProdItemType === 'SERVICE' 
                       ? (lang === 'bn' ? 'নতুন সার্ভিস যোগ করুন' : 'Create New Service') 
                       : (lang === 'bn' ? 'নতুন পণ্য / আইটেম যোগ করুন' : 'Create New Product')}
@@ -9684,7 +9684,7 @@ export default function App() {
             <div className="p-5 space-y-4 text-left">
               <div className="bg-[#e6f4ea] dark:bg-emerald-950/40 p-3 rounded-xl border border-[#a8dab5] dark:border-emerald-900/40 text-xs flex justify-between items-center">
                 <div>
-                  <p className="font-extrabold text-[#137333] dark:text-emerald-300 text-sm">{paymentHistoryOwner.shopName || paymentHistoryOwner.branch}</p>
+                  <p className="font-bold text-[#137333] dark:text-emerald-300 text-sm">{paymentHistoryOwner.shopName || paymentHistoryOwner.branch}</p>
                   <p className="text-slate-600 dark:text-slate-300 mt-0.5">Owner: {paymentHistoryOwner.name} ({paymentHistoryOwner.phone || paymentHistoryOwner.email})</p>
                 </div>
                 <span className="bg-[#188038] text-white px-2.5 py-1 rounded-md text-[10px] font-bold">
@@ -9755,7 +9755,7 @@ export default function App() {
             <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-6 py-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-xl">⌨️</span>
-                <h2 className="font-extrabold text-base">{lang === 'bn' ? 'কিবোর্ড শর্টকাট গাইডসমূহ' : 'Keyboard Shortcuts Guide'}</h2>
+                <h2 className="font-bold text-base">{lang === 'bn' ? 'কিবোর্ড শর্টকাট গাইডসমূহ' : 'Keyboard Shortcuts Guide'}</h2>
               </div>
               <button type="button" onClick={() => setIsKeyboardShortcutsModalOpen(false)} className="text-white/80 hover:text-white p-1 rounded-lg transition cursor-pointer">
                 <X size={18} />
@@ -9764,7 +9764,7 @@ export default function App() {
 
             <div className="p-6 space-y-5 max-h-[80vh] overflow-y-auto font-sans">
               <div className="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-2xl p-4 text-xs">
-                <p className="font-extrabold text-indigo-700 dark:text-indigo-300 flex items-center gap-1.5">
+                <p className="font-bold text-indigo-700 dark:text-indigo-300 flex items-center gap-1.5">
                   💡 {lang === 'bn' ? 'কুইক নলেজ টিপস:' : 'Quick Navigation Tip:'}
                 </p>
                 <p className="text-slate-600 dark:text-slate-300 mt-1 font-medium leading-relaxed">
@@ -9774,39 +9774,39 @@ export default function App() {
 
               {/* Navigation Shortcuts */}
               <div className="space-y-3">
-                <h3 className="text-xs font-black uppercase text-slate-400 tracking-wider">{lang === 'bn' ? 'সাইডবার মেনু নেভিগেশন' : 'Sidebar Menu Navigation'}</h3>
+                <h3 className="text-xs font-bold uppercase text-slate-400 tracking-wider">{lang === 'bn' ? 'সাইডবার মেনু নেভিগেশন' : 'Sidebar Menu Navigation'}</h3>
                 
                 <div className="grid grid-cols-1 gap-2 text-xs">
                   <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-150 dark:border-slate-800">
                     <span className="font-bold text-slate-700 dark:text-slate-200">{lang === 'bn' ? 'সাইডবার মেনু ফোকাস' : 'Focus Sidebar Menu'}</span>
-                    <span className="px-2 py-1 rounded bg-slate-200 dark:bg-slate-700 font-mono font-black text-slate-800 dark:text-white">Alt + M</span>
+                    <span className="px-2 py-1 rounded bg-slate-200 dark:bg-slate-700 font-mono font-bold text-slate-800 dark:text-white">Alt + M</span>
                   </div>
 
                   <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-150 dark:border-slate-800">
                     <span className="font-bold text-slate-700 dark:text-slate-200">{lang === 'bn' ? 'পরবর্তী মেনুতে যাওয়া' : 'Next Menu Item'}</span>
-                    <span className="px-2 py-1 rounded bg-slate-200 dark:bg-slate-700 font-mono font-black text-slate-800 dark:text-white">↓ (Down Arrow)</span>
+                    <span className="px-2 py-1 rounded bg-slate-200 dark:bg-slate-700 font-mono font-bold text-slate-800 dark:text-white">↓ (Down Arrow)</span>
                   </div>
 
                   <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-150 dark:border-slate-800">
                     <span className="font-bold text-slate-700 dark:text-slate-200">{lang === 'bn' ? 'আগের মেনুতে যাওয়া' : 'Previous Menu Item'}</span>
-                    <span className="px-2 py-1 rounded bg-slate-200 dark:bg-slate-700 font-mono font-black text-slate-800 dark:text-white">↑ (Up Arrow)</span>
+                    <span className="px-2 py-1 rounded bg-slate-200 dark:bg-slate-700 font-mono font-bold text-slate-800 dark:text-white">↑ (Up Arrow)</span>
                   </div>
 
                   <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-150 dark:border-slate-800">
                     <span className="font-bold text-slate-700 dark:text-slate-200">{lang === 'bn' ? 'ড্রপডাউন খোলা / পেজ সিলেক্ট' : 'Expand Dropdown / Open Page'}</span>
-                    <span className="px-2 py-1 rounded bg-slate-200 dark:bg-slate-700 font-mono font-black text-slate-800 dark:text-white">→ / Enter</span>
+                    <span className="px-2 py-1 rounded bg-slate-200 dark:bg-slate-700 font-mono font-bold text-slate-800 dark:text-white">→ / Enter</span>
                   </div>
                 </div>
               </div>
 
               {/* POS Shortcuts */}
               <div className="space-y-3">
-                <h3 className="text-xs font-black uppercase text-slate-400 tracking-wider">{lang === 'bn' ? 'ক্যাশ রেজিস্টার ও সেলস' : 'Cash Register & Sales'}</h3>
+                <h3 className="text-xs font-bold uppercase text-slate-400 tracking-wider">{lang === 'bn' ? 'ক্যাশ রেজিস্টার ও সেলস' : 'Cash Register & Sales'}</h3>
                 
                 <div className="grid grid-cols-1 gap-2 text-xs">
                   <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-150 dark:border-slate-800">
                     <span className="font-bold text-slate-700 dark:text-slate-200">{lang === 'bn' ? 'POS ক্যাশ কাউন্টারে যাওয়া' : 'Open POS Counter'}</span>
-                    <span className="px-2 py-1 rounded bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-mono font-black">F2</span>
+                    <span className="px-2 py-1 rounded bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-mono font-bold">F2</span>
                   </div>
                 </div>
               </div>
@@ -9842,7 +9842,7 @@ export default function App() {
                   <Key className="w-6 h-6 text-amber-300" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-black tracking-tight">
+                  <h3 className="text-lg font-bold tracking-tight">
                     {lang === 'bn' ? 'পাসওয়ার্ড রিসেট ও রিকভারি' : 'Password Reset & Recovery'}
                   </h3>
                   <p className="text-xs text-white/80 font-medium mt-0.5">
@@ -9864,27 +9864,27 @@ export default function App() {
               {/* User Details Box */}
               <div className="bg-slate-50 dark:bg-slate-800/60 rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-extrabold text-slate-500 uppercase tracking-wider">{lang === 'bn' ? 'ইউজার নাম' : 'User Name'}</span>
-                  <span className="text-xs font-black text-slate-900 dark:text-white">{passwordResetUser.name}</span>
+                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{lang === 'bn' ? 'ইউজার নাম' : 'User Name'}</span>
+                  <span className="text-xs font-bold text-slate-900 dark:text-white">{passwordResetUser.name}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-extrabold text-slate-500 uppercase tracking-wider">{lang === 'bn' ? 'ইমেইল / পরিচিতি' : 'Email / Handle'}</span>
+                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{lang === 'bn' ? 'ইমেইল / পরিচিতি' : 'Email / Handle'}</span>
                   <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">{passwordResetUser.email}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-extrabold text-slate-500 uppercase tracking-wider">{lang === 'bn' ? 'দোকান / ব্রাঞ্চ' : 'Shop / Branch'}</span>
-                  <span className="text-xs font-black text-emerald-600 dark:text-emerald-400">{passwordResetUser.branch || passwordResetUser.shopName || 'Main Store'}</span>
+                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{lang === 'bn' ? 'দোকান / ব্রাঞ্চ' : 'Shop / Branch'}</span>
+                  <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">{passwordResetUser.branch || passwordResetUser.shopName || 'Main Store'}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-extrabold text-slate-500 uppercase tracking-wider">{lang === 'bn' ? 'রোল' : 'Role'}</span>
-                  <span className="text-[11px] font-black px-2 py-0.5 rounded bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300">{passwordResetUser.role}</span>
+                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{lang === 'bn' ? 'রোল' : 'Role'}</span>
+                  <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300">{passwordResetUser.role}</span>
                 </div>
               </div>
 
               {/* New Password Input with Eye Toggle */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <label className="text-xs font-black text-slate-800 dark:text-slate-200">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                     {lang === 'bn' ? 'নতুন পাসওয়ার্ড সেট করুন *' : 'Set New Password *'}
                   </label>
                   <button
@@ -9902,7 +9902,7 @@ export default function App() {
                     type={showResetEye ? 'text' : 'password'}
                     value={resetNewPassword}
                     onChange={(e) => setResetNewPassword(e.target.value)}
-                    className="w-full pl-4 pr-24 py-3 rounded-2xl border-2 border-purple-200 dark:border-purple-900/60 text-sm font-extrabold text-slate-900 dark:text-white bg-white dark:bg-slate-850 focus:border-purple-600 focus:outline-none shadow-sm"
+                    className="w-full pl-4 pr-24 py-3 rounded-2xl border-2 border-purple-200 dark:border-purple-900/60 text-sm font-bold text-slate-900 dark:text-white bg-white dark:bg-slate-850 focus:border-purple-600 focus:outline-none shadow-sm"
                     placeholder={lang === 'bn' ? 'নতুন পাসওয়ার্ড লিখুন...' : 'Enter new password...'}
                     required
                   />
@@ -9944,7 +9944,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={handleSaveResetPassword}
-                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white text-xs font-black shadow-lg shadow-purple-500/25 transition active:scale-95 cursor-pointer flex items-center gap-1.5"
+                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white text-xs font-bold shadow-lg shadow-purple-500/25 transition active:scale-95 cursor-pointer flex items-center gap-1.5"
                 >
                   <CheckCircle2 size={14} />
                   <span>{lang === 'bn' ? 'পাসওয়ার্ড সেভ ও আপডেট করুন' : 'Save & Update Password'}</span>

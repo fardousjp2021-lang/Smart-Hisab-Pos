@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React, { useState, useRef } from 'react';
 import { 
   UserPlus, X, Upload, CheckCircle2, ShieldCheck, 
@@ -126,7 +126,7 @@ export function CreateUserForm({ isOpen, onClose, onSave, lang, editingEmployee 
               <UserPlus className="w-6 h-6 text-amber-300" />
             </div>
             <div>
-              <h1 className="text-xl sm:text-2xl font-black tracking-tight">
+              <h1 className="text-xl sm:text-2xl font-bold tracking-tight">
                 {editingEmployee 
                   ? (lang === 'bn' ? 'ইউজার তথ্য আপডেট করুন' : 'Update User Account') 
                   : (lang === 'bn' ? 'নতুন ইউজার / কর্মচারী তৈরি করুন' : 'Create New User Account')}
@@ -156,7 +156,7 @@ export function CreateUserForm({ isOpen, onClose, onSave, lang, editingEmployee 
               <div className="space-y-4">
                 <div className="flex items-center gap-2 pb-2 border-b border-slate-100 dark:border-slate-800">
                   <Key className="w-4 h-4 text-blue-600" />
-                  <h3 className="text-xs font-black text-slate-800 dark:text-white uppercase tracking-wider">
+                  <h3 className="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-wider">
                     {lang === 'bn' ? '১. আইডি ও পরিচিতি (Credentials)' : '1. Basic Credentials'}
                   </h3>
                 </div>
@@ -232,7 +232,7 @@ export function CreateUserForm({ isOpen, onClose, onSave, lang, editingEmployee 
               <div className="space-y-4 pt-2">
                 <div className="flex items-center gap-2 pb-2 border-b border-slate-100 dark:border-slate-800">
                   <Mail className="w-4 h-4 text-indigo-600" />
-                  <h3 className="text-xs font-black text-slate-800 dark:text-white uppercase tracking-wider">
+                  <h3 className="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-wider">
                     {lang === 'bn' ? '২. যোগাযোগ ও ব্রাঞ্চ (Contact & Branch)' : '2. Contact & Branch'}
                   </h3>
                 </div>
@@ -295,7 +295,7 @@ export function CreateUserForm({ isOpen, onClose, onSave, lang, editingEmployee 
                 <div className="space-y-4 pt-2">
                   <div className="flex items-center gap-2 pb-2 border-b border-slate-100 dark:border-slate-800">
                     <Lock className="w-4 h-4 text-amber-600" />
-                    <h3 className="text-xs font-black text-slate-800 dark:text-white uppercase tracking-wider">
+                    <h3 className="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-wider">
                       {lang === 'bn' ? '৩. এক্সেস পাসওয়ার্ড (PASSWORD SECURITY)' : '3. PASSWORD SECURITY'}
                     </h3>
                   </div>
@@ -359,7 +359,7 @@ export function CreateUserForm({ isOpen, onClose, onSave, lang, editingEmployee 
               
               {/* Profile Photo Card */}
               <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-850 p-5 text-center space-y-4">
-                <h4 className="text-xs font-black text-slate-800 dark:text-white uppercase tracking-wider flex items-center justify-center gap-1.5">
+                <h4 className="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-wider flex items-center justify-center gap-1.5">
                   <ImageIcon className="w-4 h-4 text-blue-600" />
                   {lang === 'bn' ? 'প্রোফাইল ছবি (Profile Avatar)' : 'Profile Avatar'}
                 </h4>
@@ -395,7 +395,7 @@ export function CreateUserForm({ isOpen, onClose, onSave, lang, editingEmployee 
                 <div className="text-[11.5px] text-slate-600 dark:text-slate-300 space-y-1.5 font-medium leading-relaxed">
                   <div className="flex justify-between">
                     <span>{lang === 'bn' ? 'নির্বাচিত রোল:' : 'Assigned Role:'}</span>
-                    <span className="font-black text-blue-600 dark:text-blue-400">{role}</span>
+                    <span className="font-bold text-blue-600 dark:text-blue-400">{role}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>{lang === 'bn' ? 'পিওএস সেলস:' : 'POS Sales:'}</span>
@@ -426,7 +426,7 @@ export function CreateUserForm({ isOpen, onClose, onSave, lang, editingEmployee 
 
             <button
               type="submit"
-              className="px-8 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-slate-900 hover:from-blue-700 hover:to-slate-950 text-white text-xs font-black shadow-lg shadow-blue-600/20 transition cursor-pointer flex items-center gap-2 active:scale-95"
+              className="px-8 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-slate-900 hover:from-blue-700 hover:to-slate-950 text-white text-xs font-bold shadow-lg shadow-blue-600/20 transition cursor-pointer flex items-center gap-2 active:scale-95"
             >
               <CheckCircle2 className="w-4 h-4 text-amber-300" />
               <span>

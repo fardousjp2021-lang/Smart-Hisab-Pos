@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+﻿import React, { useMemo, useState, useEffect } from 'react';
 import {
   Package, Plus, Search, Printer, Trash2, Edit3, Eye, RotateCcw,
   ShoppingCart, Wallet, Clock, X as XIcon, Save, Filter,
@@ -897,11 +897,11 @@ function SummaryCard({ icon, label, value, tone }: { icon: React.ReactNode; labe
         <div className="w-9 h-9 rounded-xl bg-white dark:bg-slate-800 shadow-xs border border-slate-200/70 dark:border-slate-700 flex items-center justify-center shrink-0">
           <span className={currentTone.text}>{icon}</span>
         </div>
-        <span className={`font-extrabold text-xs sm:text-sm tracking-tight truncate ${currentTone.text}`}>
+        <span className={`font-bold text-xs sm:text-sm tracking-tight truncate ${currentTone.text}`}>
           {label}
         </span>
       </div>
-      <div className="mt-3 text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight font-mono truncate">
+      <div className="mt-3 text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight font-mono truncate">
         {value}
       </div>
     </div>
@@ -917,3 +917,4 @@ function Row({ label, value, strong, tone }: { label: string; value: string; str
     </div>
   );
 }
+

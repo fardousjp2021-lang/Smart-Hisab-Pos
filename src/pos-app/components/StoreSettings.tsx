@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { 
   Building, Phone, Mail, Globe, MapPin, FileText, 
   CreditCard, Upload, CheckCircle2, ShieldCheck, 
@@ -111,8 +111,8 @@ export const StoreSettings: React.FC<Props> = ({
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <h1 className="text-2xl sm:text-3xl font-black tracking-tight">{shopName || 'রনি টেলিকম'}</h1>
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-amber-400 text-slate-950 uppercase shadow-sm">
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">{shopName || 'রনি টেলিকম'}</h1>
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-400 text-slate-950 uppercase shadow-sm">
                 {storeCode || 'ST0001'}
               </span>
             </div>
@@ -127,7 +127,7 @@ export const StoreSettings: React.FC<Props> = ({
           <button
             onClick={handleSave}
             disabled={saving}
-            className="px-6 py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-sm shadow-lg hover:shadow-amber-400/20 transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
+            className="px-6 py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm shadow-lg hover:shadow-amber-400/20 transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
           >
             {saving ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
             <span>{lang === 'bn' ? 'সেটিংস সেভ করুন' : 'Save Changes'}</span>
@@ -146,7 +146,7 @@ export const StoreSettings: React.FC<Props> = ({
                 <Building className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-base font-black text-slate-900 tracking-tight">
+                <h2 className="text-base font-bold text-slate-900 tracking-tight">
                   {lang === 'bn' ? 'স্টোর প্রোফাইল ও তথ্য (Store Profile)' : 'Store General Information'}
                 </h2>
                 <p className="text-xs text-slate-500 font-medium">
@@ -247,7 +247,7 @@ export const StoreSettings: React.FC<Props> = ({
                 <MapPin className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-base font-black text-slate-900 tracking-tight">
+                <h2 className="text-base font-bold text-slate-900 tracking-tight">
                   {lang === 'bn' ? 'অবস্থান ও ঠিকানা (Location & Address)' : 'Store Location & Address'}
                 </h2>
                 <p className="text-xs text-slate-500 font-medium">
@@ -307,7 +307,7 @@ export const StoreSettings: React.FC<Props> = ({
                 <CreditCard className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-base font-black text-slate-900 tracking-tight">
+                <h2 className="text-base font-bold text-slate-900 tracking-tight">
                   {lang === 'bn' ? 'ট্যাক্স ও ব্যাংক অ্যাকাউন্ট (Legal & Bank)' : 'Tax & Payment Info'}
                 </h2>
                 <p className="text-xs text-slate-500 font-medium">
@@ -364,3 +364,4 @@ export const StoreSettings: React.FC<Props> = ({
 };
 
 export default StoreSettings;
+

@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react';
+﻿import { useMemo, useState, useEffect } from 'react';
 import {
   TrendingUp, TrendingDown, Wallet, Users, Truck, DollarSign,
   Plus, Search, Printer, Trash2, Edit3, Filter, X as XIcon, Save,
@@ -1278,3 +1278,4 @@ function IncomeExpenseModal(props: {
 }
 
 export default Accounting;
+

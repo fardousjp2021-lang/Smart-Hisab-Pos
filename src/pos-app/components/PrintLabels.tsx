@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+﻿import React, { useState, useMemo, useEffect } from 'react';
 import { Search, Printer, CheckSquare, Square, RefreshCw, Eye, Sliders, CheckCircle2, Tag, Store, Globe, Info, HelpCircle, Phone, Sparkles } from 'lucide-react';
 
 interface Product {
@@ -398,10 +398,10 @@ export const PrintLabels: React.FC<Props> = ({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-xl sm:text-2xl font-black text-slate-800 dark:text-white tracking-tight">
+              <h1 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white tracking-tight">
                 🏷️ {isBn ? "থার্মাল ও বারকোড স্টিকার প্রিন্ট" : "Thermal & Barcode Sticker Printing"}
               </h1>
-              <span className="px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-extrabold text-[10px] uppercase border border-emerald-300 dark:border-emerald-700">
+              <span className="px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-bold text-[10px] uppercase border border-emerald-300 dark:border-emerald-700">
                 Code 128 Standard
               </span>
             </div>
@@ -418,7 +418,7 @@ export const PrintLabels: React.FC<Props> = ({
           <button
             type="button"
             onClick={() => setShowGuideModal(!showGuideModal)}
-            className="px-3 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/60 dark:hover:bg-amber-900/60 text-amber-800 dark:text-amber-200 font-extrabold text-xs border border-amber-300 dark:border-amber-700 transition cursor-pointer flex items-center gap-1.5 shadow-xs"
+            className="px-3 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/60 dark:hover:bg-amber-900/60 text-amber-800 dark:text-amber-200 font-bold text-xs border border-amber-300 dark:border-amber-700 transition cursor-pointer flex items-center gap-1.5 shadow-xs"
             title={isBn ? "থার্মাল প্রিন্টার সেটিংস গাইড" : "Thermal Print Setup Guide"}
           >
             <HelpCircle className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
@@ -429,7 +429,7 @@ export const PrintLabels: React.FC<Props> = ({
           <button
             type="button"
             onClick={handleToggleLanguage}
-            className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-extrabold text-xs border border-slate-200 dark:border-slate-700 transition cursor-pointer flex items-center gap-1.5 active:scale-95 shadow-xs"
+            className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-xs border border-slate-200 dark:border-slate-700 transition cursor-pointer flex items-center gap-1.5 active:scale-95 shadow-xs"
             title={isBn ? "Switch to English" : "বাংলা ভাষায় পরিবর্তন করুন"}
           >
             <Globe className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
@@ -445,7 +445,7 @@ export const PrintLabels: React.FC<Props> = ({
             type="button"
             onClick={handleTriggerTestOnePrint}
             disabled={stickerList.length === 0}
-            className="px-3.5 py-2.5 bg-slate-800 hover:bg-slate-900 disabled:opacity-50 text-white font-extrabold text-xs rounded-xl shadow-sm transition active:scale-95 cursor-pointer flex items-center gap-1.5"
+            className="px-3.5 py-2.5 bg-slate-800 hover:bg-slate-900 disabled:opacity-50 text-white font-bold text-xs rounded-xl shadow-sm transition active:scale-95 cursor-pointer flex items-center gap-1.5"
             title={isBn ? "রোল টেস্টের জন্য ১টি স্টিকার প্রিন্ট করুন" : "Test print 1 label on thermal roll"}
           >
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
@@ -457,7 +457,7 @@ export const PrintLabels: React.FC<Props> = ({
             type="button"
             onClick={handleTriggerPrint}
             disabled={stickerList.length === 0}
-            className="px-5 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 disabled:opacity-50 text-white font-black text-xs rounded-xl shadow-md shadow-emerald-500/20 transition active:scale-95 cursor-pointer flex items-center gap-2"
+            className="px-5 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 disabled:opacity-50 text-white font-bold text-xs rounded-xl shadow-md shadow-emerald-500/20 transition active:scale-95 cursor-pointer flex items-center gap-2"
           >
             <Printer className="w-4 h-4" />
             <span>{isBn ? "থার্মাল প্রিন্ট শুরু করুন" : "Start Print"}</span>
@@ -474,24 +474,24 @@ export const PrintLabels: React.FC<Props> = ({
                 <Info className="w-4 h-4" />
               </div>
               <div className="space-y-1.5 text-xs text-amber-950 dark:text-amber-100">
-                <h4 className="font-black text-sm text-amber-900 dark:text-amber-300">
+                <h4 className="font-bold text-sm text-amber-900 dark:text-amber-300">
                   🖨️ {isBn ? "থার্মাল স্টিকার প্রিন্টারে নিখুঁত প্রিন্টের ৪টি সহজ নিয়ম:" : "4 Rules for Flawless Thermal Sticker Printing:"}
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 pt-1 font-medium">
                   <div className="bg-white/80 dark:bg-slate-900/80 p-2.5 rounded-xl border border-amber-200/60 dark:border-amber-800/40">
-                    <span className="font-black text-amber-700 dark:text-amber-400 block text-[11px]">১. Destination (প্রিন্টার):</span>
+                    <span className="font-bold text-amber-700 dark:text-amber-400 block text-[11px]">১. Destination (প্রিন্টার):</span>
                     <span className="text-[11px] text-slate-700 dark:text-slate-300">আপনার থার্মাল প্রিন্টার (যেমন: Xprinter XP-365B / Rongta / Zebra) সিলেক্ট করুন।</span>
                   </div>
                   <div className="bg-white/80 dark:bg-slate-900/80 p-2.5 rounded-xl border border-amber-200/60 dark:border-amber-800/40">
-                    <span className="font-black text-amber-700 dark:text-amber-400 block text-[11px]">২. Paper Size (সাইজ):</span>
+                    <span className="font-bold text-amber-700 dark:text-amber-400 block text-[11px]">২. Paper Size (সাইজ):</span>
                     <span className="text-[11px] text-slate-700 dark:text-slate-300">রোলের সাইজ ৫০x২৫মিমি বা ৩৮x২৫মিমি নির্বাচন করুন।</span>
                   </div>
                   <div className="bg-white/80 dark:bg-slate-900/80 p-2.5 rounded-xl border border-amber-200/60 dark:border-amber-800/40">
-                    <span className="font-black text-amber-700 dark:text-amber-400 block text-[11px]">৩. Margins (মার্জিন):</span>
+                    <span className="font-bold text-amber-700 dark:text-amber-400 block text-[11px]">৩. Margins (মার্জিন):</span>
                     <span className="text-[11px] text-rose-600 dark:text-rose-400 font-bold">অবশ্যই "None" সিলেক্ট করবেন (Default রাখলে স্টিকার ছোট হবে)।</span>
                   </div>
                   <div className="bg-white/80 dark:bg-slate-900/80 p-2.5 rounded-xl border border-amber-200/60 dark:border-amber-800/40">
-                    <span className="font-black text-amber-700 dark:text-amber-400 block text-[11px]">৪. Headers & Footers:</span>
+                    <span className="font-bold text-amber-700 dark:text-amber-400 block text-[11px]">৪. Headers & Footers:</span>
                     <span className="text-[11px] text-slate-700 dark:text-slate-300">টিক চিহ্ন সম্পূর্ণ তুলে দিন (Uncheck রাখুন)।</span>
                   </div>
                 </div>
@@ -500,7 +500,7 @@ export const PrintLabels: React.FC<Props> = ({
             <button 
               type="button" 
               onClick={() => setShowGuideModal(false)}
-              className="text-amber-800 hover:text-amber-950 font-black text-sm px-2 py-1 rounded-lg hover:bg-amber-200/60"
+              className="text-amber-800 hover:text-amber-950 font-bold text-sm px-2 py-1 rounded-lg hover:bg-amber-200/60"
             >
               ✕
             </button>
@@ -517,11 +517,11 @@ export const PrintLabels: React.FC<Props> = ({
           {/* Sticker Customization Control Box */}
           <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-5 shadow-sm space-y-4">
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-              <h3 className="text-sm font-black text-slate-800 dark:text-white flex items-center gap-2">
+              <h3 className="text-sm font-bold text-slate-800 dark:text-white flex items-center gap-2">
                 <Sliders className="w-4 h-4 text-blue-600" />
                 <span>{isBn ? "প্রিন্টার ও লেআউট ফরম্যাট নির্বাচন" : "Printer Format & Layout"}</span>
               </h3>
-              <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-wider bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 rounded-md border border-emerald-200">
+              <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 rounded-md border border-emerald-200">
                 {isBn ? "রোল সেন্সর সেফ" : "Sensor Calibrated"}
               </span>
             </div>
@@ -572,11 +572,11 @@ export const PrintLabels: React.FC<Props> = ({
                   onClick={() => setPaperFormat(fmt.key as any)}
                   className={`p-2.5 rounded-xl border text-xs font-bold text-left transition cursor-pointer flex flex-col justify-between ${
                     paperFormat === fmt.key
-                      ? 'bg-blue-50/90 text-blue-800 border-blue-500 dark:bg-blue-950 dark:text-blue-200 font-black shadow-xs ring-2 ring-blue-500/20'
+                      ? 'bg-blue-50/90 text-blue-800 border-blue-500 dark:bg-blue-950 dark:text-blue-200 font-bold shadow-xs ring-2 ring-blue-500/20'
                       : 'bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100'
                   }`}
                 >
-                  <span className="font-extrabold">{isBn ? fmt.labelBn : fmt.labelEn}</span>
+                  <span className="font-bold">{isBn ? fmt.labelBn : fmt.labelEn}</span>
                   <span className="text-[9.5px] mt-1 font-semibold text-slate-400 dark:text-slate-400">
                     {fmt.badge}
                   </span>
@@ -586,7 +586,7 @@ export const PrintLabels: React.FC<Props> = ({
 
             {/* Checkbox fields selection */}
             <div className="pt-2 border-t border-slate-100 dark:border-slate-800 space-y-2.5">
-              <span className="text-[11px] font-black text-slate-500 uppercase tracking-wider block">
+              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                 {isBn ? "স্টিকারে প্রদর্শিত তথ্য নির্বাচন করুন:" : "Information to Show on Sticker:"}
               </span>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs font-bold text-slate-700 dark:text-slate-300">
@@ -710,7 +710,7 @@ export const PrintLabels: React.FC<Props> = ({
                 <button
                   type="button"
                   onClick={handleSelectAllFiltered}
-                  className="px-3 py-2 text-[11px] font-extrabold bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300 rounded-xl border border-blue-200 hover:bg-blue-100 cursor-pointer shrink-0"
+                  className="px-3 py-2 text-[11px] font-bold bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300 rounded-xl border border-blue-200 hover:bg-blue-100 cursor-pointer shrink-0"
                 >
                   ✓ {isBn ? "সব সিলেক্ট" : "Select All"}
                 </button>
@@ -718,7 +718,7 @@ export const PrintLabels: React.FC<Props> = ({
                 <button
                   type="button"
                   onClick={handleFillByStock}
-                  className="px-3 py-2 text-[11px] font-extrabold bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 rounded-xl border border-emerald-200 hover:bg-emerald-100 cursor-pointer shrink-0"
+                  className="px-3 py-2 text-[11px] font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 rounded-xl border border-emerald-200 hover:bg-emerald-100 cursor-pointer shrink-0"
                 >
                   📦 {isBn ? "স্টক অনুযায়ী" : "Fill Stock"}
                 </button>
@@ -726,7 +726,7 @@ export const PrintLabels: React.FC<Props> = ({
                 <button
                   type="button"
                   onClick={handleClearAll}
-                  className="px-3 py-2 text-[11px] font-extrabold bg-rose-50 text-rose-700 dark:bg-rose-950 dark:text-rose-300 rounded-xl border border-rose-200 hover:bg-rose-100 cursor-pointer shrink-0"
+                  className="px-3 py-2 text-[11px] font-bold bg-rose-50 text-rose-700 dark:bg-rose-950 dark:text-rose-300 rounded-xl border border-rose-200 hover:bg-rose-100 cursor-pointer shrink-0"
                 >
                   ✕ {isBn ? "ক্লিয়ার" : "Clear"}
                 </button>
@@ -736,7 +736,7 @@ export const PrintLabels: React.FC<Props> = ({
             {/* Products Table */}
             <div className="overflow-x-auto max-h-[380px] overflow-y-auto border border-slate-100 dark:border-slate-800 rounded-xl">
               <table className="w-full text-xs text-left border-collapse">
-                <thead className="bg-slate-50 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 font-extrabold uppercase text-[10.5px] border-b border-slate-200 dark:border-slate-700 sticky top-0 z-10">
+                <thead className="bg-slate-50 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 font-bold uppercase text-[10.5px] border-b border-slate-200 dark:border-slate-700 sticky top-0 z-10">
                   <tr>
                     <th className="py-2.5 px-3 w-10 text-center">#</th>
                     <th className="py-2.5 px-3">{isBn ? "পণ্যের নাম" : "Product Name"}</th>
@@ -826,18 +826,18 @@ export const PrintLabels: React.FC<Props> = ({
             
             {/* Live Sheet Header */}
             <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 mb-3 print:hidden">
-              <div className="flex items-center gap-2 text-xs font-extrabold text-slate-700 dark:text-slate-200">
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-200">
                 <Eye className="w-4 h-4 text-emerald-600" />
                 <span>{isBn ? "লাইভ স্টিকার শিট প্রিভিউ" : "Live Sticker Sheet Preview"}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-600 border border-blue-200">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-600 border border-blue-200">
                   {paperFormat === 'thermal_50x25' ? '50×25mm' :
                    paperFormat === 'thermal_38x25' ? '38×25mm' :
                    paperFormat === 'thermal_58x40' ? '58×40mm' :
                    paperFormat === 'thermal_80mm' ? '80mm POS' : 'A4 Sheet'}
                 </span>
-                <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-200">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-200">
                   {stickerList.length} {isBn ? "টি স্টিকার" : "Stickers"}
                 </span>
               </div>
@@ -888,7 +888,7 @@ export const PrintLabels: React.FC<Props> = ({
                         {/* Shop Header Row */}
                         {showShopTitle && (
                           <div className="w-full text-center border-b border-black/20 pb-0.5">
-                            <span className={`block font-black tracking-tight uppercase text-slate-900 truncate ${
+                            <span className={`block font-bold tracking-tight uppercase text-slate-900 truncate ${
                               isCompact38 ? 'text-[8.5px] leading-tight' : isLarge58 ? 'text-xs' : 'text-[10px] leading-tight'
                             }`}>
                               {shopName || 'রনি টেলিকম'}
@@ -906,7 +906,7 @@ export const PrintLabels: React.FC<Props> = ({
                         {/* Product Title */}
                         {showProductName && (
                           <div 
-                            className={`font-black text-slate-900 text-center truncate w-full px-0.5 ${
+                            className={`font-bold text-slate-900 text-center truncate w-full px-0.5 ${
                               isCompact38 ? 'text-[8px] leading-tight' : isLarge58 ? 'text-xs leading-snug line-clamp-2' : 'text-[9.5px] leading-tight'
                             }`} 
                             title={p.name}
@@ -934,9 +934,9 @@ export const PrintLabels: React.FC<Props> = ({
 
                         {/* Retail Price MRP & Secret Cost Code */}
                         {(showPrice || showCostCode) && (
-                          <div className="flex items-center justify-center w-full font-black text-slate-950 px-0.5 mt-0.5 text-center gap-1.5">
+                          <div className="flex items-center justify-center w-full font-bold text-slate-950 px-0.5 mt-0.5 text-center gap-1.5">
                             {showPrice && (
-                              <span className={`text-center font-black ${
+                              <span className={`text-center font-bold ${
                                 isCompact38 ? 'text-[9px]' : isLarge58 ? 'text-sm' : 'text-[10.5px]'
                               }`}>
                                 {customPriceLabel} ৳{Number(p.sellingPrice || 0).toLocaleString()}
@@ -971,7 +971,7 @@ export const PrintLabels: React.FC<Props> = ({
                   type="button"
                   onClick={handleTriggerTestOnePrint}
                   disabled={stickerList.length === 0}
-                  className="px-3.5 py-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-extrabold text-xs rounded-xl transition cursor-pointer flex items-center gap-1"
+                  className="px-3.5 py-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs rounded-xl transition cursor-pointer flex items-center gap-1"
                 >
                   <Sparkles className="w-3.5 h-3.5 text-amber-500" />
                   <span>{isBn ? "১টি টেস্ট প্রিন্ট" : "Test 1"}</span>
@@ -981,7 +981,7 @@ export const PrintLabels: React.FC<Props> = ({
                   type="button"
                   onClick={handleTriggerPrint}
                   disabled={stickerList.length === 0}
-                  className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs rounded-xl shadow-md transition cursor-pointer flex items-center gap-1.5"
+                  className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-md transition cursor-pointer flex items-center gap-1.5"
                 >
                   <Printer className="w-4 h-4" />
                   <span>{isBn ? "প্রিন্ট করুন" : "Print Labels"}</span>
@@ -997,3 +997,4 @@ export const PrintLabels: React.FC<Props> = ({
 };
 
 export default PrintLabels;
+
