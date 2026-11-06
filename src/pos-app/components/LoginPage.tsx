@@ -746,23 +746,10 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
                 </p>
               </div>
 
-              {/* 1-Click Quick Demo Login */}
-              <div className="pt-2 flex items-center justify-center gap-2 text-xs">
-                <span className="text-[11px] font-bold text-slate-400">কুইক ডেমো:</span>
-                <button
-                  type="button"
-                  onClick={() => handleQuickDemo('admin')}
-                  className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-[11px] cursor-pointer transition"
-                >
-                  অ্যাডমিন
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleQuickDemo('owner')}
-                  className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-[11px] cursor-pointer transition"
-                >
-                  ম্যানেজার
-                </button>
+              {/* Security & Support Trust Badge */}
+              <div className="pt-2.5 flex items-center justify-center gap-1.5 text-xs text-slate-400">
+                <ShieldCheck size={14} className="text-emerald-500" />
+                <span className="text-[11px] font-semibold text-slate-500">১০০% নিরাপদ ক্লাউড কানেকশন • SSL এনক্রিপ্টেড</span>
               </div>
 
             </form>
