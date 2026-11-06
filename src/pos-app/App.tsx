@@ -3647,7 +3647,7 @@ export default function App() {
               <Menu className="h-5 w-5" />
             </button>
 
-            {/* 1-Click Public Landing Page ON/OFF Toggle Button (Super Admin Only) */}
+            {/* 1-Click Homepage Button */}
             {sessionUser.role === 'super_admin' && (
               <button
                 onClick={function() {
@@ -3656,24 +3656,17 @@ export default function App() {
                   try { localStorage.setItem('smarthisab_public_landing_enabled', nextState ? 'true' : 'false'); } catch (e) {}
                   showToast && showToast(
                     lang === 'bn'
-                      ? `পাবলিক হোম পেজ ${nextState ? 'চালু (ON)' : 'বন্ধ (OFF)'} করা হয়েছে!`
-                      : `Public Landing Page is now ${nextState ? 'ON' : 'OFF'}!`,
+                      ? (nextState ? 'হোমপেজে নেওয়া হচ্ছে...' : 'ড্যাশবোর্ডে ফিরে আসা হয়েছে')
+                      : (nextState ? 'Opening Homepage...' : 'Returned to Dashboard'),
                     'info'
                   );
                 }}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-black shadow-md border transition cursor-pointer active:scale-95 ml-2 ${
-                  isLandingPageVisible 
-                    ? 'bg-emerald-600 hover:bg-emerald-500 text-white border-emerald-400/40 ring-2 ring-emerald-400/30' 
-                    : 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700'
-                }`}
-                title={isLandingPageVisible ? "পাবলিক হোম পেজ বর্তমানে চালু আছে (বন্ধ করতে ক্লিক করুন)" : "পাবলিক হোম পেজ বর্তমানে বন্ধ আছে (চালু করতে ক্লিক করুন)"}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-black shadow-md border transition cursor-pointer active:scale-95 ml-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700 hover:border-slate-600"
+                title={lang === 'bn' ? "হোমপেজ / মূল ওয়েবসাইটে যান" : "Go to Homepage"}
               >
-                <Globe className={`h-4 w-4 ${isLandingPageVisible ? 'text-amber-300 animate-pulse' : 'text-slate-400'}`} />
+                <Home className="h-3.5 w-3.5 text-sky-400" />
                 <span className="hidden sm:inline">
-                  {lang === 'bn' 
-                    ? `পাবলিক পেজ: ${isLandingPageVisible ? 'চালু (ON)' : 'বন্ধ (OFF)'}` 
-                    : `Public Page: ${isLandingPageVisible ? 'ON' : 'OFF'}`
-                  }
+                  {lang === 'bn' ? 'হোমপেজ' : 'Homepage'}
                 </span>
               </button>
             )}
