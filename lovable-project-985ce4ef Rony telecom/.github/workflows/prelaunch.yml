@@ -1,0 +1,82 @@
+name: Pre-launch verification
+
+# Runs the automated pre-launch verification suite on every PR to main
+# and nightly against main. Emits a Markdown report as a workflow artifact
+# and (on PRs) as a sticky comment.
+#
+# Required secrets for the `live` job:
+#   FIREBASE_SERVICE_ACCOUNT_JSON  — service-account JSON with datastore.indexAdmin
+#   FIRESTORE_PROJECT_ID           — Firebase project ID
+#   PROD_URL                       — https://your-domain.tld
+#
+# The `static` job runs on every push and has no secret requirements.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 3 * * *'   # nightly 03:00 UTC
+  workflow_dispatch:
+
+jobs:
+  static:
+    name: Static verification (no network)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: latest }
+      - run: bun install --frozen-lockfile
+      - name: Typecheck
+        run: bunx tsgo --noEmit || true
+      - name: Firestore rules unit tests (emulator)
+        uses: w9jds/firebase-action@v14.10.1
+        with:
+          args: emulators:exec --only firestore "npx vitest run e2e/firestore-rules.spec.ts"
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        continue-on-error: true
+      - name: Auth + route-protection contract tests
+        run: bunx playwright test e2e/auth-route-protection.spec.ts
+        continue-on-error: true
+      - name: Pre-launch verifier (static)
+        run: node scripts/prelaunch-verify.mjs --json prelaunch.json | tee prelaunch-report.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: prelaunch-report-static
+          path: |
+            prelaunch-report.md
+            prelaunch.json
+      - name: Comment PR
+        if: github.event_name == 'pull_request'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: prelaunch
+          path: prelaunch-report.md
+
+  live:
+    name: Live verification (Firebase + custom domain)
+    runs-on: ubuntu-latest
+    needs: static
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: latest }
+      - run: bun install --frozen-lockfile
+      - name: Write service-account JSON
+        run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}' > /tmp/sa.json
+      - name: Pre-launch verifier (live)
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/sa.json
+          FIRESTORE_PROJECT_ID: ${{ secrets.FIRESTORE_PROJECT_ID }}
+          PROD_URL: ${{ secrets.PROD_URL }}
+        run: node scripts/prelaunch-verify.mjs --live --json prelaunch-live.json | tee prelaunch-live.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: prelaunch-report-live
+          path: |
+            prelaunch-live.md
+            prelaunch-live.json

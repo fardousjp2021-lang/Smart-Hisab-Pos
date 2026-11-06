@@ -1,0 +1,207 @@
+rules_version = '2';
+// =============================================================================
+// PHASE 2 PROPOSED RULES — STAGED, NOT DEPLOYED.
+//
+// This file is consumed by e2e/firestore-rules.spec.ts under the emulator.
+// Do NOT copy this to firestore.rules until the Phase 2 cutover window
+// (docs/multi-tenant-phase2-readiness.md §10).
+//
+// Preserved from pre-Phase-2 rules:
+//   - Admin approval flow (registrations, adminApprovalLogs)
+//   - Email verification requirement on all business collections
+//   - IMEI uniqueness via deterministic doc-id + create-only guarantee
+//   - Settings public-read / admin-write
+//   - Deny-by-default at the bottom
+//
+// New in Phase 2:
+//   - `userWorkspace()` helper reads workspaceId from the custom claim
+//   - Every business collection enforces `workspaceId == userWorkspace()`
+//   - Writes MUST include workspaceId AND may not spoof another tenant's id
+//   - No dependency on `cat_seed_default` — Option D defers per-tenant
+//     clone to Phase 3; the template doc is never read at runtime under
+//     these rules (all product reads go through per-tenant categoryId).
+// =============================================================================
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- Helpers ----------
+    function isSignedIn() { return request.auth != null; }
+    function isAdmin() { return isSignedIn() && request.auth.token.admin == true; }
+    function emailVerified() { return isSignedIn() && request.auth.token.email_verified == true; }
+
+    // Workspace membership is carried on the Firebase custom claim
+    // `workspaceId`, set by the `onApproveRegistration` Cloud Function.
+    // Users without the claim have no workspace and are blocked from all
+    // business collections (they can still read their own registration doc).
+    function userWorkspace() {
+      return isSignedIn() ? request.auth.token.workspaceId : null;
+    }
+    function hasWorkspace() {
+      return isSignedIn() && request.auth.token.workspaceId is string
+        && request.auth.token.workspaceId.size() > 0;
+    }
+    function inWorkspace(ws) {
+      return hasWorkspace() && ws == userWorkspace();
+    }
+
+    // For business-collection writes: workspaceId must be present, a string,
+    // and must equal the caller's own workspace (blocks cross-tenant spoofing).
+    function writeIsScoped() {
+      return request.resource.data.workspaceId is string
+        && request.resource.data.workspaceId == userWorkspace();
+    }
+    // For updates: also require the workspaceId to be unchanged (blocks
+    // moving a doc into another tenant via an update).
+    function updateKeepsWorkspace() {
+      return writeIsScoped()
+        && resource.data.workspaceId == request.resource.data.workspaceId;
+    }
+    // For reads: the doc must belong to the caller's workspace.
+    function readIsScoped() {
+      return inWorkspace(resource.data.workspaceId);
+    }
+
+    // Composite gate used by every business collection.
+    function canReadBusiness()  { return emailVerified() && hasWorkspace() && readIsScoped(); }
+    function canCreateBusiness(){ return emailVerified() && hasWorkspace() && writeIsScoped(); }
+    function canUpdateBusiness(){ return emailVerified() && hasWorkspace() && updateKeepsWorkspace(); }
+    function canDeleteBusiness(){ return emailVerified() && hasWorkspace() && readIsScoped(); }
+
+    // ---------- System settings (unchanged) ----------
+    match /settings/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // ---------- Registrations (unchanged — no workspaceId yet) ----------
+    match /registrations/{uid} {
+      allow read: if isAdmin() || (isSignedIn() && request.auth.uid == uid);
+      allow create: if isSignedIn()
+        && request.auth.uid == uid
+        && request.resource.data.approved == false
+        && request.resource.data.status == "pending"
+        && request.resource.data.email == request.auth.token.email;
+      allow update, delete: if isAdmin();
+    }
+
+    // ---------- Admin approval audit logs (unchanged) ----------
+    match /adminApprovalLogs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    // ---------- User profiles (unchanged) ----------
+    match /users/{uid} {
+      allow read: if isAdmin() || (isSignedIn() && request.auth.uid == uid);
+      allow create, update: if isAdmin() || (
+        isSignedIn()
+        && request.auth.uid == uid
+        && !("isAdmin" in request.resource.data.diff(resource == null ? {} : resource.data).affectedKeys())
+      );
+      allow delete: if isAdmin();
+    }
+
+    // ---------- IMEI / serial sale reservations ----------
+    // Phase 2: flat keying preserved (re-key to {workspaceId}_{imei}
+    // deferred to Phase 4). Uniqueness still comes from the create-only
+    // guarantee. Tenant isolation added via workspaceId on the doc.
+    match /imeiSales/{imei} {
+      allow read: if canReadBusiness();
+      allow create: if emailVerified()
+        && hasWorkspace()
+        && writeIsScoped()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.imei == imei;
+      allow update, delete: if (isAdmin() && inWorkspace(resource.data.workspaceId))
+        || (emailVerified() && resource.data.uid == request.auth.uid && readIsScoped());
+    }
+
+    // ---------- Business collections ----------
+    // 12 collections from BUSINESS_COLLECTIONS + supporting collections that
+    // pre-existed in rules (sales_returns, stockMovements, issues, quotations).
+    match /products/{id}       { allow read: if canReadBusiness();
+                                 allow create: if canCreateBusiness();
+                                 allow update: if canUpdateBusiness();
+                                 allow delete: if canDeleteBusiness() && isAdmin(); }
+    match /services/{id}       { allow read: if canReadBusiness();
+                                 allow create: if canCreateBusiness();
+                                 allow update: if canUpdateBusiness();
+                                 allow delete: if canDeleteBusiness() && isAdmin(); }
+    match /categories/{id}     { allow read: if canReadBusiness();
+                                 allow create: if canCreateBusiness();
+                                 allow update: if canUpdateBusiness();
+                                 allow delete: if canDeleteBusiness() && isAdmin(); }
+    match /brands/{id}         { allow read: if canReadBusiness();
+                                 allow create: if canCreateBusiness();
+                                 allow update: if canUpdateBusiness();
+                                 allow delete: if canDeleteBusiness() && isAdmin(); }
+    match /variants/{id}       { allow read: if canReadBusiness();
+                                 allow create: if canCreateBusiness();
+                                 allow update: if canUpdateBusiness();
+                                 allow delete: if canDeleteBusiness() && isAdmin(); }
+    match /customers/{id}      { allow read: if canReadBusiness();
+                                 allow create: if canCreateBusiness();
+                                 allow update: if canUpdateBusiness();
+                                 allow delete: if canDeleteBusiness() && isAdmin(); }
+    match /suppliers/{id}      { allow read: if canReadBusiness();
+                                 allow create: if canCreateBusiness();
+                                 allow update: if canUpdateBusiness();
+                                 allow delete: if canDeleteBusiness() && isAdmin(); }
+    match /sales/{id}          { allow read: if canReadBusiness();
+                                 allow create: if canCreateBusiness();
+                                 allow update: if canUpdateBusiness();
+                                 allow delete: if canDeleteBusiness() && isAdmin(); }
+    match /sales_returns/{id}  { allow read: if canReadBusiness();
+                                 allow create: if canCreateBusiness();
+                                 allow update: if canUpdateBusiness();
+                                 allow delete: if canDeleteBusiness() && isAdmin(); }
+    match /purchases/{id}      { allow read: if canReadBusiness();
+                                 allow create: if canCreateBusiness();
+                                 allow update: if canUpdateBusiness();
+                                 allow delete: if canDeleteBusiness() && isAdmin(); }
+    match /expenses/{id}       { allow read: if canReadBusiness();
+                                 allow create: if canCreateBusiness();
+                                 allow update: if canUpdateBusiness();
+                                 allow delete: if canDeleteBusiness() && isAdmin(); }
+    match /reports/{id}        { allow read: if canReadBusiness();
+                                 allow create: if canCreateBusiness();
+                                 allow update: if canUpdateBusiness();
+                                 allow delete: if canDeleteBusiness() && isAdmin(); }
+    match /stockMovements/{id} { allow read: if canReadBusiness();
+                                 allow create: if canCreateBusiness();
+                                 allow update: if canUpdateBusiness();
+                                 allow delete: if canDeleteBusiness() && isAdmin(); }
+    match /issues/{id}         { allow read: if canReadBusiness();
+                                 allow create: if canCreateBusiness();
+                                 allow update: if canUpdateBusiness();
+                                 allow delete: if canDeleteBusiness() && isAdmin(); }
+    match /quotations/{id}     { allow read: if canReadBusiness();
+                                 allow create: if canCreateBusiness();
+                                 allow update: if canUpdateBusiness();
+                                 allow delete: if canDeleteBusiness() && isAdmin(); }
+
+    // ---------- Notifications ----------
+    // Preserves per-recipient read + mark-read model; adds workspaceId
+    // isolation so a recipient can only see notifications minted for their
+    // tenant (defense-in-depth against a mis-fanned-out broadcast).
+    match /notifications/{noteId} {
+      allow read: if (isAdmin() && inWorkspace(resource.data.workspaceId))
+        || (emailVerified()
+            && inWorkspace(resource.data.workspaceId)
+            && resource.data.userId == request.auth.token.email);
+      allow create: if isAdmin() && writeIsScoped();
+      allow update: if (isAdmin() && updateKeepsWorkspace())
+        || (emailVerified()
+            && inWorkspace(resource.data.workspaceId)
+            && resource.data.userId == request.auth.token.email
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["read"]));
+      allow delete: if isAdmin() && inWorkspace(resource.data.workspaceId);
+    }
+
+    // Deny by default.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

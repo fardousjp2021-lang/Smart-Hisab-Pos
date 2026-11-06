@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build Outputs & Bundles
+dist/
+dist_electron/
+build/
+coverage/
+
+# Portable & Runtime Cache
+SmartHisab_POS_Desktop_Portable/
+.desktop_data/
+rclone-*/
+*.exe
+*.zip
+
+# Environment & Logs
+*.log
+.DS_Store
+.env*
+!.env.example

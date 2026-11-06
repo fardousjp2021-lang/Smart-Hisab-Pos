@@ -1,0 +1,140 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- Helpers ----------
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    function isAdmin() {
+      // Admins are identified via Firebase Custom Claims: { admin: true }.
+      // Set via Admin SDK (server) - never trust client-provided values.
+      return isSignedIn() && request.auth.token.admin == true;
+    }
+    function emailVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    // ---------- System settings ----------
+    // Public-readable so clients know the current registrationMode.
+    // Only admins may write.
+    match /settings/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // ---------- Registrations ----------
+    // Document ID MUST equal the authenticated user's uid.
+    match /registrations/{uid} {
+      allow read: if isAdmin() || (isSignedIn() && request.auth.uid == uid);
+
+      // Only signed-in users may create their own registration doc, and
+      // the client can NEVER set approved:true. `status` must be "pending".
+      allow create: if isSignedIn()
+        && request.auth.uid == uid
+        && request.resource.data.approved == false
+        && request.resource.data.status == "pending"
+        && request.resource.data.email == request.auth.token.email;
+
+      // Users cannot modify their own approval state. Only admins can.
+      allow update, delete: if isAdmin();
+    }
+
+    // ---------- Admin approval audit logs ----------
+    // Append-only from admin actions. Only admins can read/write.
+    match /adminApprovalLogs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    // ---------- Notifications ----------
+    // Admins may create/read/write anything. Users can read + mark-read
+    // (update `read` only) their own notifications, matched by userId == email.
+    match /notifications/{noteId} {
+      allow read: if isAdmin()
+        || (isSignedIn() && resource.data.userId == request.auth.token.email);
+      allow create: if isAdmin();
+      allow update: if isAdmin()
+        || (isSignedIn()
+            && resource.data.userId == request.auth.token.email
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["read"]));
+      allow delete: if isAdmin();
+    }
+
+
+
+    // ---------- User profiles ----------
+    match /users/{uid} {
+      allow read: if isAdmin() || (isSignedIn() && request.auth.uid == uid);
+      // Explicit parentheses: either the caller is admin, OR they are the
+      // owner AND the write does not touch the `isAdmin` field. Previously
+      // the missing parens made this parse as `(A && B) || isAdmin()`,
+      // which was functionally correct but read as a bug.
+      allow create, update: if isAdmin() || (
+        isSignedIn()
+        && request.auth.uid == uid
+        && !("isAdmin" in request.resource.data.diff(resource == null ? {} : resource.data).affectedKeys())
+      );
+      allow delete: if isAdmin();
+    }
+
+    // ---------- IMEI / serial sale reservations ----------
+    // Deterministic doc-id = the IMEI/serial being sold. Firestore's `create`
+    // guarantee (fails if the doc already exists) gives us atomic
+    // cross-terminal uniqueness even when two offline devices try to sell
+    // the same IMEI. Reads are limited to authenticated staff so the POS can
+    // pre-validate; only the original seller (or an admin) may release the
+    // reservation via a return.
+    match /imeiSales/{imei} {
+      allow read: if emailVerified();
+      allow create: if emailVerified()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.imei == imei;
+      allow update, delete: if isAdmin()
+        || (emailVerified() && resource.data.uid == request.auth.uid);
+    }
+
+    // ---------- Business data ----------
+    // Any signed-in, email-verified user of this workspace can read/write
+    // shared business collections. Admin-only surfaces (registrations,
+    // adminApprovalLogs, settings) remain locked down above.
+    match /products/{id} {
+      allow read, write: if emailVerified();
+    }
+    match /sales/{id} {
+      allow read, write: if emailVerified();
+    }
+    match /sales_returns/{id} {
+      // Returns/refunds are written transactionally by `writeItem` in
+      // `salesSyncQueue.ts`; same access model as parent sales.
+      allow read, write: if emailVerified();
+    }
+    match /purchases/{id} {
+      allow read, write: if emailVerified();
+    }
+    match /expenses/{id} {
+      allow read, write: if emailVerified();
+    }
+    match /stockMovements/{id} {
+      allow read, write: if emailVerified();
+    }
+    match /issues/{id} {
+      allow read, write: if emailVerified();
+    }
+    match /customers/{id} {
+      allow read, write: if emailVerified();
+    }
+    match /suppliers/{id} {
+      allow read, write: if emailVerified();
+    }
+    match /quotations/{id} {
+      allow read, write: if emailVerified();
+    }
+
+    // Deny by default.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
