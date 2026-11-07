@@ -1017,6 +1017,14 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
               {/* Invoice Meta details side-by-side matching screenshot exactly */}
               <div className="space-y-1 text-[11.5px] text-black font-semibold">
                 
+                {/* Row 0: Served by (Staff / Owner) - placed above Invoice # */}
+                <div className="flex text-left">
+                  <span className="font-bold min-w-[85px]">{isBn ? 'বিক্রয়কর্মী' : 'Served by'}</span>
+                  <span className="font-bold flex-1 text-left">
+                    {selectedInvoiceForReceipt.servedBy || (selectedInvoiceForReceipt.createdBy === 'admin' ? 'Admin' : (selectedInvoiceForReceipt.createdBy || 'Admin'))}
+                  </span>
+                </div>
+
                 {/* Row 1: Invoice # and Date */}
                 <div className="flex justify-between items-baseline">
                   <div className="flex w-full">
@@ -1042,15 +1050,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
                   <span className="font-bold flex-1 text-left">{selectedInvoiceForReceipt.customerName}</span>
                 </div>
 
-                {/* Row 3: Served by */}
-                <div className="flex text-left">
-                  <span className="font-bold min-w-[85px]">Served by</span>
-                  <span className="font-bold flex-1 text-left">
-                    {selectedInvoiceForReceipt.createdBy === 'admin' ? 'Admin' : (selectedInvoiceForReceipt.createdBy || 'Admin')}
-                  </span>
-                </div>
-
-                {/* Row 4: Time */}
+                {/* Row 3: Time */}
                 <div className="flex text-left">
                   <span className="font-bold min-w-[85px]">Time</span>
                   <span className="font-bold flex-1 text-left">

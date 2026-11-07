@@ -1513,19 +1513,16 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
                 <div className="border-t border-dashed border-black my-1.5" />
 
                 <div className="space-y-1 text-[10px]">
-                  <div className="flex justify-between"><span className="text-slate-600 font-medium">Invoice #</span><span className="font-bold">{receipt.invoiceNum}</span></div>
-                  <div className="flex justify-between"><span className="text-slate-600 font-medium">Date/Time</span><span className="font-semibold">{receipt.date} {receipt.time}</span></div>
-                  <div className="flex justify-between"><span className="text-slate-600 font-medium">Customer</span><span className="font-semibold">{receipt.customerName}</span></div>
-                  {receipt.customerPhone && <div className="flex justify-between"><span className="text-slate-600 font-medium">Mobile</span><span className="font-semibold">{receipt.customerPhone}</span></div>}
-                  <div className="flex justify-between"><span className="text-slate-600 font-medium">Payment</span><span className="font-semibold">{receipt.paymentMethod}</span></div>
-                  
-                  {/* ✨ Logged-in Staff / Seller as requested by user */}
-                  <div className="flex justify-between items-center pt-1 border-t border-dotted border-slate-400">
-                    <span className="text-slate-700 font-bold">{isBn ? 'বিক্রয়কর্মী / স্টাফ:' : 'Served By:'}</span>
-                    <span className="font-bold text-black bg-slate-100 px-1.5 py-0.5 rounded text-[10px] border border-slate-200">
-                      👤 {receipt.servedBy || activeSessionUser?.name || 'স্টাফ'} {receipt.staffRole ? `(${receipt.staffRole})` : ''}
-                    </span>
+                  {/* ✨ Logged-in Staff / Owner Name - placed directly under SALES INVOICE and above Invoice # */}
+                  <div className="flex justify-between">
+                    <span className="text-slate-600 font-medium">{isBn ? 'বিক্রয়কর্মী' : 'Served By'}</span>
+                    <span className="font-bold text-black">{receipt.servedBy || activeSessionUser?.name || (isBn ? 'স্টাফ' : 'Staff')}</span>
                   </div>
+                  <div className="flex justify-between"><span className="text-slate-600 font-medium">Invoice #</span><span className="font-bold text-black">{receipt.invoiceNum}</span></div>
+                  <div className="flex justify-between"><span className="text-slate-600 font-medium">Date/Time</span><span className="font-semibold text-black">{receipt.date} {receipt.time}</span></div>
+                  <div className="flex justify-between"><span className="text-slate-600 font-medium">Customer</span><span className="font-semibold text-black">{receipt.customerName}</span></div>
+                  {receipt.customerPhone && <div className="flex justify-between"><span className="text-slate-600 font-medium">Mobile</span><span className="font-semibold text-black">{receipt.customerPhone}</span></div>}
+                  <div className="flex justify-between"><span className="text-slate-600 font-medium">Payment</span><span className="font-semibold text-black">{receipt.paymentMethod}</span></div>
                 </div>
 
                 <div className="border-t border-dashed border-slate-300 my-1.5" />
