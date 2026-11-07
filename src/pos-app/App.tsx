@@ -3730,18 +3730,28 @@ export default function App() {
         )}
 
         {/* Top Header Navbar as requested by the user */}
-        <header className="h-16 bg-[rgb(1,12,45)] border-b border-[rgb(12,45,140)] flex items-center justify-between px-6 text-white shrink-0 selection:bg-amber-500/30">
-          <div className="flex items-center gap-4">
+        <header className="h-16 bg-[rgb(1,12,45)] border-b border-[rgb(12,45,140)] flex items-center justify-between px-4 sm:px-6 text-white shrink-0 selection:bg-amber-500/30">
+          <div className="flex items-center gap-3">
             
-            
-            {/* Hamburger menu button */}
-            <button
-              onClick={function() { setIsSidebarCollapsed(!isSidebarCollapsed); }}
-              className="p-1.5 rounded hover:bg-white/10 text-white transition cursor-pointer active:scale-95"
-              title={isSidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
-            >
-              <Menu className="h-5 w-5" />
-            </button>
+            {/* Left Sidebar Brand Header - strictly aligned inside sidebar width (w-64) */}
+            <div className={`flex items-center gap-2.5 transition-all duration-300 ${isSidebarCollapsed ? 'w-10' : 'w-56'} shrink-0 overflow-hidden`}>
+              {/* Hamburger menu button */}
+              <button
+                onClick={function() { setIsSidebarCollapsed(!isSidebarCollapsed); }}
+                className="p-1.5 rounded-lg hover:bg-white/10 text-white transition cursor-pointer active:scale-95 shrink-0"
+                title={isSidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+              >
+                <Menu className="h-5 w-5" />
+              </button>
+
+              {/* White-Label Platform Brand Header (Stays strictly inside sidebar border) */}
+              {!isSidebarCollapsed && (
+                <div className="flex items-center gap-1.5 font-sans font-bold text-base sm:text-lg text-white select-none tracking-tight truncate" title={`${platformBrandName || 'SmartHisab'} ${platformBrandBadge || 'POS'}`}>
+                  <span className="truncate">{platformBrandName || 'SmartHisab'}</span>
+                  <span className="uppercase text-white/90 text-sm sm:text-base font-bold shrink-0">{platformBrandBadge || 'POS'}</span>
+                </div>
+              )}
+            </div>
 
             {/* 1-Click Homepage Button */}
             {sessionUser.role === 'super_admin' && (
@@ -3757,7 +3767,7 @@ export default function App() {
                     'info'
                   );
                 }}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold shadow-md border transition cursor-pointer active:scale-95 ml-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700 hover:border-slate-600"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold shadow-md border transition cursor-pointer active:scale-95 ml-1 bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700 hover:border-slate-600"
                 title={lang === 'bn' ? "হোমপেজ / মূল ওয়েবসাইটে যান" : "Go to Homepage"}
               >
                 <Home className="h-3.5 w-3.5 text-sky-400" />
@@ -3766,12 +3776,6 @@ export default function App() {
                 </span>
               </button>
             )}
-
-            {/* White-Label Platform Brand Header (Super Admin Editable) */}
-            <div className="flex items-center gap-1.5 font-sans font-bold text-xl sm:text-2xl text-white select-none ml-1 tracking-wide">
-              <span>{platformBrandName || 'Nexus'}</span>
-              <span className="uppercase">{platformBrandBadge || 'ERP'}</span>
-            </div>
 
 
             {/* Quick action orange button with dropdown plus sign */}
