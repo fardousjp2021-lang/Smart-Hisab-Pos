@@ -39,7 +39,7 @@ import { useApp } from '../context/AppContext';
 
 interface LoginPageProps {
   onBackToHome?: () => void;
-  onLoginSuccess?: () => void;
+  onLoginSuccess?: (user?: any) => void;
 }
 
 export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSuccess }) => {
@@ -210,30 +210,51 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
         if (matchedUser.shopName) {
           localStorage.setItem('smarthisab_shop_name', matchedUser.shopName);
         }
-        localStorage.setItem('smarthisab_active_session_user', JSON.stringify(matchedUser));
+        const activeUser = {
+          ...matchedUser,
+          name: matchedUser.fullName || matchedUser.name,
+          role: matchedUser.role === 'employee' ? 'employee' : 'owner',
+          roleTitleBn: matchedUser.role === 'employee' ? "কর্মচারী / ক্যাশিয়ার" : "দোকানের মালিক",
+          roleTitleEn: matchedUser.role === 'employee' ? "Employee / Cashier" : "Shop Owner",
+          employeeRole: matchedUser.role === 'employee' ? "Operator" : "Owner"
+        };
+        localStorage.setItem('smarthisab_active_session_user', JSON.stringify(activeUser));
         if (demoLogin) {
-          await demoLogin('admin');
+          await demoLogin('owner');
         } else if (login) {
           await login(matchedUser.email, password);
         }
         if (onLoginSuccess) {
-          onLoginSuccess();
+          onLoginSuccess(activeUser);
         }
         return;
       }
 
       // 2. Check if logging in with Super Admin credentials
       if (
-        (inputStr === customAdminEmail || inputStr === 'admin@smarthisab.com' || inputStr === 'info.fardousit@gmail.com' || cleanInputPhone === '01747046052' || cleanInputPhone === '01996761011') &&
+        (inputStr === customAdminEmail || inputStr === 'admin@smarthisab.com' || inputStr === 'info.fardousit@gmail.com' || inputStr === 'fardous.jp2021@gmail.com' || cleanInputPhone === '01747046052' || cleanInputPhone === '01996761011') &&
         (password === customAdminPassword || password === 'admin123')
       ) {
+        const superAdminUser = {
+          id: 'super_admin_fardous',
+          fullName: "Fardous Al-Amin",
+          name: "Fardous Al-Amin",
+          shopName: "Central SaaS Control",
+          email: "fardous.jp2021@gmail.com",
+          phone: "01747046052",
+          role: 'super_admin',
+          roleTitleBn: "ডেভেলপার / সুপার এডমিন",
+          roleTitleEn: "Developer / Super Admin",
+          employeeRole: "Super Admin"
+        };
+        localStorage.setItem('smarthisab_active_session_user', JSON.stringify(superAdminUser));
         if (demoLogin) {
           await demoLogin('admin');
         } else if (login) {
           await login(email.trim(), password);
         }
         if (onLoginSuccess) {
-          onLoginSuccess();
+          onLoginSuccess(superAdminUser);
         }
         return;
       }
@@ -242,8 +263,17 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
       if (login) {
         await login(email.trim(), password);
       }
+      const fallbackUser = {
+        name: email.split('@')[0] || "দোকানের মালিক",
+        email: email.trim(),
+        role: 'owner',
+        roleTitleBn: "দোকানের মালিক",
+        roleTitleEn: "Shop Owner",
+        employeeRole: "Owner"
+      };
+      localStorage.setItem('smarthisab_active_session_user', JSON.stringify(fallbackUser));
       if (onLoginSuccess) {
-        onLoginSuccess();
+        onLoginSuccess(fallbackUser);
       }
     } catch (err: any) {
       setErrorMessage(err?.message || 'লগইন ব্যর্থ হয়েছে। পাসওয়ার্ড বা ইউজারনেম ঠিক আছে কিনা পরীক্ষা করুন।');
@@ -307,16 +337,20 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
         return;
       }
 
-      // Create new shop owner account object
+      // Create new shop owner account object (Strictly Shop Owner, NEVER Super Admin)
       const newUser = {
         id: 'usr_' + Date.now(),
+        name: regFullName.trim(),
         fullName: regFullName.trim(),
         shopName: regShopName.trim(),
         businessType: regBusinessType,
         phone: cleanPhone,
         email: cleanEmail,
         password: regPassword,
-        role: 'admin',
+        role: 'owner', // Strictly 'owner' (দোকানের মালিক)
+        roleTitleBn: "দোকানের মালিক",
+        roleTitleEn: "Shop Owner",
+        employeeRole: "Owner",
         createdAt: new Date().toISOString()
       };
 
@@ -348,13 +382,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
       setTimeout(async () => {
         try {
           if (demoLogin) {
-            await demoLogin('admin');
+            await demoLogin('owner');
           } else if (login) {
             await login(cleanEmail, regPassword);
           }
         } catch (e) {}
         if (onLoginSuccess) {
-          onLoginSuccess();
+          onLoginSuccess(newUser);
         }
       }, 1200);
 
@@ -370,11 +404,41 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
     setErrorMessage(null);
     setSuccessMessage(null);
     try {
+      const demoUser = role === 'admin'
+        ? {
+            name: "Fardous Al-Amin",
+            email: "fardous.jp2021@gmail.com",
+            role: "super_admin",
+            roleTitleBn: "ডেভেলপার / সুপার এডমিন",
+            roleTitleEn: "Developer / Super Admin",
+            employeeRole: "Super Admin"
+          }
+        : role === 'owner'
+          ? {
+              name: "Farhad Owner",
+              email: "farhad.owner@gmail.com",
+              shopName: "রনি টেলিকম",
+              role: "owner",
+              roleTitleBn: "দোকানের মালিক",
+              roleTitleEn: "Shop Owner",
+              employeeRole: "Owner"
+            }
+          : {
+              name: "Hasan Cashier",
+              email: "cashier@gloriousit.com",
+              shopName: "রনি টেলিকম",
+              role: "employee",
+              roleTitleBn: "কর্মচারী / ক্যাশিয়ার",
+              roleTitleEn: "Employee / Cashier",
+              employeeRole: "Operator"
+            };
+
+      localStorage.setItem('smarthisab_active_session_user', JSON.stringify(demoUser));
       if (demoLogin) {
         await demoLogin(role);
       }
       if (onLoginSuccess) {
-        onLoginSuccess();
+        onLoginSuccess(demoUser);
       }
     } catch (err: any) {
       setErrorMessage('ডেমো সাইন-ইন সম্পন্ন করা যায়নি।');

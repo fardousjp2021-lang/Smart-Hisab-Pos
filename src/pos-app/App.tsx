@@ -894,15 +894,41 @@ export default function App() {
   // 1. Session & Role-Based Access Control State
   // Roles: 
   // 'super_admin' (Main Developer/Admin - fardous.jp2021@gmail.com)
-  // 'owner' (Merchant / Shop Owner - sees everything)
+  // 'owner' (Merchant / Shop Owner - sees everything in their own store)
   // 'employee' (Manager/Cashier/Employee - Restricted)
-  const [sessionUser, setSessionUser] = useState({
-    name: "Fardous Alamin",
-    email: "fardous.jp2021@gmail.com",
-    role: "super_admin" as "super_admin" | "owner" | "employee",
-    roleTitleBn: "ডেভেলপার / সুপার এডমিন",
-    roleTitleEn: "Developer / Super Admin",
-    employeeRole: "Super Admin"
+  const [sessionUser, setSessionUser] = useState(function() {
+    try {
+      const savedUserStr = typeof window !== 'undefined' ? localStorage.getItem('smarthisab_active_session_user') : null;
+      if (savedUserStr) {
+        const u = JSON.parse(savedUserStr);
+        const email = (u.email || '').toLowerCase().trim();
+        const phone = (u.phone || '').trim();
+        const isSuper = (email === 'fardous.jp2021@gmail.com' || email === 'admin@smarthisab.com' || phone === '01747046052') && u.role === 'super_admin';
+        const role = isSuper ? 'super_admin' : (u.role === 'employee' ? 'employee' : 'owner');
+        return {
+          name: u.fullName || u.name || (role === 'owner' ? "দোকানের মালিক" : "ব্যবহারকারী"),
+          email: u.email || "",
+          phone: u.phone || "",
+          shopName: u.shopName || "",
+          businessType: u.businessType || "",
+          role: role as "super_admin" | "owner" | "employee",
+          roleTitleBn: role === 'super_admin' ? "ডেভেলপার / সুপার এডমিন" : (role === 'owner' ? "দোকানের মালিক" : "কর্মচারী / ক্যাশিয়ার"),
+          roleTitleEn: role === 'super_admin' ? "Developer / Super Admin" : (role === 'owner' ? "Shop Owner" : "Employee"),
+          employeeRole: role === 'super_admin' ? "Super Admin" : (role === 'owner' ? "Owner" : "Operator")
+        };
+      }
+    } catch (e) {}
+
+    // Default guest / shop owner state (Strictly 'owner', NEVER 'super_admin')
+    return {
+      name: "দোকানের মালিক",
+      email: "owner@smarthisab.com",
+      shopName: "আমার দোকান",
+      role: "owner" as "super_admin" | "owner" | "employee",
+      roleTitleBn: "দোকানের মালিক",
+      roleTitleEn: "Shop Owner",
+      employeeRole: "Owner"
+    };
   });
 
   // Non-super-admin users must never land on super-admin-only pages.
@@ -3615,7 +3641,29 @@ export default function App() {
       {isLandingPageVisible ? (
         <div className="fixed inset-0 z-50 overflow-y-auto bg-[#f8fafc]">
           <LoginPage
-            onLoginSuccess={function() { setIsLandingPageVisible(false); }}
+            onLoginSuccess={function(u?: any) {
+              if (u) {
+                const email = (u.email || '').toLowerCase().trim();
+                const phone = (u.phone || '').trim();
+                const isSuper = (email === 'fardous.jp2021@gmail.com' || email === 'admin@smarthisab.com' || phone === '01747046052') && u.role === 'super_admin';
+                const role = isSuper ? 'super_admin' : (u.role === 'employee' ? 'employee' : 'owner');
+                setSessionUser({
+                  name: u.fullName || u.name || (role === 'owner' ? "দোকানের মালিক" : "কর্মচারী"),
+                  email: u.email || "",
+                  phone: u.phone || "",
+                  shopName: u.shopName || "",
+                  businessType: u.businessType || "",
+                  role: role as "super_admin" | "owner" | "employee",
+                  roleTitleBn: role === 'super_admin' ? "ডেভেলপার / সুপার এডমিন" : (role === 'owner' ? "দোকানের মালিক" : "কর্মচারী / ক্যাশিয়ার"),
+                  roleTitleEn: role === 'super_admin' ? "Developer / Super Admin" : (role === 'owner' ? "Shop Owner" : "Employee"),
+                  employeeRole: role === 'super_admin' ? "Super Admin" : (role === 'owner' ? "Owner" : "Operator")
+                });
+                if (role !== 'super_admin') {
+                  setActiveTab('dashboard');
+                }
+              }
+              setIsLandingPageVisible(false);
+            }}
           />
         </div>
       ) : (
@@ -3944,73 +3992,89 @@ export default function App() {
               {/* Elegant Dropdown to switch roles for testing */}
               <div className="absolute right-0 top-full mt-1 w-60 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl p-2.5 hidden group-hover/role:block z-50 text-slate-800 dark:text-white">
                 <div className="px-2 py-1.5 border-b border-slate-100 dark:border-slate-800 mb-2">
-                  <span className="text-[9.5px] font-bold text-slate-400 block uppercase tracking-wider">{lang === 'bn' ? 'লাইভ রোল পরিবর্তন করুন' : 'SWITCH ACTIVE ROLE'}</span>
+                  <span className="text-[9.5px] font-bold text-slate-400 block uppercase tracking-wider">
+                    {sessionUser.role === 'super_admin' 
+                      ? (lang === 'bn' ? 'ডেভেলপার রোল কন্ট্রোল' : 'DEVELOPER ROLE SWITCHER') 
+                      : (lang === 'bn' ? 'ব্যবহারকারী প্রোফাইল' : 'USER PROFILE')}
+                  </span>
                 </div>
                 
-                {/* 1. Super Admin Option — always visible in this role switcher */}
-                <button
-                  type="button"
-                  onClick={function() {
-                    setImpersonationOrigin(null);
-                    setSessionUser({
-                      name: "Fardous Al-Amin",
-                      email: "fardous.jp2021@gmail.com",
-                      role: "super_admin",
-                      roleTitleBn: "ডেভেলপার / সুপার এডমিন",
-                      roleTitleEn: "Developer / Super Admin",
-                      employeeRole: "Super Admin"
-                    });
-                    setActiveTab('super_admin_panel');
-                  }}
-                  className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition ${sessionUser.role === 'super_admin' ? 'bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-bold' : ''}`}
-                >
-                  <span>💻 {lang === 'bn' ? "১. সুপার এডমিন" : "1. Super Admin"}</span>
-                  {sessionUser.role === 'super_admin' && <span className="text-blue-500">✓</span>}
-                </button>
-                
-                {/* 2. Merchant Owner Option */}
-                <button
-                  type="button"
-                  onClick={function() {
-                    setSessionUser({
-                      name: "Farhad Owner",
-                      email: "farhad.owner@gmail.com",
-                      role: "owner",
-                      roleTitleBn: "দোকানের মালিক",
-                      roleTitleEn: "Shop Owner",
-                      employeeRole: "Owner"
-                    });
-                    setActiveTab('dashboard');
-                  }}
-                  className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition ${sessionUser.role === 'owner' ? 'bg-green-50 dark:bg-green-950/40 text-green-600 dark:text-green-400 font-bold' : ''}`}
-                >
-                  <span>🔑 {lang === 'bn' ? "২. দোকানের মালিক" : "2. Shop Owner"}</span>
-                  {sessionUser.role === 'owner' && <span className="text-green-500">✓</span>}
-                </button>
-                
-                {/* 3. Employee Cashier Option */}
-                <button
-                  type="button"
-                  onClick={function() {
-                    setSessionUser({
-                      name: "Hasan Cashier",
-                      email: "cashier@gloriousit.com",
-                      role: "employee",
-                      roleTitleBn: "কর্মচারী / ক্যাশিয়ার",
-                      roleTitleEn: "Employee / Cashier",
-                      employeeRole: "Operator"
-                    });
-                    setActiveTab('dashboard');
-                  }}
-                  className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition ${sessionUser.role === 'employee' ? 'bg-yellow-50 dark:bg-yellow-950/45 text-yellow-600 dark:text-yellow-400 font-bold' : ''}`}
-                >
-                  <span>👥 {lang === 'bn' ? "৩. কর্মচারী / ক্যাশিয়ার" : "3. Employee / Staff"}</span>
-                  {sessionUser.role === 'employee' && <span className="text-yellow-600">✓</span>}
-                </button>
-                
-                <div className="mt-2 pt-2 border-t border-slate-100 dark:border-slate-800 text-[9.5px] text-slate-400 px-2 leading-relaxed font-medium">
-                  {lang === 'bn' ? "💡 রোল পরিবর্তন করে কর্মচারীদের জন্য মডিউল লকিং ও এক্সেস সিকিউরিটি লাইভ চেক করুন।" : "💡 Switch roles to witness module security shields instantly."}
-                </div>
+                {sessionUser.role === 'super_admin' ? (
+                  <>
+                    {/* 1. Super Admin Option */}
+                    <button
+                      type="button"
+                      onClick={function() {
+                        setImpersonationOrigin(null);
+                        setSessionUser({
+                          name: "Fardous Al-Amin",
+                          email: "fardous.jp2021@gmail.com",
+                          role: "super_admin",
+                          roleTitleBn: "ডেভেলপার / সুপার এডমিন",
+                          roleTitleEn: "Developer / Super Admin",
+                          employeeRole: "Super Admin"
+                        });
+                        setActiveTab('super_admin_panel');
+                      }}
+                      className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition ${sessionUser.role === 'super_admin' ? 'bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-bold' : ''}`}
+                    >
+                      <span>💻 {lang === 'bn' ? "১. সুপার এডমিন" : "1. Super Admin"}</span>
+                      {sessionUser.role === 'super_admin' && <span className="text-blue-500">✓</span>}
+                    </button>
+                    
+                    {/* 2. Merchant Owner Option */}
+                    <button
+                      type="button"
+                      onClick={function() {
+                        setSessionUser({
+                          name: "Farhad Owner",
+                          email: "farhad.owner@gmail.com",
+                          role: "owner",
+                          roleTitleBn: "দোকানের মালিক",
+                          roleTitleEn: "Shop Owner",
+                          employeeRole: "Owner"
+                        });
+                        setActiveTab('dashboard');
+                      }}
+                      className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition ${sessionUser.role === 'owner' ? 'bg-green-50 dark:bg-green-950/40 text-green-600 dark:text-green-400 font-bold' : ''}`}
+                    >
+                      <span>🔑 {lang === 'bn' ? "২. দোকানের মালিক" : "2. Shop Owner"}</span>
+                      {sessionUser.role === 'owner' && <span className="text-green-500">✓</span>}
+                    </button>
+                    
+                    {/* 3. Employee Cashier Option */}
+                    <button
+                      type="button"
+                      onClick={function() {
+                        setSessionUser({
+                          name: "Hasan Cashier",
+                          email: "cashier@gloriousit.com",
+                          role: "employee",
+                          roleTitleBn: "কর্মচারী / ক্যাশিয়ার",
+                          roleTitleEn: "Employee / Cashier",
+                          employeeRole: "Operator"
+                        });
+                        setActiveTab('dashboard');
+                      }}
+                      className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition ${sessionUser.role === 'employee' ? 'bg-yellow-50 dark:bg-yellow-950/45 text-yellow-600 dark:text-yellow-400 font-bold' : ''}`}
+                    >
+                      <span>👥 {lang === 'bn' ? "৩. কর্মচারী / ক্যাশিয়ার" : "3. Employee / Staff"}</span>
+                      {sessionUser.role === 'employee' && <span className="text-yellow-600">✓</span>}
+                    </button>
+
+                    <div className="mt-2 pt-2 border-t border-slate-100 dark:border-slate-800 text-[9.5px] text-slate-400 px-2 leading-relaxed font-medium">
+                      {lang === 'bn' ? "💡 রোল পরিবর্তন করে কর্মচারীদের জন্য মডিউল লকিং ও এক্সেস সিকিউরিটি লাইভ চেক করুন।" : "💡 Switch roles to witness module security shields instantly."}
+                    </div>
+                  </>
+                ) : (
+                  <div className="px-2 py-1 text-xs text-slate-600 dark:text-slate-300 space-y-1">
+                    <p className="font-bold text-slate-900 dark:text-white truncate">🏬 {shopName || sessionUser.name}</p>
+                    <p className="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
+                      <span>✓</span> {lang === 'bn' ? 'সক্রিয় দোকান অ্যাকাউন্ট' : 'Active Shop Account'}
+                    </p>
+                    <p className="text-[10px] text-slate-400">{sessionUser.email || sessionUser.name}</p>
+                  </div>
+                )}
 
                 {/* 🚪 LOGOUT BUTTON */}
                 <div className="mt-2 pt-2 border-t border-rose-100 dark:border-rose-900/40">
@@ -4018,7 +4082,19 @@ export default function App() {
                     type="button"
                     onClick={function() {
                       setIsLandingPageVisible(true);
-                      try { localStorage.setItem('smarthisab_public_landing_enabled', 'true'); } catch (e) {}
+                      try {
+                        localStorage.setItem('smarthisab_public_landing_enabled', 'true');
+                        localStorage.removeItem('smarthisab_active_session_user');
+                      } catch (e) {}
+                      setSessionUser({
+                        name: "দোকানের মালিক",
+                        email: "owner@smarthisab.com",
+                        shopName: "আমার দোকান",
+                        role: "owner",
+                        roleTitleBn: "দোকানের মালিক",
+                        roleTitleEn: "Shop Owner",
+                        employeeRole: "Owner"
+                      });
                       showToast && showToast(lang === 'bn' ? 'সফলভাবে লগ আউট করা হয়েছে!' : 'Logged out successfully!', 'info');
                     }}
                     className="w-full text-left px-2.5 py-2 rounded-xl text-xs font-bold flex items-center justify-between bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/60 dark:hover:bg-rose-900/80 text-rose-700 dark:text-rose-300 border border-rose-200/80 dark:border-rose-800/60 cursor-pointer transition shadow-xs"
