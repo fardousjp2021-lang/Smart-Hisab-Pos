@@ -1105,8 +1105,10 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
             {/* Category Chips */}
             <div className="flex gap-1.5 overflow-x-auto pb-0.5 hide-scrollbar">
               <button type="button" onClick={() => setPosCategory('ALL')}
-                className={`flex-shrink-0 px-2.5 py-0.5 rounded-full text-[10px] font-bold transition ${
-                  posCategory === 'ALL' ? 'bg-[#1a73e8] text-white' : 'bg-[#f1f3f4] text-[#5f6368] hover:bg-[#e8eaed]'
+                className={`flex-shrink-0 px-2.5 py-0.5 rounded-full text-[10px] font-bold transition border ${
+                  posCategory === 'ALL' 
+                    ? 'bg-[#1a73e8] text-white border-[#1a73e8] shadow-xs' 
+                    : 'bg-[#f1f3f4] text-black border-slate-300 hover:bg-[#e2e8f0]'
                 }`}>
                 {isBn ? 'সব' : 'All'} ({products.length})
               </button>
@@ -1115,8 +1117,10 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
                 const isActive = posCategory === cat;
                 return (
                   <button key={cat} type="button" onClick={() => setPosCategory(cat)}
-                    className={`flex-shrink-0 px-2.5 py-0.5 rounded-full text-[10px] font-bold transition ${
-                      isActive ? 'bg-[#1a73e8] text-white' : 'bg-[#f1f3f4] text-[#5f6368] hover:bg-[#e8eaed]'
+                    className={`flex-shrink-0 px-2.5 py-0.5 rounded-full text-[10px] font-bold transition border ${
+                      isActive 
+                        ? 'bg-[#1a73e8] text-white border-[#1a73e8] shadow-xs' 
+                        : 'bg-[#f1f3f4] text-black border-slate-300 hover:bg-[#e2e8f0]'
                     }`}>
                     {cat}
                   </button>
