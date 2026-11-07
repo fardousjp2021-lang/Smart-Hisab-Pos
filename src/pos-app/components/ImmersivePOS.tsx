@@ -631,54 +631,68 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
         </div>
 
         {/* Center Nav Tools */}
-        <div className="hidden md:flex items-center gap-1">
-          {/* 1. Main Dashboard (First before New Invoice) */}
+        <div className="hidden md:flex items-center gap-1.5">
+          {/* 1. Main Dashboard */}
           <button type="button" onClick={() => { setActiveTab('dashboard'); if (setActiveSubTab) setActiveSubTab(''); }} title="Main Dashboard"
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/10 hover:bg-white/20 text-[#fde293] hover:text-white transition text-xs font-bold border border-white/10 cursor-pointer shadow-xs">
-            <LayoutGrid size={13} className="text-[#fde293]" />
+            className="flex items-center gap-2 px-2.5 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-white transition text-xs font-bold border border-amber-400/40 cursor-pointer shadow-xs">
+            <span className="w-6 h-6 rounded-md bg-amber-500/30 border border-amber-400/60 flex items-center justify-center shrink-0 shadow-sm">
+              <LayoutGrid size={14} className="text-amber-300 stroke-[2.4px] drop-shadow-sm" />
+            </span>
             <span>{isBn ? 'ড্যাশবোর্ড' : 'Dashboard'}</span>
           </button>
 
           {/* 2. New Invoice */}
           <button type="button" onClick={newInvoice} title="New Invoice"
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 text-[#e8eaed] hover:text-white transition text-xs font-medium cursor-pointer">
-            <Receipt size={13} className="text-[#8ab4f8]" />
+            className="flex items-center gap-2 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white transition text-xs font-bold border border-white/10 hover:border-sky-400/40 cursor-pointer shadow-xs">
+            <span className="w-6 h-6 rounded-md bg-sky-500/25 border border-sky-400/50 flex items-center justify-center shrink-0 shadow-sm">
+              <Receipt size={14} className="text-sky-300 stroke-[2.4px] drop-shadow-sm" />
+            </span>
             <span>{isBn ? 'নতুন ইনভয়েস' : 'New Invoice'}</span>
           </button>
 
           {/* 3. Customer Manager */}
           <button type="button" onClick={() => setIsAddCustomerOpen(true)} title="Add Customer"
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 text-[#e8eaed] hover:text-white transition text-xs font-medium cursor-pointer">
-            <Users size={13} className="text-[#81c995]" />
+            className="flex items-center gap-2 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white transition text-xs font-bold border border-white/10 hover:border-emerald-400/40 cursor-pointer shadow-xs">
+            <span className="w-6 h-6 rounded-md bg-emerald-500/25 border border-emerald-400/50 flex items-center justify-center shrink-0 shadow-sm">
+              <Users size={14} className="text-emerald-300 stroke-[2.4px] drop-shadow-sm" />
+            </span>
             <span>{isBn ? 'কাস্টমার' : 'Customers'}</span>
           </button>
 
           {/* 4. Inventory Stock Lookup */}
           <button type="button" onClick={() => { setActiveTab('inventory'); if (setActiveSubTab) setActiveSubTab('list'); }} title="View Stock"
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 text-[#e8eaed] hover:text-white transition text-xs font-medium cursor-pointer">
-            <Package size={13} className="text-[#c58af9]" />
+            className="flex items-center gap-2 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white transition text-xs font-bold border border-white/10 hover:border-purple-400/40 cursor-pointer shadow-xs">
+            <span className="w-6 h-6 rounded-md bg-purple-500/25 border border-purple-400/50 flex items-center justify-center shrink-0 shadow-sm">
+              <Package size={14} className="text-purple-300 stroke-[2.4px] drop-shadow-sm" />
+            </span>
             <span>{isBn ? 'পণ্য স্টক' : 'Stock List'}</span>
           </button>
 
           {/* 5. Sales History */}
           <button type="button" onClick={() => { setActiveTab('pos'); if (setActiveSubTab) setActiveSubTab('all_sales'); }} title="Sales History"
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 text-[#e8eaed] hover:text-white transition text-xs font-medium cursor-pointer">
-            <Banknote size={13} className="text-[#fcad70]" />
+            className="flex items-center gap-2 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white transition text-xs font-bold border border-white/10 hover:border-orange-400/40 cursor-pointer shadow-xs">
+            <span className="w-6 h-6 rounded-md bg-orange-500/25 border border-orange-400/50 flex items-center justify-center shrink-0 shadow-sm">
+              <Banknote size={14} className="text-orange-300 stroke-[2.4px] drop-shadow-sm" />
+            </span>
             <span>{isBn ? 'বিক্রয় হিসাব' : 'Sales History'}</span>
           </button>
 
           {/* 6. Barcode Scanner */}
           <button type="button" onClick={() => setIsScannerOpen(true)} title="Scan Barcode"
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 text-[#e8eaed] hover:text-white transition text-xs font-medium cursor-pointer">
-            <Camera size={13} className="text-[#80c4ff]" />
+            className="flex items-center gap-2 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white transition text-xs font-bold border border-white/10 hover:border-cyan-400/40 cursor-pointer shadow-xs">
+            <span className="w-6 h-6 rounded-md bg-cyan-500/25 border border-cyan-400/50 flex items-center justify-center shrink-0 shadow-sm">
+              <Camera size={14} className="text-cyan-300 stroke-[2.4px] drop-shadow-sm" />
+            </span>
             <span>{isBn ? 'স্ক্যানার' : 'Scanner'}</span>
           </button>
 
           {/* 7. Hotkey Guide */}
           <button type="button" onClick={() => setIsShortcutModalOpen(true)} title="Keyboard Shortcuts"
-            className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-white/10 hover:bg-white/20 text-[#e8eaed] transition text-xs font-medium border border-white/10 cursor-pointer">
-            <Zap size={12} className="text-[#fde293]" />
-            <span className="font-mono text-[10px] font-bold">F1-F4</span>
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white transition text-xs font-bold border border-white/10 hover:border-amber-400/40 cursor-pointer shadow-xs">
+            <span className="w-6 h-6 rounded-md bg-amber-500/25 border border-amber-400/50 flex items-center justify-center shrink-0 shadow-sm">
+              <Zap size={14} className="text-amber-300 fill-amber-300 stroke-[2px] drop-shadow-sm" />
+            </span>
+            <span className="font-mono text-[11px] font-bold text-amber-200">F1-F4</span>
           </button>
         </div>
 
