@@ -653,6 +653,51 @@ function NetworkStatusBadge({ lang, syncingCount }: { lang: 'bn' | 'en'; syncing
   );
 }
 
+// Modern Live Ticking Clock Badge for Dashboard Topbar
+const TopbarLiveClock: React.FC<{ lang: 'bn' | 'en' }> = React.memo(({ lang }) => {
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const t = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(t);
+  }, []);
+
+  const timeParts = useMemo(() => {
+    let h = now.getHours();
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12;
+    h = h ? h : 12;
+    const hours = String(h).padStart(2, '0');
+    return { hours, minutes: m, seconds: s, ampm };
+  }, [now]);
+
+  const dateStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+
+  return (
+    <div 
+      className="hidden md:flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-slate-900/80 hover:bg-slate-900 text-white transition text-xs font-bold border border-sky-500/30 hover:border-sky-400/60 shadow-xs backdrop-blur-md select-none group"
+      title={dateStr}
+    >
+      <span className="w-6 h-6 rounded-lg bg-sky-500/20 border border-sky-400/50 flex items-center justify-center shrink-0 shadow-sm relative group-hover:scale-105 transition-transform">
+        <Clock size={13} className="text-sky-300 stroke-[2.4px] drop-shadow-[0_0_6px_rgba(56,189,248,0.5)]" />
+        <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_#34d399]" />
+      </span>
+      <div className="flex items-baseline font-mono tracking-tight select-none">
+        <span className="text-white font-extrabold text-xs tracking-wider">
+          {timeParts.hours}:{timeParts.minutes}
+        </span>
+        <span className="text-sky-400 font-extrabold text-xs drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]">
+          :{timeParts.seconds}
+        </span>
+        <span className="ml-1.5 px-1.5 py-0.2 rounded bg-sky-500/20 border border-sky-400/30 text-[9.5px] font-black text-sky-300 uppercase tracking-wider">
+          {timeParts.ampm}
+        </span>
+      </div>
+    </div>
+  );
+});
+
 export default function App() {
   // Lang and Theme Core States
   const [lang, setLang] = useState<'bn' | 'en'>('bn');
@@ -3843,7 +3888,10 @@ export default function App() {
           </div>
 
           {/* Topbar Right Side Controls */}
-          <div className="flex items-center gap-3 sm:gap-6">
+          <div className="flex items-center gap-2.5 sm:gap-3.5">
+            {/* Live Ticking Seconds Digital Clock (Placed before Language Toggle) */}
+            <TopbarLiveClock lang={lang} />
+
             {/* Language Switch Panel */}
             <button
               onClick={function() { setLang(lang === 'bn' ? 'en' : 'bn'); }}
