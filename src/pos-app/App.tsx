@@ -4004,37 +4004,69 @@ export default function App() {
 
             {/* Profile & Role Badge Switcher Panel */}
             {(() => {
-              const roleColor = sessionUser.role === 'super_admin'
-                ? { ring: 'ring-blue-400', bg: 'bg-blue-500', text: 'text-blue-100', chipBg: 'bg-blue-500/25', chipBorder: 'border-blue-300/60', label: lang === 'bn' ? 'সুপার এডমিন' : 'Super Admin' }
+              const roleInfo = sessionUser.role === 'super_admin'
+                ? {
+                    label: lang === 'bn' ? 'সুপার এডমিন' : 'Super Admin',
+                    badge: 'bg-blue-500/20 text-blue-300 border-blue-400/40',
+                    avatarGrad: 'from-blue-600 to-indigo-600',
+                    dot: 'bg-blue-400',
+                  }
                 : sessionUser.role === 'owner'
-                  ? { ring: 'ring-emerald-400', bg: 'bg-emerald-500', text: 'text-emerald-50', chipBg: 'bg-emerald-500/25', chipBorder: 'border-emerald-300/60', label: lang === 'bn' ? 'দোকানের মালিক' : 'Shop Owner' }
-                  : { ring: 'ring-amber-400', bg: 'bg-amber-500', text: 'text-amber-50', chipBg: 'bg-amber-500/25', chipBorder: 'border-amber-300/60', label: lang === 'bn' ? 'কর্মচারী' : 'Employee' };
+                  ? {
+                      label: lang === 'bn' ? 'মালিক' : 'Owner',
+                      badge: 'bg-emerald-500/20 text-emerald-300 border-emerald-400/40',
+                      avatarGrad: 'from-emerald-600 to-teal-500',
+                      dot: 'bg-emerald-400',
+                    }
+                  : {
+                      label: lang === 'bn' ? 'কর্মী' : 'Staff',
+                      badge: 'bg-amber-500/20 text-amber-300 border-amber-400/40',
+                      avatarGrad: 'from-amber-500 to-orange-500',
+                      dot: 'bg-amber-400',
+                    };
+
               const shopName = (sessionUser as any).shopName;
+              const userInitial = ((sessionUser.name || 'U').trim().charAt(0) || 'U').toUpperCase();
+
               return (
-            <div className={`relative group/role flex items-center gap-2.5 pl-3 pr-2 py-1 border-l border-white/15 rounded-lg ring-2 ${roleColor.ring} ${roleColor.chipBg} border ${roleColor.chipBorder}`}>
-              <div className={`w-9 h-9 rounded-full p-0.5 ${roleColor.bg} shrink-0 cursor-pointer shadow-lg`} title={lang === 'bn' ? "রোল নিয়ন্ত্রণ কেন্দ্র" : "Role Control Hub"}>
-                <div className="w-full h-full rounded-full bg-[rgb(1,12,45)] flex items-center justify-center text-[10px] font-bold text-white">
-                  {sessionUser.role === 'super_admin' ? 'DEV' : sessionUser.role === 'owner' ? 'OWN' : 'EMP'}
+            <div className="relative group/role">
+              {/* Clean, Polished Glassmorphism User Chip */}
+              <div 
+                className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 backdrop-blur-md transition-all duration-200 cursor-pointer shadow-xs select-none"
+                title={`${sessionUser.name} (${roleInfo.label})${shopName ? ` • ${shopName}` : ''}`}
+              >
+                {/* Modern Avatar with Active Pulsing Dot */}
+                <div className="relative shrink-0">
+                  <div className={`w-8 h-8 rounded-full bg-gradient-to-tr ${roleInfo.avatarGrad} flex items-center justify-center text-white font-bold text-xs shadow-inner border border-white/20`}>
+                    {userInitial}
+                  </div>
+                  <span className={`absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full ${roleInfo.dot} ring-2 ring-[rgb(2,23,86)] animate-pulse`} />
                 </div>
-              </div>
 
-              <div className="flex flex-col text-left leading-none">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-white text-[12.5px] font-bold whitespace-nowrap truncate max-w-[110px] inline-block">
-                    {sessionUser.name}
-                  </span>
-                  <span className={`px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide ${roleColor.bg} text-white shadow`}>
-                    {roleColor.label}
-                  </span>
+                {/* Clean Two-Line Text Info with Proper Spacing */}
+                <div className="flex flex-col text-left justify-center min-w-0 pr-0.5">
+                  <div className="flex items-center gap-1.5 leading-snug">
+                    <span className="text-white text-[12.5px] font-bold truncate max-w-[120px]">
+                      {sessionUser.name}
+                    </span>
+                    <span className={`px-1.5 py-0.5 rounded-md text-[9.5px] font-semibold border leading-none ${roleInfo.badge} shrink-0`}>
+                      {roleInfo.label}
+                    </span>
+                  </div>
+                  {shopName && (
+                    <div className="text-[10.5px] text-white/75 font-medium truncate max-w-[170px] mt-0.5 flex items-center gap-1 leading-normal" title={shopName}>
+                      <Store className="w-2.5 h-2.5 shrink-0 text-amber-300" />
+                      <span className="truncate">{shopName}</span>
+                    </div>
+                  )}
                 </div>
-                <span className={`text-[10px] ${roleColor.text} mt-0.5 block whitespace-nowrap font-bold max-w-[130px] truncate`} title={shopName ? `🏬 ${shopName}` : (lang === 'bn' ? sessionUser.roleTitleBn : sessionUser.roleTitleEn)}>
-                  {shopName ? `🏬 ${shopName}` : (lang === 'bn' ? sessionUser.roleTitleBn : sessionUser.roleTitleEn)}
-                </span>
-              </div>
 
+                {/* Dropdown Chevron */}
+                <ChevronDown className="w-3.5 h-3.5 text-white/50 group-hover/role:text-white group-hover/role:rotate-180 transition-transform duration-200 shrink-0 ml-0.5" />
+              </div>
 
               {/* Elegant Dropdown to switch roles for testing */}
-              <div className="absolute right-0 top-full mt-1 w-60 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl p-2.5 hidden group-hover/role:block z-50 text-slate-800 dark:text-white">
+              <div className="absolute right-0 top-full mt-1.5 w-64 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl p-2.5 hidden group-hover/role:block z-50 text-slate-800 dark:text-white">
                 <div className="px-2 py-1.5 border-b border-slate-100 dark:border-slate-800 mb-2">
                   <span className="text-[9.5px] font-bold text-slate-400 block uppercase tracking-wider">
                     {sessionUser.role === 'super_admin' 
@@ -4111,12 +4143,16 @@ export default function App() {
                     </div>
                   </>
                 ) : (
-                  <div className="px-2 py-1 text-xs text-slate-600 dark:text-slate-300 space-y-1">
-                    <p className="font-bold text-slate-900 dark:text-white truncate">🏬 {shopName || sessionUser.name}</p>
-                    <p className="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
-                      <span>✓</span> {lang === 'bn' ? 'সক্রিয় দোকান অ্যাকাউন্ট' : 'Active Shop Account'}
+                  <div className="px-3 py-2 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-100 dark:border-slate-800 mb-1 space-y-1">
+                    <p className="font-bold text-slate-900 dark:text-white text-xs truncate flex items-center gap-1.5">
+                      <Store className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                      <span className="truncate">{shopName || 'রনি টেলিকম'}</span>
                     </p>
-                    <p className="text-[10px] text-slate-400">{sessionUser.email || sessionUser.name}</p>
+                    <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                      <span>{lang === 'bn' ? 'সক্রিয় দোকান অ্যাকাউন্ট' : 'Active Shop Account'}</span>
+                    </p>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400 truncate">{sessionUser.email || sessionUser.name}</p>
                   </div>
                 )}
 
