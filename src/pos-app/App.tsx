@@ -126,6 +126,7 @@ import { SiteSettings } from './components/SiteSettings';
 import { CustomerSupportDesk } from './components/CustomerSupportDesk';
 import { LandingPage } from './components/LandingPage';
 import { LoginPage } from './components/LoginPage';
+import { AiSmartIntelligence } from './components/AiSmartIntelligence';
 import { SummaryCard, type SummaryCardTone } from './components/SummaryCard';
 const aggregateDotStyle = (a: any) => ({});
 
@@ -4240,6 +4241,15 @@ export default function App() {
                   ]
                 },
                 {
+                  id: 'ai_intelligence',
+                  titleBn: "এআই স্মার্ট হাব",
+                  titleEn: "AI Smart Hub",
+                  icon: Sparkles,
+                  isStandalone: true,
+                  tab: 'ai_intelligence',
+                  hasBadge: true
+                },
+                {
                   id: 'settings',
                   titleBn: "Settings",
                   titleEn: "Settings",
@@ -5488,6 +5498,35 @@ export default function App() {
 
             {activeTab === 'dashboard' && (
               <div className="space-y-6">
+                {/* SmartHisab AI Executive Briefing Bar */}
+                <div className="bg-gradient-to-r from-indigo-900 via-blue-900 to-slate-900 text-white p-4 rounded-2xl shadow-lg border border-indigo-700/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-amber-300 shadow-inner shrink-0">
+                      <Sparkles size={20} className="animate-pulse" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="font-bold text-sm text-white">{lang === 'bn' ? 'স্মার্ট হিসাব এআই ইনটেলিজেন্স' : 'SmartHisab AI Intelligence'}</span>
+                        <span className="bg-amber-400 text-slate-950 px-2 py-0.2 rounded-full text-[9px] font-bold uppercase tracking-wider">Smart AI</span>
+                      </div>
+                      <p className="text-xs text-indigo-200 font-medium mt-0.5">
+                        {lang === 'bn' 
+                          ? 'আজকের ব্যবসায়িক স্বাস্থ্য ও রিস্টক বিশ্লেষণ সম্পন্ন • সম্ভাব্য সেলস পূর্বাভাস ও লাভ বাড়ানোর কৌশল প্রস্তুত' 
+                          : 'Live business health analyzed • Predictive sales forecasting & margin booster ready'}
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => { setActiveTab('ai_intelligence'); setActiveSubTab(''); }}
+                    className="px-3.5 py-1.5 bg-white text-indigo-950 hover:bg-indigo-50 rounded-xl text-xs font-bold transition shadow-xs flex items-center justify-center gap-1.5 cursor-pointer shrink-0 self-start sm:self-auto"
+                  >
+                    <Sparkles size={13} className="text-indigo-600" />
+                    {lang === 'bn' ? 'এআই হাব দেখুন' : 'Open AI Hub'}
+                    <ChevronRight size={13} />
+                  </button>
+                </div>
+
                 {(() => {
                   const displayRevenue = sales.reduce((sum, s) => sum + (Number(s.totalPrice) || 0), 0);
                   const displayProductsCount = products.length;
@@ -9219,6 +9258,22 @@ export default function App() {
                 purchases={purchases as any}
                 expenses={expenses as any}
                 userRole={sessionUser?.role}
+                />
+              </ComponentErrorBoundary>
+            )}
+
+            {activeTab === 'ai_intelligence' && (
+              <ComponentErrorBoundary>
+                <AiSmartIntelligence
+                  products={products as any}
+                  sales={sales as any}
+                  customers={customers as any}
+                  lang={lang}
+                  showToast={showToast}
+                  onNavigateTab={(t, s) => {
+                    setActiveTab(t);
+                    if (s) setActiveSubTab(s);
+                  }}
                 />
               </ComponentErrorBoundary>
             )}

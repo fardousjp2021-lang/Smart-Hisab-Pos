@@ -1,11 +1,12 @@
-﻿// @ts-nocheck
+// @ts-nocheck
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import {
   X, Search, Printer, Camera, Package, Users, Plus,
   Edit2, Check, Trash2, AlertCircle, Clock,
   ShoppingCart, Tag, Banknote, CreditCard, Smartphone, Wallet,
   PauseCircle, PlayCircle, Receipt,
-  Hash, Building2, User, MessageSquare, List, LayoutGrid, ChevronRight, Zap
+  Hash, Building2, User, MessageSquare, List, LayoutGrid, ChevronRight, Zap,
+  Mic, MicOff, Sparkles, Volume2
 } from 'lucide-react';
 import { BarcodeScannerModal } from './BarcodeScannerModal';
 
@@ -209,12 +210,13 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
     setItemSuggestions(matches);
   }, [itemSearch, products]);
 
-  // ── Unified Add to Cart Handler ───────────────────────────
-  const addToCart = useCallback((product: Product) => {
+  // ── Unified Add to Cart Handler with Quantity ───────────────
+  const addToCartWithQty = useCallback((product: Product, qty: number = 1) => {
     if (product.stock <= 0) {
       showToast(isBn ? 'পণ্যটি স্টকে নেই!' : 'Out of stock!', 'error');
       return;
     }
+    const safeQty = Math.max(1, qty);
     setPosCart(prev => {
       const current = Array.isArray(prev) ? prev : [];
       const idx = current.findIndex(item => item.product && item.product.id === product.id);
@@ -224,22 +226,212 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
           return current;
         }
         const updated = [...current];
-        updated[idx] = { ...updated[idx], quantity: updated[idx].quantity + 1 };
+        const newQty = Math.min(updated[idx].quantity + safeQty, product.stock);
+        updated[idx] = { ...updated[idx], quantity: newQty };
         return updated;
       }
       return [
         ...current,
         {
           product: product,
-          quantity: 1,
+          quantity: Math.min(safeQty, product.stock),
           customPrice: product.sellingPrice,
           discount: 0,
           tax: 0
         }
       ];
     });
-    showToast(isBn ? `"${product.name}" কার্টে যোগ হয়েছে!` : `Added "${product.name}" to cart!`, 'success');
+    showToast(isBn ? `"${product.name}" (${safeQty}টি) কার্টে যোগ হয়েছে!` : `Added ${safeQty}x "${product.name}" to cart!`, 'success');
   }, [isBn, setPosCart, showToast]);
+
+  const addToCart = useCallback((product: Product) => {
+    addToCartWithQty(product, 1);
+  }, [addToCartWithQty]);
+
+  // ── AI Voice Order State & Parsers ──────────────────────────
+  const [isVoiceListening, setIsVoiceListening] = useState<boolean>(false);
+  const [voiceTranscript, setVoiceTranscript] = useState<string>('');
+  const [voiceFeedback, setVoiceFeedback] = useState<string>('');
+  const [voiceRecognitionInstance, setVoiceRecognitionInstance] = useState<any>(null);
+
+  // Parse Bengali / English quantity and item name
+  const parseVoiceCommand = useCallback((rawText: string) => {
+    let text = rawText.trim().toLowerCase();
+    let qty = 1;
+
+    // Bengali word numbers map
+    const bnWordMap: { [key: string]: number } = {
+      'এক': 1, 'একটি': 1, 'একটা': 1, 'একপিস': 1,
+      'দুই': 2, 'দুইটি': 2, 'দুইটা': 2, 'দুটো': 2, 'দুপিস': 2,
+      'তিন': 3, 'তিনটি': 3, 'তিনটা': 3, 'তিনপিস': 3,
+      'চার': 4, 'চারটি': 4, 'চারটা': 4, 'চারপিস': 4,
+      'পাঁচ': 5, 'পাঁচটি': 5, 'পাঁচটা': 5, 'পাঁচপিস': 5,
+      'ছয়': 6, 'ছয়': 6, 'ছয়টি': 6, 'ছয়টা': 6,
+      'সাত': 7, 'সাতটি': 7, 'সাতটা': 7,
+      'আট': 8, 'আটটি': 8, 'আটটা': 8,
+      'নয়': 9, 'নয়': 9, 'নয়টি': 9, 'নয়টা': 9,
+      'দশ': 10, 'দশটি': 10, 'দশটা': 10
+    };
+
+    // English word numbers map
+    const enWordMap: { [key: string]: number } = {
+      'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5,
+      'six': 6, 'seven': 7, 'eight': 8, 'nine': 9, 'ten': 10
+    };
+
+    // 1. Check for Bengali digits (১, ২, ৩, etc.)
+    const bnDigitRegex = /([০-৯]+)\s*(?:টা|টি|পিস)?/i;
+    const bnDigitMatch = text.match(bnDigitRegex);
+    if (bnDigitMatch) {
+      const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+      const parsed = parseInt(bnDigitMatch[1].replace(/[০-৯]/g, d => bnDigits.indexOf(d).toString()), 10);
+      if (!isNaN(parsed) && parsed > 0) qty = parsed;
+      text = text.replace(bnDigitMatch[0], ' ');
+    } else {
+      // 2. Check for English digits (1, 2, 3, etc.)
+      const enDigitRegex = /(\d+)\s*(?:pcs|pc|items|ta|ti)?/i;
+      const enDigitMatch = text.match(enDigitRegex);
+      if (enDigitMatch) {
+        const parsed = parseInt(enDigitMatch[1], 10);
+        if (!isNaN(parsed) && parsed > 0) qty = parsed;
+        text = text.replace(enDigitMatch[0], ' ');
+      } else {
+        // 3. Check for Bengali word numbers
+        for (const [w, val] of Object.entries(bnWordMap)) {
+          const reg = new RegExp(`\\b${w}\\b`, 'i');
+          if (reg.test(text)) {
+            qty = val;
+            text = text.replace(reg, ' ');
+            break;
+          }
+        }
+        // 4. Check for English word numbers
+        for (const [w, val] of Object.entries(enWordMap)) {
+          const reg = new RegExp(`\\b${w}\\b`, 'i');
+          if (reg.test(text)) {
+            qty = val;
+            text = text.replace(reg, ' ');
+            break;
+          }
+        }
+      }
+    }
+
+    // Clean common helper / filler words
+    const cleanQuery = text
+      .replace(/\b(পিস|টা|টি|অর্ডার|দাও|করুন|যোগ|হবে|চাই|দিতে|নেব|নেবো|add|order|piece|pieces|please|item)\b/gi, '')
+      .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
+      .trim();
+
+    return { qty, cleanQuery };
+  }, []);
+
+  const handleVoiceCommand = useCallback((transcriptText: string) => {
+    if (!transcriptText || !transcriptText.trim()) return;
+    const { qty, cleanQuery } = parseVoiceCommand(transcriptText);
+
+    if (!cleanQuery) {
+      showToast(isBn ? 'কোনো পণ্যের নাম শোনা যায়নি, আবার বলুন।' : 'No product name recognized, please try again.', 'error');
+      return;
+    }
+
+    // Match product in list
+    const q = cleanQuery.toLowerCase();
+    const queryTokens = q.split(/\s+/).filter(Boolean);
+
+    // Score products
+    let bestMatch: Product | null = null;
+    let highestScore = 0;
+
+    for (const p of products) {
+      const pName = (p.name || '').toLowerCase();
+      const pBrand = (p.brand || '').toLowerCase();
+      const pCat = (p.category || '').toLowerCase();
+      const pSku = (p.sku || p.id || '').toLowerCase();
+      let score = 0;
+
+      if (pName === q || pSku === q) score += 100;
+      else if (pName.includes(q)) score += 50;
+      else {
+        queryTokens.forEach(token => {
+          if (pName.includes(token)) score += 25;
+          if (pBrand.includes(token)) score += 15;
+          if (pCat.includes(token)) score += 10;
+        });
+      }
+
+      if (score > highestScore) {
+        highestScore = score;
+        bestMatch = p;
+      }
+    }
+
+    if (bestMatch && highestScore >= 20) {
+      addToCartWithQty(bestMatch, qty);
+      setVoiceFeedback(isBn ? `কার্টে যোগ হয়েছে: ${bestMatch.name} (${qty}টি)` : `Added: ${bestMatch.name} (${qty}x)`);
+    } else {
+      // Filter catalog search so the user can easily click
+      setPosSearch(cleanQuery);
+      showToast(isBn ? `🎙️ "${cleanQuery}" দিয়ে সার্চ ফিল্টার করা হয়েছে।` : `Filtered by "${cleanQuery}". Click to add.`, 'info');
+      setVoiceFeedback(isBn ? `সার্চ ফিল্টার: "${cleanQuery}"` : `Filtered: "${cleanQuery}"`);
+    }
+  }, [parseVoiceCommand, products, addToCartWithQty, showToast, isBn, setPosSearch]);
+
+  const toggleVoiceOrder = useCallback(() => {
+    const SpeechRecognitionClass = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SpeechRecognitionClass) {
+      showToast(isBn ? 'আপনার ব্রাউজারে স্পিচ রিকগনিশন সাপোর্ট করে না। ক্রোম বা এজ ব্রাউজার ব্যবহার করুন।' : 'Speech recognition not supported in this browser.', 'error');
+      return;
+    }
+
+    if (isVoiceListening) {
+      if (voiceRecognitionInstance) {
+        voiceRecognitionInstance.stop();
+      }
+      setIsVoiceListening(false);
+      return;
+    }
+
+    try {
+      const recognition = new SpeechRecognitionClass();
+      recognition.lang = isBn ? 'bn-BD' : 'en-US';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.onstart = () => {
+        setIsVoiceListening(true);
+        setVoiceTranscript('');
+        setVoiceFeedback(isBn ? 'শুনছি... পণ্য ও পরিমাণের নাম বলুন (যেমন: ২টা চার্জার)' : 'Listening... Speak product name & quantity');
+      };
+
+      recognition.onresult = (event: any) => {
+        const transcript = event.results?.[0]?.[0]?.transcript || '';
+        setVoiceTranscript(transcript);
+        handleVoiceCommand(transcript);
+      };
+
+      recognition.onerror = (event: any) => {
+        console.warn('Speech recognition error:', event.error);
+        setIsVoiceListening(false);
+        if (event.error === 'not-allowed') {
+          showToast(isBn ? 'মাইক্রোফোনের পারমিশন দেওয়া হয়নি। ব্রাউজার সেটিং থেকে এলাউ করুন।' : 'Microphone permission denied.', 'error');
+        } else if (event.error !== 'no-speech') {
+          showToast(isBn ? 'ভয়েস সনাক্ত করা সম্ভব হয়নি। আবার চেষ্টা করুন।' : 'Voice recognition failed.', 'error');
+        }
+      };
+
+      recognition.onend = () => {
+        setIsVoiceListening(false);
+      };
+
+      setVoiceRecognitionInstance(recognition);
+      recognition.start();
+    } catch (err) {
+      console.error('Error starting speech recognition:', err);
+      setIsVoiceListening(false);
+      showToast(isBn ? 'মাইক্রোফোন চালু করতে সমস্যা হয়েছে।' : 'Failed to start microphone.', 'error');
+    }
+  }, [isVoiceListening, voiceRecognitionInstance, isBn, handleVoiceCommand, showToast]);
 
   // ── Barcode Handler ────────────────────────────────────────
   const handleBarcodeScan = (barcode: string) => {
@@ -854,6 +1046,22 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
                   value={posSearch} onChange={e => setPosSearch(e.target.value)}
                   className="w-full pl-7 pr-3 h-8 text-xs font-medium border border-[#dadce0] rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-[#1a73e8] focus:border-[#1a73e8]" />
               </div>
+              {/* Voice Order Button */}
+              <button
+                type="button"
+                onClick={toggleVoiceOrder}
+                title={isBn ? "মুখে বলে ভয়েস অর্ডার (Voice POS Order)" : "Voice Order Entry"}
+                className={`h-8 px-2.5 rounded-md text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shrink-0 shadow-xs ${
+                  isVoiceListening
+                    ? 'bg-rose-600 hover:bg-rose-700 text-white animate-pulse'
+                    : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200'
+                }`}
+              >
+                {isVoiceListening ? <MicOff size={14} /> : <Mic size={14} />}
+                <span className="hidden sm:inline">
+                  {isVoiceListening ? (isBn ? 'শুনছি...' : 'Listening...') : (isBn ? 'ভয়েস অর্ডার' : 'Voice')}
+                </span>
+              </button>
               <button type="button" onClick={() => setPosSearch('')} title="Reset Search"
                 className="h-8 px-2.5 border border-[#dadce0] rounded-md text-xs font-medium text-slate-600 hover:bg-[#f1f3f4]">↺</button>
               <button type="button" onClick={() => setIsGridView(!isGridView)} title="Toggle Grid/List View"
@@ -861,6 +1069,38 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
                 {isGridView ? <List size={14} /> : <LayoutGrid size={14} />}
               </button>
             </div>
+
+            {/* Live Voice Order Listening / Feedback Banner */}
+            {(isVoiceListening || voiceFeedback) && (
+              <div className="bg-indigo-900 text-white px-3 py-2 rounded-lg text-xs flex items-center justify-between shadow-md border border-indigo-700/50 animate-in fade-in">
+                <div className="flex items-center gap-2">
+                  <span className={`w-2 h-2 rounded-full ${isVoiceListening ? 'bg-rose-400 animate-ping' : 'bg-emerald-400'}`} />
+                  <span className="font-bold text-amber-300">
+                    {isVoiceListening ? (isBn ? '🎙️ ভয়েস শুনছি:' : '🎙️ Voice:') : (isBn ? '✅ ফলাফল:' : '✅ Result:')}
+                  </span>
+                  <span className="text-slate-200 font-medium truncate max-w-[250px] sm:max-w-md">
+                    {voiceTranscript || voiceFeedback || (isBn ? 'যেমন বলুন: "২টা স্যামসাং ব্যাককভার" বা "১ পিস ক্যাবল"' : 'e.g. "2 Samsung Charger"')}
+                  </span>
+                </div>
+                {isVoiceListening ? (
+                  <button
+                    type="button"
+                    onClick={toggleVoiceOrder}
+                    className="text-[10px] font-bold text-rose-300 hover:text-white px-2 py-0.5 rounded bg-white/10 shrink-0"
+                  >
+                    {isBn ? 'থামান' : 'Stop'}
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setVoiceFeedback('')}
+                    className="text-[10px] text-slate-400 hover:text-white px-1.5 py-0.5 rounded shrink-0"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+            )}
 
             {/* Category Chips */}
             <div className="flex gap-1.5 overflow-x-auto pb-0.5 hide-scrollbar">
