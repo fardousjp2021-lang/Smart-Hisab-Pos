@@ -200,7 +200,18 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
   }, []);
 
   const dateStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-  const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+  const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+
+  const timeParts = useMemo(() => {
+    let h = now.getHours();
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12;
+    h = h ? h : 12;
+    const hours = String(h).padStart(2, '0');
+    return { hours, minutes: m, seconds: s, ampm };
+  }, [now]);
 
   // ── Cart Totals ────────────────────────────────────────────
   const totals = useMemo(() => {
@@ -709,20 +720,36 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
         </div>
 
         {/* Right Tools: Hold List & Live Clock */}
-        <div className="flex items-center gap-3">
-          <div className="hidden sm:flex items-center gap-1.5 text-[#9aa0a6] text-xs font-mono bg-[#3c4043]/50 px-2.5 py-0.5 rounded border border-white/5">
-            <Clock size={11} className="text-[#8ab4f8]" />
-            <span>{timeStr}</span>
+        <div className="flex items-center gap-2 sm:gap-2.5">
+          {/* ✨ Modern Live Clock with real-time seconds & glowing badge */}
+          <div className="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-lg bg-slate-900/80 hover:bg-slate-900 text-white transition text-xs font-bold border border-sky-500/30 hover:border-sky-400/60 shadow-xs backdrop-blur-md select-none group" title={dateStr}>
+            <span className="w-6 h-6 rounded-md bg-sky-500/20 border border-sky-400/50 flex items-center justify-center shrink-0 shadow-sm relative group-hover:scale-105 transition-transform">
+              <Clock size={13} className="text-sky-300 stroke-[2.4px] drop-shadow-[0_0_6px_rgba(56,189,248,0.5)]" />
+              <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_#34d399]" />
+            </span>
+            <div className="flex items-baseline font-mono tracking-tight select-none">
+              <span className="text-white font-extrabold text-xs tracking-wider">
+                {timeParts.hours}:{timeParts.minutes}
+              </span>
+              <span className="text-sky-400 font-extrabold text-xs drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]">
+                :{timeParts.seconds}
+              </span>
+              <span className="ml-1.5 px-1.5 py-0.2 rounded bg-sky-500/20 border border-sky-400/30 text-[9.5px] font-black text-sky-300 uppercase tracking-wider">
+                {timeParts.ampm}
+              </span>
+            </div>
           </div>
 
           {/* Hold List Dropdown */}
           <div className="relative">
             <button type="button" onClick={() => setIsHoldListOpen(!isHoldListOpen)}
-              className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#3c4043] hover:bg-[#4a4e51] text-white text-xs font-medium transition border border-white/10">
-              <PauseCircle size={13} className="text-[#fdd663]" />
-              {isBn ? 'হোল্ড' : 'Hold'}
+              className="flex items-center gap-2 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-white transition text-xs font-bold border border-white/10 hover:border-amber-400/40 cursor-pointer shadow-xs">
+              <span className="w-6 h-6 rounded-md bg-amber-500/25 border border-amber-400/50 flex items-center justify-center shrink-0 shadow-sm">
+                <PauseCircle size={14} className="text-amber-300 stroke-[2.4px] drop-shadow-sm" />
+              </span>
+              <span>{isBn ? 'হোল্ড' : 'Hold'}</span>
               {posHoldCarts.length > 0 && (
-                <span className="bg-[#ea4335] text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full">{posHoldCarts.length}</span>
+                <span className="bg-[#ea4335] text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full shadow-xs">{posHoldCarts.length}</span>
               )}
             </button>
 
@@ -761,8 +788,9 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
             )}
           </div>
 
-          <div className="w-6 h-6 rounded-full bg-[#1a73e8] text-white flex items-center justify-center text-[10px] font-bold shadow-xs">
-            A
+          {/* Active User Avatar */}
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center text-xs font-bold shadow-xs border border-white/20 select-none cursor-default" title={activeSessionUser?.name || 'User'}>
+            {(activeSessionUser?.name || 'A')[0].toUpperCase()}
           </div>
         </div>
       </div>
