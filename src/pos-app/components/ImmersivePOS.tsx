@@ -132,6 +132,22 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
 }) => {
   const isBn = lang === 'bn';
 
+  const activeShopName = (() => {
+    try {
+      const saved = localStorage.getItem('smarthisab_active_session_user');
+      if (saved) {
+        const u = JSON.parse(saved);
+        if (u.shopName) return u.shopName;
+      }
+      const store = localStorage.getItem('saim_store_settings');
+      if (store) {
+        const s = JSON.parse(store);
+        if (s.shopName) return s.shopName;
+      }
+    } catch(e) {}
+    return 'RONY TELECOM';
+  })();
+
   // ── UI States ──────────────────────────────────────────────
   const [posCategory, setPosCategory] = useState<string>('ALL');
   const [posSearch, setPosSearch] = useState<string>('');
@@ -605,7 +621,9 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
             <Zap size={14} className="text-white fill-white" />
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-bold text-sm text-white tracking-tight">RONY TELECOM</span>
+            <span className="font-bold text-sm text-white tracking-tight truncate max-w-[170px]" title={activeShopName}>
+              {activeShopName}
+            </span>
             <span className="text-[10px] bg-[#3c4043] text-[#e8eaed] font-medium px-2 py-0.5 rounded-full border border-white/10">
               {isBn ? 'পয়েন্ট অব সেল' : 'Cloud POS Workspace'}
             </span>
@@ -614,53 +632,53 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
 
         {/* Center Nav Tools */}
         <div className="hidden md:flex items-center gap-1">
-          {/* 1. New Invoice */}
+          {/* 1. Main Dashboard (First before New Invoice) */}
+          <button type="button" onClick={() => { setActiveTab('dashboard'); if (setActiveSubTab) setActiveSubTab(''); }} title="Main Dashboard"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/10 hover:bg-white/20 text-[#fde293] hover:text-white transition text-xs font-bold border border-white/10 cursor-pointer shadow-xs">
+            <LayoutGrid size={13} className="text-[#fde293]" />
+            <span>{isBn ? 'ড্যাশবোর্ড' : 'Dashboard'}</span>
+          </button>
+
+          {/* 2. New Invoice */}
           <button type="button" onClick={newInvoice} title="New Invoice"
             className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 text-[#e8eaed] hover:text-white transition text-xs font-medium cursor-pointer">
             <Receipt size={13} className="text-[#8ab4f8]" />
-            {isBn ? 'নতুন ইনভয়েস' : 'New Invoice'}
+            <span>{isBn ? 'নতুন ইনভয়েস' : 'New Invoice'}</span>
           </button>
 
-          {/* 2. Customer Manager */}
+          {/* 3. Customer Manager */}
           <button type="button" onClick={() => setIsAddCustomerOpen(true)} title="Add Customer"
             className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 text-[#e8eaed] hover:text-white transition text-xs font-medium cursor-pointer">
             <Users size={13} className="text-[#81c995]" />
-            {isBn ? 'কাস্টমার' : 'Customers'}
+            <span>{isBn ? 'কাস্টমার' : 'Customers'}</span>
           </button>
 
-          {/* 3. Inventory Stock Lookup */}
+          {/* 4. Inventory Stock Lookup */}
           <button type="button" onClick={() => { setActiveTab('inventory'); if (setActiveSubTab) setActiveSubTab('list'); }} title="View Stock"
             className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 text-[#e8eaed] hover:text-white transition text-xs font-medium cursor-pointer">
             <Package size={13} className="text-[#c58af9]" />
-            {isBn ? 'পণ্য স্টক' : 'Stock List'}
+            <span>{isBn ? 'পণ্য স্টক' : 'Stock List'}</span>
           </button>
 
-          {/* 4. Sales History */}
+          {/* 5. Sales History */}
           <button type="button" onClick={() => { setActiveTab('pos'); if (setActiveSubTab) setActiveSubTab('all_sales'); }} title="Sales History"
             className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 text-[#e8eaed] hover:text-white transition text-xs font-medium cursor-pointer">
             <Banknote size={13} className="text-[#fcad70]" />
-            {isBn ? 'বিক্রয় হিসাব' : 'Sales History'}
+            <span>{isBn ? 'বিক্রয় হিসাব' : 'Sales History'}</span>
           </button>
 
-          {/* 5. Barcode Scanner */}
+          {/* 6. Barcode Scanner */}
           <button type="button" onClick={() => setIsScannerOpen(true)} title="Scan Barcode"
             className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 text-[#e8eaed] hover:text-white transition text-xs font-medium cursor-pointer">
             <Camera size={13} className="text-[#80c4ff]" />
-            {isBn ? 'স্ক্যানার' : 'Scanner'}
+            <span>{isBn ? 'স্ক্যানার' : 'Scanner'}</span>
           </button>
 
-          {/* 6. Hotkey Guide */}
+          {/* 7. Hotkey Guide */}
           <button type="button" onClick={() => setIsShortcutModalOpen(true)} title="Keyboard Shortcuts"
             className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-white/10 hover:bg-white/20 text-[#e8eaed] transition text-xs font-medium border border-white/10 cursor-pointer">
             <Zap size={12} className="text-[#fde293]" />
             <span className="font-mono text-[10px] font-bold">F1-F4</span>
-          </button>
-
-          {/* 7. Main Dashboard */}
-          <button type="button" onClick={() => { setActiveTab('dashboard'); if (setActiveSubTab) setActiveSubTab(''); }} title="Main Dashboard"
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 text-[#e8eaed] hover:text-white transition text-xs font-medium cursor-pointer">
-            <LayoutGrid size={13} className="text-[#fde293]" />
-            {isBn ? 'ড্যাশবোর্ড' : 'Dashboard'}
           </button>
         </div>
 
