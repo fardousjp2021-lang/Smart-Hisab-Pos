@@ -1,4 +1,4 @@
-﻿// @ts-nocheck
+// @ts-nocheck
 import React, { useState, useEffect } from 'react';
 import { 
   Users, 
@@ -483,20 +483,31 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
 
         </div>
 
-        {/* Bottom Info Support */}
-        <div className="w-full flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-slate-500 font-semibold pt-4">
-          <span className="flex items-center gap-1.5 text-emerald-600 font-bold">
-            <CheckCircle2 size={14} /> ১০০% এনক্রিপ্টেড ও সুরক্ষিত ক্লাউড
-          </span>
-          <span className="text-slate-300 hidden sm:inline">•</span>
-          <div className="flex items-center gap-1.5 font-bold">
-            <PhoneCall size={12} className="text-blue-600" />
-            <span className="text-slate-600">হেল্পলাইন:</span>
-            <a href="tel:01747046052" className="text-blue-600 hover:underline font-mono">
+        {/* Bottom Info Support - 2 Distinct Prominent Lines */}
+        <div className="w-full flex flex-col items-center justify-center gap-2.5 pt-5 pb-1">
+          {/* Line 1: Security Badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50/90 border border-emerald-200 text-emerald-800 text-xs sm:text-sm font-bold shadow-xs">
+            <CheckCircle2 size={16} className="text-emerald-600 shrink-0" />
+            <span>১০০% এনক্রিপ্টেড ও সুরক্ষিত ক্লাউড</span>
+          </div>
+
+          {/* Line 2: Helpline Numbers */}
+          <div className="inline-flex items-center flex-wrap justify-center gap-2 text-xs sm:text-sm font-bold text-slate-700">
+            <div className="flex items-center gap-1.5 text-blue-700">
+              <PhoneCall size={15} className="text-blue-600 shrink-0" />
+              <span>হেল্পলাইন:</span>
+            </div>
+            <a
+              href="tel:01747046052"
+              className="px-2.5 py-0.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 font-mono font-bold tracking-wide border border-blue-200 transition shadow-xs"
+            >
               01747-046052
             </a>
-            <span className="text-slate-400">,</span>
-            <a href="tel:01996761011" className="text-blue-600 hover:underline font-mono">
+            <span className="text-slate-300 font-normal">|</span>
+            <a
+              href="tel:01996761011"
+              className="px-2.5 py-0.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 font-mono font-bold tracking-wide border border-blue-200 transition shadow-xs"
+            >
               01996-761011
             </a>
           </div>
