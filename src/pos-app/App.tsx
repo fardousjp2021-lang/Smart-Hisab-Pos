@@ -2702,6 +2702,9 @@ export default function App() {
           paymentStatus: paymentStatus,
           paymentSplits: paymentInfo?.splits || [],
           purchasePriceAtTime: p.purchasePrice,
+          createdBy: sessionUser.name || 'Owner',
+          servedBy: sessionUser.name || 'Owner',
+          staffRole: lang === 'bn' ? sessionUser.roleTitleBn : sessionUser.roleTitleEn,
         } as any);
         const newStock = Math.max(0, (p.stock || 0) - cartItem.quantity);
         import('./salesSyncQueue').then(m => m.enqueueStockUpdate(p.id, -cartItem.quantity, p.name, newStock)).catch(() => {});

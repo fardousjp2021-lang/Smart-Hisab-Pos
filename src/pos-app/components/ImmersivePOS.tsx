@@ -132,20 +132,26 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
 }) => {
   const isBn = lang === 'bn';
 
-  const activeShopName = (() => {
+  const activeSessionUser = (() => {
     try {
       const saved = localStorage.getItem('smarthisab_active_session_user');
-      if (saved) {
-        const u = JSON.parse(saved);
-        if (u.shopName) return u.shopName;
-      }
+      if (saved) return JSON.parse(saved);
+    } catch (e) {}
+    return { name: 'ফারদৌস আল-আমিন', role: 'owner', roleTitleBn: 'দোকানের মালিক', roleTitleEn: 'Shop Owner' };
+  })();
+
+  const activeStoreSettings = (() => {
+    try {
       const store = localStorage.getItem('saim_store_settings');
-      if (store) {
-        const s = JSON.parse(store);
-        if (s.shopName) return s.shopName;
-      }
-    } catch(e) {}
-    return 'RONY TELECOM';
+      if (store) return JSON.parse(store);
+    } catch (e) {}
+    return null;
+  })();
+
+  const activeShopName = (() => {
+    if (activeSessionUser?.shopName) return activeSessionUser.shopName;
+    if (activeStoreSettings?.shopName) return activeStoreSettings.shopName;
+    return 'স্মার্ট হিসাব';
   })();
 
   // ── UI States ──────────────────────────────────────────────
@@ -546,6 +552,12 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
       changeReturned: change,
       splits,
       note: invoiceNote,
+      servedBy: activeSessionUser?.name || 'স্টাফ',
+      staffRole: isBn ? (activeSessionUser?.roleTitleBn || 'দোকানের মালিক') : (activeSessionUser?.roleTitleEn || 'Shop Owner'),
+      storeName: activeStoreSettings?.shopName || activeShopName || 'স্মার্ট হিসাব',
+      storeAddress: activeStoreSettings?.shopAddress || activeStoreSettings?.storeAddressVal || 'কামাল পাশা মোড়, আজাদ নগর, রামগতি, লক্ষ্মীপুর',
+      storePhone: activeStoreSettings?.shopPhone || activeStoreSettings?.storeMobile || '01747-046052',
+      storeWebsite: activeStoreSettings?.storeWebsite || 'smarthisab-bd.netlify.app',
     });
 
     // Reset
@@ -1483,20 +1495,37 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
             <div className="flex-1 overflow-y-auto p-4" id="pos-receipt">
               <div className="max-w-[280px] mx-auto space-y-2.5 text-[11px] text-black font-sans">
                 <div className="text-center space-y-0.5">
-                  <h1 className="font-bold text-base tracking-wider uppercase">RONY TELECOM</h1>
-                  <p className="text-[10px] text-slate-600">কামাল পাশা মোড়, Azad Nagar, রামগতি, লক্ষ্মীপুর</p>
-                  <p className="text-[10px] text-slate-600">Tel: 01718389900</p>
+                  <h1 className="font-bold text-base tracking-wider uppercase text-black">
+                    {receipt.storeName || activeStoreSettings?.shopName || activeShopName || 'স্মার্ট হিসাব'}
+                  </h1>
+                  <p className="text-[10px] text-slate-700">
+                    {receipt.storeAddress || activeStoreSettings?.shopAddress || activeStoreSettings?.storeAddressVal || 'কামাল পাশা মোড়, আজাদ নগর, রামগতি, লক্ষ্মীপুর'}
+                  </p>
+                  <p className="text-[10px] text-slate-700 font-bold">
+                    Tel: {receipt.storePhone || activeStoreSettings?.shopPhone || activeStoreSettings?.storeMobile || '01747-046052'}
+                  </p>
                 </div>
 
                 <div className="border-t border-dashed border-black my-1.5" />
-                <div className="text-center font-bold text-xs uppercase tracking-widest">SALES INVOICE</div>
+                <div className="text-center font-bold text-xs uppercase tracking-widest text-black">
+                  {isBn ? 'বিক্রয় রসিদ / SALES INVOICE' : 'SALES INVOICE'}
+                </div>
                 <div className="border-t border-dashed border-black my-1.5" />
 
-                <div className="space-y-0.5 text-[10px]">
-                  <div className="flex justify-between"><span className="text-slate-500">Invoice #</span><span className="font-semibold">{receipt.invoiceNum}</span></div>
-                  <div className="flex justify-between"><span className="text-slate-500">Date/Time</span><span className="font-semibold">{receipt.date} {receipt.time}</span></div>
-                  <div className="flex justify-between"><span className="text-slate-500">Customer</span><span className="font-semibold">{receipt.customerName}</span></div>
-                  <div className="flex justify-between"><span className="text-slate-500">Payment</span><span className="font-semibold">{receipt.paymentMethod}</span></div>
+                <div className="space-y-1 text-[10px]">
+                  <div className="flex justify-between"><span className="text-slate-600 font-medium">Invoice #</span><span className="font-bold">{receipt.invoiceNum}</span></div>
+                  <div className="flex justify-between"><span className="text-slate-600 font-medium">Date/Time</span><span className="font-semibold">{receipt.date} {receipt.time}</span></div>
+                  <div className="flex justify-between"><span className="text-slate-600 font-medium">Customer</span><span className="font-semibold">{receipt.customerName}</span></div>
+                  {receipt.customerPhone && <div className="flex justify-between"><span className="text-slate-600 font-medium">Mobile</span><span className="font-semibold">{receipt.customerPhone}</span></div>}
+                  <div className="flex justify-between"><span className="text-slate-600 font-medium">Payment</span><span className="font-semibold">{receipt.paymentMethod}</span></div>
+                  
+                  {/* ✨ Logged-in Staff / Seller as requested by user */}
+                  <div className="flex justify-between items-center pt-1 border-t border-dotted border-slate-400">
+                    <span className="text-slate-700 font-bold">{isBn ? 'বিক্রয়কর্মী / স্টাফ:' : 'Served By:'}</span>
+                    <span className="font-bold text-black bg-slate-100 px-1.5 py-0.5 rounded text-[10px] border border-slate-200">
+                      👤 {receipt.servedBy || activeSessionUser?.name || 'স্টাফ'} {receipt.staffRole ? `(${receipt.staffRole})` : ''}
+                    </span>
+                  </div>
                 </div>
 
                 <div className="border-t border-dashed border-slate-300 my-1.5" />
@@ -1538,9 +1567,29 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
                   {receipt.dueAmount > 0 && <div className="flex justify-between font-bold text-[#d93025]"><span>Due Remaining</span><span>৳{receipt.dueAmount.toFixed(2)}</span></div>}
                 </div>
 
-                <div className="border-t border-dashed border-black my-2 text-center space-y-0.5 pt-1">
-                  <p className="font-semibold text-[10px]">Thank You for Shopping!</p>
-                  <p className="text-[9px] text-slate-500 font-mono">{receipt.date} | {receipt.time}</p>
+                {/* ✨ Bottom Footer: Thank you, Website, Mobile as requested by user */}
+                <div className="border-t border-dashed border-black my-2.5 text-center space-y-1 pt-1.5">
+                  <p className="font-bold text-[10.5px] text-black uppercase tracking-wide">
+                    {isBn ? 'আমাদের সাথে কেনাকাটা করার জন্য ধন্যবাদ!' : 'Thank You for Shopping!'}
+                  </p>
+
+                  {/* Website Name / URL */}
+                  {(receipt.storeWebsite || activeStoreSettings?.storeWebsite) && (
+                    <div className="text-[10px] font-bold text-black flex items-center justify-center gap-1.5">
+                      <span className="text-[11px]">🌐</span>
+                      <span className="font-mono tracking-tight">{receipt.storeWebsite || activeStoreSettings?.storeWebsite}</span>
+                    </div>
+                  )}
+
+                  {/* Mobile / Helpline */}
+                  {(receipt.storePhone || activeStoreSettings?.shopPhone || activeStoreSettings?.storeMobile) && (
+                    <div className="text-[10px] font-bold text-black flex items-center justify-center gap-1.5">
+                      <span className="text-[11px]">📞</span>
+                      <span>{isBn ? 'মোবাইল / হেল্পলাইন:' : 'Helpline:'} {receipt.storePhone || activeStoreSettings?.shopPhone || activeStoreSettings?.storeMobile}</span>
+                    </div>
+                  )}
+
+                  <p className="text-[8.5px] text-slate-500 font-mono pt-0.5">{receipt.date} | {receipt.time}</p>
                 </div>
               </div>
             </div>

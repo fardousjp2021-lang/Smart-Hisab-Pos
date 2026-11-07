@@ -42,6 +42,14 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
   setActiveTab,
   setActiveSubTab
 }) => {
+  const storeSettings = (() => {
+    try {
+      const s = localStorage.getItem('saim_store_settings');
+      if (s) return JSON.parse(s);
+    } catch(e) {}
+    return null;
+  })();
+
   // Filtration States
   const [warehouse, setWarehouse] = useState<string>('-All Warehouses-');
   const [selectedCust, setSelectedCust] = useState<string>('');
@@ -984,17 +992,19 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
               {/* Header exact matches user photo */}
               <div className="text-center space-y-0.5">
                 <h1 className="font-bold text-[24px] uppercase tracking-wide text-black leading-tight select-none" style={{ fontWeight: 800 }}>
-                  RONY TELECOM
+                  {storeSettings?.shopName || 'RONY TELECOM'}
                 </h1>
                 <p className="text-[11.5px] text-black font-semibold leading-tight">
-                  কামাল পাশা মোড়, আজাদ নগর, রামগতি, লক্ষ্মীপুর,, লক্ষ্মীপুর
+                  {storeSettings?.shopAddress || storeSettings?.storeAddressVal || 'কামাল পাশা মোড়, আজাদ নগর, রামগতি, লক্ষ্মীপুর'}
                 </p>
                 <p className="text-[11.5px] text-black font-bold leading-tight">
-                  Tel: 01718389900
+                  Tel: {storeSettings?.shopPhone || storeSettings?.storeMobile || '01718389900'}
                 </p>
-                <p className="text-[11px] text-black/90 font-medium tracking-tight leading-tight select-all">
-                  mahadyhasan.forever@gmail.com
-                </p>
+                {storeSettings?.storeEmail && (
+                  <p className="text-[11px] text-black/90 font-medium tracking-tight leading-tight select-all">
+                    {storeSettings.storeEmail}
+                  </p>
+                )}
               </div>
 
               {/* SALES INVOICE banner between two solid lines */}
@@ -1161,14 +1171,28 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
               {/* Customer message, terms & time */}
               <div className="text-center font-sans space-y-1.5 px-1 pb-1">
                 <h4 className="font-bold text-[13px] text-black tracking-wide" style={{ fontWeight: 800 }}>
-                  Thank You for Your Business!
+                  {lang === 'bn' ? 'আমাদের সাথে কেনাকাটা করার জন্য ধন্যবাদ!' : 'Thank You for Your Business!'}
                 </h4>
                 <p className="text-[10px] text-zinc-700 italic font-medium leading-relaxed max-w-[270px] mx-auto">
-                  Thank you for your business. Please contact us for any queries regarding this invoice
+                  {lang === 'bn' ? 'যেকোনো জিজ্ঞাসা বা তথ্যের জন্য আমাদের সাথে যোগাযোগ করুন' : 'Thank you for your business. Please contact us for any queries regarding this invoice'}
                 </p>
+
+                {/* Website & Helpline Mobile as requested by user */}
+                {storeSettings?.storeWebsite && (
+                  <div className="text-[10.5px] font-bold text-black flex items-center justify-center gap-1.5 pt-0.5">
+                    <span className="text-[11px]">🌐</span>
+                    <span className="font-mono tracking-tight">{storeSettings.storeWebsite}</span>
+                  </div>
+                )}
+                {(storeSettings?.shopPhone || storeSettings?.storeMobile) && (
+                  <div className="text-[10.5px] font-bold text-black flex items-center justify-center gap-1.5">
+                    <span className="text-[11px]">📞</span>
+                    <span>{lang === 'bn' ? 'মোবাইল / হেল্পলাইন:' : 'Helpline:'} {storeSettings.shopPhone || storeSettings.storeMobile}</span>
+                  </div>
+                )}
                 
                 {/* Dynamic timestamp output */}
-                <div className="text-[10.5px] text-black font-bold pt-1 label-timestamp">
+                <div className="text-[10px] text-slate-600 font-mono pt-1 label-timestamp">
                   <span>
                     {selectedInvoiceForReceipt.date.includes('-') 
                       ? selectedInvoiceForReceipt.date.split('-').reverse().join('-') 
