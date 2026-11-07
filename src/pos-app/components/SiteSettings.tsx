@@ -1,9 +1,9 @@
-﻿import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { 
   Settings, Clock, Globe, DollarSign, Database, 
   Save, RefreshCw, Sparkles, Sliders, ShieldCheck, 
   CheckCircle2, Download, Upload, Trash2, HelpCircle,
-  Eye, EyeOff
+  Eye, EyeOff, Key, Lock
 } from 'lucide-react';
 
 interface Props {
@@ -27,6 +27,7 @@ interface Props {
   sysEnableRoundOff: boolean;
   setSysEnableRoundOff: (val: boolean) => void;
   showToast: (msg: string, type?: 'success' | 'error' | 'info') => void;
+  sessionUser?: any;
 }
 
 export const SiteSettings: React.FC<Props> = ({
@@ -41,8 +42,87 @@ export const SiteSettings: React.FC<Props> = ({
   sysLanguage, setSysLanguage,
   sysEnableRoundOff, setSysEnableRoundOff,
   showToast,
+  sessionUser,
 }) => {
   const [saving, setSaving] = useState(false);
+
+  const activeSessionUser = sessionUser || (() => {
+    try {
+      const saved = localStorage.getItem('smarthisab_active_session_user');
+      if (saved) return JSON.parse(saved);
+    } catch (e) {}
+    return null;
+  })();
+
+  const isSuperAdmin = (() => {
+    if (!activeSessionUser) return false;
+    const email = (activeSessionUser.email || '').toLowerCase().trim();
+    const phone = (activeSessionUser.phone || '').trim();
+    const role = activeSessionUser.role;
+    return role === 'super_admin' && (
+      email === 'fardous.jp2021@gmail.com' ||
+      email === 'info.fardousit@gmail.com' ||
+      email === 'admin@smarthisab.com' ||
+      phone === '01747046052' ||
+      phone === '01996761011'
+    );
+  })();
+
+  const isShopOwner = !isSuperAdmin && (activeSessionUser?.role === 'owner' || !activeSessionUser?.role || activeSessionUser?.role !== 'employee');
+
+  const [ownerNewPassword, setOwnerNewPassword] = useState('');
+  const [showOwnerPassEye, setShowOwnerPassEye] = useState(false);
+
+  const handleSaveOwnerPassword = () => {
+    if (!ownerNewPassword || ownerNewPassword.length < 4) {
+      showToast(lang === 'bn' ? 'পাসওয়ার্ড কমপক্ষে ৪ অক্ষরের হতে হবে!' : 'Password must be at least 4 characters!', 'error');
+      return;
+    }
+    try {
+      // 1. Update registered users in local storage
+      const registeredUsersStr = localStorage.getItem('smarthisab_registered_users');
+      let usersList = registeredUsersStr ? JSON.parse(registeredUsersStr) : [];
+      const currentUserPhone = activeSessionUser?.phone;
+      const currentUserEmail = activeSessionUser?.email;
+      const currentUserId = activeSessionUser?.id;
+
+      let matched = false;
+      usersList = usersList.map((u: any) => {
+        if ((currentUserId && u.id === currentUserId) || 
+            (currentUserPhone && u.phone === currentUserPhone) || 
+            (currentUserEmail && u.email === currentUserEmail)) {
+          matched = true;
+          return { ...u, password: ownerNewPassword };
+        }
+        return u;
+      });
+
+      if (matched) {
+        localStorage.setItem('smarthisab_registered_users', JSON.stringify(usersList));
+      }
+
+      // 2. Update active session user
+      const updatedSession = { ...activeSessionUser, password: ownerNewPassword };
+      localStorage.setItem('smarthisab_active_session_user', JSON.stringify(updatedSession));
+
+      // 3. Update saved credentials for auto-fill / remember me
+      try {
+        const savedCreds = localStorage.getItem('smarthisab_saved_credentials');
+        if (savedCreds) {
+          const creds = JSON.parse(savedCreds);
+          localStorage.setItem('smarthisab_saved_credentials', JSON.stringify({ ...creds, password: ownerNewPassword }));
+        }
+      } catch (e) {}
+
+      setOwnerNewPassword('');
+      showToast(
+        lang === 'bn' ? 'আপনার দোকান মালিক পাসওয়ার্ড সফলভাবে আপডেট করা হয়েছে!' : 'Store Owner password updated successfully!',
+        'success'
+      );
+    } catch (err: any) {
+      showToast('Failed to update password: ' + err?.message, 'error');
+    }
+  };
 
   const [adminLoginEmail, setAdminLoginEmail] = useState<string>(() => {
     try {
@@ -422,88 +502,156 @@ export const SiteSettings: React.FC<Props> = ({
             </div>
           </div>
 
-          {/* Card: Super Admin Login Credentials Manager */}
-          <div className="rounded-2xl border border-indigo-200/80 bg-white p-6 shadow-sm space-y-4">
-            <div className="flex items-center gap-3 pb-3 border-b border-slate-100">
-              <div className="p-2.5 rounded-xl bg-indigo-50 text-indigo-600">
-                <ShieldCheck className="w-5 h-5 text-indigo-600" />
-              </div>
-              <div>
-                <h2 className="text-base font-bold text-slate-900 tracking-tight">
-                  {lang === 'bn' ? '🔑 সুপার এডমিন লগইন ইমেইল ও পাসওয়ার্ড পরিবর্তন' : '🔑 Change Super Admin Credentials'}
-                </h2>
-                <p className="text-xs text-slate-500 font-medium">
-                  {lang === 'bn' ? 'সিস্টেমে প্রবেশ করার প্রধান এডমিন আইডি ও পাসওয়ার্ড আপডেট করুন' : 'Update master Super Admin login email & password'}
-                </p>
-              </div>
-            </div>
-
-            <div className="space-y-3.5 text-left">
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  {lang === 'bn' ? 'সুপার এডমিন লগইন ইমেইল / ইউজারনেম *' : 'Super Admin Login Email / Username *'}
-                </label>
-                <input
-                  type="text"
-                  value={adminLoginEmail}
-                  onChange={(e) => setAdminLoginEmail(e.target.value)}
-                  className="w-full h-10 px-3 text-xs font-bold border border-slate-300 rounded-xl bg-slate-50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600"
-                  placeholder="info.fardousit@gmail.com"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  {lang === 'bn' ? 'নতুন এডমিন পাসওয়ার্ড *' : 'New Admin Password *'}
-                </label>
-                <div className="relative">
-                  <input
-                    type={showAdminPassEye ? 'text' : 'password'}
-                    value={adminLoginPassword}
-                    onChange={(e) => setAdminLoginPassword(e.target.value)}
-                    className="w-full h-10 pl-3 pr-10 text-xs font-bold border border-slate-300 rounded-xl bg-slate-50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600"
-                    placeholder="••••••••"
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowAdminPassEye(!showAdminPassEye)}
-                    className="absolute right-3 top-2.5 text-slate-400 hover:text-slate-600 cursor-pointer"
-                    title={showAdminPassEye ? "পাসওয়ার্ড লুকান" : "পাসওয়ার্ড দেখুন"}
-                  >
-                    {showAdminPassEye ? <EyeOff size={16} className="text-indigo-600" /> : <Eye size={16} />}
-                  </button>
+          {/* Card: Super Admin Login Credentials Manager - ONLY visible to Super Admin */}
+          {isSuperAdmin && (
+            <div className="rounded-2xl border border-indigo-200/80 bg-white p-6 shadow-sm space-y-4">
+              <div className="flex items-center gap-3 pb-3 border-b border-slate-100">
+                <div className="p-2.5 rounded-xl bg-indigo-50 text-indigo-600">
+                  <ShieldCheck className="w-5 h-5 text-indigo-600" />
+                </div>
+                <div>
+                  <h2 className="text-base font-bold text-slate-900 tracking-tight">
+                    {lang === 'bn' ? '🔑 সুপার এডমিন লগইন ইমেইল ও পাসওয়ার্ড পরিবর্তন' : '🔑 Change Super Admin Credentials'}
+                  </h2>
+                  <p className="text-xs text-slate-500 font-medium">
+                    {lang === 'bn' ? 'সিস্টেমে প্রবেশ করার প্রধান এডমিন আইডি ও পাসওয়ার্ড আপডেট করুন' : 'Update master Super Admin login email & password'}
+                  </p>
                 </div>
               </div>
 
-              <button
-                type="button"
-                onClick={() => {
-                  if (!adminLoginEmail.trim() || !adminLoginPassword) {
-                    showToast(lang === 'bn' ? 'ইমেইল ও পাসওয়ার্ড খালি রাখা যাবে না!' : 'Email and password cannot be empty!', 'error');
-                    return;
-                  }
-                  try {
-                    localStorage.setItem('smarthisab_super_admin_email', adminLoginEmail.trim());
-                    localStorage.setItem('smarthisab_super_admin_password', adminLoginPassword);
-                    showToast(
-                      lang === 'bn' 
-                        ? 'সুপার এডমিন লগইন ইমেইল ও পাসওয়ার্ড সফলভাবে আপডেট ও সেভ হয়েছে!' 
-                        : 'Super Admin login credentials updated successfully!', 
-                      'success'
-                    );
-                  } catch (e: any) {
-                    showToast('Failed to save credentials: ' + e?.message, 'error');
-                  }
-                }}
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2 cursor-pointer active:scale-95"
-              >
-                <CheckCircle2 className="w-4 h-4 text-amber-300" />
-                <span>{lang === 'bn' ? 'এডমিন ইমেইল ও পাসওয়ার্ড আপডেট করুন' : 'Save Admin Login Credentials'}</span>
-              </button>
+              <div className="space-y-3.5 text-left">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                    {lang === 'bn' ? 'সুপার এডমিন লগইন ইমেইল / ইউজারনেম *' : 'Super Admin Login Email / Username *'}
+                  </label>
+                  <input
+                    type="text"
+                    value={adminLoginEmail}
+                    onChange={(e) => setAdminLoginEmail(e.target.value)}
+                    className="w-full h-10 px-3 text-xs font-bold border border-slate-300 rounded-xl bg-slate-50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                    placeholder="info.fardousit@gmail.com"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                    {lang === 'bn' ? 'নতুন এডমিন পাসওয়ার্ড *' : 'New Admin Password *'}
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showAdminPassEye ? 'text' : 'password'}
+                      value={adminLoginPassword}
+                      onChange={(e) => setAdminLoginPassword(e.target.value)}
+                      className="w-full h-10 pl-3 pr-10 text-xs font-bold border border-slate-300 rounded-xl bg-slate-50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                      placeholder="••••••••"
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowAdminPassEye(!showAdminPassEye)}
+                      className="absolute right-3 top-2.5 text-slate-400 hover:text-slate-600 cursor-pointer"
+                      title={showAdminPassEye ? "পাসওয়ার্ড লুকান" : "পাসওয়ার্ড দেখুন"}
+                    >
+                      {showAdminPassEye ? <EyeOff size={16} className="text-indigo-600" /> : <Eye size={16} />}
+                    </button>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (!adminLoginEmail.trim() || !adminLoginPassword) {
+                      showToast(lang === 'bn' ? 'ইমেইল ও পাসওয়ার্ড খালি রাখা যাবে না!' : 'Email and password cannot be empty!', 'error');
+                      return;
+                    }
+                    try {
+                      localStorage.setItem('smarthisab_super_admin_email', adminLoginEmail.trim());
+                      localStorage.setItem('smarthisab_super_admin_password', adminLoginPassword);
+                      showToast(
+                        lang === 'bn' 
+                          ? 'সুপার এডমিন লগইন ইমেইল ও পাসওয়ার্ড সফলভাবে আপডেট ও সেভ হয়েছে!' 
+                          : 'Super Admin login credentials updated successfully!', 
+                        'success'
+                      );
+                    } catch (e: any) {
+                      showToast('Failed to save credentials: ' + e?.message, 'error');
+                    }
+                  }}
+                  className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                >
+                  <CheckCircle2 className="w-4 h-4 text-amber-300" />
+                  <span>{lang === 'bn' ? 'এডমিন ইমেইল ও পাসওয়ার্ড আপডেট করুন' : 'Save Admin Login Credentials'}</span>
+                </button>
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* Card: Shop Owner Login Password Update - Visible ONLY to Shop Owners (Never shows super admin info) */}
+          {isShopOwner && (
+            <div className="rounded-2xl border border-sky-200/80 bg-white p-6 shadow-sm space-y-4">
+              <div className="flex items-center gap-3 pb-3 border-b border-slate-100">
+                <div className="p-2.5 rounded-xl bg-sky-50 text-[#0284c7]">
+                  <Key className="w-5 h-5 text-[#0284c7]" />
+                </div>
+                <div>
+                  <h2 className="text-base font-bold text-slate-900 tracking-tight">
+                    {lang === 'bn' ? '🔐 দোকান মালিকের পাসওয়ার্ড পরিবর্তন' : '🔐 Change Store Owner Password'}
+                  </h2>
+                  <p className="text-xs text-slate-500 font-medium">
+                    {lang === 'bn' ? 'আপনার বর্তমান দোকান অ্যাকাউন্টের লগইন পাসওয়ার্ড পরিবর্তন করুন' : 'Update your personal store login password'}
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-3.5 text-left">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                    {lang === 'bn' ? 'আপনার রেজিস্টার্ড মোবাইল / আইডি' : 'Registered Mobile / ID'}
+                  </label>
+                  <input
+                    type="text"
+                    value={activeSessionUser?.phone || activeSessionUser?.email || 'দোকান অ্যাকাউন্ট'}
+                    disabled
+                    className="w-full h-10 px-3 text-xs font-bold border border-slate-200 rounded-xl bg-slate-100 text-slate-600 cursor-not-allowed select-all"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                    {lang === 'bn' ? 'নতুন দোকান পাসওয়ার্ড দিন *' : 'New Store Password *'}
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showOwnerPassEye ? 'text' : 'password'}
+                      value={ownerNewPassword}
+                      onChange={(e) => setOwnerNewPassword(e.target.value)}
+                      className="w-full h-10 pl-3 pr-10 text-xs font-bold border border-slate-300 rounded-xl bg-slate-50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-600"
+                      placeholder="••••••••"
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowOwnerPassEye(!showOwnerPassEye)}
+                      className="absolute right-3 top-2.5 text-slate-400 hover:text-slate-600 cursor-pointer"
+                      title={showOwnerPassEye ? "পাসওয়ার্ড লুকান" : "পাসওয়ার্ড দেখুন"}
+                    >
+                      {showOwnerPassEye ? <EyeOff size={16} className="text-sky-600" /> : <Eye size={16} />}
+                    </button>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleSaveOwnerPassword}
+                  className="w-full py-3 rounded-xl bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-700 hover:to-blue-800 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                >
+                  <CheckCircle2 className="w-4 h-4 text-emerald-300" />
+                  <span>{lang === 'bn' ? 'দোকানের পাসওয়ার্ড আপডেট করুন' : 'Update Store Password'}</span>
+                </button>
+              </div>
+            </div>
+          )}
 
           {/* Card 4: Integrity Status */}
           <div className="rounded-2xl border border-blue-100 bg-blue-50/50 p-5 space-y-3">

@@ -9365,6 +9365,7 @@ export default function App() {
                     sysEnableRoundOff={sysEnableRoundOff}
                     setSysEnableRoundOff={setSysEnableRoundOff}
                     showToast={showToast}
+                    sessionUser={sessionUser}
                   />
                 ) : (activeSubTab === 'support' || activeSubTab === 'helpdesk' || settingsActiveTab === 'support' || activeTab === 'helpdesk') ? (
                   <CustomerSupportDesk
