@@ -1228,7 +1228,13 @@ export default function App() {
   const [storePostcode, setStorePostcode] = useState<string>('');
   const [storeAddressVal, setStoreAddressVal] = useState<string>('কামাল পাশা মোড়, আজাদ নগর, রামগতি, লক্ষ্মীপুর,');
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
-  const [storeFontSize, setStoreFontSize] = useState<string>('base');
+  const [storeFontSize, setStoreFontSize] = useState<string>(function() {
+    try {
+      return localStorage.getItem('smarthisab_store_font_size') || 'auto';
+    } catch (e) {
+      return 'auto';
+    }
+  });
   const [isLandingPageVisible, setIsLandingPageVisible] = useState<boolean>(function() {
     try {
       const saved = localStorage.getItem('smarthisab_public_landing_enabled');
@@ -2185,6 +2191,7 @@ export default function App() {
         if (d.storeAddressVal) setStoreAddressVal(d.storeAddressVal);
         if (d.logoPreview) setLogoPreview(d.logoPreview);
         if (d.sigPreview) setSigPreview(d.sigPreview);
+        if (d.storeFontSize) setStoreFontSize(d.storeFontSize);
       }
     } catch (e) {
       console.error("Error loading store settings from localStorage:", e);
@@ -2249,9 +2256,11 @@ export default function App() {
         storePostcode,
         storeAddressVal,
         logoPreview,
-        sigPreview
+        sigPreview,
+        storeFontSize
       };
       localStorage.setItem('saim_store_settings', JSON.stringify(settingsObject));
+      localStorage.setItem('smarthisab_store_font_size', storeFontSize);
       setShopAddress(storeAddressVal);
       setShopPhone(storeMobile);
       showToast(lang === 'bn' ? "সেটিংস সফলভাবে সংরক্ষিত ও আপডেট করা হয়েছে!" : "Settings saved and synchronized successfully!", "success");
@@ -2263,6 +2272,41 @@ export default function App() {
   function toBnDigits(numStr: string | number): string {
     const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
     return String(numStr).replace(/[0-9]/g, function(digit) { return bnDigits[parseInt(digit)]; });
+  }
+
+  // Smart responsive font sizing for shop brand names in sidebar and header
+  function getShopNameDynamicClass(name: string, sizePref: string = 'auto'): string {
+    const cleanName = (name || '').trim();
+    const len = cleanName.length;
+
+    // Explicit manual overrides if user configured fixed size in Settings:
+    if (sizePref === 'sm') {
+      return len > 22 ? 'text-xs sm:text-[13px] leading-snug' : 'text-sm sm:text-base leading-snug';
+    }
+    if (sizePref === 'lg') {
+      return len > 22 ? 'text-base sm:text-lg leading-snug' : 'text-xl sm:text-2xl leading-tight';
+    }
+    if (sizePref === 'xl') {
+      return len > 22 ? 'text-lg sm:text-xl leading-snug' : 'text-2xl sm:text-3xl leading-tight';
+    }
+
+    // Default intelligent auto-scaling based on text length:
+    if (len <= 11) {
+      // Very short: e.g. "রনি টেলিকম" (10 chars), "ঢাকা শপ"
+      return 'text-xl sm:text-2xl leading-tight';
+    } else if (len <= 17) {
+      // Short-medium: e.g. "স্মার্ট ফ্যাশন" (14 chars)
+      return 'text-lg sm:text-xl leading-snug';
+    } else if (len <= 24) {
+      // Medium-long: e.g. "জয়নাল ভেরাইটিজ স্টোর" (21 chars) - perfectly fits 2 balanced lines without huge awkward wrapping
+      return 'text-[14.5px] sm:text-[15.5px] leading-snug';
+    } else if (len <= 34) {
+      // Long: 25-34 chars
+      return 'text-[12.5px] sm:text-[13.5px] leading-tight';
+    } else {
+      // Extra long: > 34 chars
+      return 'text-[11px] sm:text-xs leading-tight';
+    }
   }
 
   function getFormattedReportDate(isBn: boolean) {
@@ -3983,7 +4027,7 @@ export default function App() {
                     {roleColor.label}
                   </span>
                 </div>
-                <span className={`text-[10px] ${roleColor.text} mt-0.5 block whitespace-nowrap font-bold`}>
+                <span className={`text-[10px] ${roleColor.text} mt-0.5 block whitespace-nowrap font-bold max-w-[130px] truncate`} title={shopName ? `🏬 ${shopName}` : (lang === 'bn' ? sessionUser.roleTitleBn : sessionUser.roleTitleEn)}>
                   {shopName ? `🏬 ${shopName}` : (lang === 'bn' ? sessionUser.roleTitleBn : sessionUser.roleTitleEn)}
                 </span>
               </div>
@@ -4135,12 +4179,15 @@ export default function App() {
               ) : (
                 <div className="w-full overflow-hidden">
                   <div 
-                    className={`font-bold text-white leading-tight tracking-tight break-words drop-shadow-md ${
-                      storeFontSize === 'sm' ? 'text-lg font-bold' :
-                      storeFontSize === 'lg' ? 'text-2xl font-bold' :
-                      storeFontSize === 'xl' ? 'text-3xl font-bold' : 'text-xl sm:text-2xl font-bold'
-                    }`}
-                    title={shopName}
+                    className={`font-bold text-white tracking-tight break-words drop-shadow-md line-clamp-2 ${getShopNameDynamicClass(shopName, storeFontSize)}`}
+                    style={{
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                      wordBreak: 'break-word',
+                    }}
+                    title={shopName || 'রনি টেলিকম'}
                   >
                     {shopName || 'রনি টেলিকম'}
                   </div>

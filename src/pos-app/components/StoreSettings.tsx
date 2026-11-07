@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { 
   Building, Phone, Mail, Globe, MapPin, FileText, 
   CreditCard, Upload, CheckCircle2, ShieldCheck, 
@@ -49,7 +49,7 @@ export const StoreSettings: React.FC<Props> = ({
   bankDetails, setBankDetails,
   storeCountry, setStoreCountry,
   storeCity, setStoreCity,
-  logoPreview, setLogoPreview, storeFontSize = "base", setStoreFontSize,
+  logoPreview, setLogoPreview, storeFontSize = "auto", setStoreFontSize,
   showToast,
 }) => {
   const [saving, setSaving] = useState(false);
@@ -70,9 +70,11 @@ export const StoreSettings: React.FC<Props> = ({
         storeCountry,
         storeCity,
         logoPreview,
+        storeFontSize,
         updatedAt: new Date().toISOString()
       };
       localStorage.setItem('saim_store_settings', JSON.stringify(payload));
+      localStorage.setItem('smarthisab_store_font_size', storeFontSize);
       setTimeout(() => {
         setSaving(false);
         showToast(
@@ -208,14 +210,16 @@ export const StoreSettings: React.FC<Props> = ({
                 />
               
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                  {lang === 'bn' ? 'সাইডবারে স্টোরের নামের ফন্ট সাইজ (Font Size)' : 'Sidebar Store Name Font Size'}
+                <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center justify-between">
+                  <span>{lang === 'bn' ? 'সাইডবারে স্টোরের নামের ফন্ট সাইজ' : 'Sidebar Store Name Font Size'}</span>
+                  <span className="text-[10px] text-emerald-600 font-semibold">{lang === 'bn' ? 'স্বয়ংক্রিয় অটো সাইজ' : 'Smart Auto-Fit'}</span>
                 </label>
                 <select
                   value={storeFontSize}
                   onChange={(e) => setStoreFontSize && setStoreFontSize(e.target.value)}
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50/50 cursor-pointer"
                 >
+                  <option value="auto">{lang === 'bn' ? '⚡ স্বয়ংক্রিয় অটো সাইজ (স্মার্ট স্কেলিং - নাম বড় হলে নিজে মানানসই হবে)' : '⚡ Auto-Fit (Smart Dynamic Scaling - Recommended)'}</option>
                   <option value="sm">{lang === 'bn' ? 'ছোট (Small - 12px)' : 'Small (12px)'}</option>
                   <option value="base">{lang === 'bn' ? 'সাধারণ (Medium - 14px)' : 'Medium (14px)'}</option>
                   <option value="lg">{lang === 'bn' ? 'বড় (Large - 16px)' : 'Large (16px)'}</option>
