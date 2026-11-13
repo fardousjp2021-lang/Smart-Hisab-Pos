@@ -1029,9 +1029,9 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
         <div className="w-full text-center space-y-1.5 pt-3 border-t border-slate-100 text-xs text-slate-500">
           <p>
             নিবন্ধন করার মাধ্যমে আপনি আমাদের{' '}
-            <a href="#" className="text-amber-600 font-bold hover:underline">ব্যবহারের শর্তাবলী (Terms)</a>{' '}
+            <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-amber-600 font-bold hover:underline">ব্যবহারের শর্তাবলী (Terms)</a>{' '}
             ও{' '}
-            <a href="#" className="text-amber-600 font-bold hover:underline">গোপনীয়তা নীতি (Privacy Policy)</a> মেনে নিচ্ছেন।
+            <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-amber-600 font-bold hover:underline">গোপনীয়তা নীতি (Privacy Policy)</a> মেনে নিচ্ছেন।
           </p>
           <p className="font-semibold text-slate-400 text-[11px]">
             Copyright SmartHisab 2026 • সর্বস্বত্ব সংরক্ষিত

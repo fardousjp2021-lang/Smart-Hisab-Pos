@@ -659,7 +659,7 @@ export const Contacts = ({
                               <a
                                 href={`https://wa.me/88${c.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`আসসালামু আলাইকুম ${c.name}, রনি টেলিকম-এ আপনার ৳${c.dueAmount.toLocaleString()} টাকা বকেয়া রয়েছে। অনুগ্রহ করে বকেয়া পরিশোধ করার অনুরোধ করা হচ্ছে। ধন্যবাদ!`)}`}
                                 target="_blank"
-                                rel="noreferrer"
+                                rel="noopener noreferrer"
                                 title="হোয়াটসঅ্যাপ রিমাইন্ডার পাঠান"
                                 className="p-1 rounded-lg bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-300 hover:bg-emerald-100 transition"
                               >

@@ -169,7 +169,7 @@ export const CustomerSupportDesk: React.FC<Props> = ({
         <a 
           href="https://wa.me/8801747046052" 
           target="_blank" 
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm flex items-center gap-4 hover:border-emerald-300 transition cursor-pointer"
         >
           <div className="p-3 rounded-2xl bg-emerald-50 text-emerald-600 shrink-0">

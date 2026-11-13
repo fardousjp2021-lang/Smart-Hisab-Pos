@@ -714,6 +714,14 @@ export default function App() {
     try {
       if (typeof window === 'undefined') return;
       const p = window.location.pathname || '';
+      if (p === '/privacy' || p === '/privacy.html') {
+        window.location.replace('/privacy.html');
+        return;
+      }
+      if (p === '/terms' || p === '/terms.html') {
+        window.location.replace('/terms.html');
+        return;
+      }
       if (p.startsWith('/purchases')) {
         setActiveTab('purchases');
         setOpenGroup('purchases');
@@ -4770,7 +4778,7 @@ export default function App() {
                         <a href="tel:01711944027" className="px-6 py-3 bg-[#1a73e8] hover:bg-[#1557b0] text-white font-bold text-xs rounded-xl shadow-lg transition flex items-center gap-2">
                           📞 01711944027 ({lang === 'bn' ? "সুপার এডমিনকে কল করুন" : "Call Admin"})
                         </a>
-                        <a href="https://wa.me/8801711944027" target="_blank" rel="noreferrer" className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-lg transition flex items-center gap-2">
+                        <a href="https://wa.me/8801711944027" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-lg transition flex items-center gap-2">
                           💬 WhatsApp Support
                         </a>
                       </div>
@@ -4981,76 +4989,84 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-bold">
-                    {/* Starter */}
-                    <div className="p-3.5 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700 space-y-2">
-                      <span className="text-sky-600 dark:text-sky-400 font-bold block">🚀 স্টার্টার প্যাকেজ</span>
-                      <div>
-                        <label className="text-[11px] text-slate-500 block">মাসিক (৳)</label>
-                        <input
-                          type="number"
-                          id="admin-starter-m"
-                          defaultValue={JSON.parse(localStorage.getItem('saim_package_pricing_config') || '{}').starterMonthly || 499}
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-[11px] text-slate-500 block">বাৎসরিক (৳)</label>
-                        <input
-                          type="number"
-                          id="admin-starter-y"
-                          defaultValue={JSON.parse(localStorage.getItem('saim_package_pricing_config') || '{}').starterYearly || 4990}
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono"
-                        />
-                      </div>
-                    </div>
+                  {(() => {
+                    let savedPricing: any = {};
+                    try {
+                      savedPricing = JSON.parse(localStorage.getItem('saim_package_pricing_config') || '{}') || {};
+                    } catch {}
+                    return (
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-bold">
+                        {/* Starter */}
+                        <div className="p-3.5 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700 space-y-2">
+                          <span className="text-sky-600 dark:text-sky-400 font-bold block">🚀 স্টার্টার প্যাকেজ</span>
+                          <div>
+                            <label className="text-[11px] text-slate-500 block">মাসিক (৳)</label>
+                            <input
+                              type="number"
+                              id="admin-starter-m"
+                              defaultValue={savedPricing.starterMonthly ?? 499}
+                              className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-[11px] text-slate-500 block">বাৎসরিক (৳)</label>
+                            <input
+                              type="number"
+                              id="admin-starter-y"
+                              defaultValue={savedPricing.starterYearly ?? 4990}
+                              className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono"
+                            />
+                          </div>
+                        </div>
 
-                    {/* Pro */}
-                    <div className="p-3.5 bg-purple-50/50 dark:bg-purple-950/30 rounded-xl border border-purple-200 dark:border-purple-800 space-y-2">
-                      <span className="text-[#8b26c7] dark:text-purple-300 font-bold block">⚡ প্রো বিজনেস</span>
-                      <div>
-                        <label className="text-[11px] text-slate-500 block">মাসিক (৳)</label>
-                        <input
-                          type="number"
-                          id="admin-pro-m"
-                          defaultValue={JSON.parse(localStorage.getItem('saim_package_pricing_config') || '{}').proMonthly || 999}
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-[11px] text-slate-500 block">বাৎসরিক (৳)</label>
-                        <input
-                          type="number"
-                          id="admin-pro-y"
-                          defaultValue={JSON.parse(localStorage.getItem('saim_package_pricing_config') || '{}').proYearly || 9990}
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono"
-                        />
-                      </div>
-                    </div>
+                        {/* Pro */}
+                        <div className="p-3.5 bg-purple-50/50 dark:bg-purple-950/30 rounded-xl border border-purple-200 dark:border-purple-800 space-y-2">
+                          <span className="text-[#8b26c7] dark:text-purple-300 font-bold block">⚡ প্রো বিজনেস</span>
+                          <div>
+                            <label className="text-[11px] text-slate-500 block">মাসিক (৳)</label>
+                            <input
+                              type="number"
+                              id="admin-pro-m"
+                              defaultValue={savedPricing.proMonthly ?? 999}
+                              className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-[11px] text-slate-500 block">বাৎসরিক (৳)</label>
+                            <input
+                              type="number"
+                              id="admin-pro-y"
+                              defaultValue={savedPricing.proYearly ?? 9990}
+                              className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono"
+                            />
+                          </div>
+                        </div>
 
-                    {/* Enterprise */}
-                    <div className="p-3.5 bg-amber-50/50 dark:bg-amber-950/30 rounded-xl border border-amber-200 dark:border-amber-800 space-y-2">
-                      <span className="text-amber-600 dark:text-amber-400 font-bold block">🌟 এন্টারপ্রাইজ</span>
-                      <div>
-                        <label className="text-[11px] text-slate-500 block">মাসিক (৳)</label>
-                        <input
-                          type="number"
-                          id="admin-enterprise-m"
-                          defaultValue={JSON.parse(localStorage.getItem('saim_package_pricing_config') || '{}').enterpriseMonthly || 1999}
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono"
-                        />
+                        {/* Enterprise */}
+                        <div className="p-3.5 bg-amber-50/50 dark:bg-amber-950/30 rounded-xl border border-amber-200 dark:border-amber-800 space-y-2">
+                          <span className="text-amber-600 dark:text-amber-400 font-bold block">🌟 এন্টারপ্রাইজ</span>
+                          <div>
+                            <label className="text-[11px] text-slate-500 block">মাসিক (৳)</label>
+                            <input
+                              type="number"
+                              id="admin-enterprise-m"
+                              defaultValue={savedPricing.enterpriseMonthly ?? 1999}
+                              className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-[11px] text-slate-500 block">বাৎসরিক (৳)</label>
+                            <input
+                              type="number"
+                              id="admin-enterprise-y"
+                              defaultValue={savedPricing.enterpriseYearly ?? 19990}
+                              className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono"
+                            />
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <label className="text-[11px] text-slate-500 block">বাৎসরিক (৳)</label>
-                        <input
-                          type="number"
-                          id="admin-enterprise-y"
-                          defaultValue={JSON.parse(localStorage.getItem('saim_package_pricing_config') || '{}').enterpriseYearly || 19990}
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono"
-                        />
-                      </div>
-                    </div>
-                  </div>
+                    );
+                  })()}
 
                   <button
                     type="button"
