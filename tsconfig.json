@@ -17,10 +17,24 @@
     "jsx": "react-jsx",
     "paths": {
       "@/*": [
-        "./*"
+        "./src/*"
       ]
     },
     "allowImportingTsExtensions": true,
     "noEmit": true
-  }
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "dist_electron",
+    "electron",
+    "lovable-project-985ce4ef Rony telecom",
+    "rclone-v1.74.4-linux-amd64",
+    "scratch",
+    "src/e2e",
+    "src/components/ui"
+  ]
 }

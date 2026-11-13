@@ -5,9 +5,12 @@ import { AppProvider } from './pos-app/context/AppContext.tsx';
 import './index.css';
 
 class GlobalErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean; error: any }> {
-  constructor(props: any) {
+  props: { children: React.ReactNode };
+  state: { hasError: boolean; error: any } = { hasError: false, error: null };
+
+  constructor(props: { children: React.ReactNode }) {
     super(props);
-    this.state = { hasError: false, error: null };
+    this.props = props;
   }
 
   static getDerivedStateFromError(error: any) {

@@ -121,7 +121,7 @@ export const ImportExportManager: React.FC<Props> = (props) => {
     { key: 'variants', labelBn: 'ভ্যারিয়েন্ট', labelEn: 'Variants', icon: Layers, rows: variants,
       sample: [{ id: 'VAR-01', name: 'RAM Size', description: '8GB, 12GB, 16GB' }],
       onImport: (rows) => { const merged = [...variants]; rows.forEach(r => { const idx = merged.findIndex((x: any) => x.id === r.id); if (idx >= 0) merged[idx] = { ...merged[idx], ...r }; else merged.push({ id: r.id || `VAR-${Date.now()}`, name: r.name || '', description: r.description || '' }); }); setVariants(merged); return rows.length; } },
-    { key: 'units', labelBn: 'ইউনিট', labelEn: 'Units', icon: Ruler, rows: Object.entries(unitsByCategory || {}).flatMap(([category, us]) => (us || []).map((unit: string) => ({ category, unit }))),
+    { key: 'units', labelBn: 'ইউনিট', labelEn: 'Units', icon: Ruler, rows: Object.entries(unitsByCategory || {}).flatMap(([category, us]) => (Array.isArray(us) ? us : []).map((unit: any) => ({ category, unit: String(unit) }))),
       sample: [{ category: 'Electronics', unit: 'pcs' }, { category: 'Accessories', unit: 'box' }],
       onImport: (rows) => { const map = { ...unitsByCategory }; rows.forEach((r: any) => { const c = String(r.category || '').trim(); const u = String(r.unit || '').trim(); if (!c || !u) return; if (!map[c]) map[c] = []; if (!map[c].includes(u)) map[c].push(u); }); setUnitsByCategory(map); return rows.length; } },
     { key: 'warranty', labelBn: 'ওয়ারেন্টি রেকর্ড', labelEn: 'Warranty Records', icon: ShieldCheck, rows: warrantyRecords,

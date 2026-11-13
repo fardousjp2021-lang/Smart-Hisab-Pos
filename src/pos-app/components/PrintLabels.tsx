@@ -187,7 +187,7 @@ export const PrintLabels: React.FC<Props> = ({
 
   // Computed total labels to print
   const totalLabelsToPrint = useMemo(() => {
-    return Object.values(selectedItemsMap).reduce((sum, count) => sum + (count > 0 ? count : 0), 0);
+    return Object.values(selectedItemsMap).reduce((sum: number, count: any) => sum + (Number(count) > 0 ? Number(count) : 0), 0);
   }, [selectedItemsMap]);
 
   // List of sticker instances for preview & printing

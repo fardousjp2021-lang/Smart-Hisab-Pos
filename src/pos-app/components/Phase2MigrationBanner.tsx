@@ -13,7 +13,7 @@ import React from 'react';
  * The banner is intentionally dependency-free (no i18n, no toast lib) so
  * it can be dropped into `App.tsx` without pulling new modules.
  */
-export function Phase2MigrationBanner(): JSX.Element | null {
+export function Phase2MigrationBanner(): React.ReactElement | null {
   const [visible, setVisible] = React.useState(false);
 
   React.useEffect(() => {

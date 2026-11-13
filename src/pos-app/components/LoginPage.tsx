@@ -191,7 +191,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
       const inputStr = email.trim().toLowerCase();
       const cleanInputPhone = inputStr.replace(/\D/g, '');
       const customAdminEmail = (localStorage.getItem('smarthisab_super_admin_email') || 'info.fardousit@gmail.com').toLowerCase();
-      const customAdminPassword = localStorage.getItem('smarthisab_super_admin_password') || 'admin123';
+      const customAdminPassword = localStorage.getItem('smarthisab_super_admin_password');
+      const isSuperAdminPasswordValid = customAdminPassword ? password === customAdminPassword : password === 'admin123';
 
       // 1. Check if user exists in locally registered users list
       let usersList: any[] = [];
@@ -233,7 +234,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
       // 2. Check if logging in with Super Admin credentials
       if (
         (inputStr === customAdminEmail || inputStr === 'admin@smarthisab.com' || inputStr === 'info.fardousit@gmail.com' || inputStr === 'fardous.jp2021@gmail.com' || cleanInputPhone === '01747046052' || cleanInputPhone === '01996761011') &&
-        (password === customAdminPassword || password === 'admin123')
+        isSuperAdminPasswordValid
       ) {
         const superAdminUser = {
           id: 'super_admin_fardous',
