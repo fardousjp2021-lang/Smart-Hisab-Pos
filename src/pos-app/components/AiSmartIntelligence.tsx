@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
   Sparkles,
   TrendingUp,
@@ -22,7 +22,11 @@ import {
   Lightbulb,
   AlertCircle,
   FileSpreadsheet,
-  ArrowRight
+  ArrowRight,
+  Bot,
+  Send,
+  RotateCcw,
+  User
 } from 'lucide-react';
 
 interface Product {
@@ -79,7 +83,7 @@ export const AiSmartIntelligence: React.FC<AiSmartIntelligenceProps> = ({
   const isBn = lang === 'bn';
 
   // Navigation tab state inside AI Hub
-  const [activeAiTab, setActiveAiTab] = useState<'overview' | 'prediction' | 'demand_restock' | 'profit_pricing'>('overview');
+  const [activeAiTab, setActiveAiTab] = useState<'overview' | 'prediction' | 'demand_restock' | 'profit_pricing' | 'chat_agent'>('overview');
 
   // Sales Prediction state
   const [predictionDays, setPredictionDays] = useState<7 | 14 | 30>(7);
@@ -425,6 +429,260 @@ export const AiSmartIntelligence: React.FC<AiSmartIntelligenceProps> = ({
     }, 250);
   };
 
+  // ══════════════════════════════════════════════════════════════════
+  // 5. ENGINE: BONGO AI BUSINESS CONSULTANT CHAT AGENT
+  // ══════════════════════════════════════════════════════════════════
+  const [chatMessages, setChatMessages] = useState<Array<{
+    id: string;
+    sender: 'user' | 'ai';
+    text: string;
+    time: string;
+  }>>([
+    {
+      id: 'welcome',
+      sender: 'ai',
+      text: isBn 
+        ? "আসসালামু আলাইকুম! আমি 'বঙ্গ এআই' (Bongo AI) — আপনার দোকানের ডিজিটাল বিজনেস কনসালট্যান্ট। আজকের বেচাকেনা, ইনভেন্টরি প্ল্যানিং বা বাকি আদায় নিয়ে কী পরামর্শ চান?"
+        : "Hello! I am 'Bongo AI' — your store's digital business consultant. What would you like to know about today's sales, inventory velocity, or customer dues?",
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    }
+  ]);
+  const [chatInput, setChatInput] = useState('');
+  const [isAiThinking, setIsAiThinking] = useState(false);
+  const chatEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToChatBottom = () => {
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    if (activeAiTab === 'chat_agent') {
+      scrollToChatBottom();
+    }
+  }, [chatMessages, activeAiTab]);
+
+  const quickPrompts = [
+    {
+      icon: '⚡',
+      label: isBn ? 'আজকের বিক্রয় ও ক্যাশ কালেকশন বাড়ানোর ৩টি সহজ কৌশল কি?' : '3 tactics to boost cash collection today',
+      prompt: isBn ? 'আজকের বিক্রয় ও ক্যাশ কালেকশন বাড়ানোর ৩টি সহজ কৌশল কি?' : 'How to boost daily cash collection?'
+    },
+    {
+      icon: '🔥',
+      label: isBn ? 'কোন প্রোডাক্ট সবচেয়ে বেশি বিক্রি হচ্ছে? (টপ সেলিং)' : 'Top selling products',
+      prompt: isBn ? 'কোন প্রোডাক্ট সবচেয়ে বেশি বিক্রি হচ্ছে?' : 'Which products are selling the most?'
+    },
+    {
+      icon: '🛑',
+      label: isBn ? 'কোন প্রোডাক্টের বিক্রি একদম স্লো বা স্থবির? (ডেড স্টক)' : 'Slow moving / dead stock',
+      prompt: isBn ? 'কোন প্রোডাক্টের বিক্রি একদম স্লো বা স্থবির?' : 'Which items have zero or slow sales?'
+    },
+    {
+      icon: '⚠️',
+      label: isBn ? 'কোন কোন পণ্যের স্টক দ্রুত শেষ হয়ে যাচ্ছে? (রিস্টক)' : 'Low stock alerts',
+      prompt: isBn ? 'কোন কোন পণ্যের স্টক দ্রুত শেষ হয়ে যাচ্ছে?' : 'Which products need urgent restocking?'
+    },
+    {
+      icon: '💰',
+      label: isBn ? 'কাস্টমারদের থেকে দ্রুত বাকি আদায়ের জন্য কি করব?' : 'How to recover customer dues faster',
+      prompt: isBn ? 'কাস্টমারদের থেকে দ্রুত বাকি আদায়ের জন্য কি করব?' : 'How to recover customer dues faster?'
+    },
+    {
+      icon: '💡',
+      label: isBn ? 'প্রফিট মার্জিন ও মুনাফা বৃদ্ধির উপায়' : 'How to increase profit margins',
+      prompt: isBn ? 'প্রফিট মার্জিন ও মুনাফা বৃদ্ধির উপায় কি?' : 'How to optimize profit margin?'
+    }
+  ];
+
+  const generateAiConsultantResponse = (rawQuery: string): string => {
+    const q = rawQuery.toLowerCase().trim();
+
+    // 1. TOP SELLING PRODUCTS
+    if (q.includes('টপ') || q.includes('সেরা') || q.includes('বেশি বিক্রি') || q.includes('fast') || q.includes('best') || q.includes('জনপ্রিয়')) {
+      const topSold = [...productMetrics]
+        .filter(p => p.totalSoldQty > 0)
+        .sort((a, b) => b.totalSoldQty - a.totalSoldQty)
+        .slice(0, 5);
+
+      if (topSold.length === 0) {
+        const topStocked = [...productMetrics].sort((a, b) => b.stock - a.stock).slice(0, 5);
+        return `📊 **টপ সেলিং বিশ্লেষণ:**\n\nবর্তমানে সিস্টেমে সম্পন্ন বিক্রয়ের রেকর্ড সীমিত। তবে আপনার দোকানে সর্বোচ্চ স্টক থাকা আইটেমসমূহ:\n${topStocked.map((p, i) => `${i + 1}. **${p.name}** — বর্তমান স্টক: ${formatNumber(p.stock)} ${p.unit || 'পিস'} | মূল্য: ${formatCurrency(p.sellingPrice)}`).join('\n')}\n\n💡 **পরামর্শ:** এই পণ্যগুলো কাউন্টারের সামনে চোখের সামনে সাজিয়ে রাখুন এবং প্রচার শুরু করুন।`;
+      }
+
+      let reply = `🔥 **আপনার দোকানের সেরা ৫টি সর্বাধিক বিক্রিত পণ্য (Top Selling Products):**\n\n`;
+      topSold.forEach((p, idx) => {
+        const medal = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : '⭐';
+        reply += `${medal} **${idx + 1}. ${p.name}**\n`;
+        reply += `   • মোট বিক্রি: **${formatNumber(p.totalSoldQty)} ${p.unit || 'পিস'}**\n`;
+        reply += `   • বিক্রয়মূল্য: **${formatCurrency(p.totalRevenue)}** | অর্জিত মুনাফা: **${formatCurrency(p.totalProfit)}**\n`;
+        reply += `   • বর্তমান লাইভ স্টক: **${formatNumber(p.stock)} ${p.unit || 'পিস'}** ${p.stock <= 5 ? '⚠️ (স্টক সীমিত!)' : '✅'}\n\n`;
+      });
+      reply += `💡 **এআই ব্যবসায়িক কৌশল:**\nএই পণ্যগুলো আপনার ব্যবসার মূল চালিকাশক্তি। এগুলোর স্টক যেন কখনোই শূন্য না হয়, সেজন্য অন্তত ১০-১৫ দিনের বাড়তি বাফার স্টক আগে থেকেই সাপ্লায়ারকে অর্ডার করে রাখুন যাতে কোনো ক্রেতা ফিরে না যায়।`;
+      return reply;
+    }
+
+    // 2. SLOW MOVING / DEAD STOCK
+    if (q.includes('স্লো') || q.includes('স্থবির') || q.includes('কম বিক্রি') || q.includes('ডেড') || q.includes('বিক্রি হচ্ছে না') || q.includes('slow') || q.includes('dead')) {
+      const slowItems = [...productMetrics]
+        .filter(p => p.stock > 0 && (p.totalSoldQty === 0 || p.dailyVelocity === 0))
+        .sort((a, b) => (b.stock * b.purchasePrice) - (a.stock * a.purchasePrice))
+        .slice(0, 5);
+
+      const totalLockedCost = slowItems.reduce((acc, p) => acc + (p.purchasePrice * p.stock), 0);
+
+      if (slowItems.length === 0) {
+        return `🎉 **চমৎকার খবর!** আপনার দোকানে বর্তমানে কোনো স্থবির বা ডেড স্টক পণ্য নেই। ইনভেন্টরির প্রতিটি পণ্যের নিয়মিত চাহিদা রয়েছে।`;
+      }
+
+      let reply = `🛑 **ধীরগতির ও অবিক্রীত পণ্যের বিশ্লেষণ (Slow Moving / Dead Stock):**\n\n`;
+      reply += `আপনার দোকানে বর্তমানে **${formatNumber(slowItems.length)}টি পণ্যের** বিক্রি ধীরগতির। এতে প্রায় **${formatCurrency(totalLockedCost)}** টাকার ইনভেন্টরি মূলধন আটকে রয়েছে:\n\n`;
+      slowItems.forEach((p, idx) => {
+        const itemLocked = p.purchasePrice * p.stock;
+        reply += `• **${p.name}**\n`;
+        reply += `   - অবিক্রীত স্টক: **${formatNumber(p.stock)} ${p.unit || 'পিস'}**\n`;
+        reply += `   - আটকে থাকা মূলধন: **${formatCurrency(itemLocked)}** (কেনা দর: ${formatCurrency(p.purchasePrice)})\n\n`;
+      });
+      reply += `💡 **পুঁজি পুনরুদ্ধারের ৩টি এআই পরামর্শ:**\n`;
+      reply += `১. **কম্বো অফার তৈরি করুন:** টপ সেলিং কোনো জনপ্রিয় পণ্যের সাথে এই ধীরগতির পণ্যটি প্যাকেজ আকারে বিশেষ ছাড়ে বিক্রি করুন।\n`;
+      reply += `২. **ক্যাশ ক্লিয়ারেন্স ছাড়:** কেনা মূল্যের কাছাকাছি ৫% লাভে ছাড় দিয়ে আটকে থাকা নগদ টাকা দ্রুত বের করে আনুন।\n`;
+      reply += `৩. **ডিসপ্লে পরিবর্তন:** পণ্যগুলো পেছনের তাকে না রেখে ক্যাশ কাউন্টারের কাছে চোখের সামনে প্রদর্শন করুন।`;
+      return reply;
+    }
+
+    // 3. URGENT RESTOCK / STOCK OUT
+    if (q.includes('রিস্টক') || q.includes('স্টক শেষ') || q.includes('ঘাটতি') || q.includes('অর্ডার') || q.includes('restock') || q.includes('stock')) {
+      const restockList = [...productMetrics]
+        .filter(p => p.suggestedReorder > 0 || p.stock <= 3)
+        .sort((a, b) => a.stock - b.stock)
+        .slice(0, 6);
+
+      if (restockList.length === 0) {
+        return `✅ **আলহামদুলিল্লাহ!** আপনার ইনভেন্টরির সকল পণ্যের স্টক পর্যাপ্ত রয়েছে। আগামী কয়েক দিনের মধ্যে স্টক শেষ হওয়ার কোনো জরুরি ঝুঁকি নেই।`;
+      }
+
+      let reply = `⚠️ **জরুরি রিস্টক ও পণ্য ক্রয়ের অ্যালার্ট (Reorder Requisition):**\n\n`;
+      reply += `নিম্নলিখিত পণ্যগুলোর স্টক আশঙ্কাজনকভাবে কমে গেছে এবং অবিলম্বে সাপ্লায়ারকে অর্ডার দেওয়া প্রয়োজন:\n\n`;
+      restockList.forEach((p, idx) => {
+        const urgency = p.stock <= 0 ? '🔴 [স্টক শূন্য]' : '🟡 [সীমিত স্টক]';
+        reply += `${idx + 1}. **${p.name}** ${urgency}\n`;
+        reply += `   • বর্তমান স্টক: **${formatNumber(p.stock)} ${p.unit || 'পিস'}**\n`;
+        reply += `   • প্রস্তাবিত রি-অর্ডার পরিমাণ: **${formatNumber(p.suggestedReorder || 5)} পিস**\n`;
+        reply += `   • আনুমানিক বাজেট: **${formatCurrency(p.purchasePrice * (p.suggestedReorder || 5))}**\n\n`;
+      });
+      reply += `💡 **সহজ উপায়:** এআই হাবের **"৩. চাহিদা ও রিস্টক মেমো"** ট্যাবে গিয়ে এক ক্লিকেই সাপ্লায়ারের জন্য সুন্দর রিকুইজিশন স্লিপ প্রিন্ট বা কপি করে হোয়াটসঅ্যাপে পাঠাতে পারেন!`;
+      return reply;
+    }
+
+    // 4. DUE / CUSTOMERS / BAKEYA
+    if (q.includes('বাকি') || q.includes('বকেয়া') || q.includes('আদায়') || q.includes('কাস্টমার') || q.includes('due') || q.includes('credit')) {
+      const dueCusts = [...customers]
+        .filter(c => (c.dueAmount || 0) > 0)
+        .sort((a, b) => (b.dueAmount || 0) - (a.dueAmount || 0))
+        .slice(0, 5);
+
+      const totalDue = customers.reduce((sum, c) => sum + (c.dueAmount || 0), 0);
+
+      if (dueCusts.length === 0 || totalDue === 0) {
+        return `🎉 **অভিনন্দন!** আপনার দোকানে কোনো বড় বকেয়া বা বাকির চাপ নেই। বাজার থেকে বকেয়া শূন্য থাকা সুস্থ ক্যাশ ফ্লো-র চমৎকার লক্ষণ!`;
+      }
+
+      let reply = `💰 **বকেয়া হিসাব ও দ্রুত আদায়ের বিশ্লেষণ:**\n\n`;
+      reply += `বাজারে আপনার মোট বকেয়া রয়েছে: **${formatCurrency(totalDue)}** টাকা।\n\n`;
+      reply += `📌 **সর্বোচ্চ বাকি থাকা শীর্ষ কাস্টমারদের তালিকা:**\n`;
+      dueCusts.forEach((c, idx) => {
+        reply += `${idx + 1}. **${c.name}** — বাকি: **${formatCurrency(c.dueAmount)}** (${c.phone || 'ফোন নম্বর নেই'})\n`;
+      });
+      reply += `\n💡 **দ্রুত বাকি আদায়ের ৩টি মোক্ষম কৌশল:**\n`;
+      reply += `১. **হোয়াটসঅ্যাপ / SMS রিমাইন্ডার:** সফটওয়্যারের *Contacts* মেনু থেকে সরাসরি সম্মানজনক বকেয়া রিমাইন্ডার মেসেজ পাঠান।\n`;
+      reply += `২. **কিস্তিতে পরিশোধের সুযোগ:** বড় অঙ্কের বাকি একবারে দিতে না পারলে সপ্তাহে সপ্তাহে ছোট কিস্তিতে পরিশোধের অফার দিন।\n`;
+      reply += `৩. **নতুন বাকি স্থগিত:** পুরনো বকেয়া সম্পূর্ণ বা আংশিক পরিশোধ না করা পর্যন্ত নতুন পণ্য বাকিতে দেওয়া বন্ধ রাখুন।`;
+      return reply;
+    }
+
+    // 5. CASH GROWTH / SALES STRATEGY
+    if (q.includes('কৌশল') || q.includes('টিপস') || q.includes('ক্যাশ') || q.includes('লাভ বাড়া') || q.includes('বিক্রি বাড়া') || q.includes('strategy') || q.includes('মার্জিন')) {
+      return `🚀 **দোকানের বিক্রয় ও ক্যাশ কালেকশন বাড়ানোর ৩টি বাস্তবসম্মত কৌশল:**\n\n` +
+        `১. **পণ্য প্রদর্শন ও ক্রস-সেলিং (Cross-Selling):**\n` +
+        `   • কাস্টমার যখন একটি মূল পণ্য কিনতে আসেন, তখন তার সাথে সম্পর্কিত ছোট অ্যাক্সেসরিজ বা জরুরি পণ্য সাজেস্ট করুন।\n\n` +
+        `২. **নগদ পেমেন্টে ছোট আকর্ষণ (Instant Cash Discount):**\n` +
+        `   • বাকির পরিবর্তে সম্পূর্ণ নগদ টাকা বা বিকাশে পেমেন্ট করলে ১% বা ২% ছাড় অথবা ছোট উপহার দেওয়ার সাইনবোর্ড রাখুন।\n\n` +
+        `৩. **টপ সেলিং পণ্যের স্টক কখনোই শেষ হতে দেবেন না:**\n` +
+        `   • যে পণ্যগুলো প্রতিদিন বেশি চলে, সেগুলোর স্টক সবসময় পর্যাপ্ত রাখুন। কোনো কাস্টমার যেন "মাল নেই" শুনে ফিরে না যায়।`;
+    }
+
+    // 6. SPECIFIC PRODUCT SEARCH
+    const matched = products.find(p => p.name && q.includes(p.name.toLowerCase()));
+    if (matched) {
+      const pm = productMetrics.find(p => p.id === matched.id);
+      const totalSold = pm?.totalSoldQty || 0;
+      const profitVal = pm?.totalProfit || ((matched.sellingPrice - matched.purchasePrice) * totalSold);
+      const margin = matched.sellingPrice > 0 ? Math.round(((matched.sellingPrice - matched.purchasePrice) / matched.sellingPrice) * 100) : 0;
+
+      return `🔍 **"${matched.name}" পণ্যের তাৎক্ষণিক ইনসাইট:**\n\n` +
+        `• **ক্যাটাগরি:** ${matched.category || 'সাধারণ'}\n` +
+        `• **বিক্রয়মূল্য:** ${formatCurrency(matched.sellingPrice)} | **ক্রয়মূল্য:** ${formatCurrency(matched.purchasePrice)}\n` +
+        `• **প্রতি পিসে লাভ:** ${formatCurrency(matched.sellingPrice - matched.purchasePrice)} (মার্জিন: ${formatNumber(margin)}%)\n` +
+        `• **বর্তমান লাইভ স্টক:** **${formatNumber(matched.stock)} ${matched.unit || 'পিস'}**\n` +
+        `• **এ পর্যন্ত মোট বিক্রি:** ${formatNumber(totalSold)} পিস (মোট মূল্য: ${formatCurrency(totalSold * matched.sellingPrice)})\n` +
+        `• **অর্জিত মুনাফা:** ${formatCurrency(profitVal)}\n\n` +
+        `💡 ${matched.stock <= 5 ? '⚠️ সতর্কবার্তা: স্টক কমে গেছে, অবিলম্বে রি-অর্ডার করার অনুরোধ করা হচ্ছে।' : '✅ স্টক সন্তোষজনক অবস্থায় রয়েছে।'}`;
+    }
+
+    // 7. DEFAULT INTELLIGENT ADVISOR REPLY
+    return `🤖 **বঙ্গ এআই বিজনেস ইনসাইট:**\n\n` +
+      `আপনার জিজ্ঞাসাটি দোকানের সামগ্রিক আর্থিক ও ইনভেন্টরি ডাটার সাথে মিলিয়ে দেখা হয়েছে।\n\n` +
+      `📊 **দোকানের সামগ্রিক বর্তমান অবস্থা:**\n` +
+      `• মোট নিবন্ধিত পণ্য: **${formatNumber(products.length)}টি**\n` +
+      `• সম্পন্ন ইনভয়েস: **${formatNumber(sales.length)}টি**\n` +
+      `• ব্যবসায়িক স্বাস্থ্য স্কোর: **${formatNumber(businessHealth.score)}/১০০ (${businessHealth.statusText})**\n\n` +
+      `💡 আপনার সুবিধার্থে নিচের বোতামগুলো চাপুন:\n` +
+      `• 🔥 টপ সেলিং প্রোডাক্ট জানতে লিখুন "টপ সেল"\n` +
+      `• 🛑 ধীরগতির পণ্য জানতে লিখুন "স্লো স্টক"\n` +
+      `• ⚠️ কম স্টক জানতে লিখুন "রিস্টক"\n` +
+      `• 💰 বাকি হিসাব জানতে লিখুন "বাকি"`;
+  };
+
+  const handleSendAgentMessage = (textToSend?: string) => {
+    const q = (textToSend || chatInput).trim();
+    if (!q) return;
+
+    const userMsg = {
+      id: 'usr_' + Date.now(),
+      sender: 'user' as const,
+      text: q,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+
+    setChatMessages(prev => [...prev, userMsg]);
+    if (!textToSend) setChatInput('');
+    setIsAiThinking(true);
+
+    setTimeout(() => {
+      const replyText = generateAiConsultantResponse(q);
+      const aiMsg = {
+        id: 'ai_' + Date.now(),
+        sender: 'ai' as const,
+        text: replyText,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+      setChatMessages(prev => [...prev, aiMsg]);
+      setIsAiThinking(false);
+    }, 400);
+  };
+
+  const handleResetChat = () => {
+    setChatMessages([
+      {
+        id: 'welcome_' + Date.now(),
+        sender: 'ai',
+        text: isBn 
+          ? "আসসালামু আলাইকুম! আমি 'বঙ্গ এআই' (Bongo AI) — আপনার দোকানের ডিজিটাল বিজনেস কনসালট্যান্ট। আজকের বেচাকেনা, ইনভেন্টরি প্ল্যানিং বা বাকি আদায় নিয়ে কী পরামর্শ চান?"
+          : "Hello! I am 'Bongo AI' — your store's digital business consultant. What would you like to know about today's sales, inventory velocity, or customer dues?",
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      }
+    ]);
+  };
+
   return (
     <div className="space-y-6 pb-12">
       {/* ══════════════════════════════════════════════════════════════ */}
@@ -525,6 +783,22 @@ export const AiSmartIntelligence: React.FC<AiSmartIntelligenceProps> = ({
           >
             <DollarSign size={14} />
             {isBn ? '৪. মুনাফা ও প্রাইসিং অপটিমাইজার' : '4. Profit & Pricing'}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveAiTab('chat_agent')}
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer shrink-0 ${
+              activeAiTab === 'chat_agent'
+                ? 'bg-amber-400 text-slate-950 font-bold shadow-md'
+                : 'text-indigo-200 hover:bg-white/10 hover:text-white'
+            }`}
+          >
+            <Bot size={14} className={activeAiTab === 'chat_agent' ? 'text-slate-950' : 'text-amber-400 animate-pulse'} />
+            {isBn ? '৫. 🤖 বঙ্গ এআই চ্যাট এজেন্ট' : '5. Bongo AI Agent'}
+            <span className="bg-rose-500 text-white px-1.5 py-0.2 rounded-full text-[9px] font-bold">
+              LIVE
+            </span>
           </button>
         </div>
       </div>
@@ -659,6 +933,54 @@ export const AiSmartIntelligence: React.FC<AiSmartIntelligenceProps> = ({
               >
                 <FileSpreadsheet size={14} />
                 {isBn ? 'সাপ্লায়ার রিকুইজিশন মেমো দেখুন' : 'Generate Requisition'}
+              </button>
+            </div>
+          </div>
+
+          {/* 💬 Featured Bongo AI Agent Banner Card (Matches Image 3) */}
+          <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-purple-950 rounded-2xl p-5 text-white border border-indigo-500/30 shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3.5">
+              <div className="w-12 h-12 rounded-2xl bg-indigo-600/30 border border-indigo-400/40 flex items-center justify-center text-amber-300 shadow-inner shrink-0">
+                <Bot size={26} className="animate-pulse" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h4 className="font-bold text-sm sm:text-base text-white">বঙ্গ এআই বিজনেস গাইড (Bongo AI)</h4>
+                  <span className="bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider">Gemini AI</span>
+                  <span className="flex items-center gap-1 text-[10px] text-emerald-400 font-bold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> অনলাইন
+                  </span>
+                </div>
+                <p className="text-xs text-indigo-200 font-medium mt-0.5">
+                  {isBn 
+                    ? 'টপ সেলিং প্রোডাক্ট, স্লো/স্থবির স্টক, জরুরি রিস্টক ও বকেয়া আদায়ের যেকোনো প্রশ্ন করুন' 
+                    : 'Real-time sales, slow-moving items & customer dues AI consultant'}
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={() => { setActiveAiTab('chat_agent'); handleSendAgentMessage('কোন প্রোডাক্ট সবচেয়ে বেশি বিক্রি হচ্ছে?'); }}
+                className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-xs font-semibold text-amber-300 transition cursor-pointer"
+              >
+                🔥 টপ সেলিং
+              </button>
+              <button
+                type="button"
+                onClick={() => { setActiveAiTab('chat_agent'); handleSendAgentMessage('কোন প্রোডাক্টের বিক্রি একদম স্লো বা স্থবির?'); }}
+                className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-xs font-semibold text-rose-300 transition cursor-pointer"
+              >
+                🛑 স্লো স্টক
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveAiTab('chat_agent')}
+                className="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-bold transition flex items-center gap-1.5 shadow-md cursor-pointer"
+              >
+                <Bot size={15} />
+                {isBn ? 'এআই এজেন্টের সাথে চ্যাট করুন' : 'Chat with Bongo AI'}
+                <ArrowRight size={13} />
               </button>
             </div>
           </div>
@@ -1324,6 +1646,143 @@ export const AiSmartIntelligence: React.FC<AiSmartIntelligenceProps> = ({
                 </table>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* ══════════════════════════════════════════════════════════════ */}
+      {/* TAB 5: BONGO AI BUSINESS CHAT AGENT (MATCHES IMAGE 3)         */}
+      {/* ══════════════════════════════════════════════════════════════ */}
+      {activeAiTab === 'chat_agent' && (
+        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-2xl overflow-hidden max-w-4xl mx-auto flex flex-col h-[650px] transition-all">
+          {/* Header styled matching Image 3 */}
+          <div className="bg-gradient-to-r from-[#170e3b] via-[#241452] to-[#170e3b] p-4 sm:p-5 text-white flex items-center justify-between border-b border-indigo-900/50 shadow-md">
+            <div className="flex items-center gap-3.5">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-indigo-600/40 border border-indigo-400/40 flex items-center justify-center text-amber-300 shadow-inner shrink-0">
+                <Bot size={22} className="animate-pulse" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h3 className="font-bold text-sm sm:text-base text-white tracking-tight">
+                    বঙ্গ এআই বিজনেস গাইড (Bongo AI)
+                  </h3>
+                  <span className="bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider shadow-xs">
+                    Gemini AI
+                  </span>
+                  <span className="hidden sm:inline-flex items-center gap-1 text-[10px] text-emerald-400 font-bold ml-1">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    অনলাইন
+                  </span>
+                </div>
+                <p className="text-[11px] sm:text-xs text-purple-200/90 font-medium mt-0.5">
+                  Gemini AI দ্বারা চালিত বাংলাদেশের স্থানীয় ব্যবসায়ের উপদেষ্টা
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handleResetChat}
+                title="নতুন আলাপ শুরু করুন"
+                className="p-2 hover:bg-white/10 rounded-xl transition text-purple-200 hover:text-white cursor-pointer flex items-center gap-1.5 text-xs font-semibold"
+              >
+                <RotateCcw size={15} />
+                <span className="hidden sm:inline">{isBn ? 'নতুন চ্যাট' : 'Reset'}</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Chat Messages Body */}
+          <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 bg-slate-50/70">
+            {chatMessages.map(msg => (
+              <div
+                key={msg.id}
+                className={`flex gap-3 items-start ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+              >
+                {msg.sender === 'ai' && (
+                  <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-700 to-purple-600 text-white flex items-center justify-center shrink-0 shadow-sm mt-0.5">
+                    <Bot size={16} />
+                  </div>
+                )}
+
+                <div
+                  className={`max-w-[85%] sm:max-w-[78%] rounded-2xl px-4 py-3 text-xs sm:text-[13px] leading-relaxed shadow-xs ${
+                    msg.sender === 'user'
+                      ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-tr-xs'
+                      : 'bg-white text-slate-800 border border-slate-200/90 rounded-tl-xs whitespace-pre-wrap'
+                  }`}
+                >
+                  {msg.text}
+                  <div
+                    className={`text-[9.5px] mt-1.5 font-medium ${
+                      msg.sender === 'user' ? 'text-indigo-200 text-right' : 'text-slate-400 text-left'
+                    }`}
+                  >
+                    {msg.time}
+                  </div>
+                </div>
+
+                {msg.sender === 'user' && (
+                  <div className="w-8 h-8 rounded-xl bg-slate-800 text-white flex items-center justify-center shrink-0 shadow-sm mt-0.5">
+                    <User size={15} />
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {isAiThinking && (
+              <div className="flex gap-3 items-center text-xs text-indigo-700 font-semibold bg-indigo-50 border border-indigo-200/80 rounded-2xl px-4 py-3 w-fit animate-pulse">
+                <div className="w-6 h-6 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0">
+                  <Bot size={13} />
+                </div>
+                <span>💡 বঙ্গ এআই আপনার দোকানের লাইভ সেলস ও ইনভেন্টরি ডাটা বিশ্লেষণ করছে...</span>
+              </div>
+            )}
+            <div ref={chatEndRef} />
+          </div>
+
+          {/* Quick Suggestion Chips (Horizontal Scroll styled exactly like Image 3) */}
+          <div className="bg-white border-t border-slate-100 px-3 py-2.5">
+            <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
+              {quickPrompts.map((chip, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => handleSendAgentMessage(chip.prompt)}
+                  className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-indigo-700 bg-indigo-50/80 hover:bg-indigo-100 hover:text-indigo-900 border border-indigo-200/80 transition whitespace-nowrap shrink-0 cursor-pointer shadow-2xs flex items-center gap-1.5"
+                >
+                  <span>{chip.icon}</span>
+                  <span>{chip.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Input Footer */}
+          <div className="p-3 sm:p-4 bg-white border-t border-slate-200/80">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSendAgentMessage();
+              }}
+              className="flex items-center gap-2"
+            >
+              <input
+                type="text"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                placeholder={isBn ? "যে কোন প্রশ্ন লিখুন... (যেমন: কোন পণ্য বেশি বিক্রি হচ্ছে?)" : "Ask anything about your store..."}
+                className="flex-1 px-4 py-2.5 sm:py-3 rounded-full border border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:bg-white transition"
+              />
+              <button
+                type="submit"
+                disabled={!chatInput.trim() || isAiThinking}
+                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 disabled:opacity-40 text-white flex items-center justify-center transition shadow-md shrink-0 cursor-pointer"
+              >
+                <Send size={16} />
+              </button>
+            </form>
           </div>
         </div>
       )}
