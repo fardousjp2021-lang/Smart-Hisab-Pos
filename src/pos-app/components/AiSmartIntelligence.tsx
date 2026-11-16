@@ -430,7 +430,7 @@ export const AiSmartIntelligence: React.FC<AiSmartIntelligenceProps> = ({
   };
 
   // ══════════════════════════════════════════════════════════════════
-  // 5. ENGINE: BONGO AI BUSINESS CONSULTANT CHAT AGENT
+  // 5. ENGINE: SMART HISAB POS BUSINESS CONSULTANT CHAT AGENT
   // ══════════════════════════════════════════════════════════════════
   const [chatMessages, setChatMessages] = useState<Array<{
     id: string;
@@ -442,8 +442,8 @@ export const AiSmartIntelligence: React.FC<AiSmartIntelligenceProps> = ({
       id: 'welcome',
       sender: 'ai',
       text: isBn 
-        ? "আসসালামু আলাইকুম! আমি 'বঙ্গ এআই' (Bongo AI) — আপনার দোকানের ডিজিটাল বিজনেস কনসালট্যান্ট। আজকের বেচাকেনা, ইনভেন্টরি প্ল্যানিং বা বাকি আদায় নিয়ে কী পরামর্শ চান?"
-        : "Hello! I am 'Bongo AI' — your store's digital business consultant. What would you like to know about today's sales, inventory velocity, or customer dues?",
+        ? "আসসালামু আলাইকুম! আমি 'স্মার্ট হিসাব পস' (SmartHisab POS) — আপনার দোকানের ডিজিটাল বিজনেস কনসালট্যান্ট। আজকের বেচাকেনা, ইনভেন্টরি প্ল্যানিং বা বাকি আদায় নিয়ে কী পরামর্শ চান?"
+        : "Hello! I am 'SmartHisab POS' — your store's digital business consultant. What would you like to know about today's sales, inventory velocity, or customer dues?",
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -629,7 +629,7 @@ export const AiSmartIntelligence: React.FC<AiSmartIntelligenceProps> = ({
     }
 
     // 7. DEFAULT INTELLIGENT ADVISOR REPLY
-    return `🤖 **বঙ্গ এআই বিজনেস ইনসাইট:**\n\n` +
+    return `🤖 **স্মার্ট হিসাব পস বিজনেস ইনসাইট:**\n\n` +
       `আপনার জিজ্ঞাসাটি দোকানের সামগ্রিক আর্থিক ও ইনভেন্টরি ডাটার সাথে মিলিয়ে দেখা হয়েছে।\n\n` +
       `📊 **দোকানের সামগ্রিক বর্তমান অবস্থা:**\n` +
       `• মোট নিবন্ধিত পণ্য: **${formatNumber(products.length)}টি**\n` +
@@ -676,8 +676,8 @@ export const AiSmartIntelligence: React.FC<AiSmartIntelligenceProps> = ({
         id: 'welcome_' + Date.now(),
         sender: 'ai',
         text: isBn 
-          ? "আসসালামু আলাইকুম! আমি 'বঙ্গ এআই' (Bongo AI) — আপনার দোকানের ডিজিটাল বিজনেস কনসালট্যান্ট। আজকের বেচাকেনা, ইনভেন্টরি প্ল্যানিং বা বাকি আদায় নিয়ে কী পরামর্শ চান?"
-          : "Hello! I am 'Bongo AI' — your store's digital business consultant. What would you like to know about today's sales, inventory velocity, or customer dues?",
+          ? "আসসালামু আলাইকুম! আমি 'স্মার্ট হিসাব পস' (SmartHisab POS) — আপনার দোকানের ডিজিটাল বিজনেস কনসালট্যান্ট। আজকের বেচাকেনা, ইনভেন্টরি প্ল্যানিং বা বাকি আদায় নিয়ে কী পরামর্শ চান?"
+          : "Hello! I am 'SmartHisab POS' — your store's digital business consultant. What would you like to know about today's sales, inventory velocity, or customer dues?",
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       }
     ]);
@@ -795,7 +795,7 @@ export const AiSmartIntelligence: React.FC<AiSmartIntelligenceProps> = ({
             }`}
           >
             <Bot size={14} className={activeAiTab === 'chat_agent' ? 'text-slate-950' : 'text-amber-400 animate-pulse'} />
-            {isBn ? '৫. 🤖 বঙ্গ এআই চ্যাট এজেন্ট' : '5. Bongo AI Agent'}
+            {isBn ? '৫. 🤖 স্মার্ট হিসাব পস চ্যাট এজেন্ট' : '5. SmartHisab POS Agent'}
             <span className="bg-rose-500 text-white px-1.5 py-0.2 rounded-full text-[9px] font-bold">
               LIVE
             </span>
@@ -937,7 +937,7 @@ export const AiSmartIntelligence: React.FC<AiSmartIntelligenceProps> = ({
             </div>
           </div>
 
-          {/* 💬 Featured Bongo AI Agent Banner Card (Matches Image 3) */}
+          {/* 💬 Featured SmartHisab POS Agent Banner Card (Matches Image 3) */}
           <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-purple-950 rounded-2xl p-5 text-white border border-indigo-500/30 shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3.5">
               <div className="w-12 h-12 rounded-2xl bg-indigo-600/30 border border-indigo-400/40 flex items-center justify-center text-amber-300 shadow-inner shrink-0">
@@ -945,7 +945,7 @@ export const AiSmartIntelligence: React.FC<AiSmartIntelligenceProps> = ({
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h4 className="font-bold text-sm sm:text-base text-white">বঙ্গ এআই বিজনেস গাইড (Bongo AI)</h4>
+                  <h4 className="font-bold text-sm sm:text-base text-white">স্মার্ট হিসাব পস (SmartHisab POS)</h4>
                   <span className="bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider">Gemini AI</span>
                   <span className="flex items-center gap-1 text-[10px] text-emerald-400 font-bold">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> অনলাইন
@@ -979,7 +979,7 @@ export const AiSmartIntelligence: React.FC<AiSmartIntelligenceProps> = ({
                 className="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-bold transition flex items-center gap-1.5 shadow-md cursor-pointer"
               >
                 <Bot size={15} />
-                {isBn ? 'এআই এজেন্টের সাথে চ্যাট করুন' : 'Chat with Bongo AI'}
+                {isBn ? 'এআই এজেন্টের সাথে চ্যাট করুন' : 'Chat with SmartHisab POS'}
                 <ArrowRight size={13} />
               </button>
             </div>
@@ -1651,7 +1651,7 @@ export const AiSmartIntelligence: React.FC<AiSmartIntelligenceProps> = ({
       )}
 
       {/* ══════════════════════════════════════════════════════════════ */}
-      {/* TAB 5: BONGO AI BUSINESS CHAT AGENT (MATCHES IMAGE 3)         */}
+      {/* TAB 5: SMART HISAB POS BUSINESS CHAT AGENT (MATCHES IMAGE 3)  */}
       {/* ══════════════════════════════════════════════════════════════ */}
       {activeAiTab === 'chat_agent' && (
         <div className="bg-white rounded-3xl border border-slate-200/90 shadow-2xl overflow-hidden max-w-4xl mx-auto flex flex-col h-[650px] transition-all">
@@ -1664,7 +1664,7 @@ export const AiSmartIntelligence: React.FC<AiSmartIntelligenceProps> = ({
               <div>
                 <div className="flex items-center gap-2">
                   <h3 className="font-bold text-sm sm:text-base text-white tracking-tight">
-                    বঙ্গ এআই বিজনেস গাইড (Bongo AI)
+                    স্মার্ট হিসাব পস (SmartHisab POS)
                   </h3>
                   <span className="bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider shadow-xs">
                     Gemini AI
@@ -1736,7 +1736,7 @@ export const AiSmartIntelligence: React.FC<AiSmartIntelligenceProps> = ({
                 <div className="w-6 h-6 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0">
                   <Bot size={13} />
                 </div>
-                <span>💡 বঙ্গ এআই আপনার দোকানের লাইভ সেলস ও ইনভেন্টরি ডাটা বিশ্লেষণ করছে...</span>
+                <span>💡 স্মার্ট হিসাব পস আপনার দোকানের লাইভ সেলস ও ইনভেন্টরি ডাটা বিশ্লেষণ করছে...</span>
               </div>
             )}
             <div ref={chatEndRef} />
