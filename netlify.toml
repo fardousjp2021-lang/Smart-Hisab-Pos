@@ -1,7 +1,23 @@
 [build]
-  command = "npm run build"
+  # ✅ TypeScript check runs BEFORE build — if it fails, Netlify deploy is blocked
+  command = "npx tsc --noEmit && npm run build"
   publish = "dist"
 
+[build.environment]
+  NODE_VERSION = "20"
+
+# ── Legal pages served directly (not via SPA fallback) ──────
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms.html"
+  status = 200
+
+# ── SPA fallback for all other routes ───────────────────────
 [[redirects]]
   from = "/*"
   to = "/index.html"
