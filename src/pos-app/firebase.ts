@@ -5,12 +5,13 @@ import { getFirestore, enableMultiTabIndexedDbPersistence, enableIndexedDbPersis
 const env = (import.meta as any).env || {};
 
 const firebaseConfig = {
-  apiKey: env.VITE_FIREBASE_API_KEY || "AIzaSyDummyKeyForPreviewModeOnly12345",
+  apiKey: env.VITE_FIREBASE_API_KEY || "AIzaSyCxzeewFW4KL5z3WvHdmzDttIoWbwFGvGQ",
   authDomain: env.VITE_FIREBASE_AUTH_DOMAIN || "fardouscomputer52.firebaseapp.com",
   projectId: env.VITE_FIREBASE_PROJECT_ID || "fardouscomputer52",
-  storageBucket: env.VITE_FIREBASE_STORAGE_BUCKET || "fardouscomputer52.appspot.com",
-  messagingSenderId: env.VITE_FIREBASE_MESSAGING_SENDER_ID || "1234567890",
-  appId: env.VITE_FIREBASE_APP_ID || "1:1234567890:web:1234567890"
+  storageBucket: env.VITE_FIREBASE_STORAGE_BUCKET || "fardouscomputer52.firebasestorage.app",
+  messagingSenderId: env.VITE_FIREBASE_MESSAGING_SENDER_ID || "717340284906",
+  appId: env.VITE_FIREBASE_APP_ID || "1:717340284906:web:b76322f8a8f5b418c78493",
+  measurementId: env.VITE_FIREBASE_MEASUREMENT_ID || "G-BD00WGWwT6"
 };
 
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
