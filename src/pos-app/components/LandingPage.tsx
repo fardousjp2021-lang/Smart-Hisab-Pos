@@ -408,7 +408,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ theme, toggleTheme, on
               ● Live 2026 Edition
             </span>
             <span className="text-amber-400 font-bold text-xs sm:text-sm tracking-wide">
-              সম্পূর্ণ ক্লাউড ব্যাকআপ সাপোর্টেড সুরক্ষিত পস ইনভেন্টরি ট্র্যাকার।
+              পিসি নষ্ট হলেও ডাটা হারাবে না — সম্পূর্ণ গুগল ক্লাউড ব্যাকআপ সুরক্ষিত পস ইনভেন্টরি ট্র্যাকার।
             </span>
           </div>
           <div className="flex items-center gap-2.5 hidden sm:flex">

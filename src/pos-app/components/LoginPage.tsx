@@ -129,15 +129,16 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
     },
     {
       id: 3,
-      titlePrefix: '১০০% সুরক্ষিত',
-      titleHighlight: 'ক্লাউড ব্যাকআপ',
-      category: 'নিরাপত্তা ও সার্ভিস ট্র্যাকিং',
+      titlePrefix: 'কম্পিউটার নষ্ট হলেও',
+      titleHighlight: 'ডাটা হারানোর ভয় নেই',
+      category: '১০০% গুগল ক্লাউড ডাটা সেফটি গ্যারান্টি',
       items: [
-        { label: 'অটোমেটিক ক্লাউড সিঙ্ক', icon: Cloud, bg: 'bg-[#EFF6FF]', color: 'text-[#2563EB]' },
-        { label: 'মোবাইল ও পিসি সাপোর্ট', icon: Smartphone, bg: 'bg-[#E0F2FE]', color: 'text-[#0284C7]' },
-        { label: 'ওয়ারেন্টি ও সার্ভিসিং', icon: ShieldCheck, bg: 'bg-[#FDF2F8]', color: 'text-[#DB2777]' },
-        { label: '২৪/৭ হেল্পলাইন সাপোর্ট', icon: Headphones, bg: 'bg-[#FEF9C3]', color: 'text-[#CA8A04]' },
+        { label: 'গুগল ক্লাউডে অটো সেভ', icon: Cloud, bg: 'bg-[#EFF6FF]', color: 'text-[#2563EB]' },
+        { label: 'পিসি নষ্ট হলেও ডাটা নিরাপদ', icon: ShieldCheck, bg: 'bg-[#DCFCE7]', color: 'text-[#16A34A]' },
+        { label: 'নতুন ডিভাইসে ১-ক্লিক রিস্টোর', icon: Smartphone, bg: 'bg-[#E0F2FE]', color: 'text-[#0284C7]' },
+        { label: '২৪/৭ সাপোর্ট ও নিশ্চয়তা', icon: Headphones, bg: 'bg-[#FEF9C3]', color: 'text-[#CA8A04]' },
       ],
+      quote: "ভাই আপনি একদম চিন্তা করবেন না! স্মার্ট হিসাব পস ১০০% ক্লাউড সুরক্ষিত। আপনার কম্পিউটার নষ্ট বা ক্র্যাশ হলেও সকল ডাটা গুগল ক্লাউডে আজীবন নিরাপদে থাকবে। যেকোনো নতুন কম্পিউটার বা মোবাইলে শুধু লগইন করলেই এক সেকেন্ডে সব আগের মতোই পেয়ে যাবেন।"
     },
   ];
 
@@ -507,24 +508,48 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
                   </h1>
 
                   {/* 2x2 Feature Cards Grid (Spacious & Premium) */}
-                  <div className="grid grid-cols-2 gap-4 sm:gap-6 w-full max-w-xl mx-auto">
+                  <div className="grid grid-cols-2 gap-3.5 sm:gap-5 w-full max-w-xl mx-auto">
                     {slide.items.map((item, idx) => {
                       const IconComp = item.icon;
                       return (
                         <div 
                           key={idx}
-                          className="bg-white p-4 sm:p-5 lg:p-6 rounded-2xl sm:rounded-3xl shadow-sm border border-slate-200/90 flex items-center gap-3.5 sm:gap-4.5 hover:shadow-lg hover:border-blue-200 transition-all duration-300 transform hover:-translate-y-1"
+                          className="bg-white p-3.5 sm:p-4.5 lg:p-5 rounded-2xl sm:rounded-3xl shadow-sm border border-slate-200/90 flex items-center gap-3 sm:gap-4 hover:shadow-lg hover:border-blue-200 transition-all duration-300 transform hover:-translate-y-1"
                         >
-                          <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl ${item.bg} ${item.color} flex items-center justify-center shrink-0 shadow-xs`}>
-                            <IconComp className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.2]" />
+                          <div className={`w-11 h-11 sm:w-13 sm:h-13 rounded-2xl ${item.bg} ${item.color} flex items-center justify-center shrink-0 shadow-xs`}>
+                            <IconComp className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
                           </div>
-                          <span className="text-sm sm:text-base lg:text-[16px] font-bold text-slate-800 tracking-tight leading-snug text-left">
+                          <span className="text-xs sm:text-sm lg:text-[15px] font-bold text-slate-800 tracking-tight leading-snug text-left">
                             {item.label}
                           </span>
                         </div>
                       );
                     })}
                   </div>
+
+                  {/* Special Trust & Reassurance Card (Matches user guarantee) */}
+                  {slide.quote && (
+                    <div className="mt-4 sm:mt-5 w-full max-w-xl mx-auto p-4 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-sky-50 border border-emerald-300/80 shadow-xs text-left">
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                          <ShieldCheck size={18} />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-black text-emerald-800 tracking-wide uppercase">
+                              🛡️ কাস্টমার ডাটা সেফটি নিশ্চয়তা
+                            </span>
+                            <span className="bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full">
+                              ১০০% ক্লাউড
+                            </span>
+                          </div>
+                          <p className="text-xs sm:text-[13px] font-semibold text-slate-800 leading-relaxed mt-1">
+                            "{slide.quote}"
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
                 </div>
               ))}
@@ -551,9 +576,9 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
         {/* Bottom Info Support - 2 Distinct Prominent Lines */}
         <div className="w-full flex flex-col items-center justify-center gap-2.5 pt-5 pb-1">
           {/* Line 1: Security Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50/90 border border-emerald-200 text-emerald-800 text-xs sm:text-sm font-bold shadow-xs">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50/90 border border-emerald-200 text-emerald-800 text-xs sm:text-sm font-bold shadow-xs">
             <CheckCircle2 size={16} className="text-emerald-600 shrink-0" />
-            <span>১০০% এনক্রিপ্টেড ও সুরক্ষিত ক্লাউড</span>
+            <span>১০০% গুগল ক্লাউড এনক্রিপ্টেড ও সুরক্ষিত — পিসি ক্র্যাশেও ডাটা হারাবে না</span>
           </div>
 
           {/* Line 2: Helpline Numbers */}
