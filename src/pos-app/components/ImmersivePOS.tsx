@@ -792,6 +792,17 @@ export const ImmersivePOS: React.FC<ImmersivePOSProps> = ({
           <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center text-xs font-bold shadow-xs border border-white/20 select-none cursor-default" title={activeSessionUser?.name || 'User'}>
             {(activeSessionUser?.name || 'A')[0].toUpperCase()}
           </div>
+
+          {/* ✅ Exit POS Button — সব ডিভাইসে দৃশ্যমান */}
+          <button
+            type="button"
+            onClick={() => { setActiveTab('dashboard'); if (setActiveSubTab) setActiveSubTab(''); }}
+            title={isBn ? 'পিওএস থেকে বের হন' : 'Exit POS'}
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-500/20 hover:bg-rose-500/35 text-rose-300 hover:text-rose-200 transition text-xs font-bold border border-rose-500/40 hover:border-rose-400/70 cursor-pointer shadow-xs ml-1"
+          >
+            <X size={14} />
+            <span className="hidden sm:inline">{isBn ? 'বাহির' : 'Exit'}</span>
+          </button>
         </div>
       </div>
 

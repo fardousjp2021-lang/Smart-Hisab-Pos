@@ -1,5 +1,5 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, setPersistence, browserLocalPersistence } from 'firebase/auth';
 import { getFirestore, enableMultiTabIndexedDbPersistence, enableIndexedDbPersistence } from 'firebase/firestore';
 
 const env = (import.meta as any).env || {};
@@ -17,6 +17,11 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+
+// ✅ Auth Persistence: ব্রাউজার রিলোডেও সেশন বজায় থাকবে
+if (typeof window !== 'undefined') {
+  setPersistence(auth, browserLocalPersistence).catch(() => {});
+}
 
 if (typeof window !== 'undefined') {
   enableMultiTabIndexedDbPersistence(db).catch((err: any) => {

@@ -449,7 +449,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
   };
 
   return (
-    <div className="min-h-screen w-screen bg-white text-slate-900 flex flex-col lg:flex-row font-sans select-none overflow-x-hidden">
+    <div className="min-h-screen w-screen bg-white text-slate-900 flex flex-col lg:flex-row font-sans select-none overflow-x-hidden overflow-y-auto">
       
       {/* ────────────────────────────────────────────────────────────────────────── */}
       {/* ── LEFT HALF: FEATURE SHOWCASE PANEL (Soft Subtle Gray Background) ─────── */}
