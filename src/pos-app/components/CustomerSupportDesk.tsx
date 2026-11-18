@@ -144,7 +144,14 @@ export const CustomerSupportDesk: React.FC<Props> = ({
             className="px-5 py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs shadow-lg hover:shadow-amber-400/20 transition-all flex items-center gap-2 cursor-pointer"
           >
             <PhoneCall className="w-4 h-4" />
-            <span>{lang === 'bn' ? 'হটলাইন: 01747046052' : 'Hotline: 01747046052'}</span>
+            <span>{lang === 'bn' ? '01747-046052' : '01747-046052'}</span>
+          </a>
+          <a
+            href="tel:01996761011"
+            className="px-5 py-3 rounded-2xl bg-white/15 hover:bg-white/25 text-white font-bold text-xs shadow-lg transition-all flex items-center gap-2 cursor-pointer border border-white/30"
+          >
+            <PhoneCall className="w-4 h-4" />
+            <span>01996-761011</span>
           </a>
         </div>
       </div>
@@ -152,18 +159,19 @@ export const CustomerSupportDesk: React.FC<Props> = ({
       {/* KPI Cards Row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Card 1: Phone */}
-        <a href="tel:01747046052" className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm flex items-center gap-4 hover:border-blue-300 transition cursor-pointer">
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm flex items-center gap-4 hover:border-blue-300 transition">
           <div className="p-3 rounded-2xl bg-blue-50 text-blue-600 shrink-0">
             <PhoneCall className="w-6 h-6" />
           </div>
           <div>
             <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-              {lang === 'bn' ? 'হোয়াটসঅ্যাপ ও মোবাইল নম্বর' : 'Helpline & Mobile'}
+              {lang === 'bn' ? 'মোবাইল নম্বর' : 'Mobile Numbers'}
             </div>
-            <div className="text-sm font-bold text-slate-900 mt-0.5">01747-046052 <span className="text-xs font-bold text-slate-600">(Fardous Al-Amin)</span></div>
-            <div className="text-[10px] text-emerald-600 font-bold">{lang === 'bn' ? 'সকাল ১০টা - রাত ৯টা' : '10:00 AM - 9:00 PM'}</div>
+            <a href="tel:01747046052" className="text-sm font-bold text-slate-900 mt-0.5 hover:text-blue-600 transition block">01747-046052 <span className="text-xs font-bold text-slate-600">(Fardous Al-Amin)</span></a>
+            <a href="tel:01996761011" className="text-sm font-bold text-slate-900 hover:text-blue-600 transition block">01996-761011</a>
+            <div className="text-[10px] text-emerald-600 font-bold mt-0.5">{lang === 'bn' ? 'সকাল ১০টা - রাত ৯টা' : '10:00 AM - 9:00 PM'}</div>
           </div>
-        </a>
+        </div>
 
         {/* Card 2: WhatsApp */}
         <a 
