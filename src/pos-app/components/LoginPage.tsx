@@ -455,25 +455,42 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
       {/* ────────────────────────────────────────────────────────────────────────── */}
       {/* ── LEFT HALF: FEATURE SHOWCASE PANEL (Soft Subtle Gray Background) ─────── */}
       {/* ────────────────────────────────────────────────────────────────────────── */}
-      <div className="w-full lg:w-1/2 bg-[#F8F9FB] border-b lg:border-b-0 lg:border-r border-slate-200/80 p-8 sm:p-12 lg:p-16 flex flex-col justify-between items-center text-center relative min-h-[460px] lg:min-h-screen">
-        
-        {/* Top Official Brand Logo (Horizontal Cloud POS Logo) */}
-        <div className="w-full flex items-center justify-between">
+      <div
+        className="w-full lg:w-1/2 lg:h-screen lg:sticky lg:top-0 lg:overflow-hidden border-b lg:border-b-0 lg:border-r border-slate-200/60 flex flex-col items-center text-center relative min-h-[480px]"
+        style={{ background: 'linear-gradient(145deg, #f0f7ff 0%, #e8f4fd 30%, #f5f0ff 65%, #fff7f0 100%)' }}
+      >
+        {/* Decorative background blobs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+          <div
+            className="absolute -top-20 -left-20 w-72 h-72 rounded-full opacity-30"
+            style={{ background: 'radial-gradient(circle, #bfdbfe 0%, transparent 70%)' }}
+          />
+          <div
+            className="absolute top-1/3 -right-16 w-56 h-56 rounded-full opacity-25"
+            style={{ background: 'radial-gradient(circle, #ddd6fe 0%, transparent 70%)' }}
+          />
+          <div
+            className="absolute -bottom-16 left-1/4 w-64 h-64 rounded-full opacity-20"
+            style={{ background: 'radial-gradient(circle, #fed7aa 0%, transparent 70%)' }}
+          />
+        </div>
+
+        {/* Top Official Brand Logo */}
+        <div className="w-full flex items-center justify-between px-6 sm:px-10 lg:px-12 pt-5 sm:pt-6 lg:pt-7 shrink-0 relative z-10">
           <div className="flex items-center">
-            <img 
-              src="/smarthisab_logo.png" 
-              alt="SmartHisab Cloud POS" 
-              className="h-10 sm:h-12 w-auto object-contain cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+            <img
+              src="/smarthisab_logo.png"
+              alt="SmartHisab Cloud POS"
+              className="h-9 sm:h-11 w-auto object-contain cursor-pointer transition-transform duration-200 hover:scale-[1.03] drop-shadow-sm"
               onClick={onBackToHome}
               title="SmartHisab Cloud POS"
             />
           </div>
-
           {onBackToHome && (
             <button
               type="button"
               onClick={onBackToHome}
-              className="lg:hidden text-xs font-bold text-slate-600 hover:text-slate-900 flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-xs cursor-pointer"
+              className="lg:hidden text-xs font-bold text-slate-600 hover:text-slate-900 flex items-center gap-1.5 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-xl border border-slate-200 shadow-sm cursor-pointer"
             >
               <ArrowLeft size={13} />
               <span>হোমপেজ</span>
@@ -481,45 +498,50 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
           )}
         </div>
 
-        {/* Middle Showcase Content (Continuous Smooth Horizontal Sliding Carousel) */}
-        <div className="my-auto py-6 sm:py-8 w-full max-w-2xl mx-auto flex flex-col items-center select-none overflow-hidden">
-          
+        {/* Middle Showcase Carousel — flex-1 to fill remaining height */}
+        <div className="flex-1 flex flex-col items-center justify-center w-full px-5 sm:px-8 lg:px-10 py-3 sm:py-4 overflow-hidden relative z-10">
+
           {/* Horizontal Slider Viewport */}
-          <div className="w-full overflow-hidden relative">
-            <div 
+          <div className="w-full max-w-lg mx-auto overflow-hidden">
+            <div
               className="flex transition-transform duration-[1100ms] ease-[cubic-bezier(0.2,0.8,0.2,1)]"
               style={{ transform: `translateX(-${activeSlide * 100}%)` }}
             >
               {showcaseSlides.map((slide) => (
-                <div key={slide.id} className="w-full shrink-0 flex flex-col items-center px-3 sm:px-4">
-                  
-                  {/* Dynamic Module / Feature Category Badge */}
-                  <div className="mb-3.5">
-                    <span className="text-xs sm:text-[12.5px] font-bold uppercase tracking-wider text-[#0284c7] bg-sky-100/95 px-4 py-1.5 rounded-full border border-sky-200/90 inline-flex items-center gap-2 shadow-2xs">
-                      <span className="w-2 h-2 rounded-full bg-[#0284c7] animate-pulse" />
+                <div key={slide.id} className="w-full shrink-0 flex flex-col items-center">
+
+                  {/* Category Badge — glassmorphism style */}
+                  <div className="mb-3">
+                    <span className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-black uppercase tracking-widest text-[#0369a1] bg-white/70 backdrop-blur-sm px-4 py-1.5 rounded-full border border-sky-200/80 shadow-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7] animate-pulse" />
                       <span>{slide.category}</span>
                     </span>
                   </div>
 
-                  {/* Main Hero Headline matching your website's core characteristics */}
-                  <h1 className="text-2xl sm:text-3xl lg:text-[36px] xl:text-[38px] font-bold text-slate-900 tracking-tight leading-[1.25] mb-8 sm:mb-10 text-center max-w-xl mx-auto">
+                  {/* Main Headline */}
+                  <h1 className="text-[26px] sm:text-[30px] lg:text-[32px] font-black text-slate-900 tracking-tight leading-[1.2] mb-4 sm:mb-5 text-center max-w-sm mx-auto">
                     {slide.titlePrefix}{' '}
-                    <span className="text-[#FF8A00]">{slide.titleHighlight}</span>
+                    <span
+                      className="text-transparent bg-clip-text"
+                      style={{ backgroundImage: 'linear-gradient(135deg, #FF8A00 0%, #e65c00 100%)' }}
+                    >
+                      {slide.titleHighlight}
+                    </span>
                   </h1>
 
-                  {/* 2x2 Feature Cards Grid (Spacious & Premium) */}
-                  <div className="grid grid-cols-2 gap-3.5 sm:gap-5 w-full max-w-xl mx-auto">
+                  {/* 2x2 Feature Cards Grid */}
+                  <div className="grid grid-cols-2 gap-2.5 sm:gap-3 w-full">
                     {slide.items.map((item, idx) => {
                       const IconComp = item.icon;
                       return (
-                        <div 
+                        <div
                           key={idx}
-                          className="bg-white p-3.5 sm:p-4.5 lg:p-5 rounded-2xl sm:rounded-3xl shadow-sm border border-slate-200/90 flex items-center gap-3 sm:gap-4 hover:shadow-lg hover:border-blue-200 transition-all duration-300 transform hover:-translate-y-1"
+                          className="bg-white/85 backdrop-blur-sm p-3 sm:p-3.5 rounded-2xl shadow-sm border border-white/90 flex items-center gap-2.5 hover:shadow-md hover:bg-white hover:border-blue-100 transition-all duration-300 hover:-translate-y-0.5"
                         >
-                          <div className={`w-11 h-11 sm:w-13 sm:h-13 rounded-2xl ${item.bg} ${item.color} flex items-center justify-center shrink-0 shadow-xs`}>
-                            <IconComp className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
+                          <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl ${item.bg} ${item.color} flex items-center justify-center shrink-0`}>
+                            <IconComp className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.2]" />
                           </div>
-                          <span className="text-xs sm:text-sm lg:text-[15px] font-bold text-slate-800 tracking-tight leading-snug text-left">
+                          <span className="text-[11px] sm:text-xs lg:text-[13px] font-bold text-slate-800 tracking-tight leading-snug text-left">
                             {item.label}
                           </span>
                         </div>
@@ -527,23 +549,26 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
                     })}
                   </div>
 
-                  {/* Special Trust & Reassurance Card (Matches user guarantee) */}
+                  {/* Trust Quote Card (Slide 4 only) */}
                   {slide.quote && (
-                    <div className="mt-4 sm:mt-5 w-full max-w-xl mx-auto p-4 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-sky-50 border border-emerald-300/80 shadow-xs text-left">
-                      <div className="flex items-start gap-3">
-                        <div className="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
-                          <ShieldCheck size={18} />
+                    <div
+                      className="mt-3 sm:mt-4 w-full p-3 sm:p-3.5 rounded-2xl border border-emerald-200/80 text-left"
+                      style={{ background: 'linear-gradient(135deg, rgba(236,253,245,0.9) 0%, rgba(240,253,250,0.9) 50%, rgba(240,249,255,0.9) 100%)' }}
+                    >
+                      <div className="flex items-start gap-2.5">
+                        <div className="w-7 h-7 rounded-lg bg-emerald-500 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                          <ShieldCheck size={15} />
                         </div>
                         <div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs font-black text-emerald-800 tracking-wide uppercase">
-                              🛡️ কাস্টমার ডাটা সেফটি নিশ্চয়তা
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-[10px] font-black text-emerald-800 tracking-wide uppercase">
+                              🛡️ কাস্টমার ডাটা সেফটি
                             </span>
-                            <span className="bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full">
+                            <span className="bg-emerald-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">
                               ১০০% ক্লাউড
                             </span>
                           </div>
-                          <p className="text-xs sm:text-[13px] font-semibold text-slate-800 leading-relaxed mt-1">
+                          <p className="text-[11px] sm:text-xs font-semibold text-slate-700 leading-relaxed mt-1">
                             "{slide.quote}"
                           </p>
                         </div>
@@ -556,15 +581,15 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
             </div>
           </div>
 
-          {/* Continuous Carousel Indicator Dots */}
-          <div className="flex items-center justify-center gap-2.5 mt-9 sm:mt-12">
+          {/* Carousel Indicator Dots */}
+          <div className="flex items-center justify-center gap-2 mt-4 sm:mt-5">
             {showcaseSlides.map((slide, idx) => (
               <button
                 key={slide.id}
                 type="button"
                 onClick={() => setActiveSlide(idx)}
-                className={`h-2.5 transition-all duration-700 rounded-full cursor-pointer ${
-                  activeSlide === idx ? 'w-10 bg-[#0284c7] shadow-xs' : 'w-2.5 bg-slate-300 hover:bg-slate-400'
+                className={`h-2 transition-all duration-700 rounded-full cursor-pointer ${
+                  activeSlide === idx ? 'w-7 bg-[#0284c7]' : 'w-2 bg-slate-300/70 hover:bg-slate-400'
                 }`}
                 title={`স্লাইড ${idx + 1}: ${slide.category}`}
               />
@@ -573,30 +598,30 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
 
         </div>
 
-        {/* Bottom Info Support - 2 Distinct Prominent Lines */}
-        <div className="w-full flex flex-col items-center justify-center gap-2.5 pt-5 pb-1">
-          {/* Line 1: Security Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50/90 border border-emerald-200 text-emerald-800 text-xs sm:text-sm font-bold shadow-xs">
-            <CheckCircle2 size={16} className="text-emerald-600 shrink-0" />
-            <span>১০০% গুগল ক্লাউড এনক্রিপ্টেড ও সুরক্ষিত — পিসি ক্র্যাশেও ডাটা হারাবে না</span>
+        {/* Bottom Security & Helpline Strip */}
+        <div className="w-full flex flex-col items-center justify-center gap-2 px-6 sm:px-8 pb-5 sm:pb-6 lg:pb-7 pt-3 shrink-0 relative z-10">
+          {/* Security Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-300/60 text-emerald-800 text-[11px] sm:text-xs font-bold w-full justify-center max-w-sm">
+            <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
+            <span>১০০% গুগল ক্লাউড এনক্রিপ্টেড — পিসি ক্র্যাশেও ডাটা হারাবে না</span>
           </div>
 
-          {/* Line 2: Helpline Numbers */}
-          <div className="inline-flex items-center flex-wrap justify-center gap-2 text-xs sm:text-sm font-bold text-slate-700">
+          {/* Helpline Numbers */}
+          <div className="inline-flex items-center flex-wrap justify-center gap-2 text-[11px] sm:text-xs font-bold text-slate-700">
             <div className="flex items-center gap-1.5 text-blue-700">
-              <PhoneCall size={15} className="text-blue-600 shrink-0" />
+              <PhoneCall size={13} className="text-blue-600 shrink-0" />
               <span>হেল্পলাইন:</span>
             </div>
             <a
               href="tel:01747046052"
-              className="px-2.5 py-0.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 font-mono font-bold tracking-wide border border-blue-200 transition shadow-xs"
+              className="px-2.5 py-1 rounded-lg bg-white/80 hover:bg-white text-blue-700 font-mono font-bold tracking-wide border border-blue-200/70 transition shadow-sm"
             >
               01747-046052
             </a>
-            <span className="text-slate-300 font-normal">|</span>
+            <span className="text-slate-300">|</span>
             <a
               href="tel:01996761011"
-              className="px-2.5 py-0.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 font-mono font-bold tracking-wide border border-blue-200 transition shadow-xs"
+              className="px-2.5 py-1 rounded-lg bg-white/80 hover:bg-white text-blue-700 font-mono font-bold tracking-wide border border-blue-200/70 transition shadow-sm"
             >
               01996-761011
             </a>
