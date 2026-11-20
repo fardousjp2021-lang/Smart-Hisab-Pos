@@ -456,41 +456,97 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
       {/* ── LEFT HALF: FEATURE SHOWCASE PANEL (Soft Subtle Gray Background) ─────── */}
       {/* ────────────────────────────────────────────────────────────────────────── */}
       <div
-        className="w-full lg:w-1/2 lg:h-screen lg:sticky lg:top-0 lg:overflow-hidden border-b lg:border-b-0 lg:border-r border-slate-200/60 flex flex-col items-center text-center relative min-h-[480px]"
-        style={{ background: 'linear-gradient(145deg, #f0f7ff 0%, #e8f4fd 30%, #f5f0ff 65%, #fff7f0 100%)' }}
+        className="w-full lg:w-1/2 lg:h-screen lg:sticky lg:top-0 lg:overflow-hidden border-b lg:border-b-0 lg:border-r border-slate-200/60 flex flex-col items-center text-center relative min-h-[500px]"
+        style={{
+          background: 'linear-gradient(145deg, #f0f7ff 0%, #eef5fc 30%, #f6f0ff 65%, #fff8f0 100%)'
+        }}
       >
-        {/* Decorative background blobs */}
+        {/* Scoped CSS Keyframes for smooth 60fps animations */}
+        <style>{`
+          @keyframes auroraFloat1 {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(30px, 20px, 0) scale(1.1); }
+          }
+          @keyframes auroraFloat2 {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(-25px, -20px, 0) scale(1.15); }
+          }
+          @keyframes auroraFloat3 {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(20px, -25px, 0) scale(1.08); }
+          }
+          @keyframes textGlowShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+          }
+          .animate-aurora-1 {
+            animation: auroraFloat1 14s ease-in-out infinite;
+            will-change: transform;
+          }
+          .animate-aurora-2 {
+            animation: auroraFloat2 18s ease-in-out infinite;
+            will-change: transform;
+          }
+          .animate-aurora-3 {
+            animation: auroraFloat3 16s ease-in-out infinite;
+            will-change: transform;
+          }
+          .shimmer-headline {
+            background-size: 200% auto;
+            animation: textGlowShimmer 6s ease-in-out infinite;
+          }
+        `}</style>
+
+        {/* ── Dynamic Floating Aurora Mesh Background ── */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+          {/* Sky blue mesh sphere */}
           <div
-            className="absolute -top-20 -left-20 w-72 h-72 rounded-full opacity-30"
-            style={{ background: 'radial-gradient(circle, #bfdbfe 0%, transparent 70%)' }}
+            className="absolute -top-20 -left-20 w-80 h-80 rounded-full opacity-40 animate-aurora-1 blur-2xl"
+            style={{ background: 'radial-gradient(circle, #7dd3fc 0%, #38bdf8 40%, transparent 70%)' }}
           />
+          {/* Violet / Purple glow sphere */}
           <div
-            className="absolute top-1/3 -right-16 w-56 h-56 rounded-full opacity-25"
-            style={{ background: 'radial-gradient(circle, #ddd6fe 0%, transparent 70%)' }}
+            className="absolute top-1/4 -right-20 w-80 h-80 rounded-full opacity-35 animate-aurora-2 blur-2xl"
+            style={{ background: 'radial-gradient(circle, #c4b5fd 0%, #a78bfa 40%, transparent 70%)' }}
           />
+          {/* Amber / Warm sunbeam sphere */}
           <div
-            className="absolute -bottom-16 left-1/4 w-64 h-64 rounded-full opacity-20"
-            style={{ background: 'radial-gradient(circle, #fed7aa 0%, transparent 70%)' }}
+            className="absolute -bottom-20 left-1/4 w-80 h-80 rounded-full opacity-30 animate-aurora-3 blur-2xl"
+            style={{ background: 'radial-gradient(circle, #fde047 0%, #fb923c 45%, transparent 70%)' }}
           />
         </div>
 
-        {/* Top Official Brand Logo */}
-        <div className="w-full flex items-center justify-between px-6 sm:px-10 lg:px-12 pt-5 sm:pt-6 lg:pt-7 shrink-0 relative z-10">
-          <div className="flex items-center">
+        {/* ── Top Official Brand Logo (Highlighted with Glass Pedestal & Glow) ── */}
+        <div className="w-full flex items-center justify-between px-6 sm:px-10 lg:px-12 pt-5 sm:pt-6 lg:pt-7 shrink-0 relative z-20">
+          <div
+            onClick={onBackToHome}
+            className="group relative flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/95 backdrop-blur-md border border-white shadow-[0_4px_20px_-2px_rgba(2,132,199,0.15),0_2px_6px_-1px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(2,132,199,0.25)] transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+            title="SmartHisab Cloud POS — হোমপেজে যান"
+          >
+            {/* Subtle animated aura around logo to make it pop out */}
+            <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-sky-400/40 via-indigo-400/30 to-amber-400/40 blur-xs opacity-70 group-hover:opacity-100 transition duration-500 pointer-events-none" />
+
             <img
               src="/smarthisab_logo.png"
               alt="SmartHisab Cloud POS"
-              className="h-9 sm:h-11 w-auto object-contain cursor-pointer transition-transform duration-200 hover:scale-[1.03] drop-shadow-sm"
-              onClick={onBackToHome}
-              title="SmartHisab Cloud POS"
+              className="h-9 sm:h-11 w-auto object-contain relative z-10 drop-shadow-sm transition-transform duration-300"
             />
+
+            {/* Official Cloud Status Badge */}
+            <span className="hidden sm:inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider text-sky-700 bg-sky-50/90 px-2.5 py-0.5 rounded-full border border-sky-200/80 relative z-10 shadow-2xs">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>Cloud POS</span>
+            </span>
           </div>
+
           {onBackToHome && (
             <button
               type="button"
               onClick={onBackToHome}
-              className="lg:hidden text-xs font-bold text-slate-600 hover:text-slate-900 flex items-center gap-1.5 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-xl border border-slate-200 shadow-sm cursor-pointer"
+              className="lg:hidden text-xs font-bold text-slate-600 hover:text-slate-900 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm px-3.5 py-2 rounded-xl border border-white shadow-sm hover:shadow transition cursor-pointer"
             >
               <ArrowLeft size={13} />
               <span>হোমপেজ</span>
@@ -498,7 +554,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
           )}
         </div>
 
-        {/* Middle Showcase Carousel — flex-1 to fill remaining height */}
+        {/* ── Middle Showcase Carousel ── */}
         <div className="flex-1 flex flex-col items-center justify-center w-full px-5 sm:px-8 lg:px-10 py-3 sm:py-4 overflow-hidden relative z-10">
 
           {/* Horizontal Slider Viewport */}
@@ -510,38 +566,51 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
               {showcaseSlides.map((slide) => (
                 <div key={slide.id} className="w-full shrink-0 flex flex-col items-center">
 
-                  {/* Category Badge — glassmorphism style */}
+                  {/* Category Badge — Glowing Glass Capsule with Radar Pulse */}
                   <div className="mb-3">
-                    <span className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-black uppercase tracking-widest text-[#0369a1] bg-white/70 backdrop-blur-sm px-4 py-1.5 rounded-full border border-sky-200/80 shadow-sm">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7] animate-pulse" />
+                    <span className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-black uppercase tracking-wider text-[#0284c7] bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full border border-sky-200/90 shadow-[0_2px_12px_rgba(2,132,199,0.12)]">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+                      </span>
                       <span>{slide.category}</span>
                     </span>
                   </div>
 
-                  {/* Main Headline */}
+                  {/* Main Headline — High Contrast Shimmer Gradient */}
                   <h1 className="text-[26px] sm:text-[30px] lg:text-[32px] font-black text-slate-900 tracking-tight leading-[1.2] mb-4 sm:mb-5 text-center max-w-sm mx-auto">
                     {slide.titlePrefix}{' '}
                     <span
-                      className="text-transparent bg-clip-text"
-                      style={{ backgroundImage: 'linear-gradient(135deg, #FF8A00 0%, #e65c00 100%)' }}
+                      className="text-transparent bg-clip-text shimmer-headline inline-block drop-shadow-xs"
+                      style={{
+                        backgroundImage: 'linear-gradient(120deg, #ea580c 0%, #FF8A00 35%, #f59e0b 65%, #ea580c 100%)'
+                      }}
                     >
                       {slide.titleHighlight}
                     </span>
                   </h1>
 
-                  {/* 2x2 Feature Cards Grid */}
+                  {/* 2x2 Feature Cards Grid (Frosted Glass & Hover Bloom) */}
                   <div className="grid grid-cols-2 gap-2.5 sm:gap-3 w-full">
                     {slide.items.map((item, idx) => {
                       const IconComp = item.icon;
                       return (
                         <div
                           key={idx}
-                          className="bg-white/85 backdrop-blur-sm p-3 sm:p-3.5 rounded-2xl shadow-sm border border-white/90 flex items-center gap-2.5 hover:shadow-md hover:bg-white hover:border-blue-100 transition-all duration-300 hover:-translate-y-0.5"
+                          className="group relative bg-white/90 backdrop-blur-md p-3 sm:p-3.5 rounded-2xl shadow-[0_4px_16px_rgba(0,0,0,0.04)] border border-white hover:border-sky-200 flex items-center gap-2.5 sm:gap-3 hover:shadow-[0_10px_25px_-5px_rgba(2,132,199,0.2)] hover:bg-white transition-all duration-300 hover:-translate-y-1 overflow-hidden"
                         >
-                          <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl ${item.bg} ${item.color} flex items-center justify-center shrink-0`}>
+                          {/* Top specular shine stripe */}
+                          <div className="pointer-events-none absolute inset-x-0 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent opacity-80" />
+
+                          {/* Icon Container with Micro-bounce */}
+                          <div
+                            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl ${item.bg} ${item.color} flex items-center justify-center shrink-0 shadow-xs group-hover:scale-110 transition-transform duration-300`}
+                          >
                             <IconComp className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.2]" />
                           </div>
-                          <span className="text-[11px] sm:text-xs lg:text-[13px] font-bold text-slate-800 tracking-tight leading-snug text-left">
+
+                          {/* Label */}
+                          <span className="text-[11px] sm:text-xs lg:text-[13px] font-bold text-slate-800 tracking-tight leading-snug text-left group-hover:text-sky-950 transition-colors">
                             {item.label}
                           </span>
                         </div>
@@ -549,22 +618,31 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
                     })}
                   </div>
 
-                  {/* Trust Quote Card (Slide 4 only) */}
+                  {/* Trust Quote Card (Slide 4 only — Pulsing Safety Shield) */}
                   {slide.quote && (
                     <div
-                      className="mt-3 sm:mt-4 w-full p-3 sm:p-3.5 rounded-2xl border border-emerald-200/80 text-left"
-                      style={{ background: 'linear-gradient(135deg, rgba(236,253,245,0.9) 0%, rgba(240,253,250,0.9) 50%, rgba(240,249,255,0.9) 100%)' }}
+                      className="mt-3 sm:mt-4 w-full p-3.5 rounded-2xl border border-emerald-300/80 text-left shadow-[0_6px_20px_rgba(16,185,129,0.12)] relative overflow-hidden"
+                      style={{
+                        background:
+                          'linear-gradient(135deg, rgba(236,253,245,0.95) 0%, rgba(240,253,250,0.95) 50%, rgba(240,249,255,0.95) 100%)'
+                      }}
                     >
                       <div className="flex items-start gap-2.5">
-                        <div className="w-7 h-7 rounded-lg bg-emerald-500 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
-                          <ShieldCheck size={15} />
+                        <div className="relative">
+                          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center shrink-0 shadow-md">
+                            <ShieldCheck size={17} />
+                          </div>
+                          <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                          </span>
                         </div>
                         <div>
                           <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-[10px] font-black text-emerald-800 tracking-wide uppercase">
-                              🛡️ কাস্টমার ডাটা সেফটি
+                            <span className="text-[11px] font-black text-emerald-800 tracking-wide uppercase">
+                              🛡️ কাস্টমার ডাটা সেফটি নিশ্চয়তা
                             </span>
-                            <span className="bg-emerald-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">
+                            <span className="bg-emerald-600 text-white text-[8px] font-bold px-2 py-0.5 rounded-full shadow-2xs">
                               ১০০% ক্লাউড
                             </span>
                           </div>
@@ -581,15 +659,17 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
             </div>
           </div>
 
-          {/* Carousel Indicator Dots */}
+          {/* ── Carousel Glowing Indicator Dots ── */}
           <div className="flex items-center justify-center gap-2 mt-4 sm:mt-5">
             {showcaseSlides.map((slide, idx) => (
               <button
                 key={slide.id}
                 type="button"
                 onClick={() => setActiveSlide(idx)}
-                className={`h-2 transition-all duration-700 rounded-full cursor-pointer ${
-                  activeSlide === idx ? 'w-7 bg-[#0284c7]' : 'w-2 bg-slate-300/70 hover:bg-slate-400'
+                className={`h-2 transition-all duration-500 rounded-full cursor-pointer ${
+                  activeSlide === idx
+                    ? 'w-8 bg-[#0284c7] shadow-[0_0_10px_rgba(2,132,199,0.5)]'
+                    : 'w-2 bg-slate-300 hover:bg-slate-400'
                 }`}
                 title={`স্লাইড ${idx + 1}: ${slide.category}`}
               />
@@ -598,15 +678,15 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
 
         </div>
 
-        {/* Bottom Security & Helpline Strip */}
+        {/* ── Bottom Security Badge & Helpline Strip ── */}
         <div className="w-full flex flex-col items-center justify-center gap-2 px-6 sm:px-8 pb-5 sm:pb-6 lg:pb-7 pt-3 shrink-0 relative z-10">
-          {/* Security Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-300/60 text-emerald-800 text-[11px] sm:text-xs font-bold w-full justify-center max-w-sm">
+          {/* Security Badge with Live Verified Dot */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-300/70 text-emerald-800 text-[11px] sm:text-xs font-bold w-full justify-center max-w-sm shadow-2xs">
             <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
             <span>১০০% গুগল ক্লাউড এনক্রিপ্টেড — পিসি ক্র্যাশেও ডাটা হারাবে না</span>
           </div>
 
-          {/* Helpline Numbers */}
+          {/* Helpline Numbers with Glowing Badges */}
           <div className="inline-flex items-center flex-wrap justify-center gap-2 text-[11px] sm:text-xs font-bold text-slate-700">
             <div className="flex items-center gap-1.5 text-blue-700">
               <PhoneCall size={13} className="text-blue-600 shrink-0" />
@@ -614,14 +694,14 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
             </div>
             <a
               href="tel:01747046052"
-              className="px-2.5 py-1 rounded-lg bg-white/80 hover:bg-white text-blue-700 font-mono font-bold tracking-wide border border-blue-200/70 transition shadow-sm"
+              className="px-2.5 py-1 rounded-lg bg-white/95 hover:bg-white text-blue-700 font-mono font-bold tracking-wide border border-blue-200 shadow-xs hover:shadow-sm hover:border-blue-400 transition"
             >
               01747-046052
             </a>
             <span className="text-slate-300">|</span>
             <a
               href="tel:01996761011"
-              className="px-2.5 py-1 rounded-lg bg-white/80 hover:bg-white text-blue-700 font-mono font-bold tracking-wide border border-blue-200/70 transition shadow-sm"
+              className="px-2.5 py-1 rounded-lg bg-white/95 hover:bg-white text-blue-700 font-mono font-bold tracking-wide border border-blue-200 shadow-xs hover:shadow-sm hover:border-blue-400 transition"
             >
               01996-761011
             </a>
