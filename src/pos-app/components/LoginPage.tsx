@@ -485,8 +485,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
           />
         </div>
 
-        {/* ── Top Official Brand Logo (Crisp, High-Contrast White Card) ── */}
-        <div className="w-full flex items-center justify-between px-6 sm:px-10 lg:px-12 pt-5 sm:pt-6 lg:pt-7 shrink-0 relative z-20">
+        {/* ── Top Official Brand Logo (Crisp, High-Contrast White Card - Middle Aligned) ── */}
+        <div className="w-full flex items-center justify-center px-6 sm:px-10 lg:px-12 pt-5 sm:pt-6 lg:pt-7 shrink-0 relative z-20">
           <div
             onClick={onBackToHome}
             className="group flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white border border-slate-200/90 shadow-[0_2px_12px_rgba(15,23,42,0.06)] hover:shadow-[0_6px_20px_rgba(15,23,42,0.1)] transition-all duration-200 hover:scale-[1.01] cursor-pointer"
@@ -512,7 +512,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
             <button
               type="button"
               onClick={onBackToHome}
-              className="lg:hidden text-xs font-bold text-slate-600 hover:text-slate-900 flex items-center gap-1.5 bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-xs hover:shadow-sm transition cursor-pointer"
+              className="lg:hidden absolute right-6 sm:right-10 top-5 sm:top-6 text-xs font-bold text-slate-600 hover:text-slate-900 flex items-center gap-1.5 bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-xs hover:shadow-sm transition cursor-pointer"
             >
               <ArrowLeft size={13} />
               <span>হোমপেজ</span>
