@@ -456,7 +456,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
       {/* ── LEFT HALF: FEATURE SHOWCASE PANEL (Soft Subtle Gray Background) ─────── */}
       {/* ────────────────────────────────────────────────────────────────────────── */}
       <div
-        className="w-full lg:w-1/2 lg:h-screen lg:sticky lg:top-0 lg:overflow-hidden border-b lg:border-b-0 lg:border-r border-slate-200/80 flex flex-col items-center text-center relative min-h-[500px]"
+        className="w-full lg:w-1/2 lg:h-screen lg:sticky lg:top-0 lg:overflow-hidden border-b lg:border-b-0 lg:border-r border-slate-200/80 flex flex-col items-center text-center relative min-h-[500px] order-2 lg:order-1"
         style={{
           background: 'linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 50%, #EBF1F6 100%)'
         }}
@@ -658,7 +658,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
       {/* ────────────────────────────────────────────────────────────────────────── */}
       {/* ── RIGHT HALF: LOGIN & REGISTRATION FORM (Pure White Split View) ───────── */}
       {/* ────────────────────────────────────────────────────────────────────────── */}
-      <div className="w-full lg:w-1/2 bg-white p-6 sm:p-12 lg:p-16 flex flex-col justify-between items-center text-center relative overflow-y-auto min-h-screen">
+      <div className="w-full lg:w-1/2 bg-white p-6 sm:p-12 lg:p-16 flex flex-col justify-between items-center text-center relative overflow-y-auto min-h-screen order-1 lg:order-2">
         
         {/* Top Header Row with Back to Home Button */}
         <div className="w-full flex justify-end">
