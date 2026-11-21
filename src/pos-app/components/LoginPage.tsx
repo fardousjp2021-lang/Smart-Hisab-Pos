@@ -68,6 +68,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isSlideHovered, setIsSlideHovered] = useState(false);
 
   // Auto-fill saved credentials if Remember Me was checked previously
   useEffect(() => {
@@ -142,13 +143,14 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
     },
   ];
 
-  // Auto-running carousel effect (runs continuously uninterrupted at a calm, relaxed pace every 5.5s)
+  // Auto-running carousel effect (runs at a calm, relaxed 7.5s pace and pauses on hover)
   useEffect(() => {
+    if (isSlideHovered) return;
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % showcaseSlides.length);
-    }, 5500);
+    }, 7500);
     return () => clearInterval(timer);
-  }, [showcaseSlides.length]);
+  }, [showcaseSlides.length, isSlideHovered]);
 
   // Fallback app context if used inside AppProvider
   let login: any = null;
@@ -524,9 +526,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
         <div className="flex-1 flex flex-col items-center justify-center w-full px-4 sm:px-6 lg:px-8 py-2 relative z-10">
 
           {/* Horizontal Slider Viewport */}
-          <div className="w-full max-w-lg mx-auto overflow-hidden">
+          <div 
+            className="w-full max-w-lg mx-auto overflow-hidden"
+            onMouseEnter={() => setIsSlideHovered(true)}
+            onMouseLeave={() => setIsSlideHovered(false)}
+          >
             <div
-              className="flex transition-transform duration-[1000ms] ease-[cubic-bezier(0.2,0.8,0.2,1)]"
+              className="flex transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
               style={{ transform: `translateX(-${activeSlide * 100}%)` }}
             >
               {showcaseSlides.map((slide) => (
