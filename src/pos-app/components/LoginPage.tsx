@@ -456,7 +456,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
       {/* ── LEFT HALF: FEATURE SHOWCASE PANEL (Soft Subtle Gray Background) ─────── */}
       {/* ────────────────────────────────────────────────────────────────────────── */}
       <div
-        className="w-full lg:w-1/2 lg:h-screen lg:sticky lg:top-0 lg:overflow-hidden border-b lg:border-b-0 lg:border-r border-slate-200/80 flex flex-col items-center text-center relative min-h-[500px] order-2 lg:order-1"
+        className="w-full lg:w-1/2 lg:h-screen lg:sticky lg:top-0 lg:overflow-y-auto border-b lg:border-b-0 lg:border-r border-slate-200/80 flex flex-col items-center text-center relative min-h-[500px] order-2 lg:order-1"
         style={{
           background: 'linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 50%, #EBF1F6 100%)'
         }}
@@ -486,20 +486,20 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
         </div>
 
         {/* ── Top Official Brand Logo (Crisp, High-Contrast White Card - Middle Aligned) ── */}
-        <div className="w-full flex items-center justify-center px-6 sm:px-10 lg:px-12 pt-5 sm:pt-6 lg:pt-7 shrink-0 relative z-20">
+        <div className="w-full flex items-center justify-center px-6 sm:px-10 lg:px-12 pt-4 sm:pt-5 lg:pt-6 shrink-0 relative z-20">
           <div
             onClick={onBackToHome}
-            className="group flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white border border-slate-200/90 shadow-[0_2px_12px_rgba(15,23,42,0.06)] hover:shadow-[0_6px_20px_rgba(15,23,42,0.1)] transition-all duration-200 hover:scale-[1.01] cursor-pointer"
+            className="group flex items-center gap-3 px-4 py-2 rounded-2xl bg-white border border-slate-200/90 shadow-[0_2px_12px_rgba(15,23,42,0.06)] hover:shadow-[0_6px_20px_rgba(15,23,42,0.1)] transition-all duration-200 hover:scale-[1.01] cursor-pointer"
             title="SmartHisab Cloud POS — হোমপেজে যান"
           >
             <img
               src="/smarthisab_logo.png"
               alt="SmartHisab Cloud POS"
-              className="h-9 sm:h-11 w-auto object-contain drop-shadow-xs transition-transform duration-200"
+              className="h-8 sm:h-9.5 w-auto object-contain drop-shadow-xs transition-transform duration-200"
             />
 
             {/* Official Cloud Status Badge */}
-            <span className="hidden sm:inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-50 px-2.5 py-1 rounded-full border border-slate-200 shadow-2xs">
+            <span className="hidden sm:inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-50 px-2.5 py-0.5 rounded-full border border-slate-200 shadow-2xs">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -512,7 +512,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
             <button
               type="button"
               onClick={onBackToHome}
-              className="lg:hidden absolute right-6 sm:right-10 top-5 sm:top-6 text-xs font-bold text-slate-600 hover:text-slate-900 flex items-center gap-1.5 bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-xs hover:shadow-sm transition cursor-pointer"
+              className="lg:hidden absolute right-6 sm:right-10 top-4 sm:top-5 text-xs font-bold text-slate-600 hover:text-slate-900 flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-xs hover:shadow-sm transition cursor-pointer"
             >
               <ArrowLeft size={13} />
               <span>হোমপেজ</span>
@@ -521,7 +521,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
         </div>
 
         {/* ── Middle Showcase Carousel ── */}
-        <div className="flex-1 flex flex-col items-center justify-center w-full px-5 sm:px-8 lg:px-10 py-3 sm:py-4 overflow-hidden relative z-10">
+        <div className="flex-1 flex flex-col items-center justify-center w-full px-4 sm:px-6 lg:px-8 py-2 relative z-10">
 
           {/* Horizontal Slider Viewport */}
           <div className="w-full max-w-lg mx-auto overflow-hidden">
@@ -533,15 +533,15 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
                 <div key={slide.id} className="w-full shrink-0 flex flex-col items-center">
 
                   {/* Category Badge — Refined Subtle Pill */}
-                  <div className="mb-3">
-                    <span className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#0284c7] bg-white px-3.5 py-1.5 rounded-full border border-slate-200/90 shadow-2xs">
+                  <div className="mb-2">
+                    <span className="inline-flex items-center gap-2 text-[10.5px] sm:text-xs font-bold uppercase tracking-wider text-[#0284c7] bg-white px-3 py-1 rounded-full border border-slate-200/90 shadow-2xs">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7]" />
                       <span>{slide.category}</span>
                     </span>
                   </div>
 
                   {/* Main Headline — Crisp Professional Typography */}
-                  <h1 className="text-[26px] sm:text-[30px] lg:text-[32px] font-black text-slate-900 tracking-tight leading-[1.22] mb-4 sm:mb-5 text-center max-w-sm mx-auto">
+                  <h1 className="text-[21px] sm:text-[25px] lg:text-[27px] font-black text-slate-900 tracking-tight leading-[1.2] mb-3 sm:mb-3.5 text-center max-w-sm mx-auto">
                     {slide.titlePrefix}{' '}
                     <span className="text-[#FF8A00] inline-block">
                       {slide.titleHighlight}
@@ -549,23 +549,23 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
                   </h1>
 
                   {/* 2x2 Feature Cards Grid (Crisp White SaaS Cards) */}
-                  <div className="grid grid-cols-2 gap-2.5 sm:gap-3 w-full">
+                  <div className="grid grid-cols-2 gap-2 sm:gap-2.5 w-full">
                     {slide.items.map((item, idx) => {
                       const IconComp = item.icon;
                       return (
                         <div
                           key={idx}
-                          className="group bg-white p-3 sm:p-3.5 rounded-2xl shadow-[0_2px_8px_rgba(15,23,42,0.04)] border border-slate-200/80 hover:border-sky-300 flex items-center gap-2.5 sm:gap-3 hover:shadow-[0_6px_18px_rgba(2,132,199,0.12)] transition-all duration-200 hover:-translate-y-0.5"
+                          className="group bg-white p-2.5 sm:p-3 rounded-xl shadow-[0_2px_8px_rgba(15,23,42,0.04)] border border-slate-200/80 hover:border-sky-300 flex items-center gap-2 sm:gap-2.5 hover:shadow-[0_4px_14px_rgba(2,132,199,0.1)] transition-all duration-200 hover:-translate-y-0.5"
                         >
                           {/* Icon Container */}
                           <div
-                            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl ${item.bg} ${item.color} flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200`}
+                            className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-lg ${item.bg} ${item.color} flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200`}
                           >
-                            <IconComp className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.2]" />
+                            <IconComp className="w-4 h-4 stroke-[2.2]" />
                           </div>
 
                           {/* Label */}
-                          <span className="text-[11px] sm:text-xs lg:text-[13px] font-bold text-slate-800 tracking-tight leading-snug text-left group-hover:text-slate-900 transition-colors">
+                          <span className="text-[11px] sm:text-xs font-bold text-slate-800 tracking-tight leading-snug text-left group-hover:text-slate-900 transition-colors">
                             {item.label}
                           </span>
                         </div>
@@ -576,13 +576,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
                   {/* Trust Quote Card (Slide 4 only — Reassuring Data Safety) */}
                   {slide.quote && (
                     <div
-                      className="mt-3 sm:mt-4 w-full p-3.5 rounded-2xl bg-white border border-emerald-300/80 text-left shadow-[0_4px_14px_rgba(16,185,129,0.08)] relative overflow-hidden"
+                      className="mt-2.5 sm:mt-3 w-full p-3 rounded-xl bg-white border border-emerald-300/90 text-left shadow-[0_2px_12px_rgba(16,185,129,0.08)] relative"
                     >
                       <div className="flex items-start gap-2.5">
-                        <div className="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
-                          <ShieldCheck size={17} />
+                        <div className="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                          <ShieldCheck size={16} />
                         </div>
-                        <div>
+                        <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
                             <span className="text-[11px] font-black text-emerald-800 tracking-wide uppercase">
                               🛡️ কাস্টমার ডাটা সেফটি নিশ্চয়তা
@@ -591,7 +591,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
                               ১০০% ক্লাউড
                             </span>
                           </div>
-                          <p className="text-[11px] sm:text-xs font-semibold text-slate-700 leading-relaxed mt-1">
+                          <p className="text-[10.5px] sm:text-[11px] font-semibold text-slate-700 leading-relaxed mt-1">
                             "{slide.quote}"
                           </p>
                         </div>
@@ -605,7 +605,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
           </div>
 
           {/* ── Carousel Indicator Dots ── */}
-          <div className="flex items-center justify-center gap-2 mt-4 sm:mt-5">
+          <div className="flex items-center justify-center gap-2 mt-3 sm:mt-3.5">
             {showcaseSlides.map((slide, idx) => (
               <button
                 key={slide.id}
@@ -624,7 +624,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToHome, onLoginSucce
         </div>
 
         {/* ── Bottom Security Badge & Helpline Strip ── */}
-        <div className="w-full flex flex-col items-center justify-center gap-2 px-6 sm:px-8 pb-5 sm:pb-6 lg:pb-7 pt-3 shrink-0 relative z-10">
+        <div className="w-full flex flex-col items-center justify-center gap-2 px-6 sm:px-8 pb-4 sm:pb-5 lg:pb-6 pt-2 shrink-0 relative z-10">
           {/* Security Badge with Live Verified Dot */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-white border border-slate-200/90 text-slate-800 text-[11px] sm:text-xs font-bold w-full justify-center max-w-sm shadow-2xs">
             <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
