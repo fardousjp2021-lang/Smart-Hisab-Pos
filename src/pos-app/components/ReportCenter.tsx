@@ -53,8 +53,7 @@ const SUB_META: Record<string, { bn: string; en: string; icon: any; color: strin
 export const ReportCenter: React.FC<Props> = ({
   lang, activeSubTab, customers, suppliers, userRole, sales: propSales, products: propProducts, purchases: propPurchases, expenses: propExpenses,
 }) => {
-  let appCtx: any = null;
-  try { appCtx = useApp(); } catch {}
+  const appCtx = useApp();
   const sales = propSales || appCtx?.sales || [];
   const products = propProducts || appCtx?.products || [];
   const stockMovements = appCtx?.stockMovements || [];
