@@ -45,6 +45,60 @@ export const SiteSettings: React.FC<Props> = ({
   sessionUser,
 }) => {
   const [saving, setSaving] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
+
+  const handleSafeCacheSync = async () => {
+    setIsSyncing(true);
+    try {
+      const keysToKeep = [
+        'saim_auth_user',
+        'firebase:authUser',
+        'smart_pos_',
+        'saim_store_',
+        'smarthisab_active_session_user',
+        'smarthisab_store_settings',
+        'saim_device_',
+        'sales_sync_queue'
+      ];
+      
+      const preserved: Record<string, string> = {};
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && keysToKeep.some(k => key.toLowerCase().includes(k.toLowerCase()))) {
+          preserved[key] = localStorage.getItem(key) || '';
+        }
+      }
+
+      if ('caches' in window) {
+        try {
+          const cacheNames = await caches.keys();
+          await Promise.all(cacheNames.map(name => caches.delete(name)));
+        } catch (cErr) {
+          console.warn('Cache API clear warning:', cErr);
+        }
+      }
+
+      localStorage.clear();
+      Object.entries(preserved).forEach(([k, v]) => localStorage.setItem(k, v));
+
+      try { sessionStorage.clear(); } catch(e) {}
+
+      showToast(
+        lang === 'bn' 
+          ? '✅ নিরাপদ ক্যাশ ও সিস্টেম সিঙ্ক সফল হয়েছে! পেজ রিফ্রেশ হচ্ছে...' 
+          : '✅ Safe cache & system sync completed! Refreshing page...', 
+        'success'
+      );
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 800);
+    } catch (err) {
+      console.error('Cache sync error:', err);
+      showToast(lang === 'bn' ? 'ক্যাশ সিঙ্ক করতে সমস্যা হয়েছে' : 'Failed to sync cache', 'error');
+      setIsSyncing(false);
+    }
+  };
 
   const activeSessionUser = sessionUser || (() => {
     try {
@@ -490,15 +544,27 @@ export const SiteSettings: React.FC<Props> = ({
                 <span>{lang === 'bn' ? '📂 ব্যাকআপ ফাইল থেকে রিস্টোর / ডাটা রিকভারি' : '📂 Restore / Recover Data from JSON File'}</span>
               </button>
 
-              <button
-                onClick={() => {
-                  showToast(lang === 'bn' ? 'সিস্টেম ক্যাশ সফলভাবে রিফ্রেশ করা হয়েছে!' : 'System cache cleared!', 'info');
-                }}
-                className="w-full py-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 font-bold text-xs transition flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <Trash2 className="w-4 h-4 text-slate-500" />
-                <span>{lang === 'bn' ? 'সিস্টেম ক্যাশ ক্লিন করুন' : 'Clear System Cache'}</span>
-              </button>
+              <div className="pt-2 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={handleSafeCacheSync}
+                  disabled={isSyncing}
+                  className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2 cursor-pointer active:scale-95 disabled:opacity-60"
+                  title={lang === 'bn' ? 'লগইন না হারিয়ে ব্রাউজার ক্যাশ ও ক্লাউড ডাটা সিঙ্ক করুন' : 'Safe Cache & App Sync without logging out'}
+                >
+                  <RefreshCw className={`w-4 h-4 text-emerald-200 ${isSyncing ? 'animate-spin' : ''}`} />
+                  <span>
+                    {isSyncing 
+                      ? (lang === 'bn' ? 'সিঙ্ক ও ক্যাশ আপডেট হচ্ছে...' : 'Syncing & Updating Cache...') 
+                      : (lang === 'bn' ? '🔄 নিরাপদ সিস্টেম ও ক্যাশ সিঙ্ক (Sync & Clean Cache)' : '🔄 Safe System & Cache Sync')}
+                  </span>
+                </button>
+                <p className="text-[10.5px] text-slate-500 font-medium text-center mt-1.5">
+                  {lang === 'bn' 
+                    ? '🔒 আপনার লগইন আইডি বা পাসওয়ার্ড অক্ষত থাকবে (লগআউট হবে না)' 
+                    : '🔒 Your login credentials and store data will remain safe'}
+                </p>
+              </div>
             </div>
           </div>
 

@@ -53,6 +53,60 @@ export const StoreSettings: React.FC<Props> = ({
   showToast,
 }) => {
   const [saving, setSaving] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
+
+  const handleSafeCacheSync = async () => {
+    setIsSyncing(true);
+    try {
+      const keysToKeep = [
+        'saim_auth_user',
+        'firebase:authUser',
+        'smart_pos_',
+        'saim_store_',
+        'smarthisab_active_session_user',
+        'smarthisab_store_settings',
+        'saim_device_',
+        'sales_sync_queue'
+      ];
+      
+      const preserved: Record<string, string> = {};
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && keysToKeep.some(k => key.toLowerCase().includes(k.toLowerCase()))) {
+          preserved[key] = localStorage.getItem(key) || '';
+        }
+      }
+
+      if ('caches' in window) {
+        try {
+          const cacheNames = await caches.keys();
+          await Promise.all(cacheNames.map(name => caches.delete(name)));
+        } catch (cErr) {
+          console.warn('Cache API clear warning:', cErr);
+        }
+      }
+
+      localStorage.clear();
+      Object.entries(preserved).forEach(([k, v]) => localStorage.setItem(k, v));
+
+      try { sessionStorage.clear(); } catch(e) {}
+
+      showToast(
+        lang === 'bn' 
+          ? '✅ নিরাপদ ক্যাশ ও সিস্টেম সিঙ্ক সফল হয়েছে! পেজ রিফ্রেশ হচ্ছে...' 
+          : '✅ Safe cache & system sync completed! Refreshing page...', 
+        'success'
+      );
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 800);
+    } catch (err) {
+      console.error('Cache sync error:', err);
+      showToast(lang === 'bn' ? 'ক্যাশ সিঙ্ক করতে সমস্যা হয়েছে' : 'Failed to sync cache', 'error');
+      setIsSyncing(false);
+    }
+  };
 
   const handleSave = () => {
     setSaving(true);
@@ -360,6 +414,48 @@ export const StoreSettings: React.FC<Props> = ({
                 />
               </div>
             </div>
+          </div>
+
+          {/* Card: Safe System & Cache Sync (নিরাপদ সিস্টেম ও ক্যাশ সিঙ্ক) */}
+          <div className="rounded-2xl border border-emerald-200/90 bg-gradient-to-br from-emerald-50/70 via-teal-50/50 to-white p-5 space-y-3 shadow-sm">
+            <div className="flex items-center gap-3 pb-2 border-b border-emerald-100">
+              <div className="p-2 rounded-xl bg-emerald-100 text-emerald-700">
+                <RefreshCw className="w-5 h-5 text-emerald-700" />
+              </div>
+              <div>
+                <h2 className="text-base font-bold text-slate-900 tracking-tight">
+                  {lang === 'bn' ? '🔄 নিরাপদ সিস্টেম ও ক্যাশ সিঙ্ক' : '🔄 Safe System & Cache Sync'}
+                </h2>
+                <p className="text-xs text-slate-500 font-medium">
+                  {lang === 'bn' ? 'লগইন না হারিয়ে ব্রাউজার মেমরি ও ক্লাউড ডাটা রিফ্রেশ করুন' : 'Safe Cache & App Sync without logging out'}
+                </p>
+              </div>
+            </div>
+
+            <p className="text-xs text-slate-600 font-medium leading-relaxed">
+              {lang === 'bn' 
+                ? 'সফটওয়্যারে নতুন আপডেট পাওয়ার পর বা কোনো পেজে ডাটা আটকে থাকলে এই বাটনে ক্লিক করতে পারেন। আপনার লগইন আইডি-পাসওয়ার্ড ও দোকানের সকল তথ্য সম্পূর্ণ সুরক্ষিত থাকবে।'
+                : 'Click this button if you need to fetch latest system updates or clear stuck browser memory. Your login credentials and shop settings will remain 100% safe.'}
+            </p>
+
+            <button
+              type="button"
+              onClick={handleSafeCacheSync}
+              disabled={isSyncing}
+              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2 cursor-pointer active:scale-95 disabled:opacity-60"
+            >
+              <RefreshCw className={`w-4 h-4 text-emerald-200 ${isSyncing ? 'animate-spin' : ''}`} />
+              <span>
+                {isSyncing 
+                  ? (lang === 'bn' ? 'সিঙ্ক ও ক্যাশ আপডেট হচ্ছে...' : 'Syncing & Updating Cache...') 
+                  : (lang === 'bn' ? '🔄 নিরাপদ সিস্টেম ও ক্যাশ সিঙ্ক (Sync & Clean Cache)' : '🔄 Safe System & Cache Sync')}
+              </span>
+            </button>
+            <p className="text-[10.5px] text-slate-500 font-medium text-center">
+              {lang === 'bn' 
+                ? '🔒 এটি চাপলে লগআউট হবে না, শুধুমাত্র নতুন আপডেট লোড হবে' 
+                : '🔒 This will not log you out, only refreshes system data'}
+            </p>
           </div>
         </div>
       </div>
