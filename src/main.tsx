@@ -33,15 +33,38 @@ class GlobalErrorBoundary extends React.Component<{ children: React.ReactNode },
             <pre style={{ background: '#0f172a', padding: '12px', borderRadius: '8px', color: '#fb7185', fontSize: '11px', overflowX: 'auto' }}>
               {String(this.state.error?.stack || this.state.error?.message || this.state.error)}
             </pre>
-            <button
-              onClick={() => {
-                localStorage.clear();
-                window.location.reload();
-              }}
-              style={{ padding: '10px 20px', background: '#3b82f6', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', marginTop: '16px' }}
-            >
-              🔄 লোকাল ডাটা রিসেট ও রিফ্রেশ দিন (Reset & Reload)
-            </button>
+            <div style={{ display: 'flex', gap: '10px', marginTop: '16px', flexWrap: 'wrap' }}>
+              <button
+                onClick={() => {
+                  window.location.reload();
+                }}
+                style={{ padding: '10px 18px', background: '#10b981', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer' }}
+              >
+                🔄 সাধারণ রিফ্রেশ দিন (Reload)
+              </button>
+              <button
+                onClick={() => {
+                  try {
+                    const keysToKeep = ['saim_auth_user', 'firebase:authUser', 'smart_pos_', 'saim_store_'];
+                    const preserved: Record<string, string> = {};
+                    for (let i = 0; i < localStorage.length; i++) {
+                      const key = localStorage.key(i);
+                      if (key && keysToKeep.some(k => key.toLowerCase().includes(k.toLowerCase()))) {
+                        preserved[key] = localStorage.getItem(key) || '';
+                      }
+                    }
+                    localStorage.clear();
+                    Object.entries(preserved).forEach(([k, v]) => localStorage.setItem(k, v));
+                  } catch (e) {
+                    console.error("Cache clear error:", e);
+                  }
+                  window.location.reload();
+                }}
+                style={{ padding: '10px 18px', background: '#3b82f6', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer' }}
+              >
+                🧹 ক্যাশ পরিষ্কার করে রিলোড দিন
+              </button>
+            </div>
           </div>
         </div>
       );

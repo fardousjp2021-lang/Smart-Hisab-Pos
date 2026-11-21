@@ -42,6 +42,7 @@ export const SalesLedger: React.FC<SalesLedgerProps> = ({
   setActiveTab,
   setActiveSubTab
 }) => {
+  const isBn = lang === 'bn';
   const storeSettings = (() => {
     try {
       const s = localStorage.getItem('saim_store_settings');
